@@ -1,0 +1,358 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>LOPEZ RESIDENTIAL PAINTING</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f2f2f2;
+            text-align: center;
+        }
+        #titulo {
+            font-size: 36px;
+            font-weight: bold;
+            color: #007bff;
+            text-shadow: 2px 2px 5px #ccc;
+            margin-top: 20px;
+        }
+        #subtitulo {
+            font-size: 24px;
+            font-weight: bold;
+            color: #ff9900;
+            margin-bottom: 20px;
+        }
+        #caja-desplegable {
+            width: 80%;
+            margin: 20px auto;
+            padding: 10px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            -webkit-appearance: none;
+            background-color: #fff;
+            color: #333;
+            font-size: 18px;
+        }
+        #tabla-informacion {
+            width: 80%;
+            margin: 20px auto;
+            border-collapse: collapse;
+ box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+        #tabla-informacion th, #tabla-informacion td {
+            border: 1px solid #ccc;
+            padding: 10px;
+            background-color: #f9f9f9;
+            color: #333;
+            font-size: 16px;
+        }
+        #tabla-informacion th {
+            background-color: #007bff;
+            color: #fff;
+        }
+    </style>
+</head>
+<body>
+    <h1 id="titulo">LOPEZ RESIDENTIAL PAINTING</h1>
+    <h2 id="subtitulo">Pintura de alta calidad para su hogar</h2>
+    <select id="caja-desplegable">
+        <option value="">Seleccione una COLONIA</option>
+        <option value="Iron Rock">Iron Rock</option>
+        <option value="Greenbrier">Greenbrier</option>
+        <option value="Pless Landing">Pless Landing</option>
+        <option value="Brookheaven">Brookheaven</option>
+        <option value="Sanctuary">Sanctuary</option>
+        <option value="Lakes Of Woodbine">Lakes Of Woodbine</option>
+        <option value="Madelyn Woods">Madelyn Woods</option>
+        <option value="Cottages of Aventura">Cottages of Aventura</option>
+        <option value="Lancelot">Lancelot</option>
+        <option value="Gavin Landing">Gavin Landing</option>
+        <option value="Rivers Cove">Rivers Cove</option>
+        <option value="Ventura Manor">Ventura Manor</option>
+        <option value="Sentinel Ridge">Sentinel Ridge</option>
+        <option value="Cadence">Cadence</option>
+        <option value="Carrington">Carrington</option>
+        <option value="Parkwood">Parkwood</option>
+        <option value="Live Oaks">Live Oaks</option>
+        <option value="Young Oaks">Young Oaks</option>
+        <option value="Silverlake">Silverlake</option>
+        <option value="Patriot">Patriot</option>
+        <option value="Hihglands">Hihglands</option>
+        <option value="Days Landing">Days Landing</option>
+        <option value="Ledwick">Ledwick</option>
+        <option value="Mary Anette">Mary Anette</option>
+        <option value="Airway Oaks">Airway Oaks</option>
+        <option value="Fairchild">Fairchild</option>
+       <option value="Midtown">Midtown</option>
+       <option value="Bridlewood">Bridlewood</option>
+       <option value="Gleenhollow">Gleenhollow</option>
+       <option value="Lost Key">Lost Key</option>
+       <option value="Souther Palms">Souther Palms</option>
+       <option value="Stone Heaven">Stone Heaven</option>
+       <option value="Bently">Bently</option>
+       <option value="Sweetbarb">Sweetbarb</option>
+       <option value="Gleenlakes">Gleenlakes</option>
+       <option value="Quilanding">Quilanding</option>
+    </select>
+    <table id="tabla-informacion">
+        <tr>
+            <th>Ubicación</th>
+            <th>Códigos</th>
+            <th>Observación</th>
+        </tr>
+        <tr id="fila-informacion">
+            <td id="ubicacion"></td>
+            <td id="codigos"></td>
+            <td id="observacion"></td>
+        </tr>
+    </table>
+    <script>
+        const cajaDesplegable = document.getElementById('caja-desplegable');
+        const ubicacion = document.getElementById('ubicacion');
+        const codigos = document.getElementById('codigos');
+        const observacion = document.getElementById('observacion');
+cajaDesplegable.addEventListener('change', () => {
+            const valorSeleccionado = cajaDesplegable.value;
+            switch (valorSeleccionado) {
+                case 'Iron Rock':
+                    ubicacion.innerHTML = '<a href="https://maps.app.goo.gl/tRuUwmUBdDAuFeDz8?g_st=iw" target="_blank">Iron Rock</a>';
+                    codigos.innerHTML = '<ul><li>Porton #1717</li><li>La apertura es con LLAVE</li></ul>';
+                    observacion.innerHTML = '<ul><li><a href="https://dlqxt4mfnxo6k.cloudfront.net/dsldhomes.com/aHR0cHM6Ly9zMy5hbWF6b25hd3MuY29tL2J1aWxkZXJjbG91ZC9kYmU3MjE3OTE3NDcwMTMzMTA2ZTM4OWQwYWUyODA0Ny5wbmc=/webp/2000/2000" target="_blank">Mapa Ubicacion de CASAS</a></li><li>BEIGE Color Puerta Trasera</li></ul>';
+                    break;
+                case 'Greenbrier':
+                    ubicacion.innerHTML = '<a href="https://maps.app.goo.gl/4hkt3to6ikkNokvu5?g_st=com.google.maps.preview.copy" target="_blank">Greenbrier</a>';
+                    codigos.innerHTML = '<ul><li>La apertura es con LLAVE</li></ul>';
+                    observacion.innerHTML = '<ul><li>SNOWBOUND color de pared</li><li>TRICORN BLACK Puertas Principales</li></ul>';
+                    break;
+                case 'Pless Landing':
+                    ubicacion.innerHTML = '<a href="https://maps.app.goo.gl/3kJkQJMu3yz3figz7?g_st=com.google.maps.preview.copy" target="_blank">Pless Landing</a>';
+                    codigos.innerHTML = '<ul><li>0125</li><li>0424</li><li>0225</li></ul>';
+                    observacion.innerHTML = 'ELDIER WHITE Color Paredes';
+                    break;
+                case 'Brookheaven':
+                    ubicacion.innerHTML = '<a href="https://maps.app.goo.gl/eJzakFUraCPnGwj98?g_st=com.google.maps.preview.copy" target="_blank">Brookheaven</a>';
+                    codigos.innerHTML = '<ul><li>0125</li><li>0225</li></ul>';
+                    observacion.innerHTML = 'Observación para Brookheaven';
+                    break;
+                case 'Sanctuary':
+                    ubicacion.innerHTML = '<a href="https://maps.app.goo.gl/bm6uYQYM2UE4hzLt5?g_st=com.google.maps.preview.copy" target="_blank">Sanctuary</a>';
+                    codigos.innerHTML = '<ul><li>0125</li><li>0225</li><li>7531</li></ul>';
+                    observacion.innerHTML = 'ELDIER WHITE Color Paredes';
+                    break;
+                case 'Lakes Of Woodbine':
+                    ubicacion.innerHTML = '<a href="https://maps.app.goo.gl/HmM53z1budcdthDu7?g_st=com.google.maps.preview.copy" target="_blank">Lakes Of Woodbine</a>';
+                    codigos.innerHTML = '<ul><li>0125</li><li>0225</li></ul>';
+                    observacion.innerHTML = 'ELDIER WHITE Color Paredes';
+                    break;
+                case 'Madelyn Woods':
+                    ubicacion.innerHTML = '<a href="https://maps.app.goo.gl/iiUzwJGCfVM2RxEu5?g_st=com.google.maps.preview.copy" target="_blank">Madelyn Woods</a>';
+                    codigos.innerHTML = '<ul><li>El numero de casa es el codigo</li></ul>';
+                    observacion.innerHTML = 'Por lo regular Shutters, gable y columnas son de Stain';
+                    break;
+                case 'Cottages of Aventura':
+                    ubicacion.innerHTML = '<a href="https://maps.app.goo.gl/GMKY2zg7Z3QW8hEh7?g_st=com.google.maps.preview.copy" target="_blank">Cottages of Aventura</a>';
+                    codigos.innerHTML = '<ul><li>Se Abre con LLave</li></ul>';
+                    observacion.innerHTML = '<ul><li>Pintar en  primeras puertas principales (negro) y columnas</li><li>SNOWBOUND paredes</li></ul>';
+                    break;
+                case 'Lancelot':
+                    ubicacion.innerHTML = '<a href="https://maps.app.goo.gl/JZprTLfJDwPx9KEb8?g_st=com.google.maps.preview.copy" target="_blank">Lancelot</a>';
+                    codigos.innerHTML = '<ul><li>0125</li><li>0225</li></ul>';
+                    observacion.innerHTML = 'ELDIER WHITE Color Paredes';
+                    break;
+                case 'Gavin Landing':
+                    ubicacion.innerHTML = '<a href="https://maps.app.goo.gl/JZprTLfJDwPx9KEb8?g_st=com.google.maps.preview.copy" target="_blank">Gavin Landing</a>';
+                    codigos.innerHTML = '<ul><li>0125</li><li>0225</li></ul>';
+                    observacion.innerHTML = 'ELDIER WHITE Color Paredes';
+                    break;
+               case 'Rivers Cove':
+                    ubicacion.innerHTML = '<a href="https://maps.app.goo.gl/3y2ei6xbhZ2p247S6?g_st=com.google.maps.preview.copy" target="_blank">Rivers Cove</a>';
+                    codigos.innerHTML = '<ul><li>0125</li><li>0225</li><li>0424</li><li>2293</li></ul>';
+                    observacion.innerHTML = 'ELDIER WHITE Color Paredes';
+                    break;
+               case 'Ventura Manor':
+                    ubicacion.innerHTML = '<a href="https://maps.app.goo.gl/VQ5YJdAhS3oYCRfv7?g_st=com.google.maps.preview.copy" target="_blank">Ventura Manor</a>';
+                    codigos.innerHTML = '<ul><li>0125</li><li>0225</li><li>0424</li><li>2293</li></ul>';
+                    observacion.innerHTML = 'ELDIER WHITE Color Paredes';
+                    break;
+               case 'Sentinel Ridge':
+                    ubicacion.innerHTML = '<a href="https://maps.app.goo.gl/Rq3vStzLmnwhb2fZ7?g_st=com.google.maps.preview.copy" target="_blank">Sentinel Ridge</a>';
+                    codigos.innerHTML = '<ul><li>Se Abre con LLave</li></ul>';
+                    observacion.innerHTML = 'Siempre checar si tiene Gable avisar para pedir la pintura';
+                    break;
+               case 'Cadence':
+                    ubicacion.innerHTML = '<a href="https://maps.app.goo.gl/Seibf8AVTk3Gr4EJ8?g_st=com.google.maps.preview.copy" target="_blank">Cadence</a>';
+                    codigos.innerHTML = '<ul><li>2293</li></ul>';
+                    observacion.innerHTML = 'Observaciones para Cadence';
+                    break;
+               case 'Carrington':
+                    ubicacion.innerHTML = '<a href="https://maps.app.goo.gl/8qDwgMAss6Gt5r4u8?g_st=com.google.maps.preview.copy" target="_blank">Carrington</a>';
+                    codigos.innerHTML = '<ul><li>El intendente es el que abre la puerta, preveniar al llegar</li></ul>';
+                    observacion.innerHTML = 'Textura Gruesa y por lo regular paredes son 400 y cielo Flat pero checar bien, pintura AGRABBLE GRAY';
+                    break;
+               case 'Parkwood':
+                    ubicacion.innerHTML = '<a href="https://maps.app.goo.gl/GrWNg3XtjxFYH74z8?g_st=com.google.maps.preview.copy" target="_blank">Parkwood</a>';
+                    codigos.innerHTML = '<ul><li>El intendente es el que abre la puerta, preveniar al llegar</li></ul>';
+                    observacion.innerHTML = 'Textura Gruesa, banos son por lo regular 400 y paredes normales flat, pintura AGRABBLE GRAY';
+                    break;
+               case 'Live Oaks':
+                    ubicacion.innerHTML = '<a href="https://maps.app.goo.gl/NSsiQWtFZfUxBvfF9?g_st=com.google.maps.preview.copy" target="_blank">Live Oaks</a>';
+                    codigos.innerHTML = '<ul><li>Se Abre con LLave</li></ul>';
+                    observacion.innerHTML = '<ul><li>Puertas de Negro</li><li>SNOWBOUND paredes</li></ul>';
+                    break;
+               case 'Young Oaks':
+                    ubicacion.innerHTML = '<a href="https://maps.app.goo.gl/cVPbCu48iCHRbjRG9?g_st=com.google.maps.preview.copy" target="_blank">Young Oaks</a>';
+                    codigos.innerHTML = '<ul><li>Sin Informacion</li></ul>';
+                    observacion.innerHTML = '<ul><li>Sin Informacion</li></ul>';
+                    break;
+               case 'Silverlake':
+                    ubicacion.innerHTML = '<a href="https://maps.app.goo.gl/5VeGDXwGo42KZVD28?g_st=com.google.maps.preview.copy" target="_blank">Silverlake</a>';
+                    codigos.innerHTML = '<ul><li>0304</li></ul>';
+                    observacion.innerHTML = '<ul><li>ELDIER WHITE Color Paredes</li></ul>';
+                    break;
+               case 'Patriot':
+                    ubicacion.innerHTML = '<a href="https://maps.app.goo.gl/3B1vdMqSgVoQhhn96?g_st=com.google.maps.preview.copy" target="_blank">Patriot</a>';
+                    codigos.innerHTML = '<ul><li>0125</li><li>0225</li></ul>';
+                    observacion.innerHTML = '<ul><li>Observaciones para Patriot</li></ul>';
+                    break;
+               case 'Hihglands':
+                    ubicacion.innerHTML = '<a href="https://maps.app.goo.gl/r1iTLBdi966sEa1x5?g_st=com.google.maps.preview.copy" target="_blank">Hihglands</a>';
+                    codigos.innerHTML = '<ul><li>0125</li><li>0225</li><li>2293</li><li>9572</li></ul>';
+                    observacion.innerHTML = '<ul><li>ELDIER WHITE paredes</li></ul>';
+                    break;
+               case 'Days Landing':
+                    ubicacion.innerHTML = '<a href="https://maps.app.goo.gl/HBHUhNGU2CBtZeNVA?g_st=com.google.maps.preview.copy" target="_blank">Days Landing</a>';
+                    codigos.innerHTML = '<ul><li>0125</li><li>0225</li><li>2293</li></ul>';
+                    observacion.innerHTML = '<ul><li>ELDIER WHITE paredes</li></ul>';
+                    break;
+               case 'Ledwick':
+                    ubicacion.innerHTML = '<a href="https://maps.app.goo.gl/EYTMnM4mwUvHHJ428?g_st=com.google.maps.preview.copy" target="_blank">Ledwick</a>';
+                    codigos.innerHTML = '<ul><li>2293</li></ul>';
+                    observacion.innerHTML = '<ul><li>ALABASTER paredes</li></ul>';
+                    break;
+               case 'Mary Anette':
+                    ubicacion.innerHTML = '<a href="https://maps.app.goo.gl/au5cbN5kpXHjWiRJ8?g_st=com.google.maps.preview.copy" target="_blank">Mary Anette</a>';
+                    codigos.innerHTML = '<ul><li>2293</li></ul>';
+                    observacion.innerHTML = '<ul><li>ALABASTER paredes</li></ul>';
+                    break;
+               case 'Airway Oaks':
+                    ubicacion.innerHTML = '<a href="https://maps.app.goo.gl/dtX87he5Nh2EbH7u5?g_st=com.google.maps.preview.copy" target="_blank">Airway Oaks</a>';
+                    codigos.innerHTML = '<ul><li>El intendente es el que abre la puerta, preveniar al llegar</li></ul>';
+                    observacion.innerHTML = '<ul><li>ALABASTER paredes</li></ul>';
+                    break;
+               case 'Fairchild':
+                    ubicacion.innerHTML = '<a href="https://maps.app.goo.gl/LH7Fxov2AQqHGdeE9?g_st=com.google.maps.preview.copy" target="_blank">Fairchild</a>';
+                    codigos.innerHTML = '<ul><li>0125</li><li>0225</li><li>2293</li></ul>';
+                    observacion.innerHTML = '<ul><li>ELDIER WHITE paredes</li></ul>';
+                    break;
+               case 'Midtown':
+                    ubicacion.innerHTML = '<a href="https://maps.app.goo.gl/RFDW2Qu4jZNWGu9V8?g_st=com.google.maps.preview.copy" target="_blank">Midtown</a>';
+                    codigos.innerHTML = '<ul><li>0125</li><li>0225</li><li>2293</li></ul>';
+                    observacion.innerHTML = '<ul><li>ELDIER WHITE paredes</li></ul>';
+                    break;
+               case 'Bridlewood':
+                    ubicacion.innerHTML = '<a href="https://maps.app.goo.gl/pXzpEuwvbV2r4GQ8A?g_st=com.google.maps.preview.copy" target="_blank">Bridlewood</a>';
+                    codigos.innerHTML = '<ul><li>0125</li><li>0225</li><li>2293</li></ul>';
+                    observacion.innerHTML = '<ul><li>ELDIER WHITE paredes</li></ul>';
+                    break;
+               case 'Gleenhollow':
+                    ubicacion.innerHTML = '<a href="https://maps.app.goo.gl/FTHaGaHRT1ZTTkQh9?g_st=com.google.maps.preview.copy" target="_blank">Gleenhollow</a>';
+                    codigos.innerHTML = '<ul><li>El intendente abre la puerta</li></ul>';
+                    observacion.innerHTML = '<ul><li>Sin Informacion</li></ul>';
+                    break;
+               case 'Lost Key':
+                    ubicacion.innerHTML = '<a href="https://maps.app.goo.gl/24Lot8Wwpzh2aBz27?g_st=com.google.maps.preview.copy" target="_blank">Lost Key</a>';
+                    codigos.innerHTML = '<ul><li>Codigo 8004 candado ubicado junto a casa modelo</li></ul>';
+                    observacion.innerHTML = '<ul><li>SNOWBOUND Pintura de Pared</li></ul>';
+                    break;
+               case 'Souther Palms':
+                    ubicacion.innerHTML = '<a href="https://maps.app.goo.gl/P8hyo3Lv9gFwEhGa6?g_st=com.google.maps.preview.copy" target="_blank">Souther Palms</a>';
+                    codigos.innerHTML = '<ul><li>Se abre con llave</li></ul>';
+                    observacion.innerHTML = '<ul><li>ELDIER WHITE Pintura de Pared</li></ul>';
+                    break;
+               case 'Stone Heaven':
+                    ubicacion.innerHTML = '<a href="https://maps.app.goo.gl/zDAT1PwapZabneeGA?g_st=com.google.maps.preview.copy" target="_blank">Stone Heaven</a>';
+                    codigos.innerHTML = '<ul><li>Se abre con llave</li></ul>';
+                    observacion.innerHTML = '<ul><li>ELDIER WHITE Pintura de Pared</li></ul>';
+                    break;
+               case 'Bently':
+                    ubicacion.innerHTML = '<a href="https://maps.app.goo.gl/WJVKUzT34WqWDPf58?g_st=iw" target="_blank">Bently</a>';
+                    codigos.innerHTML = '<ul><li>El intendente el unico que abre, anticipar</li></ul>';
+                    observacion.innerHTML = '<ul><li>Sin Informacion Adicional</li></ul>';
+                    break;
+               case 'Sweetbarb':
+                    ubicacion.innerHTML = '<a href="https://maps.app.goo.gl/7isakJKFXfRfemVL8?g_st=com.google.maps.preview.copy" target="_blank">Sweetbarb</a>';
+                    codigos.innerHTML = '<ul><li>El intendente el unico que abre, anticipar</li></ul>';
+                    observacion.innerHTML = '<ul><li>AGRABBLE GRAY Pintura de paredes</li></ul>';
+                    break;
+               case 'Gleenlakes':
+                    ubicacion.innerHTML = '<a href="https://maps.app.goo.gl/EJQTG49rb1nLe9mX9?g_st=com.google.maps.preview.copy" target="_blank">Gleenlakes</a>';
+                    codigos.innerHTML = '<ul><li>Se abre con LLave</li></ul>';
+                    observacion.innerHTML = '<ul><li>ELDIER WHITE Pintura de paredes</li></ul>';
+                    break;
+               case 'Quilanding':
+                    ubicacion.innerHTML = '<a href="https://maps.app.goo.gl/fGqrBRZhRaeao4rf9?g_st=com.google.maps.preview.copy" target="_blank">Quilanding</a>';
+                    codigos.innerHTML = '<ul><li>Se abre con LLave</li></ul>';
+                    observacion.innerHTML = '<ul><li>ELDIER WHITE Pintura de paredes</li></ul>';
+                    break;
+
+                default:
+                    ubicacion.innerHTML = '';
+                    codigos.innerHTML = '';
+                    observacion.innerHTML = '';
+                    break;
+            }
+        });
+    </script>
+
+
+Aviso Importante:
+Las Charas (shutters) se tienen que pintar en la parte superior tambien
+<center>
+<div class="post-it">
+  <h2>Información importante</h2>
+  <ul>
+Las Charas (shutters) se tienen que pintar en la parte superior tambien
+</div>
+
+
+
+<style>
+.post-it {
+  width: 200px;
+  height: 150px;
+  background-color: #ffffcc;
+  border: 1px solid #ccc;
+  padding: 10px;
+  font-family: Arial, sans-serif;
+  font-size: 14px;
+}
+
+.post-it h2 {
+  font-size: 18px;
+  margin-top: 0;
+}
+
+.post-it ul {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.post-it li {
+  margin-bottom: 10px;
+}
+
+.post-it strong {
+  font-weight: bold;
+}
+</style>
+
+</center>
+
+
+</body>
+</html>
+
+
