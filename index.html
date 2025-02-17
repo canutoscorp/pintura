@@ -54,9 +54,17 @@
         }
     </style>
 </head>
+
 <body>
     <h1 id="titulo">LOPEZ RESIDENTIAL PAINTING</h1>
     <h2 id="subtitulo">Pintura de alta calidad para su hogar</h2>
+
+<img src="https://i.pinimg.com/736x/54/e3/d9/54e3d991f6388363c36d97303e02a6ba.jpg" alt="Descripción de la imagen" width="100" heigth="100" />
+<img src="https://media1.giphy.com/media/tKydkmSzIn2kOtVxzU/giphy.gif?cid=790b7611d6c34f0e5debfd29258d6cf6c0dc614dc90c0b8e&rid=giphy.gif&ct=s" alt="Descripción de la imagen" width="50" heigth="50" />
+
+
+<br>
+
     <select id="caja-desplegable">
         <option value="">Seleccione una COLONIA</option>
         <option value="Iron Rock">Iron Rock</option>
@@ -314,6 +322,9 @@ Las Charas (shutters) se tienen que pintar en la parte superior tambien
   <h2>Información importante</h2>
   <ul>
 Las Charas (shutters) se tienen que pintar en la parte superior tambien
+<Br>
+<Br>
+PROXIMO CUMPLEANOS
 </div>
 
 
@@ -351,6 +362,103 @@ Las Charas (shutters) se tienen que pintar en la parte superior tambien
 
 </center>
 
+<BR>
+
+<div>
+  <select id="opciones">
+    <option value="Sherwin 1">Selecciona TIENDA DE PINTURA</option>
+    <option value="Sherwin 2">Sherwin Daphne</option>
+    <option value="Tres">Sherwin Tamarindo o Pace</option>
+    <option value="Cuatro">Sherwin Milla 9</option>
+    <option value="Cinco">Sherwin CrestView</option>
+    <option value="Seis">Sherwin Foley 98</option>
+    <option value="Siete">Sherwin GavinsLanding</option>
+  </select>
+  <div id="hipervinculo"></div>
+</div>
+
+<script>
+document.getElementById("opciones").addEventListener("change", function() {
+  var opcionSeleccionada = document.getElementById("opciones").value;
+  var hipervinculo = "";
+  
+  switch(opcionSeleccionada) {
+    case "Sherwin 1":
+      hipervinculo = '<a href="https://www.direccionweb1.com">Ir a Sherwin 1</a>';
+      break;
+    case "Sherwin 2":
+      hipervinculo = '<a href="https://maps.app.goo.gl/Hx764K4gzaL7329S8?g_st=iw">Abrir Ubicacion de Daphne</a>';
+      break;
+    case "Tres":
+      hipervinculo = '<a href="https://maps.app.goo.gl/17LSgeqZ1APifhdb7?g_st=iw">Abrir Ubicacion de Tamarindo o Pace</a>';
+      break;
+    case "Cuatro":
+      hipervinculo = '<a href="https://maps.app.goo.gl/Nw7rbU4Z2Emuzqz1A?g_st=iw">Abrir Ubicacion de Milla Nueve/a>';
+      break;
+    case "Cinco":
+      hipervinculo = '<a href="https://maps.app.goo.gl/Sf3zG3jGxJc2ZkLTA?g_st=iw">Abrir Ubicacion de Crestview</a>';
+      break;
+    case "Seis":
+      hipervinculo = '<a href="https://maps.app.goo.gl/kityMzpEeDjduqaGA?g_st=iw">Abrir Ubicacion de la 98 Foley</a>';
+      break;
+    case "Siete":
+      hipervinculo = '<a href="https://maps.app.goo.gl/L8soGhgc1eeFRYLa6?g_st=iw">Abrir Ubicacion Tienda GavinsLanding</a>';
+      break;
+  }
+  
+  document.getElementById("hipervinculo").innerHTML = hipervinculo;
+});
+</script>
+
+
+
+
+<br>
+
+<center>
+<table border="1">
+<tr>
+<th>Colores de CASAS</th>
+</tr>
+<tr>
+<td><li>Greenbriar lote 88 GRAY CLOUD</li>
+<li>Greenbriar lote 40 SILVER STRAND</li>
+<li>Greenbriar lote 10 SÚPER WHITE</li>
+<li>Greenbriar lote 08 SÚPER WHITE</li>
+<li>Greenbriar lote 02 STARDEM</li>
+<li>Greenbriar lote 28 STARDEM</li>
+<li>Greenbrier lote 1 GRAY CLOUDS</li>
+<li>Greenbrier lote 44 GRAY CLOUDS</li>
+<li>Greenbrier lote 4 NATURAL LINEN</li>
+<li>Greenbrier lote 12 NATURAL LINEN</li>
+<li>Greenbrier lote 75 GRAY CLOUDS</li>
+<li>Greenbrier lote 06 SILVER STRAND</li>
+<li>Greenbrier lote 15 SILVER STRAND</li>
+<li>Greenbrier lote 16 NATURAL LINEN</li>
+<li>Greenbrier lote 7 GRAY CLOUDS</li>
+<li>Greenbrier lote 9 GRAY CLOUDS</li>
+<li>Greenbrier lote 11 SILVER STRAND</li>
+<li>Greenbrier lote 23 GRAY CLOUDS</li>
+<li>Greenbriar lote 05 SÚPER WHITE</li>
+<li>Greenbrier lote 20 SILVER STRAND</li>
+<li>Greenbriar lote 21 SÚPER WHITE</li>
+<li>Greenbrier lote 17 GRAY CLOUDS</li>
+<li>Greenbrier lote 25 STARDEM</li>
+<li>Cottages Of adventure lote 64 (casa modelo: RAIN</li>
+<li>Greenbrier lote 74 silver strand</li>
+<li>Greenbrier lote 78 silver strand</li>
+<li>Greenbrier lote 77 Gray clouds</li>
+<li>Greenbrier lote 76 NATURAL LINEN</li>
+<li>greenbrier lote 81 SILVER STRAND</li>
+<li>greenbrier lote 71 SILVER STRAND</li>
+<li>Greenbriar lote 73 SÚPER WHITE</li>
+<li>Greenbriar lote 85 STARDEM</li>
+<li>greenbrier lote 86 SILVER STRAND</li></td>
+</tr>
+
+</table>
+
+</center>
 
 </body>
 </html>
