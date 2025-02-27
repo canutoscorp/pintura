@@ -67,6 +67,7 @@
 
     <select id="caja-desplegable">
         <option value="">Seleccione una COLONIA</option>
+        <option value="Pecan Grove">Pecan Grove</option>
         <option value="Iron Rock">Iron Rock</option>
         <option value="Greenbrier">Greenbrier</option>
         <option value="Pless Landing">Pless Landing</option>
@@ -129,6 +130,11 @@ cajaDesplegable.addEventListener('change', () => {
                     codigos.innerHTML = '<ul><li>Porton #1717</li><li>La apertura es con LLAVE</li></ul>';
                     observacion.innerHTML = '<ul><li><a href="https://dlqxt4mfnxo6k.cloudfront.net/dsldhomes.com/aHR0cHM6Ly9zMy5hbWF6b25hd3MuY29tL2J1aWxkZXJjbG91ZC9kYmU3MjE3OTE3NDcwMTMzMTA2ZTM4OWQwYWUyODA0Ny5wbmc=/webp/2000/2000" target="_blank">Mapa Ubicacion de CASAS</a></li><li>BEIGE Color Puerta Trasera</li></ul>';
                     break;
+                case 'Pecan Grove':
+                    ubicacion.innerHTML = '<a href="https://maps.app.goo.gl/969hXbGc3JL74z4v6?g_st=iw" target="_blank">Pecan Grove</a>';
+                    codigos.innerHTML = '<ul><li>La apertura es con LLAVE</li></ul>';
+                    observacion.innerHTML = '<ul><li>SNOWBOUND color de pared</li></ul>';
+                    break;
                 case 'Greenbrier':
                     ubicacion.innerHTML = '<a href="https://maps.app.goo.gl/4hkt3to6ikkNokvu5?g_st=com.google.maps.preview.copy" target="_blank">Greenbrier</a>';
                     codigos.innerHTML = '<ul><li>La apertura es con LLAVE</li></ul>';
@@ -152,7 +158,7 @@ cajaDesplegable.addEventListener('change', () => {
                 case 'Lakes Of Woodbine':
                     ubicacion.innerHTML = '<a href="https://maps.app.goo.gl/HmM53z1budcdthDu7?g_st=com.google.maps.preview.copy" target="_blank">Lakes Of Woodbine</a>';
                     codigos.innerHTML = '<ul><li>0125</li><li>0225</li></ul>';
-                    observacion.innerHTML = 'ELDIER WHITE Color Paredes';
+                    observacion.innerHTML = '<li>ELDIER WHITE Color Paredes</li><li><a href="https://www.drhorton.com/-/media/drhorton/productcatalog/244-pensacola-west/22668-lakes-of-woodbine/colored_plat_for_low.jpg?rev=11721f9c07c541c0b6d889332610eac8">Mapa Ubicacion de CASAS</a></li>';
                     break;
                 case 'Madelyn Woods':
                     ubicacion.innerHTML = '<a href="https://maps.app.goo.gl/iiUzwJGCfVM2RxEu5?g_st=com.google.maps.preview.copy" target="_blank">Madelyn Woods</a>';
@@ -170,9 +176,9 @@ cajaDesplegable.addEventListener('change', () => {
                     observacion.innerHTML = 'ELDIER WHITE Color Paredes';
                     break;
                 case 'Gavin Landing':
-                    ubicacion.innerHTML = '<a href="https://maps.app.goo.gl/JZprTLfJDwPx9KEb8?g_st=com.google.maps.preview.copy" target="_blank">Gavin Landing</a>';
+                    ubicacion.innerHTML = '<a href="https://maps.app.goo.gl/RKRXUDCGhFhhQtQB6?g_st=iw" target="_blank">Gavin Landing</a>';
                     codigos.innerHTML = '<ul><li>0125</li><li>0225</li></ul>';
-                    observacion.innerHTML = 'ELDIER WHITE Color Paredes';
+                    observacion.innerHTML = '<li>ELDIER WHITE Color Paredes</li><li><a href="https://www.drhorton.com/-/media/drhorton/productcatalog/244-pensacola-west/22794-gavins-landing-ths/gavinslandingplat.png?rev=066b98c85a3443bcbf3027f13a4550ab">Mapa Ubicacion de CASAS</a></li>';
                     break;
                case 'Rivers Cove':
                     ubicacion.innerHTML = '<a href="https://maps.app.goo.gl/3y2ei6xbhZ2p247S6?g_st=com.google.maps.preview.copy" target="_blank">Rivers Cove</a>';
@@ -321,6 +327,8 @@ cajaDesplegable.addEventListener('change', () => {
   <h2>Información importante</h2>
   <ul>
 Las Charas (shutters) se tienen que pintar en la parte superior tambien
+<BR>
+PROHIBIDO TRABAJAR CON CHANCLAS, CROCS 
 <Br>
 <Br>
 </div>
