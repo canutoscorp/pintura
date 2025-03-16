@@ -67,6 +67,13 @@
 
 
 <br>
+ <div class="container">
+        <h2>Registro de Trabajo</h2>
+        <a href="https://canutoscorp.github.io/reporte/">
+            <img src="https://img.freepik.com/vector-gratis/asistencia-papel-lista-comprobacion-dibujos-animados-icono-vectorial-ilustracion-educacion-negocio-aislado-plano_138676-10698.jpg" alt="REPORTE DEL DIA" style="width:100px; height:auto;">
+        </a>
+    </div>
+<br>
 
     <select id="caja-desplegable">
         <option value="">Seleccione una COLONIA</option>
@@ -436,7 +443,7 @@ PROHIBIDO TRABAJAR CON CHANCLAS, CROCS
 
     if (personasOrdenadas.length > 0) {
       felicitaciones.innerHTML = `
-        <h2>🎉 ¡Feliz Cumpleaños! 🎂 en este mes a</h2>
+        <h2>🎉 ¡Feliz Cumpleaños este mes a:! 🎂</h2>
         <ul>
           ${personasOrdenadas.map(p => `<li><span style="font-weight: bold;">${p.nombre}</span> - ${p.dia} de ${getMes(p.mes)}</li>`).join("")}
         </ul>
