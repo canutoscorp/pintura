@@ -90,6 +90,7 @@
         <option value="Carrington">Carrington</option>
         <option value="Cottages of Aventura">Cottages of Aventura</option>
         <option value="Days Landing">Days Landing</option>
+        <option value="Ellies Cove">Ellies Cove</option>
         <option value="Fairchild">Fairchild</option>
         <option value="Gavin Landing">Gavin Landing</option>
         <option value="Gleenhollow">Gleenhollow</option>
@@ -152,6 +153,11 @@ cajaDesplegable.addEventListener('change', () => {
                     codigos.innerHTML = '<ul><li>La apertura es con LLAVE</li></ul>';
                     observacion.innerHTML = '<ul><li>SNOWBOUND color de pared</li></ul>';
                     break;
+                case 'Ellies Cove':
+                    ubicacion.innerHTML = '<a href="https://maps.app.goo.gl/1wYGLwCCCkAz3apu5" target="_blank">Ellies Cove</a>';
+                    codigos.innerHTML = '<ul><li>Informar en el grupo si la apertura es con llave o codigo y cual codigo es</li></ul>';
+                    observacion.innerHTML = '<ul><li>Informen cual es el color de la pintura de pared y si la puerta es un solo color (ejemplo negro)</li></ul>';
+                    break;
                 case 'Greenbrier':
                     ubicacion.innerHTML = '<a href="https://maps.app.goo.gl/4hkt3to6ikkNokvu5?g_st=com.google.maps.preview.copy" target="_blank">Greenbrier</a>';
                     codigos.innerHTML = '<ul><li>La apertura es con LLAVE</li></ul>';
@@ -210,7 +216,7 @@ cajaDesplegable.addEventListener('change', () => {
                case 'Sentinel Ridge':
                     ubicacion.innerHTML = '<a href="https://maps.app.goo.gl/Rq3vStzLmnwhb2fZ7?g_st=com.google.maps.preview.copy" target="_blank">Sentinel Ridge</a>';
                     codigos.innerHTML = '<ul><li>Se Abre con LLave</li></ul>';
-                    observacion.innerHTML = 'Siempre checar si tiene Gable avisar para pedir la pintura';
+                    observacion.innerHTML = '<ul><li>Siempre checar si tiene Gable avisar para pedir la pintura</li><li><a href="https://dlqxt4mfnxo6k.cloudfront.net/dsldhomes.com/aHR0cHM6Ly9zMy5hbWF6b25hd3MuY29tL2J1aWxkZXJjbG91ZC85ODg1YmY0NWZiOGE1NWVlMGQ5ZWFjMTQyNGM0YWU1NS5qcGVn/webp/2000/2000">Mapa Ubicacion de CASAS</a></li></ul>';
                     break;
                case 'Cadence':
                     ubicacion.innerHTML = '<a href="https://maps.app.goo.gl/Seibf8AVTk3Gr4EJ8?g_st=com.google.maps.preview.copy" target="_blank">Cadence</a>';
