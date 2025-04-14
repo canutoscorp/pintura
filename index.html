@@ -485,7 +485,7 @@ PROHIBIDO TRABAJAR CON CHANCLAS, CROCS
 
 
 <div>
-  <select id="opciones">
+  <select id="opciones" style="width: 80%; margin: 20px auto; padding: 8px; border: 1px solid #999; border-radius: 5px; background-color: #e8f0fe; font-size: 16px;">
     <option value="Sherwin 1">Selecciona TIENDA DE PINTURA</option>
     <option value="Sherwin 2">Sherwin Daphne</option>
     <option value="Tres">Sherwin Tamarindo o Pace</option>
@@ -536,6 +536,8 @@ document.getElementById("opciones").addEventListener("change", function() {
 <br><br>
 
 <center>
+<button onclick="mostrarOcultarTabla()" style="padding: 10px 20px; font-size: 16px; margin-bottom: 10px;">Mostrar/Ocultar Colores de Casas</button>
+<div id="tabla-colores" style="display: none;">
 <table border="1">
 <tr>
 <th>Colores de CASAS</th>
@@ -577,7 +579,7 @@ document.getElementById("opciones").addEventListener("change", function() {
 </tr>
 
 </table>
-
+</div>
 </center>
 
   
@@ -747,6 +749,13 @@ document.getElementById("opciones").addEventListener("change", function() {
   });
 </script>
 
+
+<script>
+  function mostrarOcultarTabla() {
+    const tabla = document.getElementById("tabla-colores");
+    tabla.style.display = tabla.style.display === "none" ? "block" : "none";
+  }
+</script>
 </body>
 </html>
 
