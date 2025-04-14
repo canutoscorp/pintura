@@ -583,7 +583,120 @@ document.getElementById("opciones").addEventListener("change", function() {
   
 
 
+
+<style>
+  .emoji-balloon {
+    position: absolute;
+    font-size: 30px;
+    animation: floatUp 10s linear infinite;
+    z-index: 9999;
+  }
+
+  .emoji-cake {
+    position: absolute;
+    font-size: 32px;
+    animation: floatUp 12s linear infinite;
+    z-index: 9999;
+  }
+
+  .confetti {
+    position: absolute;
+    width: 10px;
+    height: 10px;
+    background-color: red;
+    border-radius: 50%;
+    animation: confettiFall 6s linear infinite;
+    z-index: 9998;
+  }
+
+  @keyframes floatUp {
+    0% {
+      transform: translateY(0vh) rotate(0deg);
+      opacity: 1;
+    }
+    100% {
+      transform: translateY(-150vh) rotate(360deg);
+      opacity: 0;
+    }
+  }
+
+  @keyframes confettiFall {
+    0% {
+      transform: translateY(0) rotate(0deg);
+      opacity: 1;
+    }
+    100% {
+      transform: translateY(120vh) rotate(720deg);
+      opacity: 0;
+    }
+  }
+
+  @media (max-width: 600px) {
+    .emoji-balloon {
+      font-size: 24px;
+    }
+    .emoji-cake {
+      font-size: 24px;
+    }
+  }
+</style>
+
+<script>
+  document.addEventListener("DOMContentLoaded", function () {
+    const fechasCumpleanos = [
+      '09-10','02-23','03-15','04-13','02-22','05-11','03-12','09-26','03-08','01-21',
+      '09-14','06-02','11-25','11-24','06-12','08-03','11-03','04-20','08-05','03-18','06-12',
+      '04-14'
+    ];
+
+    const hoy = new Date();
+    const hoyStr = ('0' + (hoy.getMonth() + 1)).slice(-2) + '-' + ('0' + hoy.getDate()).slice(-2);
+
+    if (fechasCumpleanos.includes(hoyStr)) {
+      const globos = ['🎈','🎉','🥳','🎊'];
+      const pasteles = ['🎂','🧁'];
+
+      for (let i = 0; i < 30; i++) {
+        const emoji = document.createElement('div');
+        emoji.className = 'emoji-balloon';
+        emoji.textContent = globos[Math.floor(Math.random() * globos.length)];
+        emoji.style.left = Math.random() * 100 + 'vw';
+        emoji.style.bottom = '-' + (Math.random() * 100) + 'vh';
+        emoji.style.animationDuration = (6 + Math.random() * 6) + 's';
+        emoji.style.animationDelay = (Math.random() * 5) + 's';
+        document.body.appendChild(emoji);
+      }
+
+      for (let i = 0; i < 10; i++) {
+        const emoji = document.createElement('div');
+        emoji.className = 'emoji-cake';
+        emoji.textContent = pasteles[Math.floor(Math.random() * pasteles.length)];
+        emoji.style.left = Math.random() * 100 + 'vw';
+        emoji.style.bottom = '-' + (Math.random() * 100) + 'vh';
+        emoji.style.animationDuration = (8 + Math.random() * 6) + 's';
+        emoji.style.animationDelay = (Math.random() * 5) + 's';
+        document.body.appendChild(emoji);
+      }
+
+      for (let i = 0; i < 100; i++) {
+        const confetti = document.createElement('div');
+        confetti.className = 'confetti';
+        confetti.style.left = Math.random() * 100 + 'vw';
+        confetti.style.top = '-' + (Math.random() * 100) + 'vh';
+        confetti.style.backgroundColor = colorAleatorio();
+        confetti.style.animationDuration = (3 + Math.random() * 3) + 's';
+        confetti.style.animationDelay = (Math.random() * 5) + 's';
+        document.body.appendChild(confetti);
+      }
+    }
+
+    function colorAleatorio() {
+      const colores = ['#FF69B4', '#87CEFA', '#FFD700', '#ADFF2F', '#FFA07A', '#DA70D6'];
+      return colores[Math.floor(Math.random() * colores.length)];
+    }
+  });
+</script>
+
 </body>
 </html>
-
 
