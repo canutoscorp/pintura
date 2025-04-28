@@ -81,6 +81,7 @@
         <option value="Carrington">Carrington</option>
         <option value="Cottages of Aventura">Cottages of Aventura</option>
         <option value="Days Landing">Days Landing</option>
+        <option value="Eagle Pointe">Eagle Pointe</option>
         <option value="Ellies Cove">Ellies Cove</option>
         <option value="Fairchild">Fairchild</option>
         <option value="Gavin Landing">Gavin Landing</option>
@@ -144,11 +145,17 @@ cajaDesplegable.addEventListener('change', () => {
                     codigos.innerHTML = '<ul><li>La apertura es con LLAVE</li></ul>';
                     observacion.innerHTML = '<ul><li>SNOWBOUND color de pared</li></ul>';
                     break;
-                case 'Ellies Cove':
+                case 'Eagle Pointe':
+                    ubicacion.innerHTML = '<a href="https://maps.app.goo.gl/3NynNqUsfpiwKv8Y7?g_st=com.google.maps.preview.copy" target="_blank">Eagle Pointe</a>';
+                    codigos.innerHTML = '<ul><li>Informar en el grupo si la apertura es con llave o codigo y cual codigo es</li></ul>';
+                    observacion.innerHTML = '<ul><li>Informen cual es el color de la pintura de pared y si la puerta es un solo color (ejemplo negro)</li></ul>';
+                    break;
+		 case 'Ellies Cove':
                     ubicacion.innerHTML = '<a href="https://maps.app.goo.gl/1wYGLwCCCkAz3apu5" target="_blank">Ellies Cove</a>';
                     codigos.innerHTML = '<ul><li>Informar en el grupo si la apertura es con llave o codigo y cual codigo es</li></ul>';
                     observacion.innerHTML = '<ul><li>Informen cual es el color de la pintura de pared y si la puerta es un solo color (ejemplo negro)</li></ul>';
                     break;
+
                 case 'Greenbrier':
                     ubicacion.innerHTML = '<a href="https://maps.app.goo.gl/4hkt3to6ikkNokvu5?g_st=com.google.maps.preview.copy" target="_blank">Greenbrier</a>';
                     codigos.innerHTML = '<ul><li>La apertura es con LLAVE</li></ul>';
