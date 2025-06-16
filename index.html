@@ -82,6 +82,7 @@
         <option value="Carrington">Carrington</option>
         <option value="Cottages of Aventura">Cottages of Aventura</option>
         <option value="Days Landing">Days Landing</option>
+        <option value="Dry Creek">Dry Creek</option>
         <option value="Eagle Pointe">Eagle Pointe</option>
         <option value="Ellies Cove">Ellies Cove</option>
         <option value="Fairchild">Fairchild</option>
@@ -156,7 +157,11 @@ cajaDesplegable.addEventListener('change', () => {
                     codigos.innerHTML = '<ul><li>0325</li></ul>';
                     observacion.innerHTML = '<ul><li>Departamentos</li><li>Eldier White</li></ul>';
                     break;
-
+		 case 'Dry Creek':
+                    ubicacion.innerHTML = '<a href="https://maps.app.goo.gl/qEQRnzXHro6XobXw8?g_st=com.google.maps.preview.copy" target="_blank">Dry Creek</a>';
+                    codigos.innerHTML = '<ul><li>Intendente Apertura la puerta</li></ul>';
+                    observacion.innerHTML = '<ul><li></li></ul>';
+                    break;
                 case 'Greenbrier':
                     ubicacion.innerHTML = '<a href="https://maps.app.goo.gl/4hkt3to6ikkNokvu5?g_st=com.google.maps.preview.copy" target="_blank">Greenbrier</a>';
                     codigos.innerHTML = '<ul><li>La apertura es con LLAVE</li></ul>';
@@ -530,7 +535,7 @@ document.getElementById("opciones").addEventListener("change", function() {
       hipervinculo = '<a href="https://maps.app.goo.gl/17LSgeqZ1APifhdb7?g_st=iw">Abrir Ubicacion de Tamarindo o Pace</a>';
       break;
     case "Cuatro":
-      hipervinculo = '<a href="https://maps.app.goo.gl/Nw7rbU4Z2Emuzqz1A?g_st=iw">Abrir Ubicacion de Milla Nueve/a>';
+      hipervinculo = '<a href="https://maps.app.goo.gl/Nw7rbU4Z2Emuzqz1A?g_st=iw">Abrir Ubicacion de Milla Nueve</a>';
       break;
     case "Cinco":
       hipervinculo = '<a href="https://maps.app.goo.gl/Sf3zG3jGxJc2ZkLTA?g_st=iw">Abrir Ubicacion de Crestview</a>';
