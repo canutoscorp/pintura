@@ -92,6 +92,7 @@
         <option value="Gavin Landing">Gavin Landing</option>
         <option value="Gleenhollow">Gleenhollow</option>
         <option value="Gleenlakes">Gleenlakes</option>
+        <option value="GrassLand">GrassLand</option>
         <option value="Greenbrier">Greenbrier</option>
         <option value="Heritage Plantation">Heritage Plantation</option>
         <option value="Hihglands">Hihglands</option>
@@ -114,6 +115,7 @@
         <option value="Roman Oaks">Roman Oaks</option>
         <option value="Sanctuary">Sanctuary</option>
         <option value="Sentinel Ridge">Sentinel Ridge</option>
+        <option value="Soundview">Soundview</option>
         <option value="Sweetbarb">Sweetbarb</option>
         <option value="Silverlake">Silverlake</option>
         <option value="Souther Palms">Souther Palms</option>
@@ -158,6 +160,17 @@ cajaDesplegable.addEventListener('change', () => {
                     codigos.innerHTML = '<ul><li>La apertura es con LLAVE</li></ul>';
                     observacion.innerHTML = '<ul><li>informen a Carlos Color de pared y puertas</li></ul>';
                     break;
+               case 'Soundview':
+                    ubicacion.innerHTML = '<a href="https://maps.app.goo.gl/LsUEqUSVP7zJWGSU9?g_st=ipc" target="_blank">Soundview</a>';
+                    codigos.innerHTML = '<ul><li>La apertura es con LLAVE</li></ul>';
+                    observacion.innerHTML = '<ul><li>informen a Carlos Color de pared y puertas</li></ul>';
+                    break;
+               case 'GrassLand':
+                    ubicacion.innerHTML = '<a href="https://maps.app.goo.gl/JJP1u4sJaWtQQy7T7?g_st=ipc" target="_blank">GrassLand</a>';
+                    codigos.innerHTML = '<ul><li>La apertura es con LLAVE</li></ul>';
+                    observacion.innerHTML = '<ul><li>Snowbound y puertas negras</li></ul>';
+                    break;
+
                case 'Country Club States':
                     ubicacion.innerHTML = '<a href="https://maps.app.goo.gl/NyRfv8LNobnNZgh37" target="_blank">Country Club States</a>';
                     codigos.innerHTML = '<ul><li>Necesitamos saber codigos</li></ul>';
@@ -375,7 +388,7 @@ cajaDesplegable.addEventListener('change', () => {
                     break;
                case 'Martin Preserve':
                     ubicacion.innerHTML = '<a href="https://maps.google.com?q=30.3765833,-87.3488333&entry=gps&lucs=,94224825,94227247,94227248,94231188,47071704,94259573,47069508,94218641,94203019,47084304,94208458,94208447&g_st=com.google.maps.preview.copy" target="_blank">Martin Preserve</a>';
-                    codigos.innerHTML = '<ul><li>0295</li><li>0325</li><li>0125</li><li>0911</li><li>1355</li></ul>';
+                    codigos.innerHTML = '<ul><li>0295</li><li>0325</li><li>0125</li><li>0911</li><li>1355</li><li>0126</li></ul>';
                     observacion.innerHTML = '<ul><li>ELDIER WHITE Pintura de paredes</li><a href="https://www.drhorton.com/-/media/drhorton/productcatalog/244-pensacola-west/22696-martin-preserve/martinpreserveplat.jpg?rev=2e0cc2d0f9fa4977956e40fa8087ba03">Mapa Ubicacion de CASAS</a></li></ul>';
                     break;
 
@@ -551,6 +564,7 @@ En ALABAMA en las primeras se tiene unicamente que retirar el perno de las puert
     <option value="Seis">Sherwin Foley 98</option>
     <option value="Siete">Sherwin GavinsLanding</option>
     <option value="Ocho">Lost Key</option>
+    <option value="Nueve">Gulf Breeze por ROMAN</option>
   </select>
   <div id="hipervinculo"></div>
 </div>
@@ -585,6 +599,9 @@ document.getElementById("opciones").addEventListener("change", function() {
       break;
    case "Ocho":
       hipervinculo = '<a href="https://maps.app.goo.gl/eDANGh1xbrTp2EXd8?g_st=a">Abrir Ubicacion Tienda Lost Key PERDIDO</a>';
+      break;
+   case "Nueve":
+      hipervinculo = '<a href="https://maps.app.goo.gl/WGtrRJyeTKo9B7zd6?g_st=ipc">Abrir Ubicacion Gulf Breez x ROMAN</a>';
       break;
 
   }
