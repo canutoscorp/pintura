@@ -53,6 +53,49 @@
             color: #fff;
         }
     </style>
+
+<style>
+/* ===== MENSAJE FESTIVO ===== */
+#mensajeFestivo {
+  position: fixed;
+  top: 20%;
+  left: 50%;
+  transform: translateX(-50%);
+  background: rgba(0, 0, 0, 0.85);
+  color: #fff;
+  padding: 18px 22px;
+  border-radius: 14px;
+  font-size: 1.2em;
+  text-align: center;
+  z-index: 9999;
+  display: none;
+  max-width: 90%;
+}
+
+@keyframes aparecer {
+  from { opacity: 0; transform: translate(-50%, -20px); }
+  to { opacity: 1; transform: translate(-50%, 0); }
+}
+
+/* ===== ICONOS CAYENDO ===== */
+.icono-festivo {
+  position: fixed;
+  top: -40px;
+  animation: caer linear infinite;
+  z-index: 9998;
+  pointer-events: none;
+}
+
+@keyframes caer {
+  to {
+    transform: translateY(110vh);
+  }
+}
+</style>
+
+
+
+
 </head>
 
 <body>
@@ -272,6 +315,7 @@ document.addEventListener("DOMContentLoaded", () => {
         <option value="Eagle Pointe">Eagle Pointe</option>
         <option value="Ellies Cove">Ellies Cove</option>
         <option value="Fairchild">Fairchild</option>
+        <option value="Forest Shores">Forest Shores</option>
         <option value="Freeport">Freeport</option>
         <option value="Gavin Landing">Gavin Landing</option>
         <option value="Gleenhollow">Gleenhollow</option>
@@ -297,6 +341,7 @@ document.addEventListener("DOMContentLoaded", () => {
         <option value="Quilanding">Quilanding</option>
         <option value="Rivers Cove">Rivers Cove</option>
         <option value="Roman Oaks">Roman Oaks</option>
+        <option value="Russell Crossing">Russell Crossing</option>
         <option value="Sanctuary">Sanctuary</option>
         <option value="Sentinel Ridge">Sentinel Ridge</option>
         <option value="Soundview">Soundview</option>
@@ -407,8 +452,8 @@ cajaDesplegable.addEventListener('change', () => {
                     break;
                 case 'Brookheaven':
                     ubicacion.innerHTML = '<a href="https://maps.app.goo.gl/eJzakFUraCPnGwj98?g_st=com.google.maps.preview.copy" target="_blank">Brookheaven</a>';
-                    codigos.innerHTML = '<ul><li>0125</li><li>0225</li><li>1668</li><li>2155</li></ul><li>0126</li><li>2506</li>';
-                    observacion.innerHTML = 'Observación para Brookheaven';
+                    codigos.innerHTML = '<ul><li>0125</li><li>0225</li><li>1668</li><li>2155</li></ul><li>0126</li><li>2506</li><li>3036</li>';
+                    observacion.innerHTML = 'Eldier White paredes';
                     break;
                 case 'Sanctuary':
                     ubicacion.innerHTML = '<a href="https://maps.app.goo.gl/bm6uYQYM2UE4hzLt5?g_st=com.google.maps.preview.copy" target="_blank">Sanctuary</a>';
@@ -419,6 +464,16 @@ cajaDesplegable.addEventListener('change', () => {
                     ubicacion.innerHTML = '<a href="https://maps.app.goo.gl/HmM53z1budcdthDu7?g_st=com.google.maps.preview.copy" target="_blank">Lakes Of Woodbine</a>';
                     codigos.innerHTML = '<ul><li>0125</li><li>0225</li><li>0325</li><li>1969</li>><li>0126</li><li>2506</li></ul>';
                     observacion.innerHTML = '<li>ELDIER WHITE Color Paredes</li><li><a href="https://www.drhorton.com/-/media/drhorton/productcatalog/244-pensacola-west/22668-lakes-of-woodbine/colored_plat_for_low.jpg?rev=11721f9c07c541c0b6d889332610eac8">Mapa Ubicacion de CASAS</a></li>';
+                    break;
+                case 'Forest Shores':
+                    ubicacion.innerHTML = '<a href=" https://maps.app.goo.gl/zr8HXRXwX3ZCvd8T6?g_st=iw" target="_blank">Forest Shores</a>';
+                    codigos.innerHTML = '<ul><li>0125</li><li>0225</li><li>0325</li><li>1969</li><li>0126</li></ul>';
+                    observacion.innerHTML = '<li>ELDIER WHITE Color Paredes</li><li>Departamentos</li>';
+                    break;
+                case 'Russell Crossing':
+                    ubicacion.innerHTML = '<a href="https://maps.app.goo.gl/TCLAnUJ4a4fgLzSSA" target="_blank">Russell Crossing</a>';
+                    codigos.innerHTML = '<ul><li>0125</li><li>0225</li><li>0325</li><li>1969</li><li>0126</li></ul>';
+                    observacion.innerHTML = '<li>ELDIER WHITE Color Paredes</li><li></li>';
                     break;
                 case 'Madelyn Woods':
                     ubicacion.innerHTML = '<a href="https://maps.app.goo.gl/iiUzwJGCfVM2RxEu5?g_st=com.google.maps.preview.copy" target="_blank">Madelyn Woods</a>';
@@ -595,7 +650,7 @@ cajaDesplegable.addEventListener('change', () => {
 <div class="post-it">
   <h2>Información importante</h2>
   <ul>
-DR HORTON las Claves mas actuales son las siguientes: 0126, 2506,0325 y 1998
+DR HORTON las Claves mas actuales son las siguientes: 0126, 2506,0325 y 1998,1990, 3036
 <BR>
 
 <Br>
@@ -1023,6 +1078,60 @@ document.getElementById("opciones").addEventListener("change", function() {
     const tabla = document.getElementById("tabla-colores");
     tabla.style.display = tabla.style.display === "none" ? "block" : "none";
   }
+</script>
+
+<div id="mensajeFestivo"></div>
+<script>
+(function () {
+  const hoy = new Date();
+  const dia = hoy.getDate();
+  const mes = hoy.getMonth() + 1;
+
+  const mensaje = document.getElementById("mensajeFestivo");
+  let iconos = [];
+  let texto = "";
+
+  /* 🎄 NAVIDAD */
+  if (mes === 12 && dia === 25) {
+    texto = "🎄 Feliz Navidad a todos 🎄<br>Que el amor, la paz y la unión llenen sus hogares";
+    iconos = ["❄️", "🎄", "⛄"];
+  }
+
+  /* 🎆 AÑO NUEVO */
+  if (mes === 1 && dia === 1) {
+    texto = "🎆 Feliz Año Nuevo 🎆<br>Cumplan sus metas y deseos<br>Dios les bendiga";
+    iconos = ["🎆", "✨", "⭐"];
+  }
+
+  if (texto !== "") {
+    mensaje.innerHTML = texto;
+    mensaje.style.display = "block";
+    mensaje.style.animation = "aparecer 0.5s ease";
+
+    setTimeout(() => {
+      mensaje.style.display = "none";
+    }, 5000);
+
+    crearIconos(iconos);
+  }
+
+  function crearIconos(lista) {
+    for (let i = 0; i < 25; i++) {
+      const icono = document.createElement("div");
+      icono.className = "icono-festivo";
+      icono.innerHTML = lista[Math.floor(Math.random() * lista.length)];
+      icono.style.left = Math.random() * 100 + "vw";
+      icono.style.fontSize = (18 + Math.random() * 22) + "px";
+      icono.style.animationDuration = (3 + Math.random() * 4) + "s";
+
+      document.body.appendChild(icono);
+
+      setTimeout(() => {
+        icono.remove();
+      }, 8000);
+    }
+  }
+})();
 </script>
 
 
