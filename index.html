@@ -352,6 +352,7 @@ document.addEventListener("DOMContentLoaded", () => {
         <option value="Southwood">Southwood</option>
         <option value="Stone Heaven">Stone Heaven</option>
         <option value="Ventura Manor">Ventura Manor</option>
+        <option value="Vickers States">Vickers States</option>
         <option value="Young Oaks">Young Oaks</option>
     </select>
 
@@ -387,6 +388,11 @@ cajaDesplegable.addEventListener('change', () => {
                     break;
                case 'Southwood':
                     ubicacion.innerHTML = '<a href="https://maps.app.goo.gl/kWfhQhuf3zPQWUKc9" target="_blank">Southwood</a>';
+                    codigos.innerHTML = '<ul><li>La apertura es con LLAVE</li></ul>';
+                    observacion.innerHTML = '<ul><li>informen a Carlos Color de pared y puertas</li></ul>';
+                    break;
+               case 'Vickers States':
+                    ubicacion.innerHTML = '<a href="https://maps.app.goo.gl/PSueiJaBBFnnQEb17" target="_blank">Vickers States</a>';
                     codigos.innerHTML = '<ul><li>La apertura es con LLAVE</li></ul>';
                     observacion.innerHTML = '<ul><li>informen a Carlos Color de pared y puertas</li></ul>';
                     break;
@@ -467,7 +473,7 @@ cajaDesplegable.addEventListener('change', () => {
                     break;
                 case 'Lakes Of Woodbine':
                     ubicacion.innerHTML = '<a href="https://maps.app.goo.gl/HmM53z1budcdthDu7?g_st=com.google.maps.preview.copy" target="_blank">Lakes Of Woodbine</a>';
-                    codigos.innerHTML = '<ul><li>0125</li><li>0225</li><li>0325</li><li>1969</li>><li>0126</li><li>2506</li></ul>';
+                    codigos.innerHTML = '<ul><li>0125</li><li>0225</li><li>0325</li><li>1969</li><li>0126</li><li>2506</li></ul>';
                     observacion.innerHTML = '<li>ELDIER WHITE Color Paredes</li><li><a href="https://www.drhorton.com/-/media/drhorton/productcatalog/244-pensacola-west/22668-lakes-of-woodbine/colored_plat_for_low.jpg?rev=11721f9c07c541c0b6d889332610eac8">Mapa Ubicacion de CASAS</a></li>';
                     break;
                 case 'Forest Shores':
@@ -759,7 +765,7 @@ DR HORTON las Claves mas actuales son las siguientes: 0126, 2506,0325 y 1998,199
       { nombre: "Reyna Lopez", dia: 3, mes: 8 },
       { nombre: "Ruth Rodriguez", dia: 3, mes: 11 },
       { nombre: "Ashley Ramirez", dia: 20, mes: 9 },
-      { nombre: "Paola Castro", dia: 17, mes: 12 },
+      { nombre: "Milton", dia: 17, mes: 12 },
       { nombre: "Paola Flores", dia: 19, mes: 9 },
       { nombre: "Luis Medina CUATE", dia: 20, mes: 4 },
       { nombre: "Jose Mena", dia: 5, mes: 8 },
@@ -813,6 +819,7 @@ DR HORTON las Claves mas actuales son las siguientes: 0126, 2506,0325 y 1998,199
     <option value="Siete">Sherwin GavinsLanding</option>
     <option value="Ocho">Lost Key</option>
     <option value="Nueve">Gulf Breeze por ROMAN</option>
+    <option value="Diez">Mobile</option>
   </select>
   <div id="hipervinculo"></div>
 </div>
@@ -851,7 +858,9 @@ document.getElementById("opciones").addEventListener("change", function() {
    case "Nueve":
       hipervinculo = '<a href="https://maps.app.goo.gl/WGtrRJyeTKo9B7zd6?g_st=ipc">Abrir Ubicacion Gulf Breez x ROMAN</a>';
       break;
-
+   case "Diez":
+      hipervinculo = '<a href="https://maps.app.goo.gl/RESD4QvGDDt1Z2fA7?g_st=a">Abrir Ubicacion Mobile</a>';
+      break;
   }
   
   document.getElementById("hipervinculo").innerHTML = hipervinculo;
