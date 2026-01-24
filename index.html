@@ -7,7 +7,17 @@
     <style>
         body {
             font-family: Arial, sans-serif;
-            background-color: #f2f2f2;
+           /* background-color: #f2f2f2;*/
+ background-image: url('https://image.slidesdocs.com/responsive-images/background/mesmerizing-featuring-liquid-marble-paint-texture-powerpoint-background_0f654e4d42__960_540.jpg');
+background-size: cover;          /* Estira la imagen para cubrir todo */
+            background-position: center;    /* Centra la imagen */
+            background-repeat: no-repeat;   /* Evita que se duplique */
+            background-attachment: fixed;   /* El fondo se queda quieto al hacer scroll */
+
+            /* 3. Asegura que el contenedor use todo el alto disponible */
+            margin: 0;
+            height: 100vh;
+            width: 100%;
             text-align: center;
         }
         #titulo {
@@ -318,6 +328,7 @@ document.addEventListener("DOMContentLoaded", () => {
         <option value="Forest Shores">Forest Shores</option>
         <option value="Freeport">Freeport</option>
         <option value="Gavin Landing">Gavin Landing</option>
+        <option value="Gaylen Oaks">Gaylen Oaks</option>
         <option value="Gleenhollow">Gleenhollow</option>
         <option value="Gleenlakes">Gleenlakes</option>
         <option value="GrassLand">GrassLand</option>
@@ -403,7 +414,7 @@ cajaDesplegable.addEventListener('change', () => {
                     break;
                case 'Soundview':
                     ubicacion.innerHTML = '<a href="https://maps.app.goo.gl/LsUEqUSVP7zJWGSU9?g_st=ipc" target="_blank">Soundview</a>';
-                    codigos.innerHTML = '<ul><li>La apertura es con LLAVE</li></ul>';
+                    codigos.innerHTML = '<ul><li>0126</li><li>0226</li></ul>';
                     observacion.innerHTML = '<ul><li>informen a Carlos Color de pared y puertas</li></ul>';
                     break;
                case 'GrassLand':
@@ -425,6 +436,11 @@ cajaDesplegable.addEventListener('change', () => {
                     ubicacion.innerHTML = '<a href="https://maps.app.goo.gl/MaLCYrgowFBRWFxi8" target="_blank">Freeport</a>';
                     codigos.innerHTML = '<ul><li>La apertura es con LLAVE</li></ul>';
                     observacion.innerHTML = '<ul><li>informen a Carlos Color de pared y puertas</li></ul>';
+                    break;
+               case 'Gaylen Oaks':
+                    ubicacion.innerHTML = '<a href="https://maps.app.goo.gl/LAhsMGCK1F39NA559" target="_blank">Gaylen Oaks</a>';
+                    codigos.innerHTML = '<ul><li>0126</li><li>0226</li></ul>';
+                    observacion.innerHTML = '<ul><li>Eldier White color de pared</li></ul>';
                     break;
                case 'Deer Ridge Crossing':
                     ubicacion.innerHTML = '<a href="https://maps.app.goo.gl/BsK6bwjb64i1sdKS6" target="_blank">Deer Ridge Crossing</a>';
@@ -661,7 +677,7 @@ cajaDesplegable.addEventListener('change', () => {
 <div class="post-it">
   <h2>Información importante</h2>
   <ul>
-DR HORTON las Claves mas actuales son las siguientes: 0126, 2506,0325 y 1998,1990, 3036
+DR HORTON las Claves mas actuales son las siguientes: 0126, 2506,0325 y 1998,1990, 3036, 0226
 <BR>
 
 <Br>
@@ -753,7 +769,6 @@ DR HORTON las Claves mas actuales son las siguientes: 0126, 2506,0325 y 1998,199
       { nombre: "Miguel Carrera", dia: 23, mes: 2 },
       { nombre: "ISMAEL LOPEZ", dia: 10, mes: 9 },
       { nombre: "Carlos Corona", dia: 15, mes: 3 },
-      { nombre: "Arturo Martinez", dia: 22, mes: 2 },
       { nombre: "Eulises Flores", dia: 11, mes: 5 },
       { nombre: "Josue Lopez", dia: 12, mes: 3 },
       { nombre: "Elisa Janeth", dia: 26, mes: 9 },
@@ -983,7 +998,7 @@ document.getElementById("opciones").addEventListener("change", function() {
 <script>
   document.addEventListener("DOMContentLoaded", function () {
     const fechasCumpleanos = [
-      '09-10','02-23','03-15','04-13','02-22','05-11','03-12','09-26','03-08','12-17','09-20','09-19',
+      '09-10','02-23','03-15','04-13','05-11','03-12','09-26','03-08','12-17','09-20','09-19',
       '09-14','06-02','11-25','06-12','08-03','11-03','04-20','08-05','03-18','06-12','05-01',
       '12-24'
     ];
