@@ -7,8 +7,10 @@
     <style>
         body {
             font-family: Arial, sans-serif;
-           /* background-color: #f2f2f2;*/
- background-image: url('https://image.slidesdocs.com/responsive-images/background/lively-watercolor-texture-acrylic-painting-with-burst-of-colors-powerpoint-background_cbc2b11825__960_540.jpg');
+           /* background-color: #f2f2f2;    https://image.slidesdocs.com/responsive-images/background/lively-watercolor-texture-acrylic-painting-with-burst-of-colors-powerpoint-background_cbc2b11825__960_540.jpg*/
+ background-image: url('https://i.pinimg.com/originals/99/1b/1c/991b1c01a40aeec224980e5a4a584fcb.gif');
+
+
 background-size: cover;          /* Estira la imagen para cubrir todo */
             background-position: center;    /* Centra la imagen */
             background-repeat: no-repeat;   /* Evita que se duplique */
@@ -325,6 +327,7 @@ document.addEventListener("DOMContentLoaded", () => {
         <option value="Eagle Pointe">Eagle Pointe</option>
         <option value="Ellies Cove">Ellies Cove</option>
         <option value="Fairchild">Fairchild</option>
+        <option value="Floridatown">Floridatown</option>
         <option value="Forest Shores">Forest Shores</option>
         <option value="Freeport">Freeport</option>
         <option value="Gavin Landing">Gavin Landing</option>
@@ -407,6 +410,11 @@ cajaDesplegable.addEventListener('change', () => {
                     codigos.innerHTML = '<ul><li>La apertura es con LLAVE</li></ul>';
                     observacion.innerHTML = '<ul><li>informen a Carlos Color de pared y puertas</li></ul>';
                     break;
+               case 'Floridatown':
+                    ubicacion.innerHTML = '<a href="https://maps.app.goo.gl/sg8oo6V2hafZH8JZA" target="_blank">Floridatown</a>';
+                    codigos.innerHTML = '<ul><li>INFORMEN DE LOS CODIGOS</li></ul>';
+                    observacion.innerHTML = '<ul><li>Alabaster</li></ul>';
+                    break;
                case 'Huston':
                     ubicacion.innerHTML = '<a href="https://maps.app.goo.gl/gWUhiHUoatYMDYFi9?g_st=a" target="_blank">Huston</a>';
                     codigos.innerHTML = '<ul><li>DSLD</li><li>La apertura es con llave</li></ul>';
@@ -415,7 +423,7 @@ cajaDesplegable.addEventListener('change', () => {
                case 'Soundview':
                     ubicacion.innerHTML = '<a href="https://maps.app.goo.gl/LsUEqUSVP7zJWGSU9?g_st=ipc" target="_blank">Soundview</a>';
                     codigos.innerHTML = '<ul><li>0126</li><li>0226</li></ul>';
-                    observacion.innerHTML = '<ul><li>informen a Carlos Color de pared y puertas</li></ul>';
+                    observacion.innerHTML = '<ul><li>Departamentos, color de paredes Eldhier White</li></ul>';
                     break;
                case 'GrassLand':
                     ubicacion.innerHTML = '<a href="https://maps.app.goo.gl/JJP1u4sJaWtQQy7T7?g_st=ipc" target="_blank">GrassLand</a>';
@@ -484,7 +492,7 @@ cajaDesplegable.addEventListener('change', () => {
                     break;
                 case 'Sanctuary':
                     ubicacion.innerHTML = '<a href="https://maps.app.goo.gl/bm6uYQYM2UE4hzLt5?g_st=com.google.maps.preview.copy" target="_blank">Sanctuary</a>';
-                    codigos.innerHTML = '<ul><li>0125</li><li>0225</li><li>7531</li><li>0911</li><li>0126</li><li>2506</li></ul>';
+                    codigos.innerHTML = '<ul><li>0125</li><li>0225</li><li>7531</li><li>0126</li><li>2506</li><li>0911</li><li>0226</li></ul>';
                     observacion.innerHTML = 'ELDIER WHITE Color Paredes';
                     break;
                 case 'Lakes Of Woodbine':
@@ -499,7 +507,7 @@ cajaDesplegable.addEventListener('change', () => {
                     break;
                 case 'Russell Crossing':
                     ubicacion.innerHTML = '<a href="https://maps.app.goo.gl/TCLAnUJ4a4fgLzSSA" target="_blank">Russell Crossing</a>';
-                    codigos.innerHTML = '<ul><li>0125</li><li>0225</li><li>0325</li><li>1969</li><li>0126</li></ul>';
+                    codigos.innerHTML = '<ul><li>0125</li><li>0225</li><li>0325</li><li>1969</li><li>0126</li><li>Si la letra de lote es A entonces le corresponde el valor 01, si es B el valor 02, si es C el Valor 03 y asi sucesivamente entonces la clave para abrir la puerta se armara colocando el valor de la letra del lote mas el numero del lote. Ejemplo: lote 12a el codigo sera 0112 si fuera lote 6C seria 0306</li></ul>';
                     observacion.innerHTML = '<li>ELDIER WHITE Color Paredes</li><li></li>';
                     break;
                 case 'Madelyn Woods':
@@ -570,7 +578,7 @@ cajaDesplegable.addEventListener('change', () => {
                case 'Patriot':
                     ubicacion.innerHTML = '<a href="https://maps.app.goo.gl/3B1vdMqSgVoQhhn96?g_st=com.google.maps.preview.copy" target="_blank">Patriot</a>';
                     codigos.innerHTML = '<ul><li>0125</li><li>0225</li></ul>';
-                    observacion.innerHTML = '<ul><li>Observaciones para Patriot</li></ul>';
+                    observacion.innerHTML = '<ul><li>Eldier White</li></ul>';
                     break;
                case 'Hihglands':
                     ubicacion.innerHTML = '<a href="https://maps.app.goo.gl/r1iTLBdi966sEa1x5?g_st=com.google.maps.preview.copy" target="_blank">Hihglands</a>';
@@ -615,7 +623,7 @@ cajaDesplegable.addEventListener('change', () => {
                case 'Gleenhollow':
                     ubicacion.innerHTML = '<a href="https://maps.app.goo.gl/FTHaGaHRT1ZTTkQh9?g_st=com.google.maps.preview.copy" target="_blank">Gleenhollow</a>';
                     codigos.innerHTML = '<ul><li>El intendente abre la puerta</li></ul>';
-                    observacion.innerHTML = '<ul><li>Sin Informacion</li></ul>';
+                    observacion.innerHTML = '<ul><li>Agrable Gray</li></ul>';
                     break;
                case 'Lost Key':
                     ubicacion.innerHTML = '<a href="https://maps.app.goo.gl/24Lot8Wwpzh2aBz27?g_st=com.google.maps.preview.copy" target="_blank">Lost Key</a>';
@@ -677,7 +685,7 @@ cajaDesplegable.addEventListener('change', () => {
 <div class="post-it">
   <h2>Información importante</h2>
   <ul>
-DR HORTON las Claves mas actuales son las siguientes: 0126, 2506,0325 y 1998,1990, 3036, 0226
+DR HORTON las Claves mas actuales son las siguientes: 0126, 2506,0325 y 1998,1990, 3036, 0911, 0226
 <BR>
 
 <Br>
