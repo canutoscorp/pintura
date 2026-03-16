@@ -331,6 +331,19 @@ a:hover{
         display:none;
     }
 }
+
+.recent-chip{
+    border:none;
+    background:#edf4ff;
+    padding:8px 12px;
+    border-radius:999px;
+    cursor:pointer;
+    font-weight:600;
+}
+.recent-chip:hover{
+    background:#dce9ff;
+}
+
 </style>
 </head>
 
@@ -347,7 +360,11 @@ a:hover{
     </div>
     <div id="opcionesColonias" class="dropdown"></div>
 </div>
-<div class="app-hint">Toca el buscador para abrir opciones. Al elegir una colonia, el campo se limpia para la siguiente búsqueda.</div>
+<div class="app-hint">Toca el buscador para abrir opciones. Al elegir una colonia, el campo se limpia para la siguiente búsqueda.
+<div id="recentPanel" class="recent-panel" style="max-width:560px;margin:15px auto 0;text-align:left;display:none;">
+    <div style="font-weight:bold;margin-bottom:8px;">🕘 Colonias recientes</div>
+    <div id="recentChips" style="display:flex;flex-wrap:wrap;gap:8px;"></div>
+</div>
 
 <div id="nombreColonia" class="nombre-colonia" style="display:none;"></div>
 
@@ -577,8 +594,37 @@ function filtrarColonias(texto){
     renderDropdown(opcionesFiltradas);
 }
 
+
+const recentPanel = document.getElementById("recentPanel");
+const recentChips = document.getElementById("recentChips");
+
+function getRecientes(){
+    try{
+        return JSON.parse(localStorage.getItem("colonias_recientes") || "[]");
+    }catch(e){ return []; }
+}
+
+function saveReciente(nombre){
+    let lista = getRecientes().filter(x => x !== nombre);
+    lista.unshift(nombre);
+    lista = lista.slice(0,6);
+    localStorage.setItem("colonias_recientes", JSON.stringify(lista));
+    renderRecientes();
+}
+
+function renderRecientes(){
+    const lista = getRecientes();
+    if(!lista.length){
+        recentPanel.style.display = "none";
+        return;
+    }
+    recentPanel.style.display = "block";
+    recentChips.innerHTML = lista.map(n => `<button class="recent-chip" onclick="seleccionarColoniaPorNombre('${n}')">${n}</button>`).join("");
+}
+
 function seleccionarColoniaPorNombre(nombre){
     const colonia = datosColonias.find(c => c.nombre === nombre);
+    saveReciente(nombre);
     if(!colonia) return;
 
     tablaDatos.style.display = "table";
@@ -599,6 +645,7 @@ function seleccionarColoniaPorNombre(nombre){
     ocultarDropdown();
     input.value = "";
     actualizarBotonLimpiar();
+renderRecientes();
     input.blur();
     setTimeout(()=>{
         input.scrollIntoView({behavior:'smooth', block:'center'});
@@ -659,6 +706,7 @@ dropdown.addEventListener('click', (e)=>{
 clearBtn.addEventListener('click', ()=>{
     input.value = '';
     actualizarBotonLimpiar();
+renderRecientes();
     filtrarColonias('');
     enfocarBuscador();
 });
@@ -698,6 +746,7 @@ mapaImagen.addEventListener('dblclick', ()=>{
 
 window.addEventListener('resize', resetZoom);
 actualizarBotonLimpiar();
+renderRecientes();
 
 // abrir imagen en nueva pestaña al hacer clic
 if (typeof mapaImagen !== 'undefined') {
