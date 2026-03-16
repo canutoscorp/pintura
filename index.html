@@ -13,7 +13,7 @@ body{
     margin:0;
     background:#f2f6fa;
     display:flex;
-    justify-content:center;
+    justify-content:center;`
 }
 
 .main-wrapper{
@@ -44,15 +44,36 @@ label{
 }
 
 .buscador-wrapper{
-    position:relative;
+    position:sticky;
+    top:10px;
     width:100%;
     max-width:560px;
-    margin:0 auto;
+    margin:0 auto 10px;
+    z-index:40;
+}
+
+.search-shell{
+    position:relative;
+    background:#ffffff;
+    border-radius:18px;
+    box-shadow:0 10px 24px rgba(22,50,95,0.14);
+    border:1px solid #dbe6f4;
+    padding:8px;
+}
+
+.search-icon{
+    position:absolute;
+    left:20px;
+    top:50%;
+    transform:translateY(-50%);
+    font-size:18px;
+    color:#52709b;
+    pointer-events:none;
 }
 
 input{
     width:100%;
-    padding:16px 18px;
+    padding:17px 52px 17px 48px;
     font-size:18px;
     border-radius:14px;
     border:2px solid #9bb4d8;
@@ -60,6 +81,26 @@ input{
     background:#fff;
     box-shadow:0 4px 14px rgba(0,0,0,0.08);
     transition:all .2s ease;
+}
+
+.clear-btn{
+    position:absolute;
+    right:16px;
+    top:50%;
+    transform:translateY(-50%);
+    width:34px;
+    height:34px;
+    border:none;
+    border-radius:999px;
+    background:#edf4ff;
+    color:#23406f;
+    font-size:20px;
+    cursor:pointer;
+    display:none;
+}
+
+.clear-btn.visible{
+    display:block;
 }
 
 input:focus{
@@ -113,12 +154,28 @@ input:focus{
     font-size:15px;
 }
 
+.app-hint{
+    margin:10px auto 0;
+    max-width:560px;
+    font-size:14px;
+    color:#5a7399;
+    background:#eef4ff;
+    border:1px solid #d8e5f7;
+    padding:10px 14px;
+    border-radius:14px;
+}
+
 .nombre-colonia{
-    margin-top:30px;
+    margin-top:24px;
     font-size:24px;
     font-weight:bold;
     color:#1e3c72;
     letter-spacing:1px;
+    background:#fff;
+    border:1px solid #d9e4f3;
+    border-radius:16px;
+    padding:14px 16px;
+    box-shadow:0 6px 16px rgba(0,0,0,0.08);
 }
 
 .table-wrap{
@@ -208,12 +265,22 @@ a:hover{
 
 @media(max-width:600px){
     .main-wrapper{
-        padding:14px;
+        padding:12px;
     }
 
     header{
         font-size:24px;
         padding:18px 14px;
+        border-radius:18px;
+    }
+
+    .buscador-wrapper{
+        top:8px;
+    }
+
+    .search-shell{
+        border-radius:20px;
+        padding:8px;
     }
 
     label{
@@ -222,7 +289,7 @@ a:hover{
 
     input{
         font-size:18px;
-        padding:17px 16px;
+        padding:18px 52px 18px 46px;
     }
 
     .dropdown-item{
@@ -273,9 +340,14 @@ a:hover{
 
 <label for="coloniaInput">Buscar o Seleccionar Colonia</label>
 <div class="buscador-wrapper">
-    <input id="coloniaInput" placeholder="Escribe aquí..." autocomplete="off">
+    <div class="search-shell">
+        <span class="search-icon">🔎</span>
+        <input id="coloniaInput" placeholder="Busca una colonia..." autocomplete="off" enterkeyhint="search">
+        <button id="clearBtn" class="clear-btn" type="button" aria-label="Limpiar búsqueda">×</button>
+    </div>
     <div id="opcionesColonias" class="dropdown"></div>
 </div>
+<div class="app-hint">Toca el buscador para abrir opciones. Al elegir una colonia, el campo se limpia para la siguiente búsqueda.</div>
 
 <div id="nombreColonia" class="nombre-colonia" style="display:none;"></div>
 
@@ -488,6 +560,16 @@ function ocultarDropdown(){
     dropdown.classList.remove('visible');
 }
 
+function actualizarBotonLimpiar(){
+    clearBtn.classList.toggle('visible', input.value.trim().length > 0);
+}
+
+function enfocarBuscador(){
+    setTimeout(()=>{
+        input.focus({ preventScroll:true });
+    }, 50);
+}
+
 function filtrarColonias(texto){
     const valor = texto.trim().toLowerCase();
     opcionesFiltradas = datosColonias.filter(c => c.nombre.toLowerCase().includes(valor));
@@ -515,6 +597,12 @@ function seleccionarColoniaPorNombre(nombre){
 
     resetZoom();
     ocultarDropdown();
+    input.value = "";
+    actualizarBotonLimpiar();
+    input.blur();
+    setTimeout(()=>{
+        input.scrollIntoView({behavior:'smooth', block:'center'});
+    }, 120);
 }
 
 function resetZoom(){
@@ -524,6 +612,10 @@ function resetZoom(){
 }
 
 input.addEventListener("focus", ()=>{
+    filtrarColonias(input.value);
+});
+
+input.addEventListener("click", ()=>{
     filtrarColonias(input.value);
 });
 
@@ -564,6 +656,13 @@ dropdown.addEventListener('click', (e)=>{
     seleccionarColoniaPorNombre(nombre);
 });
 
+clearBtn.addEventListener('click', ()=>{
+    input.value = '';
+    actualizarBotonLimpiar();
+    filtrarColonias('');
+    enfocarBuscador();
+});
+
 document.addEventListener('click', (e)=>{
     if(!e.target.closest('.buscador-wrapper')){
         ocultarDropdown();
@@ -598,6 +697,7 @@ mapaImagen.addEventListener('dblclick', ()=>{
 });
 
 window.addEventListener('resize', resetZoom);
+actualizarBotonLimpiar();
 </script>
 </body>
 </html>
