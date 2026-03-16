@@ -1171,6 +1171,341 @@ document.getElementById("opciones").addEventListener("change", function() {
 </script>
 
 
+
+
+
+
+
+
+	<label for="coloniaInput">Buscar o Seleccionar Colonia</label>
+<div class="buscador-wrapper">
+    <input id="coloniaInput" placeholder="Escribe aquí..." autocomplete="off">
+    <div id="opcionesColonias" class="dropdown"></div>
+</div>
+
+<div id="nombreColonia" class="nombre-colonia" style="display:none;"></div>
+
+<div class="table-wrap">
+<table id="tablaDatos" style="display:none;">
+<thead>
+<tr>
+<th>Ubicación</th>
+<th>Códigos</th>
+<th>Observación</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td id="ubicacion" data-label="Ubicación"></td>
+<td id="codigos" data-label="Códigos"></td>
+<td id="observacion" data-label="Observación"></td>
+</tr>
+<tr>
+<td colspan="3" class="mapa-celda">
+Mapa Ubicación Casas
+<div class="zoom-help">En celular puedes agrandar la imagen con dos dedos.</div>
+<div class="image-stage" id="imageStage">
+    <div class="image-inner" id="imageInner">
+        <img id="mapaImagen" src="" alt="Mapa de ubicación">
+    </div>
+</div>
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+
+<script>
+const datosColonias = [
+{
+nombre:"Iron Rock",
+ubicacion:"https://maps.app.goo.gl/tRuUwmUBdDAuFeDz8?g_st=iw",
+codigos:["DSLD La Apertura es con llave"],
+observacion:"Tener color Beige ya que puede tener que pintarse puerta trasera",
+mapa:"https://dlqxt4mfnxo6k.cloudfront.net/dsldhomes.com/aHR0cHM6Ly9zMy5hbWF6b25hd3MuY29tL2J1aWxkZXJjbG91ZC9kYmU3MjE3OTE3NDcwMTMzMTA2ZTM4OWQwYWUyODA0Ny5wbmc=/webp/2000/2000"
+},
+{
+nombre:"Pecan Grove",
+ubicacion:"https://maps.app.goo.gl/969hXbGc3JL74z4v6?g_st=iw",
+codigos:["Lennar La apertura es con llave"],
+observacion:"SNOWBOUND color de pared",
+mapa:"https://img.freepik.com/vector-premium/ilustracion-vectorial-simbolo-casa-ubicacion-diseno-conceptual-servicio-entrega-domicilio_929545-241.jpg?semt=ais_rp_progressive&w=740&q=80"
+},
+{
+nombre:"Southwood",
+ubicacion:"https://maps.app.goo.gl/kWfhQhuf3zPQWUKc9",
+codigos:["La apertura es con LLAVE"],
+observacion:"informen a Carlos Color de pared y puertas",
+mapa:"https://img.freepik.com/vector-premium/ilustracion-vectorial-simbolo-casa-ubicacion-diseno-conceptual-servicio-entrega-domicilio_929545-241.jpg?semt=ais_rp_progressive&w=740&q=80"
+},
+{
+nombre:"Vickers States",
+ubicacion:"https://maps.app.goo.gl/PSueiJaBBFnnQEb17",
+codigos:["La apertura es con LLAVE"],
+observacion:"informen a Carlos Color de pared y puertas",
+mapa:"https://img.freepik.com/vector-premium/ilustracion-vectorial-simbolo-casa-ubicacion-diseno-conceptual-servicio-entrega-domicilio_929545-241.jpg?semt=ais_rp_progressive&w=740&q=80"
+},
+{
+nombre:"Floridatown",
+ubicacion:"https://maps.app.goo.gl/sg8oo6V2hafZH8JZA",
+codigos:["INFORMEN DE LOS CODIGOS"],
+observacion:"Paredes Alabaster",
+mapa:"https://img.freepik.com/vector-premium/ilustracion-vectorial-simbolo-casa-ubicacion-diseno-conceptual-servicio-entrega-domicilio_929545-241.jpg?semt=ais_rp_progressive&w=740&q=80"
+},
+{
+nombre:"Liberty Farms",
+ubicacion:"https://maps.app.goo.gl/xQVjGEzHCJqUqZ5BA",
+codigos:["0226"],
+observacion:"Paredes Eldier White, puerta principal de acuerdo a color de Shutters",
+mapa:"https://img.freepik.com/vector-premium/ilustracion-vectorial-simbolo-casa-ubicacion-diseno-conceptual-servicio-entrega-domicilio_929545-241.jpg?semt=ais_rp_progressive&w=740&q=80"
+},
+{
+nombre:"Huston",
+ubicacion:"https://maps.app.goo.gl/gWUhiHUoatYMDYFi9?g_st=a",
+codigos:["La apertura es con llave"],
+observacion:"Llevar escalera de extension para pintar Ventanita.",
+mapa:"https://img.freepik.com/vector-premium/ilustracion-vectorial-simbolo-casa-ubicacion-diseno-conceptual-servicio-entrega-domicilio_929545-241.jpg?semt=ais_rp_progressive&w=740&q=80"
+},
+{
+nombre:"Soundview",
+ubicacion:"https://maps.app.goo.gl/LsUEqUSVP7zJWGSU9?g_st=ipc",
+codigos:["1234","#4567","Puerta Azul"],
+observacion:"Departamentos, color de paredes Eldhier White",
+mapa:"https://img.freepik.com/vector-premium/ilustracion-vectorial-simbolo-casa-ubicacion-diseno-conceptual-servicio-entrega-domicilio_929545-241.jpg?semt=ais_rp_progressive&w=740&q=80"
+},
+{
+nombre:"GrassLand",
+ubicacion:"https://maps.app.goo.gl/JJP1u4sJaWtQQy7T7?g_st=ipc",
+codigos:["La apertura es con LLAVE"],
+observacion:"Paredes Snowbound y puertas negras",
+mapa:"https://img.freepik.com/vector-premium/ilustracion-vectorial-simbolo-casa-ubicacion-diseno-conceptual-servicio-entrega-domicilio_929545-241.jpg?semt=ais_rp_progressive&w=740&q=80"
+},
+{
+nombre:"Country Club States",
+ubicacion:"https://maps.app.goo.gl/NyRfv8LNobnNZgh37",
+codigos:["0226"],
+observacion:"Paredes First Start",
+mapa:"https://img.freepik.com/vector-premium/ilustracion-vectorial-simbolo-casa-ubicacion-diseno-conceptual-servicio-entrega-domicilio_929545-241.jpg?semt=ais_rp_progressive&w=740&q=80"
+},
+{
+nombre:"Roman Oaks",
+ubicacion:"https://maps.app.goo.gl/jyVUoMh3VKFZTD9X7",
+codigos:["La apertura es con LLAVE"],
+observacion:"Puertas negras.",
+mapa:"https://img.freepik.com/vector-premium/ilustracion-vectorial-simbolo-casa-ubicacion-diseno-conceptual-servicio-entrega-domicilio_929545-241.jpg?semt=ais_rp_progressive&w=740&q=80"
+},
+{
+nombre:"Freeport",
+ubicacion:"https://maps.app.goo.gl/MaLCYrgowFBRWFxi8",
+codigos:["La apertura es con LLAVE"],
+observacion:"Paredes Eldier White",
+mapa:"https://img.freepik.com/vector-premium/ilustracion-vectorial-simbolo-casa-ubicacion-diseno-conceptual-servicio-entrega-domicilio_929545-241.jpg?semt=ais_rp_progressive&w=740&q=80"
+},
+{
+nombre:"Gaylen Oaks",
+ubicacion:"https://maps.app.goo.gl/LAhsMGCK1F39NA559",
+codigos:["0126","0226","2027"],
+observacion:"Paredes Eldier White",
+mapa:"https://img.freepik.com/vector-premium/ilustracion-vectorial-simbolo-casa-ubicacion-diseno-conceptual-servicio-entrega-domicilio_929545-241.jpg?semt=ais_rp_progressive&w=740&q=80"
+},
+{
+nombre:"Deer Ridge Crossing",
+ubicacion:"https://maps.app.goo.gl/BsK6bwjb64i1sdKS6",
+codigos:["La apertura es con LLAVE"],
+observacion:"Paredes Eldier White",
+mapa:"https://img.freepik.com/vector-premium/ilustracion-vectorial-simbolo-casa-ubicacion-diseno-conceptual-servicio-entrega-domicilio_929545-241.jpg?semt=ais_rp_progressive&w=740&q=80"
+},
+{
+nombre:"Heritage Plantation",
+ubicacion:"https://maps.app.goo.gl/gNZEVDUsy38uN46j6",
+codigos:["0126","0226","2027"],
+observacion:"Paredes Eldier White",
+mapa:"https://img.freepik.com/vector-premium/ilustracion-vectorial-simbolo-casa-ubicacion-diseno-conceptual-servicio-entrega-domicilio_929545-241.jpg?semt=ais_rp_progressive&w=740&q=80"
+},
+{
+nombre:"Eagle Pointe",
+ubicacion:"https://maps.app.goo.gl/3NynNqUsfpiwKv8Y7?g_st=com.google.maps.preview.copy",
+codigos:["La apertura es con LLAVE"],
+observacion:"Paredes Eldier White",
+mapa:"https://dlqxt4mfnxo6k.cloudfront.net/dsldhomes.com/aHR0cHM6Ly9zMy5hbWF6b25hd3MuY29tL2J1aWxkZXJjbG91ZC82NjhjNjVmNjJiZGE3NGZhNWZmMzIyMjMwODc5YTBkZi5qcGVn/webp/1200/1200"
+},
+{
+nombre:"Ellies Cove",
+ubicacion:"https://maps.app.goo.gl/1wYGLwCCCkAz3apu5",
+codigos:["0126","2506","1999","1998","0226","2027"],
+observacion:"Departamentos, Paredes Eldier White",
+mapa:"https://img.freepik.com/vector-premium/ilustracion-vectorial-simbolo-casa-ubicacion-diseno-conceptual-servicio-entrega-domicilio_929545-241.jpg?semt=ais_rp_progressive&w=740&q=80"
+},
+{
+nombre:"Gaylen Oaks",
+ubicacion:"https://maps.app.goo.gl/LAhsMGCK1F39NA559",
+codigos:["0126","0226","2027"],
+observacion:"Paredes Eldier White",
+mapa:"https://img.freepik.com/vector-premium/ilustracion-vectorial-simbolo-casa-ubicacion-diseno-conceptual-servicio-entrega-domicilio_929545-241.jpg?semt=ais_rp_progressive&w=740&q=80"
+},
+{
+nombre:"Gaylen Oaks",
+ubicacion:"https://maps.app.goo.gl/LAhsMGCK1F39NA559",
+codigos:["0126","0226","2027"],
+observacion:"Paredes Eldier White",
+mapa:"https://img.freepik.com/vector-premium/ilustracion-vectorial-simbolo-casa-ubicacion-diseno-conceptual-servicio-entrega-domicilio_929545-241.jpg?semt=ais_rp_progressive&w=740&q=80"
+},
+{
+nombre:"Bosques del Sur",
+ubicacion:"https://maps.google.com/?q=Bosques+del+Sur",
+codigos:["7890","Portón 3"],
+observacion:"Casas nuevas, vigilancia 24/7.",
+mapa:"https://img.freepik.com/vector-premium/ilustracion-vectorial-simbolo-casa-ubicacion-diseno-conceptual-servicio-entrega-domicilio_929545-241.jpg?semt=ais_rp_progressive&w=740&q=80"
+}
+];
+
+datosColonias.sort((a,b)=>a.nombre.localeCompare(b.nombre));
+
+const input = document.getElementById("coloniaInput");
+const dropdown = document.getElementById("opcionesColonias");
+const tablaDatos = document.getElementById("tablaDatos");
+const nombreColonia = document.getElementById("nombreColonia");
+const imageStage = document.getElementById("imageStage");
+const imageInner = document.getElementById("imageInner");
+const mapaImagen = document.getElementById("mapaImagen");
+
+let opcionesFiltradas = [...datosColonias];
+let indiceActivo = -1;
+let currentScale = 1;
+let startDistance = 0;
+let startScale = 1;
+
+function renderDropdown(lista){
+    if(!lista.length){
+        dropdown.innerHTML = '<div class="dropdown-vacio">No se encontraron colonias.</div>';
+        dropdown.classList.add('visible');
+        return;
+    }
+
+    dropdown.innerHTML = lista.map((colonia, index)=>
+        `<div class="dropdown-item ${index===indiceActivo ? 'activa' : ''}" data-nombre="${colonia.nombre}">${colonia.nombre}</div>`
+    ).join('');
+
+    dropdown.classList.add('visible');
+}
+
+function ocultarDropdown(){
+    dropdown.classList.remove('visible');
+}
+
+function filtrarColonias(texto){
+    const valor = texto.trim().toLowerCase();
+    opcionesFiltradas = datosColonias.filter(c => c.nombre.toLowerCase().includes(valor));
+    indiceActivo = -1;
+    renderDropdown(opcionesFiltradas);
+}
+
+function seleccionarColoniaPorNombre(nombre){
+    const colonia = datosColonias.find(c => c.nombre === nombre);
+    if(!colonia) return;
+
+    tablaDatos.style.display = "table";
+    nombreColonia.style.display = "block";
+    nombreColonia.innerText = colonia.nombre;
+
+    document.getElementById("ubicacion").innerHTML =
+    `<a href="${colonia.ubicacion}" target="_blank" rel="noopener noreferrer">Abrir en Google Maps</a>`;
+
+    const listaCodigos = `<ul>${colonia.codigos.map(c=>`<li>${c}</li>`).join('')}</ul>`;
+
+    document.getElementById("codigos").innerHTML = listaCodigos;
+    document.getElementById("observacion").innerText = colonia.observacion;
+    mapaImagen.src = colonia.mapa;
+    mapaImagen.alt = `Mapa de ${colonia.nombre}`;
+
+    resetZoom();
+    ocultarDropdown();
+}
+
+function resetZoom(){
+    currentScale = 1;
+    imageInner.style.transform = `scale(${currentScale})`;
+    imageStage.scrollLeft = 0;
+}
+
+input.addEventListener("focus", ()=>{
+    filtrarColonias(input.value);
+});
+
+input.addEventListener("input", ()=>{
+    filtrarColonias(input.value);
+});
+
+input.addEventListener("keydown", (e)=>{
+    if(!dropdown.classList.contains('visible')) return;
+
+    if(e.key === 'ArrowDown'){
+        e.preventDefault();
+        indiceActivo = Math.min(indiceActivo + 1, opcionesFiltradas.length - 1);
+        renderDropdown(opcionesFiltradas);
+    }else if(e.key === 'ArrowUp'){
+        e.preventDefault();
+        indiceActivo = Math.max(indiceActivo - 1, 0);
+        renderDropdown(opcionesFiltradas);
+    }else if(e.key === 'Enter'){
+        e.preventDefault();
+        if(indiceActivo >= 0 && opcionesFiltradas[indiceActivo]){
+            input.value = opcionesFiltradas[indiceActivo].nombre;
+            seleccionarColoniaPorNombre(opcionesFiltradas[indiceActivo].nombre);
+        }else if(opcionesFiltradas.length === 1){
+            input.value = opcionesFiltradas[0].nombre;
+            seleccionarColoniaPorNombre(opcionesFiltradas[0].nombre);
+        }
+    }else if(e.key === 'Escape'){
+        ocultarDropdown();
+    }
+});
+
+dropdown.addEventListener('click', (e)=>{
+    const item = e.target.closest('.dropdown-item');
+    if(!item) return;
+    const nombre = item.dataset.nombre;
+    input.value = nombre;
+    seleccionarColoniaPorNombre(nombre);
+});
+
+document.addEventListener('click', (e)=>{
+    if(!e.target.closest('.buscador-wrapper')){
+        ocultarDropdown();
+    }
+});
+
+function getDistance(touches){
+    const dx = touches[0].clientX - touches[1].clientX;
+    const dy = touches[0].clientY - touches[1].clientY;
+    return Math.hypot(dx, dy);
+}
+
+imageStage.addEventListener('touchstart', (e)=>{
+    if(e.touches.length === 2){
+        startDistance = getDistance(e.touches);
+        startScale = currentScale;
+    }
+}, { passive:true });
+
+imageStage.addEventListener('touchmove', (e)=>{
+    if(e.touches.length === 2){
+        const distance = getDistance(e.touches);
+        const nextScale = Math.min(4, Math.max(1, startScale * (distance / startDistance)));
+        currentScale = nextScale;
+        imageInner.style.transform = `scale(${currentScale})`;
+    }
+}, { passive:true });
+
+mapaImagen.addEventListener('dblclick', ()=>{
+    currentScale = currentScale === 1 ? 2 : 1;
+    imageInner.style.transform = `scale(${currentScale})`;
+});
+
+window.addEventListener('resize', resetZoom);
+</script>
+
 </body>
 </html>
 
