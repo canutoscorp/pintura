@@ -1,1176 +1,1029 @@
 <!DOCTYPE html>
 <html lang="es">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-    <title>LOZANO RESIDENTIAL PAINTING</title>
-    <style>
-        body {
-            font-family: Arial, sans-serif;
-            background-color: #f2f2f2;    
-
-            /* 3. Asegura que el contenedor use todo el alto disponible */
-            margin: 0;
-            height: 100vh;
-            width: 100%;
-            text-align: center;
-        }
-        #titulo {
-            font-size: 36px;
-            font-weight: bold;
-            color: #007bff;
-            text-shadow: 2px 2px 5px #ccc;
-            margin-top: 20px;
-        }
-        #subtitulo {
-            font-size: 24px;
-            font-weight: bold;
-            color: #ff9900;
-            margin-bottom: 20px;
-        }
-        #caja-desplegable {
-            width: 80%;
-            margin: 20px auto;
-            padding: 10px;
-            border: 1px solid #ccc;
-            border-radius: 5px;
-            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-            -webkit-appearance: none;
-            background-color: #fff;
-            color: #333;
-            font-size: 18px;
-        }
-        #tabla-informacion {
-            width: 80%;
-            margin: 20px auto;
-            border-collapse: collapse;
- box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-        }
-        #tabla-informacion th, #tabla-informacion td {
-            border: 1px solid #ccc;
-            padding: 10px;
-            background-color: #f9f9f9;
-            color: #333;
-            font-size: 16px;
-        }
-        #tabla-informacion th {
-            background-color: #007bff;
-            color: #fff;
-        }
-    </style>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>LOZANO PAINTING</title>
 
 <style>
-/* ===== MENSAJE FESTIVO ===== */
-#mensajeFestivo {
-  position: fixed;
-  top: 20%;
-  left: 50%;
-  transform: translateX(-50%);
-  background: rgba(0, 0, 0, 0.85);
-  color: #fff;
-  padding: 18px 22px;
-  border-radius: 14px;
-  font-size: 1.2em;
-  text-align: center;
-  z-index: 9999;
-  display: none;
-  max-width: 90%;
+*{ box-sizing:border-box; }
+
+body{
+    font-family:'Segoe UI',sans-serif;
+    margin:0;
+    background:#f2f6fa;
+    display:flex;
+    justify-content:center;
 }
 
-@keyframes aparecer {
-  from { opacity: 0; transform: translate(-50%, -20px); }
-  to { opacity: 1; transform: translate(-50%, 0); }
+.main-wrapper{
+    width:100%;
+    max-width:900px;
+    padding:20px;
+    text-align:center;
 }
 
-/* ===== ICONOS CAYENDO ===== */
-.icono-festivo {
-  position: fixed;
-  top: -40px;
-  animation: caer linear infinite;
-  z-index: 9998;
-  pointer-events: none;
+header{
+    background:linear-gradient(90deg,#1e3c72,#2a5298);
+    color:white;
+    padding:20px;
+    font-size:28px;
+    font-weight:bold;
+    border-radius:12px;
+    box-shadow:0 4px 12px rgba(0,0,0,0.2);
+    margin-bottom:30px;
+    letter-spacing:2px;
 }
 
-@keyframes caer {
-  to {
-    transform: translateY(110vh);
-  }
+label{
+    font-weight:bold;
+    font-size:18px;
+    color:#1e3c72;
+    display:block;
+    margin-bottom:10px;
 }
+
+.buscador-wrapper{
+    position:sticky;
+    top:10px;
+    width:100%;
+    max-width:560px;
+    margin:0 auto 10px;
+    z-index:40;
+}
+
+.search-shell{
+    position:relative;
+    background:#ffffff;
+    border-radius:18px;
+    box-shadow:0 10px 24px rgba(22,50,95,0.14);
+    border:1px solid #dbe6f4;
+    padding:8px;
+}
+
+.search-icon{
+    position:absolute;
+    left:20px;
+    top:50%;
+    transform:translateY(-50%);
+    font-size:18px;
+    color:#52709b;
+    pointer-events:none;
+}
+
+input{
+    width:100%;
+    padding:17px 52px 17px 48px;
+    font-size:18px;
+    border-radius:14px;
+    border:2px solid #9bb4d8;
+    outline:none;
+    background:#fff;
+    box-shadow:0 4px 14px rgba(0,0,0,0.08);
+    transition:all .2s ease;
+}
+
+.clear-btn{
+    position:absolute;
+    right:16px;
+    top:50%;
+    transform:translateY(-50%);
+    width:34px;
+    height:34px;
+    border:none;
+    border-radius:999px;
+    background:#edf4ff;
+    color:#23406f;
+    font-size:20px;
+    cursor:pointer;
+    display:none;
+}
+
+.clear-btn.visible{
+    display:block;
+}
+
+input:focus{
+    border-color:#2a5298;
+    box-shadow:0 0 0 4px rgba(42,82,152,0.14), 0 8px 18px rgba(0,0,0,0.10);
+}
+
+.dropdown{
+    position:absolute;
+    top:calc(100% + 8px);
+    left:0;
+    right:0;
+    background:#fff;
+    border:2px solid #d4e0f1;
+    border-radius:16px;
+    box-shadow:0 12px 26px rgba(0,0,0,0.14);
+    overflow:hidden;
+    z-index:20;
+    max-height:280px;
+    overflow-y:auto;
+    display:none;
+    text-align:left;
+}
+
+.dropdown.visible{
+    display:block;
+}
+
+.dropdown-item{
+    padding:15px 16px;
+    font-size:17px;
+    color:#16325f;
+    border-bottom:1px solid #edf2f8;
+    cursor:pointer;
+    background:#fff;
+}
+
+.dropdown-item:last-child{
+    border-bottom:none;
+}
+
+.dropdown-item:hover,
+.dropdown-item:active,
+.dropdown-item.activa{
+    background:#edf4ff;
+}
+
+.dropdown-vacio{
+    padding:16px;
+    color:#5d6f8a;
+    font-size:15px;
+}
+
+.app-hint{
+    margin:10px auto 0;
+    max-width:560px;
+    font-size:14px;
+    color:#5a7399;
+    background:#eef4ff;
+    border:1px solid #d8e5f7;
+    padding:10px 14px;
+    border-radius:14px;
+}
+
+.nombre-colonia{
+    margin-top:24px;
+    font-size:24px;
+    font-weight:bold;
+    color:#1e3c72;
+    letter-spacing:1px;
+    background:#fff;
+    border:1px solid #d9e4f3;
+    border-radius:16px;
+    padding:14px 16px;
+    box-shadow:0 6px 16px rgba(0,0,0,0.08);
+}
+
+.table-wrap{
+    width:100%;
+    overflow-x:auto;
+}
+
+table{
+    width:100%;
+    margin-top:15px;
+    border-collapse:collapse;
+    background:white;
+    border-radius:12px;
+    overflow:hidden;
+    box-shadow:0 6px 15px rgba(0,0,0,0.15);
+}
+
+th{
+    background:#2a5298;
+    color:white;
+    padding:12px;
+}
+
+td{
+    padding:12px;
+    border-bottom:1px solid #ddd;
+    vertical-align:top;
+}
+
+.mapa-celda{
+    background:#f4f8fc;
+    font-weight:bold;
+    text-align:center;
+}
+
+.zoom-help{
+    font-size:14px;
+    font-weight:600;
+    color:#45638d;
+    margin:8px 0 12px;
+}
+
+.image-stage{
+    width:100%;
+    overflow:auto;
+    -webkit-overflow-scrolling:touch;
+    border-radius:14px;
+    background:#eaf1fb;
+    border:1px solid #d4e0f1;
+    padding:12px;
+    touch-action:pan-x pan-y pinch-zoom;
+}
+
+.image-inner{
+    display:inline-block;
+    transform-origin:center center;
+    will-change:transform;
+}
+
+.mapa-celda img{
+    width:min(100%, 760px);
+    max-width:none;
+    height:auto;
+    display:block;
+    margin:0 auto;
+    border-radius:10px;
+    user-select:none;
+    -webkit-user-drag:none;
+    touch-action:none;
+}
+
+ul{
+    padding-left:20px;
+    text-align:left;
+    margin:0;
+}
+
+a{
+    color:#1e3c72;
+    font-weight:bold;
+    text-decoration:none;
+}
+
+a:hover{
+    text-decoration:underline;
+}
+
+@media(max-width:600px){
+    .main-wrapper{
+        padding:12px;
+    }
+
+    header{
+        font-size:24px;
+        padding:18px 14px;
+        border-radius:18px;
+    }
+
+    .buscador-wrapper{
+        top:8px;
+    }
+
+    .search-shell{
+        border-radius:20px;
+        padding:8px;
+    }
+
+    label{
+        font-size:19px;
+    }
+
+    input{
+        font-size:18px;
+        padding:18px 52px 18px 46px;
+    }
+
+    .dropdown-item{
+        font-size:18px;
+        padding:16px;
+    }
+
+    table, thead, tbody, tr, th, td{
+        display:block;
+        width:100%;
+    }
+
+    thead{
+        display:none;
+    }
+
+    tr{
+        border-bottom:1px solid #dbe4f0;
+    }
+
+    td{
+        text-align:left;
+        padding:14px;
+    }
+
+    td::before{
+        content:attr(data-label);
+        display:block;
+        font-weight:700;
+        color:#1e3c72;
+        margin-bottom:8px;
+    }
+
+    .mapa-celda{
+        text-align:center;
+    }
+
+    .mapa-celda::before{
+        display:none;
+    }
+}
+
+.recent-chip{
+    border:none;
+    background:#edf4ff;
+    padding:8px 12px;
+    border-radius:999px;
+    cursor:pointer;
+    font-weight:600;
+}
+.recent-chip:hover{
+    background:#dce9ff;
+}
+
 </style>
-
-
-
-
 </head>
 
 <body>
-    
-<div style="background-color:#004080; color:white; padding:20px; border-radius:10px; margin:20px auto; width:90%; max-width:800px; text-align:center;">
-    <h1 id="titulo" style="color:white; text-shadow: 3px 3px 6px rgba(0,0,0,0.5); font-size: 42px; margin:0;">LOZANO RESIDENTIAL PAINTING</h1>
-    <h2 id="subtitulo" style="color:#ffdd57; font-size: 24px; margin-top:10px;">Más que pintura, transformación.</h2>
-</div>
+<div class="main-wrapper">
+<header>LOZANO PAINTING</header>
 
-<img src="https://visitor-badge.laobi.icu/badge?page_id=canutoscorp.pintura" alt="Visitas">
-<br><br>
-<img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQ_drB5BJCSNBvr2Ymn9832ovkIAa71hfTJVA&s" alt="Descripción de la imagen" width="200" heigth="600" />
-<BR>
-<br>
-<!-- Widget: DATO DEL DÍA (estilo aislado, centrado, animado, colores personalizados) -->
-<div id="dato-dia-widget" style="all: initial; font-family: Arial, sans-serif; display: flex; justify-content: center; width: 100%; margin-top: 20px;">
-  <div style="all: initial; font-family: Arial, sans-serif; background: #fdf7d3; color: #333; padding: 20px; border-radius: 16px; max-width: 90%; box-shadow: 0 4px 12px rgba(0,0,0,0.2); text-align: center; animation: fadeIn 1s ease;">
-    <h2 style="all: initial; font-family: Arial, sans-serif; font-size: 18px; font-weight: bold; color: #333;">Dato Curioso</h2>
-    <p id="dato-del-dia" style="all: initial; font-family: Arial, sans-serif; font-size: 18px; margin-top: 12px; color: #333;"></p>
-  </div>
-</div>
-
-<style>
-@keyframes fadeIn {
-  from { opacity: 0; transform: translateY(10px); }
-  to { opacity: 1; transform: translateY(0); }
-}
-</style>
-
-<script>
-// LISTA DE 500 DATOS DIVERTIDOS
-const datosDivertidos = [
-"Los pulpos tienen tres corazones.",
-"Los caracoles pueden dormir hasta tres años.",
-"Las vacas tienen mejores amigas.",
-"Los pingüinos se proponen matrimonio con una piedra.",
-"Las abejas pueden reconocer rostros humanos.",
-"Las medusas no tienen cerebro.",
-"Un grupo de flamencos se llama flamboyance.",
-"Las ratas pueden reír.",
-"Los tiburones existen desde antes de los árboles.",
-"Los caballitos de mar machos dan a luz.",
-"Los delfines tienen nombres propios.",
-"Las mariposas saborean con los pies.",
-"Los koalas duermen hasta 22 horas.",
-"Las estrellas de mar pueden regenerar brazos.",
-"Los murciélagos siempre giran a la izquierda.",
-"Los wombats hacen caca en forma de cubo.",
-"Las hormigas no duermen.",
-"Los camellos tienen tres párpados.",
-"Los caballos no pueden vomitar.",
-"Los colibríes recuerdan todas las flores.",
-"Los peces payaso cambian de sexo.",
-"Los tiburones no pueden dejar de nadar.",
-"Los cuervos usan herramientas.",
-"Los gatos no pueden saborear lo dulce.",
-"Las jirafas no tienen cuerdas vocales.",
-"Las arañas no pueden volar pero planean.",
-"Las focas duermen bajo el agua.",
-"Los elefantes no pueden saltar.",
-"Las abejas duermen abrazadas.",
-"Los búhos pueden girar su cabeza 270 grados.",
-"Los perros sueñan.",
-"Los patos se comunican con más de 20 sonidos.",
-"Los camaleones ven en dos direcciones.",
-"Los lobos se saludan lamiéndose.",
-"Los cerdos no pueden mirar al cielo.",
-"Los peces duermen con los ojos abiertos.",
-"Los pandas pasan 14 horas comiendo.",
-"Los koalas tienen huellas dactilares humanas.",
-"Los pulpos pueden cambiar de color al soñar.",
-"Las serpientes huelen con la lengua.",
-"Los burros recuerdan amigos por años.",
-"Los gorilas pueden aprender lenguaje de señas.",
-"Los flamingos no nacen rosas.",
-"Los cocodrilos comen piedras.",
-"Los murciélagos tienen mejores inmunidades.",
-"Los búhos no tienen globos oculares.",
-"Los mosquitos son atraídos por el CO₂.",
-"Los gatos pueden hacer más de 100 sonidos.",
-"Las cabras tienen pupilas rectangulares.",
-"Las orcas tienen abuelas que cuidan.",
-"Los pingüinos emperador soportan −60°C.",
-"Los erizos se cubren con espuma.",
-"Las tortugas pueden respirar por el trasero.",
-"Los corales son animales.",
-"Los conejos no pueden vomitar.",
-/* ... Datos 60 a 500 generados de forma comprimida ... */
-"El ADN humano es 98% similar al de los chimpancés.",
-"Los volcanes pueden producir relámpagos.",
-"El plátano es una baya.",
-"Las cebras no pueden dormir solas.",
-"Las langostas saborean con las patas.",
-"Las avestruces tienen ojos más grandes que su cerebro.",
-"Los ratones cantan pero en frecuencias altas.",
-"Los perezosos tardan un mes en digerir.",
-"Los perros bostezan por empatía.",
-"El tiburón ballena tiene 3000 dientes.",
-"Las medusas Turritopsis pueden rejuvenecer.",
-"Las moscas ven en cámara lenta.",
-"Las ovejas reconocen 50 caras.",
-"Los cangrejos violinistas usan señales.",
-"Los delfines se nombran con silbidos.",
-"Los búhos tienen oído asimétrico.",
-"Las ranas pueden congelarse y revivir.",
-"Los camellos pueden beber 100 litros en 10 min.",
-"Los humanos compartimos 50% del ADN con plátanos.",
-"Los zorros usan el campo magnético para cazar.",
-"El axolote nunca madura.",
-"Los peces luna ponen 300 millones de huevos.",
-"Las vacas se estresan si están solas.",
-"Los caballos pueden dormir de pie.",
-"Las serpientes pueden tener dos cabezas.",
-"Los cuervos recuerdan rencores.",
-"Los perros tienen sentido del tiempo.",
-"Los gatos pueden reconocerse en olor.",
-"Las lechuzas no pueden mover los ojos.",
-"El oso polar es negro debajo de la piel.",
-"Las cucarachas viven días sin cabeza.",
-"Los búfalos lloran.",
-"Las ranas no beben agua, la absorben.",
-"Los flamencos se paran en una pata para ahorrar calor.",
-"Los orangutanes construyen camas nuevas cada día.",
-"Los pingüinos tienen rodillas.",
-"Las gallinas recuerdan más de 100 rostros.",
-"Los leones duermen más de 20 horas.",
-"Los insectos tienen corazones múltiples.",
-"El tiburón de Groenlandia vive 400 años.",
-"Los camaleones no cambian color para camuflaje, sino emociones.",
-"Los perros pueden detectar enfermedades.",
-"Los gatos tienen memoria a largo plazo.",
-"Las cabras gritan como humanos.",
-"Los cuervos tienen funerales.",
-"Las medusas existen desde antes de los dinosaurios.",
-"Los delfines duermen con medio cerebro.",
-"Los elefantes tienen rituales de duelo.",
-"Los caballitos de mar bailan cada mañana.",
-"Los murciélagos son los únicos mamíferos que vuelan.",
-"Los escarabajos peloteros se orientan con la Vía Láctea.",
-"Los lemmings no se suicidan, es un mito.",
-"Las abejas hacen matemáticas simples.",
-"Los tiburones pueden oler sangre a kilómetros.",
-"Los colibríes son los únicos que vuelan hacia atrás.",
-"Los búhos cazan en completa oscuridad.",
-"Los perros pueden sentir terremotos.",
-"Los gatos usan maullidos solo con humanos.",
-"Los elefantes se reconocen en espejos.",
-"Las tortugas viven más de 150 años.",
-"Los lobos tienen jerarquías estrictas.",
-"Los zorros tienen más de 40 sonidos.",
-"Los pulpos usan herramientas.",
-"Los pingüinos tienen plumas microscópicas.",
-"Los rinocerontes no pueden ver bien.",
-"Los guepardos ronronean.",
-"Los mapaches tienen manos muy sensibles.",
-"Los osos pandas pueden escalar árboles a los 7 meses.",
-"Las ballenas cantan cientos de kilómetros.",
-"Los camellos no almacenan agua en la joroba.",
-"Los perros ven azul y amarillo.",
-"Los gatos ven en infrarrojo débil.",
-"Los tiburones sienten electricidad.",
-"Los búhos vuelan sin ruido.",
-"Los colibríes tienen corazones de 1200 bpm.",
-"Los flamencos beben agua hirviendo en geysers.",
-"Las avispas pueden recordar rostros.",
-"Las hormigas tienen granjas de hongos.",
-"Los castores modifican ecosistemas.",
-"Las serpientes ven calor.",
-"Los conejos tienen visión casi 360°.",
-"Los osos hibernan pero despiertan.",
-"Los perros pueden oler emociones.",
-"Los gatos pueden saltar 6 veces su altura.",
-"Los cuervos tienen dialectos.",
-"Los elefantes usan infrasonidos.",
-"Los peces usan herramientas.",
-"Las abejas se comunican bailando.",
-"Los camellos pueden cerrar fosas nasales.",
-"Los monos roban para intercambiar.",
-"Las ardillas entierran más comida de la que comen.",
-"Los búhos son expertos en camuflaje.",
-"Las medusas no mueren de vejez.",
-"Los tiburones tienen esqueletos de cartílago.",
-"Los zorros usan trucos para cazar.",
-"Las tortugas reconocen cuidadores.",
-"Los perros entienden hasta 200 palabras.",
-"Los gatos sueñan aventuras.",
-"Los lobos lloran a sus muertos.",
-"Los pingüinos protegen a crías en guarderías.",
-"Las ranas cambian de sexo.",
-"Los peces se comunican con burbujas.",
-"Los insectos tienen esqueletos externos."];
-
-// Seleccionar dato aleatorio cada vez que se carga la página
-document.addEventListener("DOMContentLoaded", () => {
-  const indice = Math.floor(Math.random() * datosDivertidos.length);
-  document.getElementById("dato-del-dia").textContent = datosDivertidos[indice];
-});
-</script>
-
-<img src="https://cdn.pixabay.com/animation/2023/04/06/16/10/16-10-43-442_512.gif" alt="NUEVA UBICACION" style="width:100px; height:auto;"> 
-<br>
-
-
-    <select id="caja-desplegable">
-        <option value="">Seleccione una COLONIA</option>
-        <option value="Airway Oaks">Airway Oaks</option>
-        <option value="Bently">Bently</option>
-        <option value="Bridlewood">Bridlewood</option>
-        <option value="Brookheaven">Brookheaven</option>
-        <option value="Cadence">Cadence</option>
-        <option value="Captain cove">Captain cove</option>
-        <option value="Carrington">Carrington</option>
-        <option value="Country Club States">Country Club States</option>
-        <option value="Cottages of Aventura">Cottages of Aventura</option>
-        <option value="Days Landing">Days Landing</option>
-        <option value="Deer Ridge Crossing">Deer Ridge Crossing</option>
-        <option value="Dry Creek">Dry Creek</option>
-        <option value="Eagle Pointe">Eagle Pointe</option>
-        <option value="Ellies Cove">Ellies Cove</option>
-        <option value="Fairchild">Fairchild</option>
-        <option value="Floridatown">Floridatown</option>
-        <option value="Forest Shores">Forest Shores</option>
-        <option value="Freeport">Freeport</option>
-        <option value="Gavin Landing">Gavin Landing</option>
-        <option value="Gaylen Oaks">Gaylen Oaks</option>
-        <option value="Gleenhollow">Gleenhollow</option>
-        <option value="Gleenlakes">Gleenlakes</option>
-        <option value="GrassLand">GrassLand</option>
-        <option value="Greenbrier">Greenbrier</option>
-        <option value="Heritage Plantation">Heritage Plantation</option>
-        <option value="Hihglands">Hihglands</option>
-        <option value="Huston">Huston</option>
-        <option value="Iron Rock">Iron Rock</option>
-        <option value="Lakes Of Woodbine">Lakes Of Woodbine</option>
-        <option value="Lancelot">Lancelot</option>
-        <option value="Ledwick">Ledwick</option>
-        <option value="Live Oaks">Live Oaks</option>
-        <option value="Lost Key">Lost Key</option>
-        <option value="Madelyn Woods">Madelyn Woods</option>
-        <option value="Mary Anette">Mary Anette</option>
-        <option value="Martin Preserve">Martin Preserve</option>
-        <option value="Midtown">Midtown</option>
-        <option value="Parkwood">Parkwood</option>
-        <option value="Patriot">Patriot</option>
-        <option value="Pecan Grove">Pecan Grove</option>
-        <option value="Pless Landing">Pless Landing</option>
-        <option value="Quilanding">Quilanding</option>
-        <option value="Rivers Cove">Rivers Cove</option>
-        <option value="Roman Oaks">Roman Oaks</option>
-        <option value="Russell Crossing">Russell Crossing</option>
-        <option value="Sanctuary">Sanctuary</option>
-        <option value="Sentinel Ridge">Sentinel Ridge</option>
-        <option value="Soundview">Soundview</option>
-        <option value="Sweetbarb">Sweetbarb</option>
-        <option value="Silverlake">Silverlake</option>
-        <option value="Souther Palms">Souther Palms</option>
-        <option value="Southwood">Southwood</option>
-        <option value="Stone Heaven">Stone Heaven</option>
-        <option value="Ventura Manor">Ventura Manor</option>
-        <option value="Vickers States">Vickers States</option>
-        <option value="Young Oaks">Young Oaks</option>
-    </select>
-
-    <table id="tabla-informacion">
-        <tr>
-            <th>Ubicación</th>
-            <th>Códigos</th>
-            <th>Observación</th>
-        </tr>
-        <tr id="fila-informacion">
-            <td id="ubicacion"></td>
-            <td id="codigos"></td>
-            <td id="observacion"></td>
-        </tr>
-    </table>
-    <script>
-        const cajaDesplegable = document.getElementById('caja-desplegable');
-        const ubicacion = document.getElementById('ubicacion');
-        const codigos = document.getElementById('codigos');
-        const observacion = document.getElementById('observacion');
-cajaDesplegable.addEventListener('change', () => {
-            const valorSeleccionado = cajaDesplegable.value;
-            switch (valorSeleccionado) {
-                case 'Iron Rock':
-                    ubicacion.innerHTML = '<a href="https://maps.app.goo.gl/tRuUwmUBdDAuFeDz8?g_st=iw" target="_blank">Iron Rock</a>';
-                    codigos.innerHTML = '<ul><li>Porton #1717</li><li>La apertura es con LLAVE</li></ul>';
-                    observacion.innerHTML = '<ul><li><a href="https://dlqxt4mfnxo6k.cloudfront.net/dsldhomes.com/aHR0cHM6Ly9zMy5hbWF6b25hd3MuY29tL2J1aWxkZXJjbG91ZC9kYmU3MjE3OTE3NDcwMTMzMTA2ZTM4OWQwYWUyODA0Ny5wbmc=/webp/2000/2000" target="_blank">Mapa Ubicacion de CASAS</a></li><li>BEIGE Color Puerta Trasera</li></ul>';
-                    break;
-                case 'Pecan Grove':
-                    ubicacion.innerHTML = '<a href="https://maps.app.goo.gl/969hXbGc3JL74z4v6?g_st=iw" target="_blank">Pecan Grove</a>';
-                    codigos.innerHTML = '<ul><li>La apertura es con LLAVE</li></ul>';
-                    observacion.innerHTML = '<ul><li>SNOWBOUND color de pared</li></ul>';
-                    break;
-               case 'Southwood':
-                    ubicacion.innerHTML = '<a href="https://maps.app.goo.gl/kWfhQhuf3zPQWUKc9" target="_blank">Southwood</a>';
-                    codigos.innerHTML = '<ul><li>La apertura es con LLAVE</li></ul>';
-                    observacion.innerHTML = '<ul><li>informen a Carlos Color de pared y puertas</li></ul>';
-                    break;
-               case 'Captain Cove':
-                    ubicacion.innerHTML = '<a href="https://maps.app.goo.gl/upbhxQj37EvtuHhB8" target="_blank">Captain Cove</a>';
-                    codigos.innerHTML = '<ul><li>informar de codigos, si es Dr Horton ocupar codigos conocidos</li></ul>';
-                    observacion.innerHTML = '<ul><li>informen a Carlos Color de pared y puertas</li></ul>';
-                    break;
-               case 'Vickers States':
-                    ubicacion.innerHTML = '<a href="https://maps.app.goo.gl/PSueiJaBBFnnQEb17" target="_blank">Vickers States</a>';
-                    codigos.innerHTML = '<ul><li>La apertura es con LLAVE</li></ul>';
-                    observacion.innerHTML = '<ul><li>informen a Carlos Color de pared y puertas</li></ul>';
-                    break;
-               case 'Floridatown':
-                    ubicacion.innerHTML = '<a href="https://maps.app.goo.gl/sg8oo6V2hafZH8JZA" target="_blank">Floridatown</a>';
-                    codigos.innerHTML = '<ul><li>INFORMEN DE LOS CODIGOS</li></ul>';
-                    observacion.innerHTML = '<ul><li>Alabaster</li></ul>';
-                    break;
-               case 'Huston':
-                    ubicacion.innerHTML = '<a href="https://maps.app.goo.gl/gWUhiHUoatYMDYFi9?g_st=a" target="_blank">Huston</a>';
-                    codigos.innerHTML = '<ul><li>DSLD</li><li>La apertura es con llave</li></ul>';
-                    observacion.innerHTML = '<ul><li>informen a Carlos Color de pared y puertas</li></ul>';
-                    break;
-               case 'Soundview':
-                    ubicacion.innerHTML = '<a href="https://maps.app.goo.gl/LsUEqUSVP7zJWGSU9?g_st=ipc" target="_blank">Soundview</a>';
-                    codigos.innerHTML = '<ul><li>0126</li><li>0226</li></ul>';
-                    observacion.innerHTML = '<ul><li>Departamentos, color de paredes Eldhier White</li></ul>';
-                    break;
-               case 'GrassLand':
-                    ubicacion.innerHTML = '<a href="https://maps.app.goo.gl/JJP1u4sJaWtQQy7T7?g_st=ipc" target="_blank">GrassLand</a>';
-                    codigos.innerHTML = '<ul><li>La apertura es con LLAVE</li></ul>';
-                    observacion.innerHTML = '<ul><li>Snowbound y puertas negras</li></ul>';
-                    break;
-               case 'Country Club States':
-                    ubicacion.innerHTML = '<a href="https://maps.app.goo.gl/NyRfv8LNobnNZgh37" target="_blank">Country Club States</a>';
-                    codigos.innerHTML = '<ul><li>Necesitamos saber codigos</li></ul>';
-                    observacion.innerHTML = '<ul><li>First Start</li></ul>';
-                    break;
-	      case 'Roman Oaks':
-                    ubicacion.innerHTML = '<a href="https://maps.app.goo.gl/jyVUoMh3VKFZTD9X7" target="_blank">Roman Oaks</a>';
-                    codigos.innerHTML = '<ul><li>La apertura es con LLAVE</li></ul>';
-                    observacion.innerHTML = '<ul><li>informen a Carlos Color de pared y puertas</li></ul>';
-                    break;
-               case 'Freeport':
-                    ubicacion.innerHTML = '<a href="https://maps.app.goo.gl/MaLCYrgowFBRWFxi8" target="_blank">Freeport</a>';
-                    codigos.innerHTML = '<ul><li>La apertura es con LLAVE</li></ul>';
-                    observacion.innerHTML = '<ul><li>informen a Carlos Color de pared y puertas</li></ul>';
-                    break;
-               case 'Gaylen Oaks':
-                    ubicacion.innerHTML = '<a href="https://maps.app.goo.gl/LAhsMGCK1F39NA559" target="_blank">Gaylen Oaks</a>';
-                    codigos.innerHTML = '<ul><li>0126</li><li>0226</li><li>2027</li><li>2030</li><li>Al parecer va ascendiendo los codigos</li></ul>';
-                    observacion.innerHTML = '<ul><li>Eldier White color de pared</li></ul>';
-                    break;
-               case 'Deer Ridge Crossing':
-                    ubicacion.innerHTML = '<a href="https://maps.app.goo.gl/BsK6bwjb64i1sdKS6" target="_blank">Deer Ridge Crossing</a>';
-                    codigos.innerHTML = '<ul><li>La apertura es con LLAVE</li></ul>';
-                    observacion.innerHTML = '<ul><li>Eldier White color de pared</li></ul>';
-                    break;
-               case 'Heritage Plantation':
-                    ubicacion.innerHTML = '<a href="https://maps.app.goo.gl/gNZEVDUsy38uN46j6" target="_blank">Heritage Plantation</a>';
-                    codigos.innerHTML = '<ul><li>La apertura es con LLAVE</li></ul>';
-                    observacion.innerHTML = '<ul><li>informen a Carlos Color de pared y puertas</li></ul>';
-                    break;
-                case 'Eagle Pointe':
-                    ubicacion.innerHTML = '<a href="https://maps.app.goo.gl/3NynNqUsfpiwKv8Y7?g_st=com.google.maps.preview.copy" target="_blank">Eagle Pointe</a>';
-                    codigos.innerHTML = '<ul><li>Apertura con llave</li></ul>';
-                    observacion.innerHTML = '<ul><li>Informen cual es el color de la pintura de pared y si la puerta es un solo color (ejemplo negro)</li><li><a ref="https://dlqxt4mfnxo6k.cloudfront.net/dsldhomes.com/aHR0cHM6Ly9zMy5hbWF6b25hd3MuY29tL2J1aWxkZXJjbG91ZC82NjhjNjVmNjJiZGE3NGZhNWZmMzIyMjMwODc5YTBkZi5qcGVn/webp/1200/1200" target="_blank">Mapa Ubicacion de CASAS</a></li></ul>';
-                    break;
-		 case 'Ellies Cove':
-                    ubicacion.innerHTML = '<a href="https://maps.app.goo.gl/1wYGLwCCCkAz3apu5" target="_blank">Ellies Cove</a>';
-                    codigos.innerHTML = '<ul><li>0325</li><li>1355</li><li>0126</li><li>2506</li><li>1999</li><li>1998</li></ul>';
-                    observacion.innerHTML = '<ul><li>Departamentos</li><li>Eldier White</li></ul>';
-                    break;
-		 case 'Dry Creek':
-                    ubicacion.innerHTML = '<a href="https://maps.app.goo.gl/qEQRnzXHro6XobXw8?g_st=com.google.maps.preview.copy" target="_blank">Dry Creek</a>';
-                    codigos.innerHTML = '<ul><li>Intendente Apertura la puerta</li></ul>';
-                    observacion.innerHTML = '<ul><li></li></ul>';
-                    break;
-                case 'Greenbrier':
-                    ubicacion.innerHTML = '<a href="https://maps.app.goo.gl/4hkt3to6ikkNokvu5?g_st=com.google.maps.preview.copy" target="_blank">Greenbrier</a>';
-                    codigos.innerHTML = '<ul><li>La apertura es con LLAVE</li></ul>';
-                    observacion.innerHTML = '<ul><li>SNOWBOUND color de pared</li><li>TRICORN BLACK Puertas Principales</li></ul>';
-                    break;
-                case 'Pless Landing':
-                    ubicacion.innerHTML = '<a href="https://maps.app.goo.gl/3kJkQJMu3yz3figz7?g_st=com.google.maps.preview.copy" target="_blank">Pless Landing</a>';
-                    codigos.innerHTML = '<ul><li>0125</li><li>0424</li><li>0225</li></ul>';
-                    observacion.innerHTML = 'ELDIER WHITE Color Paredes';
-                    break;
-                case 'Brookheaven':
-                    ubicacion.innerHTML = '<a href="https://maps.app.goo.gl/eJzakFUraCPnGwj98?g_st=com.google.maps.preview.copy" target="_blank">Brookheaven</a>';
-                    codigos.innerHTML = '<ul><li>0125</li><li>0225</li><li>1668</li><li>2155</li></ul><li>0126</li><li>2506</li><li>3036</li>';
-                    observacion.innerHTML = 'Eldier White paredes';
-                    break;
-                case 'Sanctuary':
-                    ubicacion.innerHTML = '<a href="https://maps.app.goo.gl/bm6uYQYM2UE4hzLt5?g_st=com.google.maps.preview.copy" target="_blank">Sanctuary</a>';
-                    codigos.innerHTML = '<ul><li>0125</li><li>0225</li><li>7531</li><li>0126</li><li>2506</li><li>0911</li><li>0226</li></ul>';
-                    observacion.innerHTML = 'ELDIER WHITE Color Paredes';
-                    break;
-                case 'Lakes Of Woodbine':
-                    ubicacion.innerHTML = '<a href="https://maps.app.goo.gl/HmM53z1budcdthDu7?g_st=com.google.maps.preview.copy" target="_blank">Lakes Of Woodbine</a>';
-                    codigos.innerHTML = '<ul><li>0125</li><li>0225</li><li>0325</li><li>1969</li><li>0126</li><li>2506</li></ul>';
-                    observacion.innerHTML = '<li>ELDIER WHITE Color Paredes</li><li><a href="https://www.drhorton.com/-/media/drhorton/productcatalog/244-pensacola-west/22668-lakes-of-woodbine/colored_plat_for_low.jpg?rev=11721f9c07c541c0b6d889332610eac8">Mapa Ubicacion de CASAS</a></li>';
-                    break;
-                case 'Forest Shores':
-                    ubicacion.innerHTML = '<a href=" https://maps.app.goo.gl/zr8HXRXwX3ZCvd8T6?g_st=iw" target="_blank">Forest Shores</a>';
-                    codigos.innerHTML = '<ul><li>0125</li><li>0225</li><li>0325</li><li>1969</li><li>0126</li></ul>';
-                    observacion.innerHTML = '<li>ELDIER WHITE Color Paredes</li><li>Departamentos</li>';
-                    break;
-                case 'Russell Crossing':
-                    ubicacion.innerHTML = '<a href="https://maps.app.goo.gl/TCLAnUJ4a4fgLzSSA" target="_blank">Russell Crossing</a>';
-                    codigos.innerHTML = '<ul><li>0125</li><li>0225</li><li>0325</li><li>1969</li><li>0126</li><li>Si la letra de lote es A entonces le corresponde el valor 01, si es B el valor 02, si es C el Valor 03 y asi sucesivamente entonces la clave para abrir la puerta se armara colocando el valor de la letra del lote mas el numero del lote. Ejemplo: lote 12a el codigo sera 0112 si fuera lote 6C seria 0306</li></ul>';
-                    observacion.innerHTML = '<li>ELDIER WHITE Color Paredes</li><li></li>';
-                    break;
-                case 'Madelyn Woods':
-                    ubicacion.innerHTML = '<a href="https://maps.app.goo.gl/iiUzwJGCfVM2RxEu5?g_st=com.google.maps.preview.copy" target="_blank">Madelyn Woods</a>';
-                    codigos.innerHTML = '<ul><li>El numero de casa es el codigo</li></ul>';
-                    observacion.innerHTML = 'Por lo regular Shutters, gable y columnas son de Stain';
-                    break;
-                case 'Cottages of Aventura':
-                    ubicacion.innerHTML = '<a href="https://maps.app.goo.gl/GMKY2zg7Z3QW8hEh7?g_st=com.google.maps.preview.copy" target="_blank">Cottages of Aventura</a>';
-                    codigos.innerHTML = '<ul><li>Se Abre con LLave</li></ul>';
-                    observacion.innerHTML = '<ul><li>Pintar en  primeras puertas principales (negro) y columnas</li><li>SNOWBOUND paredes</li></ul>';
-                    break;
-                case 'Lancelot':
-                    ubicacion.innerHTML = '<a href="https://maps.app.goo.gl/JZprTLfJDwPx9KEb8?g_st=com.google.maps.preview.copy" target="_blank">Lancelot</a>';
-                    codigos.innerHTML = '<ul><li>0307</li><li>0125</li><li>0225</li><li>2323</li><li>0307</li><li>0431</li><li>0325</li><li>0425</li></ul>';
-                    observacion.innerHTML = 'ELDIER WHITE Color Paredes';
-                    break;
-                case 'Gavin Landing':
-                    ubicacion.innerHTML = '<a href="https://maps.app.goo.gl/RKRXUDCGhFhhQtQB6?g_st=iw" target="_blank">Gavin Landing</a>';
-                    codigos.innerHTML = '<ul><li>0125</li><li>0225</li><li>1355</li><li>Dependiendo el numero de lote agreguen el prefijo 01 o bien 010 es decir si es el lote 12 el codigo seria 0112, si es el lote 6 el codigo seria 0106</li></ul>';
-                    observacion.innerHTML = '<li>ELDIER WHITE Color Paredes</li><li><a href="https://www.drhorton.com/-/media/drhorton/productcatalog/244-pensacola-west/22794-gavins-landing-ths/gavinslandingplat.png?rev=066b98c85a3443bcbf3027f13a4550ab">Mapa Ubicacion de CASAS</a></li>';
-                    break;
-               case 'Rivers Cove':
-                    ubicacion.innerHTML = '<a href="https://maps.app.goo.gl/3y2ei6xbhZ2p247S6?g_st=com.google.maps.preview.copy" target="_blank">Rivers Cove</a>';
-                    codigos.innerHTML = '<ul><li>0125</li><li>0225</li><li>0424</li><li>2293</li><li>0325</li><li>0126</li><li>2506</li></ul>';
-                    observacion.innerHTML = 'ELDIER WHITE Color Paredes';
-                    break;
-               case 'Ventura Manor':
-                    ubicacion.innerHTML = '<a href="https://maps.app.goo.gl/VQ5YJdAhS3oYCRfv7?g_st=com.google.maps.preview.copy" target="_blank">Ventura Manor</a>';
-                    codigos.innerHTML = '<ul><li>0125</li><li>0225</li><li>0424</li><li>2293</li></ul>';
-                    observacion.innerHTML = 'ELDIER WHITE Color Paredes';
-                    break;
-               case 'Sentinel Ridge':
-                    ubicacion.innerHTML = '<a href="https://maps.app.goo.gl/Rq3vStzLmnwhb2fZ7?g_st=com.google.maps.preview.copy" target="_blank">Sentinel Ridge</a>';
-                    codigos.innerHTML = '<ul><li>Se Abre con LLave</li></ul>';
-                    observacion.innerHTML = '<ul><li>Siempre checar si tiene Gable avisar para pedir la pintura</li><li><a href="https://dlqxt4mfnxo6k.cloudfront.net/dsldhomes.com/aHR0cHM6Ly9zMy5hbWF6b25hd3MuY29tL2J1aWxkZXJjbG91ZC85ODg1YmY0NWZiOGE1NWVlMGQ5ZWFjMTQyNGM0YWU1NS5qcGVn/webp/2000/2000">Mapa Ubicacion de CASAS</a></li></ul>';
-                    break;
-               case 'Cadence':
-                    ubicacion.innerHTML = '<a href="https://maps.app.goo.gl/Seibf8AVTk3Gr4EJ8?g_st=com.google.maps.preview.copy" target="_blank">Cadence</a>';
-                    codigos.innerHTML = '<ul><li>2293</li></ul>';
-                    observacion.innerHTML = 'Observaciones para Cadence';
-                    break;
-               case 'Carrington':
-                    ubicacion.innerHTML = '<a href="https://maps.app.goo.gl/8qDwgMAss6Gt5r4u8?g_st=com.google.maps.preview.copy" target="_blank">Carrington</a>';
-                    codigos.innerHTML = '<ul><li>El intendente es el que abre la puerta, preveniar al llegar</li></ul>';
-                    observacion.innerHTML = 'Textura Gruesa y por lo regular paredes son 400 y cielo Flat pero checar bien, pintura AGRABBLE GRAY';
-                    break;
-               case 'Parkwood':
-                    ubicacion.innerHTML = '<a href="https://maps.app.goo.gl/GrWNg3XtjxFYH74z8?g_st=com.google.maps.preview.copy" target="_blank">Parkwood</a>';
-                    codigos.innerHTML = '<ul><li>El intendente es el que abre la puerta, preveniar al llegar</li></ul>';
-                    observacion.innerHTML = 'Textura Gruesa, banos son por lo regular 400 y paredes normales flat, pintura AGRABBLE GRAY';
-                    break;
-               case 'Live Oaks':
-                    ubicacion.innerHTML = '<a href="https://maps.app.goo.gl/NSsiQWtFZfUxBvfF9?g_st=com.google.maps.preview.copy" target="_blank">Live Oaks</a>';
-                    codigos.innerHTML = '<ul><li>Se Abre con LLave</li></ul>';
-                    observacion.innerHTML = '<ul><li>Puertas de Negro</li><li>SNOWBOUND paredes</li></ul>';
-                    break;
-               case 'Young Oaks':
-                    ubicacion.innerHTML = '<a href="https://maps.app.goo.gl/cVPbCu48iCHRbjRG9?g_st=com.google.maps.preview.copy" target="_blank">Young Oaks</a>';
-                    codigos.innerHTML = '<ul><li>Se abre con llave</li></ul>';
-                    observacion.innerHTML = '<ul><li>Puertas negras</li></ul>';
-                    break;
-               case 'Silverlake':
-                    ubicacion.innerHTML = '<a href="https://maps.app.goo.gl/5VeGDXwGo42KZVD28?g_st=com.google.maps.preview.copy" target="_blank">Silverlake</a>';
-                    codigos.innerHTML = '<ul><li>0304</li></ul>';
-                    observacion.innerHTML = '<ul><li>ELDIER WHITE Color Paredes</li></ul>';
-                    break;
-               case 'Patriot':
-                    ubicacion.innerHTML = '<a href="https://maps.app.goo.gl/3B1vdMqSgVoQhhn96?g_st=com.google.maps.preview.copy" target="_blank">Patriot</a>';
-                    codigos.innerHTML = '<ul><li>0125</li><li>0225</li></ul>';
-                    observacion.innerHTML = '<ul><li>Eldier White</li></ul>';
-                    break;
-               case 'Hihglands':
-                    ubicacion.innerHTML = '<a href="https://maps.app.goo.gl/r1iTLBdi966sEa1x5?g_st=com.google.maps.preview.copy" target="_blank">Hihglands</a>';
-                    codigos.innerHTML = '<ul><li>0125</li><li>0225</li><li>2293</li><li>9572</li></ul>';
-                    observacion.innerHTML = '<ul><li>ELDIER WHITE paredes</li></ul>';
-                    break;
-               case 'Days Landing':
-                    ubicacion.innerHTML = '<a href="https://maps.app.goo.gl/HBHUhNGU2CBtZeNVA?g_st=com.google.maps.preview.copy" target="_blank">Days Landing</a>';
-                    codigos.innerHTML = '<ul><li>0125</li><li>0225</li><li>2293</li><li>0325</li></ul>';
-                    observacion.innerHTML = '<ul><li>ELDIER WHITE paredes</li></ul>';
-                    break;
-               case 'Ledwick':
-                    ubicacion.innerHTML = '<a href="https://maps.app.goo.gl/EYTMnM4mwUvHHJ428?g_st=com.google.maps.preview.copy" target="_blank">Ledwick</a>';
-                    codigos.innerHTML = '<ul><li>2293</li></ul>';
-                    observacion.innerHTML = '<ul><li>ALABASTER paredes</li></ul>';
-                    break;
-               case 'Mary Anette':
-                    ubicacion.innerHTML = '<a href="https://maps.app.goo.gl/au5cbN5kpXHjWiRJ8?g_st=com.google.maps.preview.copy" target="_blank">Mary Anette</a>';
-                    codigos.innerHTML = '<ul><li>2293</li></ul>';
-                    observacion.innerHTML = '<ul><li>ALABASTER paredes</li></ul>';
-                    break;
-               case 'Airway Oaks':
-                    ubicacion.innerHTML = '<a href="https://maps.app.goo.gl/dtX87he5Nh2EbH7u5?g_st=com.google.maps.preview.copy" target="_blank">Airway Oaks</a>';
-                    codigos.innerHTML = '<ul><li>El intendente es el que abre la puerta, preveniar al llegar</li></ul>';
-                    observacion.innerHTML = '<ul><li>ALABASTER paredes</li><a href="https://s3.amazonaws.com/holidaybuilders.com/wp-content/uploads/2023/05/16145910/GULF_Cornerstone_Airway-Oaks_SiteMap_5-12-23-1024x796.jpg">Mapa Ubicacion de CASAS</a></li></ul>';
-                    break;
-               case 'Fairchild':
-                    ubicacion.innerHTML = '<a href="https://maps.app.goo.gl/LH7Fxov2AQqHGdeE9?g_st=com.google.maps.preview.copy" target="_blank">Fairchild</a>';
-                    codigos.innerHTML = '<ul><li>0125</li><li>0225</li><li>2293</li></ul>';
-                    observacion.innerHTML = '<ul><li>ELDIER WHITE paredes</li></ul>';
-                    break;
-               case 'Midtown':
-                    ubicacion.innerHTML = '<a href="https://maps.app.goo.gl/RFDW2Qu4jZNWGu9V8?g_st=com.google.maps.preview.copy" target="_blank">Midtown</a>';
-                    codigos.innerHTML = '<ul><li>0125</li><li>0225</li><li>2293</li><li>0325</li></ul>';
-                    observacion.innerHTML = '<ul><li>ELDIER WHITE paredes</li></ul>';
-                    break;
-               case 'Bridlewood':
-                    ubicacion.innerHTML = '<a href="https://maps.app.goo.gl/pXzpEuwvbV2r4GQ8A?g_st=com.google.maps.preview.copy" target="_blank">Bridlewood</a>';
-                    codigos.innerHTML = '<ul><li>0125</li><li>0225</li><li>2293</li></ul>';
-                    observacion.innerHTML = '<ul><li>ELDIER WHITE paredes</li></ul>';
-                    break;
-               case 'Gleenhollow':
-                    ubicacion.innerHTML = '<a href="https://maps.app.goo.gl/FTHaGaHRT1ZTTkQh9?g_st=com.google.maps.preview.copy" target="_blank">Gleenhollow</a>';
-                    codigos.innerHTML = '<ul><li>El intendente abre la puerta</li></ul>';
-                    observacion.innerHTML = '<ul><li>Agrable Gray</li></ul>';
-                    break;
-               case 'Lost Key':
-                    ubicacion.innerHTML = '<a href="https://maps.app.goo.gl/24Lot8Wwpzh2aBz27?g_st=com.google.maps.preview.copy" target="_blank">Lost Key</a>';
-                    codigos.innerHTML = '<ul><li>Codigo 8004 candado ubicado junto a casa modelo</li><li>7474</li></ul>';
-                    observacion.innerHTML = '<ul><li>SNOWBOUND Pintura de Pared</li></ul>';
-                    break;
-               case 'Souther Palms':
-                    ubicacion.innerHTML = '<a href="https://maps.app.goo.gl/P8hyo3Lv9gFwEhGa6?g_st=com.google.maps.preview.copy" target="_blank">Souther Palms</a>';
-                    codigos.innerHTML = '<ul><li>Se abre con llave</li></ul>';
-                    observacion.innerHTML = '<ul><li>ELDIER WHITE Pintura de Pared</li></ul>';
-                    break;
-               case 'Stone Heaven':
-                    ubicacion.innerHTML = '<a href="https://maps.app.goo.gl/zDAT1PwapZabneeGA?g_st=com.google.maps.preview.copy" target="_blank">Stone Heaven</a>';
-                    codigos.innerHTML = '<ul><li>Se abre con llave</li></ul>';
-                    observacion.innerHTML = '<ul><li>ELDIER WHITE Pintura de Pared</li></ul>';
-                    break;
-               case 'Bently':
-                    ubicacion.innerHTML = '<a href="https://maps.app.goo.gl/WJVKUzT34WqWDPf58?g_st=iw" target="_blank">Bently</a>';
-                    codigos.innerHTML = '<ul><li>El intendente el unico que abre, anticipar</li></ul>';
-                    observacion.innerHTML = '<ul><li>Sin Informacion Adicional</li></ul>';
-                    break;
-               case 'Sweetbarb':
-                    ubicacion.innerHTML = '<a href="https://maps.app.goo.gl/7isakJKFXfRfemVL8?g_st=com.google.maps.preview.copy" target="_blank">Sweetbarb</a>';
-                    codigos.innerHTML = '<ul><li>El intendente el unico que abre, anticipar</li></ul>';
-                    observacion.innerHTML = '<ul><li>AGRABBLE GRAY Pintura de paredes</li></ul>';
-                    break;
-               case 'Gleenlakes':
-                    ubicacion.innerHTML = '<a href="https://maps.app.goo.gl/EJQTG49rb1nLe9mX9?g_st=com.google.maps.preview.copy" target="_blank">Gleenlakes</a>';
-                    codigos.innerHTML = '<ul><li>Se abre con LLave</li></ul>';
-                    observacion.innerHTML = '<ul><li>ELDIER WHITE Pintura de paredes</li><li>Nueva Fase SNOWBOUND pintura pared</li></ul>';
-                    break;
-               case 'Quilanding':
-                    ubicacion.innerHTML = '<a href="https://maps.app.goo.gl/fGqrBRZhRaeao4rf9?g_st=com.google.maps.preview.copy" target="_blank">Quilanding</a>';
-                    codigos.innerHTML = '<ul><li>Se abre con LLave</li></ul>';
-                    observacion.innerHTML = '<ul><li>ELDIER WHITE Pintura de paredes</li></ul>';
-                    break;
-               case 'Martin Preserve':
-                    ubicacion.innerHTML = '<a href="https://maps.google.com?q=30.3765833,-87.3488333&entry=gps&lucs=,94224825,94227247,94227248,94231188,47071704,94259573,47069508,94218641,94203019,47084304,94208458,94208447&g_st=com.google.maps.preview.copy" target="_blank">Martin Preserve</a>';
-                    codigos.innerHTML = '<ul><li>0295</li><li>0325</li><li>0125</li><li>0911</li><li>1355</li><li>0126</li></ul>';
-                    observacion.innerHTML = '<ul><li>ELDIER WHITE Pintura de paredes</li><a href="https://www.drhorton.com/-/media/drhorton/productcatalog/244-pensacola-west/22696-martin-preserve/martinpreserveplat.jpg?rev=2e0cc2d0f9fa4977956e40fa8087ba03">Mapa Ubicacion de CASAS</a></li></ul>';
-                    break;
-
-                default:
-                    ubicacion.innerHTML = '';
-                    codigos.innerHTML = '';
-                    observacion.innerHTML = '';
-                    break;
-            }
-        });
-    </script>
-
-
-<br>
-<Center>
-<img src="https://media3.giphy.com/media/VQAWMJfKUfJvuyBWEn/giphy.gif?cid=790b7611ae100ab0231871fd1d34098be2c3bddcecf47801&rid=giphy.gif&ct=ts" alt="AVISO IMPORTANTE" style="width:300px; height:auto;">
-
- </Center>
-<center>
-<div class="post-it">
-  <h2>Información importante</h2>
-  <ul>
-DR HORTON las Claves mas actuales son las siguientes: 0126, 2506,0325 y 1998,1990, 3036, 0911, 0226
-<BR>
-
-<Br>
-</div>
-
-
-
-<style>
-.post-it {
-  width: 200px;
-  height: 150px;
-  background-color: #ffffcc;
-  border: 1px solid #ccc;
-  padding: 10px;
-  font-family: Arial, sans-serif;
-  font-size: 14px;
-}
-
-.post-it h2 {
-  font-size: 18px;
-  margin-top: 0;
-}
-
-.post-it ul {
-  list-style: none;
-  padding: 0;
-  margin: 0;
-}
-
-.post-it li {
-  margin-bottom: 10px;
-}
-
-.post-it strong {
-  font-weight: bold;
-}
-</style>
-
-</center>
-<br>
-
-<style>
-    body {
-      background-color: #f2f2f2;
-      font-family: Arial, sans-serif;
-    }
-    #felicidades {
-      width: 80%;
-      margin: 40px auto;
-      padding: 20px;
-      background-color: #fff;
-      border: 1px solid #ddd;
-      box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-    }
-    h2 {
-      color: #333;
-      font-size: 20px;
-      margin-bottom: 10px;
-    }
-    ul {
-      list-style: none;
-      padding: 0;
-      margin: 0;
-    }
-    li {
-      margin-bottom: 10px;
-    }
-  </style>
-
-<BR>
-<button style="font-size: 20px;" onclick="window.location.href='https://canutoscorp.github.io/Material'">Toca y Solicita Material</button><br><br>
-<a href="https://canutoscorp.github.io/Material"><img src="https://copiza.com/wp-content/uploads/2019/12/11-tiendas-copiza-1.jpg" alt="Solicita tu material" width="150" heigth="600"></a>
-
-
-<br>
- <div class="container">
-        <h2>Registro de Trabajo</h2>
-        <a href="https://canutoscorp.github.io/reporte/">
-            <img src="https://img.freepik.com/vector-gratis/asistencia-papel-lista-comprobacion-dibujos-animados-icono-vectorial-ilustracion-educacion-negocio-aislado-plano_138676-10698.jpg" alt="REPORTE DEL DIA" style="width:100px; height:auto;">
-        </a>
+<label for="coloniaInput">Buscar o Seleccionar Colonia</label>
+<div class="buscador-wrapper">
+    <div class="search-shell">
+        <span class="search-icon">🔎</span>
+        <input id="coloniaInput" placeholder="Busca una colonia..." autocomplete="off" enterkeyhint="search">
+        <button id="clearBtn" class="clear-btn" type="button" aria-label="Limpiar búsqueda">×</button>
     </div>
-
-
-
- <div id="felicidades"></div>
-  <script>
-    const personas = [
-      { nombre: "Rebeca Mota", dia: 13, mes: 4 }, // Febrero
-      { nombre: "Miguel Carrera", dia: 23, mes: 2 },
-      { nombre: "ISMAEL LOPEZ", dia: 10, mes: 9 },
-      { nombre: "Carlos Corona", dia: 15, mes: 3 },
-      { nombre: "Eulises Flores", dia: 11, mes: 5 },
-      { nombre: "Josue Lopez", dia: 12, mes: 3 },
-      { nombre: "Elisa Janeth", dia: 26, mes: 9 },
-      { nombre: "Isaac Lopez", dia: 8, mes: 3 },
-      { nombre: "Aury Medina", dia: 14, mes: 9 },
-      { nombre: "Marcy Lozano", dia: 2, mes: 6 },
-      { nombre: "Emmanuel Lopez", dia: 25, mes: 11 },
-      { nombre: "Jose Ulises Lopez", dia: 1, mes: 1 },
-      { nombre: "Reyna Lopez", dia: 3, mes: 8 },
-      { nombre: "Ruth Rodriguez", dia: 3, mes: 11 },
-      { nombre: "Ashley Ramirez", dia: 20, mes: 9 },
-      { nombre: "Milton", dia: 17, mes: 12 },
-      { nombre: "Paola Flores", dia: 19, mes: 9 },
-      { nombre: "Luis Medina CUATE", dia: 20, mes: 4 },
-      { nombre: "Jose Mena", dia: 5, mes: 8 },
-      { nombre: "Miguel Aldair", dia: 12, mes: 6 },
-      { nombre: "Jose Guillen", dia: 18, mes: 3 },
-      { nombre: "Karla Aimee", dia: 1, mes: 5 },
-      // Agrega las 15 personas restantes
-    ];
-
-    const hoy = new Date();
-    const mesActual = hoy.getMonth() + 1;
-
-    const felicitaciones = document.getElementById("felicidades");
-
-    const personasFiltradas = personas.filter(p => p.mes === mesActual);
-    const personasOrdenadas = personasFiltradas.sort((a, b) => a.dia - b.dia);
-
-    if (personasOrdenadas.length > 0) {
-      felicitaciones.innerHTML = `
-        <h2>🎉 ¡Feliz Cumpleaños este mes a:! 🎂</h2>
-        <ul>
-          ${personasOrdenadas.map(p => `<li><span style="font-weight: bold;">${p.nombre}</span> - ${p.dia} de ${getMes(p.mes)}</li>`).join("")}
-        </ul>
-      `;
-    }
-
-    function getMes(mes) {
-      const meses = ["Enero", "Febrero", "Marzo", "Abril", "Mayo", "Junio", "Julio", "Agosto", "Septiembre", "Octubre", "Noviembre", "Diciembre"];
-      return meses[mes - 1];
-    }
-  </script>
-
-
-
-
-<BR>
-<br>
-
-<img src="https://th.bing.com/th/id/R.70ad88d6c68ab6c5a35e44052905646b?rik=IirQYv5QtLGM%2bA&pid=ImgRaw&r=0" alt="NUEVA UBICACION" style="width:100px; height:auto;"> 
-<br>
-
-
-<div>
-  <select id="opciones" style="width: 80%; margin: 20px auto; padding: 8px; border: 1px solid #999; border-radius: 5px; background-color: #e8f0fe; font-size: 16px;">
-    <option value="Sherwin 1">Selecciona TIENDA DE PINTURA</option>
-    <option value="Sherwin 2">Sherwin Daphne</option>
-    <option value="Tres">Sherwin Tamarindo o Pace</option>
-    <option value="Cuatro">Sherwin Milla 9</option>
-    <option value="Cinco">Sherwin CrestView</option>
-    <option value="Seis">Sherwin Foley 98</option>
-    <option value="Siete">Sherwin GavinsLanding</option>
-    <option value="Ocho">Lost Key</option>
-    <option value="Nueve">Gulf Breeze por ROMAN</option>
-    <option value="Diez">Mobile</option>
-  </select>
-  <div id="hipervinculo"></div>
+    <div id="opcionesColonias" class="dropdown"></div>
+</div>
+<div class="app-hint">Toca el buscador para abrir opciones. Al elegir una colonia, el campo se limpia para la siguiente búsqueda.</div>
+<div id="recentPanel" class="recent-panel" style="max-width:560px;margin:15px auto 0;text-align:left;display:none;">
+    <div style="font-weight:bold;margin-bottom:8px;">🕘 Colonias recientes</div>
+    <div id="recentChips" style="display:flex;flex-wrap:wrap;gap:8px;"></div>
 </div>
 
+<div id="nombreColonia" class="nombre-colonia" style="display:none;"></div>
 
-<script>
-document.getElementById("opciones").addEventListener("change", function() {
-  var opcionSeleccionada = document.getElementById("opciones").value;
-  var hipervinculo = "";
-  
-  switch(opcionSeleccionada) {
-    case "Sherwin 1":
-      hipervinculo = '<a href="https://www.direccionweb1.com">Ir a Sherwin 1</a>';
-      break;
-    case "Sherwin 2":
-      hipervinculo = '<a href="https://maps.app.goo.gl/Hx764K4gzaL7329S8?g_st=iw">Abrir Ubicacion de Daphne</a>';
-      break;
-    case "Tres":
-      hipervinculo = '<a href="https://maps.app.goo.gl/17LSgeqZ1APifhdb7?g_st=iw">Abrir Ubicacion de Tamarindo o Pace</a>';
-      break;
-    case "Cuatro":
-      hipervinculo = '<a href="https://maps.app.goo.gl/Nw7rbU4Z2Emuzqz1A?g_st=iw">Abrir Ubicacion de Milla Nueve</a>';
-      break;
-    case "Cinco":
-      hipervinculo = '<a href="https://maps.app.goo.gl/Sf3zG3jGxJc2ZkLTA?g_st=iw">Abrir Ubicacion de Crestview</a>';
-      break;
-    case "Seis":
-      hipervinculo = '<a href="https://maps.app.goo.gl/kityMzpEeDjduqaGA?g_st=iw">Abrir Ubicacion de la 98 Foley</a>';
-      break;
-    case "Siete":
-      hipervinculo = '<a href="https://maps.app.goo.gl/L8soGhgc1eeFRYLa6?g_st=iw">Abrir Ubicacion Tienda GavinsLanding</a>';
-      break;
-   case "Ocho":
-      hipervinculo = '<a href="https://maps.app.goo.gl/eDANGh1xbrTp2EXd8?g_st=a">Abrir Ubicacion Tienda Lost Key PERDIDO</a>';
-      break;
-   case "Nueve":
-      hipervinculo = '<a href="https://maps.app.goo.gl/WGtrRJyeTKo9B7zd6?g_st=ipc">Abrir Ubicacion Gulf Breez x ROMAN</a>';
-      break;
-   case "Diez":
-      hipervinculo = '<a href="https://maps.app.goo.gl/RESD4QvGDDt1Z2fA7?g_st=a">Abrir Ubicacion Mobile</a>';
-      break;
-  }
-  
-  document.getElementById("hipervinculo").innerHTML = hipervinculo;
-});
-</script>
-
-
-
-
-<br><br>
-
-<center>
-<button onclick="mostrarOcultarTabla()" style="padding: 10px 20px; font-size: 16px; margin-bottom: 10px;">Mostrar/Ocultar Colores de Casas</button>
-<div id="tabla-colores" style="display: none;">
-<table border="1">
+<div class="table-wrap">
+<table id="tablaDatos" style="display:none;">
+<thead>
 <tr>
-<th>Colores de CASAS</th>
+<th>Ubicación</th>
+<th>Códigos</th>
+<th>Observación</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td id="ubicacion" data-label="Ubicación"></td>
+<td id="codigos" data-label="Códigos"></td>
+<td id="observacion" data-label="Observación"></td>
 </tr>
 <tr>
-<td><li>Greenbriar lote 88 GRAY CLOUD</li>
-<li>Greenbriar lote 40 SILVER STRAND</li>
-<li>Greenbriar lote 10 SÚPER WHITE</li>
-<li>Greenbriar lote 08 SÚPER WHITE</li>
-<li>Greenbriar lote 02 STARDEM</li>
-<li>Greenbriar lote 28 STARDEM</li>
-<li>Greenbrier lote 1 GRAY CLOUDS</li>
-<li>Greenbrier lote 44 GRAY CLOUDS</li>
-<li>Greenbrier lote 4 NATURAL LINEN</li>
-<li>Greenbrier lote 12 NATURAL LINEN</li>
-<li>Greenbrier lote 75 GRAY CLOUDS</li>
-<li>Greenbrier lote 06 SILVER STRAND</li>
-<li>Greenbrier lote 15 SILVER STRAND</li>
-<li>Greenbrier lote 16 NATURAL LINEN</li>
-<li>Greenbrier lote 7 GRAY CLOUDS</li>
-<li>Greenbrier lote 9 GRAY CLOUDS</li>
-<li>Greenbrier lote 11 SILVER STRAND</li>
-<li>Greenbrier lote 23 GRAY CLOUDS</li>
-<li>Greenbriar lote 05 SÚPER WHITE</li>
-<li>Greenbrier lote 20 SILVER STRAND</li>
-<li>Greenbriar lote 21 SÚPER WHITE</li>
-<li>Greenbrier lote 17 GRAY CLOUDS</li>
-<li>Greenbrier lote 25 STARDEM</li>
-<li>Cottages Of adventure lote 64 (casa modelo: RAIN</li>
-<li>Greenbrier lote 74 silver strand</li>
-<li>Greenbrier lote 78 silver strand</li>
-<li>Greenbrier lote 77 Gray clouds</li>
-<li>Greenbrier lote 76 NATURAL LINEN</li>
-<li>greenbrier lote 81 SILVER STRAND</li>
-<li>greenbrier lote 71 SILVER STRAND</li>
-<li>Greenbriar lote 73 SÚPER WHITE</li>
-<li>Greenbriar lote 85 STARDEM</li>
-<li>greenbrier lote 86 SILVER STRAND</li></td>
+<td colspan="3" class="mapa-celda">
+Mapa Ubicación Casas
+<div class="zoom-help">En celular puedes agrandar la imagen con dos dedos.</div>
+<div class="image-stage" id="imageStage">
+    <div class="image-inner" id="imageInner">
+        <img id="mapaImagen" src="" alt="Mapa de ubicación">
+    </div>
+</div>
+</td>
 </tr>
-
+</tbody>
 </table>
 </div>
-</center>
-
-  
-
-
-
-<style>
-  .emoji-balloon {
-    position: absolute;
-    font-size: 30px;
-    animation: floatUp 10s linear infinite;
-    z-index: 9999;
-  }
-
-  .emoji-cake {
-    position: absolute;
-    font-size: 32px;
-    animation: floatUp 12s linear infinite;
-    z-index: 9999;
-  }
-
-  .confetti {
-    position: absolute;
-    width: 10px;
-    height: 10px;
-    background-color: red;
-    border-radius: 50%;
-    animation: confettiFall 6s linear infinite;
-    z-index: 9998;
-  }
-
-  @keyframes floatUp {
-    0% {
-      transform: translateY(0vh) rotate(0deg);
-      opacity: 1;
-    }
-    100% {
-      transform: translateY(-150vh) rotate(360deg);
-      opacity: 0;
-    }
-  }
-
-  @keyframes confettiFall {
-    0% {
-      transform: translateY(0) rotate(0deg);
-      opacity: 1;
-    }
-    100% {
-      transform: translateY(120vh) rotate(720deg);
-      opacity: 0;
-    }
-  }
-
-  @media (max-width: 600px) {
-    .emoji-balloon {
-      font-size: 24px;
-    }
-    .emoji-cake {
-      font-size: 24px;
-    }
-  }
-</style>
+</div>
 
 <script>
-  document.addEventListener("DOMContentLoaded", function () {
-    const fechasCumpleanos = [
-      '09-10','02-23','03-15','04-13','05-11','03-12','09-26','03-08','12-17','09-20','09-19',
-      '09-14','06-02','11-25','06-12','08-03','11-03','04-20','08-05','03-18','06-12','05-01',
-      '12-24'
-    ];
+const datosColonias = [
+{
+nombre:"Airway Oaks",
+ubicacion:"https://maps.app.goo.gl/dtX87he5Nh2EbH7u5?g_st=com.google.maps.preview.copy",
+codigos:["El intendente es el que abre la puerta, preveniar al llegar"],
+observacion:"ALABASTER paredes",
+mapa:"https://s3.amazonaws.com/holidaybuilders.com/wp-content/uploads/2023/05/16145910/GULF_Cornerstone_Airway-Oaks_SiteMap_5-12-23-1024x796.jpg"
+},
+{
+nombre:"Bently",
+ubicacion:"https://maps.app.goo.gl/WJVKUzT34WqWDPf58?g_st=iw",
+codigos:["El intendente el unico que abre, anticipar"],
+observacion:"Sin Informacion Adicional",
+mapa:"https://img.freepik.com/vector-premium/ilustracion-vectorial-simbolo-casa-ubicacion-diseno-conceptual-servicio-entrega-domicilio_929545-241.jpg?semt=ais_rp_progressive&w=740&q=80"
+},
+{
+nombre:"Bosques del Sur",
+ubicacion:"https://maps.google.com/?q=Bosques+del+Sur",
+codigos:["7890","Portón 3"],
+observacion:"Casas nuevas, vigilancia 24/7.",
+mapa:"https://img.freepik.com/vector-premium/ilustracion-vectorial-simbolo-casa-ubicacion-diseno-conceptual-servicio-entrega-domicilio_929545-241.jpg?semt=ais_rp_progressive&w=740&q=80"
+},
+{
+nombre:"Bridlewood",
+ubicacion:"https://maps.app.goo.gl/pXzpEuwvbV2r4GQ8A?g_st=com.google.maps.preview.copy",
+codigos:["0125","0225","2293"],
+observacion:"ELDIER WHITE paredes",
+mapa:"https://img.freepik.com/vector-premium/ilustracion-vectorial-simbolo-casa-ubicacion-diseno-conceptual-servicio-entrega-domicilio_929545-241.jpg?semt=ais_rp_progressive&w=740&q=80"
+},
+{
+nombre:"Brookheaven",
+ubicacion:"https://maps.app.goo.gl/eJzakFUraCPnGwj98?g_st=com.google.maps.preview.copy",
+codigos:["0125","0225","1668","2155","0126","2506","3036"],
+observacion:"Eldier White paredes",
+mapa:"https://img.freepik.com/vector-premium/ilustracion-vectorial-simbolo-casa-ubicacion-diseno-conceptual-servicio-entrega-domicilio_929545-241.jpg?semt=ais_rp_progressive&w=740&q=80"
+},
+{
+nombre:"Cadence",
+ubicacion:"https://maps.app.goo.gl/Seibf8AVTk3Gr4EJ8?g_st=com.google.maps.preview.copy",
+codigos:["2293"],
+observacion:"Observaciones para Cadence",
+mapa:"https://img.freepik.com/vector-premium/ilustracion-vectorial-simbolo-casa-ubicacion-diseno-conceptual-servicio-entrega-domicilio_929545-241.jpg?semt=ais_rp_progressive&w=740&q=80"
+},
+{
+nombre:"Captain Cove",
+ubicacion:"https://maps.app.goo.gl/upbhxQj37EvtuHhB8",
+codigos:["informar de codigos, si es Dr Horton ocupar codigos conocidos"],
+observacion:"informen a Carlos Color de pared y puertas",
+mapa:"https://img.freepik.com/vector-premium/ilustracion-vectorial-simbolo-casa-ubicacion-diseno-conceptual-servicio-entrega-domicilio_929545-241.jpg?semt=ais_rp_progressive&w=740&q=80"
+},
+{
+nombre:"Carrington",
+ubicacion:"https://maps.app.goo.gl/8qDwgMAss6Gt5r4u8?g_st=com.google.maps.preview.copy",
+codigos:["El intendente es el que abre la puerta, preveniar al llegar"],
+observacion:"Textura Gruesa y por lo regular paredes son 400 y cielo Flat pero checar bien, pintura AGRABBLE GRAY",
+mapa:"https://img.freepik.com/vector-premium/ilustracion-vectorial-simbolo-casa-ubicacion-diseno-conceptual-servicio-entrega-domicilio_929545-241.jpg?semt=ais_rp_progressive&w=740&q=80"
+},
+{
+nombre:"Cottages of Aventura",
+ubicacion:"https://maps.app.goo.gl/GMKY2zg7Z3QW8hEh7?g_st=com.google.maps.preview.copy",
+codigos:["Se Abre con LLave"],
+observacion:"Pintar en  primeras puertas principales (negro) y columnas | SNOWBOUND paredes",
+mapa:"https://img.freepik.com/vector-premium/ilustracion-vectorial-simbolo-casa-ubicacion-diseno-conceptual-servicio-entrega-domicilio_929545-241.jpg?semt=ais_rp_progressive&w=740&q=80"
+},
+{
+nombre:"Country Club States",
+ubicacion:"https://maps.app.goo.gl/NyRfv8LNobnNZgh37",
+codigos:["Necesitamos saber codigos","0226"],
+observacion:"First Start",
+mapa:"https://img.freepik.com/vector-premium/ilustracion-vectorial-simbolo-casa-ubicacion-diseno-conceptual-servicio-entrega-domicilio_929545-241.jpg?semt=ais_rp_progressive&w=740&q=80"
+},
+{
+nombre:"Days Landing",
+ubicacion:"https://maps.app.goo.gl/HBHUhNGU2CBtZeNVA?g_st=com.google.maps.preview.copy",
+codigos:["0125","0225","2293","0325"],
+observacion:"ELDIER WHITE paredes",
+mapa:"https://img.freepik.com/vector-premium/ilustracion-vectorial-simbolo-casa-ubicacion-diseno-conceptual-servicio-entrega-domicilio_929545-241.jpg?semt=ais_rp_progressive&w=740&q=80"
+},
+{
+nombre:"Deer Ridge Crossing",
+ubicacion:"https://maps.app.goo.gl/BsK6bwjb64i1sdKS6",
+codigos:["La apertura es con LLAVE"],
+observacion:"Eldier White color de pared | Paredes Eldier White",
+mapa:"https://img.freepik.com/vector-premium/ilustracion-vectorial-simbolo-casa-ubicacion-diseno-conceptual-servicio-entrega-domicilio_929545-241.jpg?semt=ais_rp_progressive&w=740&q=80"
+},
+{
+nombre:"Dry Creek",
+ubicacion:"https://maps.app.goo.gl/qEQRnzXHro6XobXw8?g_st=com.google.maps.preview.copy",
+codigos:["Intendente Apertura la puerta"],
+observacion:"",
+mapa:"https://img.freepik.com/vector-premium/ilustracion-vectorial-simbolo-casa-ubicacion-diseno-conceptual-servicio-entrega-domicilio_929545-241.jpg?semt=ais_rp_progressive&w=740&q=80"
+},
+{
+nombre:"Eagle Pointe",
+ubicacion:"https://maps.app.goo.gl/3NynNqUsfpiwKv8Y7?g_st=com.google.maps.preview.copy",
+codigos:["Apertura con llave","La apertura es con LLAVE"],
+observacion:"Informen cual es el color de la pintura de pared y si la puerta es un solo color (ejemplo negro) | Paredes Eldier White",
+mapa:"https://dlqxt4mfnxo6k.cloudfront.net/dsldhomes.com/aHR0cHM6Ly9zMy5hbWF6b25hd3MuY29tL2J1aWxkZXJjbG91ZC82NjhjNjVmNjJiZGE3NGZhNWZmMzIyMjMwODc5YTBkZi5qcGVn/webp/1200/1200"
+},
+{
+nombre:"Ellies Cove",
+ubicacion:"https://maps.app.goo.gl/1wYGLwCCCkAz3apu5",
+codigos:["0325","1355","0126","2506","1999","1998","0226","2027"],
+observacion:"Departamentos | Eldier White | Departamentos, Paredes Eldier White",
+mapa:"https://img.freepik.com/vector-premium/ilustracion-vectorial-simbolo-casa-ubicacion-diseno-conceptual-servicio-entrega-domicilio_929545-241.jpg?semt=ais_rp_progressive&w=740&q=80"
+},
+{
+nombre:"Fairchild",
+ubicacion:"https://maps.app.goo.gl/LH7Fxov2AQqHGdeE9?g_st=com.google.maps.preview.copy",
+codigos:["0125","0225","2293"],
+observacion:"ELDIER WHITE paredes",
+mapa:"https://img.freepik.com/vector-premium/ilustracion-vectorial-simbolo-casa-ubicacion-diseno-conceptual-servicio-entrega-domicilio_929545-241.jpg?semt=ais_rp_progressive&w=740&q=80"
+},
+{
+nombre:"Floridatown",
+ubicacion:"https://maps.app.goo.gl/sg8oo6V2hafZH8JZA",
+codigos:["INFORMEN DE LOS CODIGOS"],
+observacion:"Alabaster",
+mapa:"https://img.freepik.com/vector-premium/ilustracion-vectorial-simbolo-casa-ubicacion-diseno-conceptual-servicio-entrega-domicilio_929545-241.jpg?semt=ais_rp_progressive&w=740&q=80"
+},
+{
+nombre:"Forest Shores",
+ubicacion:" https://maps.app.goo.gl/zr8HXRXwX3ZCvd8T6?g_st=iw",
+codigos:["0125","0225","0325","1969","0126"],
+observacion:"ELDIER WHITE Color Paredes | Departamentos",
+mapa:"https://img.freepik.com/vector-premium/ilustracion-vectorial-simbolo-casa-ubicacion-diseno-conceptual-servicio-entrega-domicilio_929545-241.jpg?semt=ais_rp_progressive&w=740&q=80"
+},
+{
+nombre:"Freeport",
+ubicacion:"https://maps.app.goo.gl/MaLCYrgowFBRWFxi8",
+codigos:["La apertura es con LLAVE"],
+observacion:"informen a Carlos Color de pared y puertas | Paredes Eldier White",
+mapa:"https://img.freepik.com/vector-premium/ilustracion-vectorial-simbolo-casa-ubicacion-diseno-conceptual-servicio-entrega-domicilio_929545-241.jpg?semt=ais_rp_progressive&w=740&q=80"
+},
+{
+nombre:"Gavin Landing",
+ubicacion:"https://maps.app.goo.gl/RKRXUDCGhFhhQtQB6?g_st=iw",
+codigos:["0125","0225","1355","Dependiendo el numero de lote agreguen el prefijo 01 o bien 010 es decir si es el lote 12 el codigo seria 0112, si es el lote 6 el codigo seria 0106"],
+observacion:"ELDIER WHITE Color Paredes",
+mapa:"https://www.drhorton.com/-/media/drhorton/productcatalog/244-pensacola-west/22794-gavins-landing-ths/gavinslandingplat.png?rev=066b98c85a3443bcbf3027f13a4550ab"
+},
+{
+nombre:"Gaylen Oaks",
+ubicacion:"https://maps.app.goo.gl/LAhsMGCK1F39NA559",
+codigos:["0126","0226","2027","2030","Al parecer va ascendiendo los codigos"],
+observacion:"Eldier White color de pared | Paredes Eldier White",
+mapa:"https://img.freepik.com/vector-premium/ilustracion-vectorial-simbolo-casa-ubicacion-diseno-conceptual-servicio-entrega-domicilio_929545-241.jpg?semt=ais_rp_progressive&w=740&q=80"
+},
+{
+nombre:"Gleenhollow",
+ubicacion:"https://maps.app.goo.gl/FTHaGaHRT1ZTTkQh9?g_st=com.google.maps.preview.copy",
+codigos:["El intendente abre la puerta"],
+observacion:"Agrable Gray",
+mapa:"https://img.freepik.com/vector-premium/ilustracion-vectorial-simbolo-casa-ubicacion-diseno-conceptual-servicio-entrega-domicilio_929545-241.jpg?semt=ais_rp_progressive&w=740&q=80"
+},
+{
+nombre:"Gleenlakes",
+ubicacion:"https://maps.app.goo.gl/EJQTG49rb1nLe9mX9?g_st=com.google.maps.preview.copy",
+codigos:["Se abre con LLave"],
+observacion:"ELDIER WHITE Pintura de paredes | Nueva Fase SNOWBOUND pintura pared",
+mapa:"https://img.freepik.com/vector-premium/ilustracion-vectorial-simbolo-casa-ubicacion-diseno-conceptual-servicio-entrega-domicilio_929545-241.jpg?semt=ais_rp_progressive&w=740&q=80"
+},
+{
+nombre:"GrassLand",
+ubicacion:"https://maps.app.goo.gl/JJP1u4sJaWtQQy7T7?g_st=ipc",
+codigos:["La apertura es con LLAVE"],
+observacion:"Snowbound y puertas negras",
+mapa:"https://img.freepik.com/vector-premium/ilustracion-vectorial-simbolo-casa-ubicacion-diseno-conceptual-servicio-entrega-domicilio_929545-241.jpg?semt=ais_rp_progressive&w=740&q=80"
+},
+{
+nombre:"Greenbrier",
+ubicacion:"https://maps.app.goo.gl/4hkt3to6ikkNokvu5?g_st=com.google.maps.preview.copy",
+codigos:["La apertura es con LLAVE"],
+observacion:"SNOWBOUND color de pared | TRICORN BLACK Puertas Principales",
+mapa:"https://img.freepik.com/vector-premium/ilustracion-vectorial-simbolo-casa-ubicacion-diseno-conceptual-servicio-entrega-domicilio_929545-241.jpg?semt=ais_rp_progressive&w=740&q=80"
+},
+{
+nombre:"Heritage Plantation",
+ubicacion:"https://maps.app.goo.gl/gNZEVDUsy38uN46j6",
+codigos:["La apertura es con LLAVE","0126","0226","2027"],
+observacion:"informen a Carlos Color de pared y puertas | Paredes Eldier White",
+mapa:"https://img.freepik.com/vector-premium/ilustracion-vectorial-simbolo-casa-ubicacion-diseno-conceptual-servicio-entrega-domicilio_929545-241.jpg?semt=ais_rp_progressive&w=740&q=80"
+},
+{
+nombre:"Hihglands",
+ubicacion:"https://maps.app.goo.gl/r1iTLBdi966sEa1x5?g_st=com.google.maps.preview.copy",
+codigos:["0125","0225","2293","9572"],
+observacion:"ELDIER WHITE paredes",
+mapa:"https://img.freepik.com/vector-premium/ilustracion-vectorial-simbolo-casa-ubicacion-diseno-conceptual-servicio-entrega-domicilio_929545-241.jpg?semt=ais_rp_progressive&w=740&q=80"
+},
+{
+nombre:"Huston",
+ubicacion:"https://maps.app.goo.gl/gWUhiHUoatYMDYFi9?g_st=a",
+codigos:["DSLD","La apertura es con llave"],
+observacion:"informen a Carlos Color de pared y puertas | Llevar escalera de extension para pintar Ventanita.",
+mapa:"https://img.freepik.com/vector-premium/ilustracion-vectorial-simbolo-casa-ubicacion-diseno-conceptual-servicio-entrega-domicilio_929545-241.jpg?semt=ais_rp_progressive&w=740&q=80"
+},
+{
+nombre:"Iron Rock",
+ubicacion:"https://maps.app.goo.gl/tRuUwmUBdDAuFeDz8?g_st=iw",
+codigos:["Porton #1717","La apertura es con LLAVE","DSLD La Apertura es con llave"],
+observacion:"BEIGE Color Puerta Trasera | Tener color Beige ya que puede tener que pintarse puerta trasera",
+mapa:"https://dlqxt4mfnxo6k.cloudfront.net/dsldhomes.com/aHR0cHM6Ly9zMy5hbWF6b25hd3MuY29tL2J1aWxkZXJjbG91ZC9kYmU3MjE3OTE3NDcwMTMzMTA2ZTM4OWQwYWUyODA0Ny5wbmc=/webp/2000/2000"
+},
+{
+nombre:"Lakes Of Woodbine",
+ubicacion:"https://maps.app.goo.gl/HmM53z1budcdthDu7?g_st=com.google.maps.preview.copy",
+codigos:["0125","0225","0325","1969","0126","2506"],
+observacion:"ELDIER WHITE Color Paredes",
+mapa:"https://www.drhorton.com/-/media/drhorton/productcatalog/244-pensacola-west/22668-lakes-of-woodbine/colored_plat_for_low.jpg?rev=11721f9c07c541c0b6d889332610eac8"
+},
+{
+nombre:"Lancelot",
+ubicacion:"https://maps.app.goo.gl/JZprTLfJDwPx9KEb8?g_st=com.google.maps.preview.copy",
+codigos:["0307","0125","0225","2323","0431","0325","0425"],
+observacion:"ELDIER WHITE Color Paredes",
+mapa:"https://img.freepik.com/vector-premium/ilustracion-vectorial-simbolo-casa-ubicacion-diseno-conceptual-servicio-entrega-domicilio_929545-241.jpg?semt=ais_rp_progressive&w=740&q=80"
+},
+{
+nombre:"Ledwick",
+ubicacion:"https://maps.app.goo.gl/EYTMnM4mwUvHHJ428?g_st=com.google.maps.preview.copy",
+codigos:["2293"],
+observacion:"ALABASTER paredes",
+mapa:"https://img.freepik.com/vector-premium/ilustracion-vectorial-simbolo-casa-ubicacion-diseno-conceptual-servicio-entrega-domicilio_929545-241.jpg?semt=ais_rp_progressive&w=740&q=80"
+},
+{
+nombre:"Liberty Farms",
+ubicacion:"https://maps.app.goo.gl/xQVjGEzHCJqUqZ5BA",
+codigos:["0226"],
+observacion:"Paredes Eldier White, puerta principal de acuerdo a color de Shutters",
+mapa:"https://img.freepik.com/vector-premium/ilustracion-vectorial-simbolo-casa-ubicacion-diseno-conceptual-servicio-entrega-domicilio_929545-241.jpg?semt=ais_rp_progressive&w=740&q=80"
+},
+{
+nombre:"Live Oaks",
+ubicacion:"https://maps.app.goo.gl/NSsiQWtFZfUxBvfF9?g_st=com.google.maps.preview.copy",
+codigos:["Se Abre con LLave"],
+observacion:"Puertas de Negro | SNOWBOUND paredes",
+mapa:"https://img.freepik.com/vector-premium/ilustracion-vectorial-simbolo-casa-ubicacion-diseno-conceptual-servicio-entrega-domicilio_929545-241.jpg?semt=ais_rp_progressive&w=740&q=80"
+},
+{
+nombre:"Lost Key",
+ubicacion:"https://maps.app.goo.gl/24Lot8Wwpzh2aBz27?g_st=com.google.maps.preview.copy",
+codigos:["Codigo 8004 candado ubicado junto a casa modelo","7474"],
+observacion:"SNOWBOUND Pintura de Pared",
+mapa:"https://img.freepik.com/vector-premium/ilustracion-vectorial-simbolo-casa-ubicacion-diseno-conceptual-servicio-entrega-domicilio_929545-241.jpg?semt=ais_rp_progressive&w=740&q=80"
+},
+{
+nombre:"Madelyn Woods",
+ubicacion:"https://maps.app.goo.gl/iiUzwJGCfVM2RxEu5?g_st=com.google.maps.preview.copy",
+codigos:["El numero de casa es el codigo"],
+observacion:"Por lo regular Shutters, gable y columnas son de Stain",
+mapa:"https://img.freepik.com/vector-premium/ilustracion-vectorial-simbolo-casa-ubicacion-diseno-conceptual-servicio-entrega-domicilio_929545-241.jpg?semt=ais_rp_progressive&w=740&q=80"
+},
+{
+nombre:"Martin Preserve",
+ubicacion:"https://maps.google.com?q=30.3765833,-87.3488333&entry=gps&lucs=,94224825,94227247,94227248,94231188,47071704,94259573,47069508,94218641,94203019,47084304,94208458,94208447&g_st=com.google.maps.preview.copy",
+codigos:["0295","0325","0125","0911","1355","0126"],
+observacion:"ELDIER WHITE Pintura de paredes",
+mapa:"https://www.drhorton.com/-/media/drhorton/productcatalog/244-pensacola-west/22696-martin-preserve/martinpreserveplat.jpg?rev=2e0cc2d0f9fa4977956e40fa8087ba03"
+},
+{
+nombre:"Mary Anette",
+ubicacion:"https://maps.app.goo.gl/au5cbN5kpXHjWiRJ8?g_st=com.google.maps.preview.copy",
+codigos:["2293"],
+observacion:"ALABASTER paredes",
+mapa:"https://img.freepik.com/vector-premium/ilustracion-vectorial-simbolo-casa-ubicacion-diseno-conceptual-servicio-entrega-domicilio_929545-241.jpg?semt=ais_rp_progressive&w=740&q=80"
+},
+{
+nombre:"Midtown",
+ubicacion:"https://maps.app.goo.gl/RFDW2Qu4jZNWGu9V8?g_st=com.google.maps.preview.copy",
+codigos:["0125","0225","2293","0325"],
+observacion:"ELDIER WHITE paredes",
+mapa:"https://img.freepik.com/vector-premium/ilustracion-vectorial-simbolo-casa-ubicacion-diseno-conceptual-servicio-entrega-domicilio_929545-241.jpg?semt=ais_rp_progressive&w=740&q=80"
+},
+{
+nombre:"Parkwood",
+ubicacion:"https://maps.app.goo.gl/GrWNg3XtjxFYH74z8?g_st=com.google.maps.preview.copy",
+codigos:["El intendente es el que abre la puerta, preveniar al llegar"],
+observacion:"Textura Gruesa, banos son por lo regular 400 y paredes normales flat, pintura AGRABBLE GRAY",
+mapa:"https://img.freepik.com/vector-premium/ilustracion-vectorial-simbolo-casa-ubicacion-diseno-conceptual-servicio-entrega-domicilio_929545-241.jpg?semt=ais_rp_progressive&w=740&q=80"
+},
+{
+nombre:"Patriot",
+ubicacion:"https://maps.app.goo.gl/3B1vdMqSgVoQhhn96?g_st=com.google.maps.preview.copy",
+codigos:["0125","0225"],
+observacion:"Eldier White",
+mapa:"https://img.freepik.com/vector-premium/ilustracion-vectorial-simbolo-casa-ubicacion-diseno-conceptual-servicio-entrega-domicilio_929545-241.jpg?semt=ais_rp_progressive&w=740&q=80"
+},
+{
+nombre:"Pecan Grove",
+ubicacion:"https://maps.app.goo.gl/969hXbGc3JL74z4v6?g_st=iw",
+codigos:["La apertura es con LLAVE","Lennar La apertura es con llave"],
+observacion:"SNOWBOUND color de pared",
+mapa:"https://img.freepik.com/vector-premium/ilustracion-vectorial-simbolo-casa-ubicacion-diseno-conceptual-servicio-entrega-domicilio_929545-241.jpg?semt=ais_rp_progressive&w=740&q=80"
+},
+{
+nombre:"Pless Landing",
+ubicacion:"https://maps.app.goo.gl/3kJkQJMu3yz3figz7?g_st=com.google.maps.preview.copy",
+codigos:["0125","0424","0225"],
+observacion:"ELDIER WHITE Color Paredes",
+mapa:"https://img.freepik.com/vector-premium/ilustracion-vectorial-simbolo-casa-ubicacion-diseno-conceptual-servicio-entrega-domicilio_929545-241.jpg?semt=ais_rp_progressive&w=740&q=80"
+},
+{
+nombre:"Quilanding",
+ubicacion:"https://maps.app.goo.gl/fGqrBRZhRaeao4rf9?g_st=com.google.maps.preview.copy",
+codigos:["Se abre con LLave"],
+observacion:"ELDIER WHITE Pintura de paredes",
+mapa:"https://img.freepik.com/vector-premium/ilustracion-vectorial-simbolo-casa-ubicacion-diseno-conceptual-servicio-entrega-domicilio_929545-241.jpg?semt=ais_rp_progressive&w=740&q=80"
+},
+{
+nombre:"Rivers Cove",
+ubicacion:"https://maps.app.goo.gl/3y2ei6xbhZ2p247S6?g_st=com.google.maps.preview.copy",
+codigos:["0125","0225","0424","2293","0325","0126","2506"],
+observacion:"ELDIER WHITE Color Paredes",
+mapa:"https://img.freepik.com/vector-premium/ilustracion-vectorial-simbolo-casa-ubicacion-diseno-conceptual-servicio-entrega-domicilio_929545-241.jpg?semt=ais_rp_progressive&w=740&q=80"
+},
+{
+nombre:"Roman Oaks",
+ubicacion:"https://maps.app.goo.gl/jyVUoMh3VKFZTD9X7",
+codigos:["La apertura es con LLAVE"],
+observacion:"informen a Carlos Color de pared y puertas | Puertas negras.",
+mapa:"https://img.freepik.com/vector-premium/ilustracion-vectorial-simbolo-casa-ubicacion-diseno-conceptual-servicio-entrega-domicilio_929545-241.jpg?semt=ais_rp_progressive&w=740&q=80"
+},
+{
+nombre:"Russell Crossing",
+ubicacion:"https://maps.app.goo.gl/TCLAnUJ4a4fgLzSSA",
+codigos:["0125","0225","0325","1969","0126","Si la letra de lote es A entonces le corresponde el valor 01, si es B el valor 02, si es C el Valor 03 y asi sucesivamente entonces la clave para abrir la puerta se armara colocando el valor de la letra del lote mas el numero del lote. Ejemplo: lote 12a el codigo sera 0112 si fuera lote 6C seria 0306"],
+observacion:"ELDIER WHITE Color Paredes",
+mapa:"https://img.freepik.com/vector-premium/ilustracion-vectorial-simbolo-casa-ubicacion-diseno-conceptual-servicio-entrega-domicilio_929545-241.jpg?semt=ais_rp_progressive&w=740&q=80"
+},
+{
+nombre:"Sanctuary",
+ubicacion:"https://maps.app.goo.gl/bm6uYQYM2UE4hzLt5?g_st=com.google.maps.preview.copy",
+codigos:["0125","0225","7531","0126","2506","0911","0226"],
+observacion:"ELDIER WHITE Color Paredes",
+mapa:"https://img.freepik.com/vector-premium/ilustracion-vectorial-simbolo-casa-ubicacion-diseno-conceptual-servicio-entrega-domicilio_929545-241.jpg?semt=ais_rp_progressive&w=740&q=80"
+},
+{
+nombre:"Sentinel Ridge",
+ubicacion:"https://maps.app.goo.gl/Rq3vStzLmnwhb2fZ7?g_st=com.google.maps.preview.copy",
+codigos:["Se Abre con LLave"],
+observacion:"Siempre checar si tiene Gable avisar para pedir la pintura",
+mapa:"https://dlqxt4mfnxo6k.cloudfront.net/dsldhomes.com/aHR0cHM6Ly9zMy5hbWF6b25hd3MuY29tL2J1aWxkZXJjbG91ZC85ODg1YmY0NWZiOGE1NWVlMGQ5ZWFjMTQyNGM0YWU1NS5qcGVn/webp/2000/2000"
+},
+{
+nombre:"Silverlake",
+ubicacion:"https://maps.app.goo.gl/5VeGDXwGo42KZVD28?g_st=com.google.maps.preview.copy",
+codigos:["0304"],
+observacion:"ELDIER WHITE Color Paredes",
+mapa:"https://img.freepik.com/vector-premium/ilustracion-vectorial-simbolo-casa-ubicacion-diseno-conceptual-servicio-entrega-domicilio_929545-241.jpg?semt=ais_rp_progressive&w=740&q=80"
+},
+{
+nombre:"Soundview",
+ubicacion:"https://maps.app.goo.gl/LsUEqUSVP7zJWGSU9?g_st=ipc",
+codigos:["0126","0226","1234","#4567","Puerta Azul"],
+observacion:"Departamentos, color de paredes Eldhier White",
+mapa:"https://img.freepik.com/vector-premium/ilustracion-vectorial-simbolo-casa-ubicacion-diseno-conceptual-servicio-entrega-domicilio_929545-241.jpg?semt=ais_rp_progressive&w=740&q=80"
+},
+{
+nombre:"Souther Palms",
+ubicacion:"https://maps.app.goo.gl/P8hyo3Lv9gFwEhGa6?g_st=com.google.maps.preview.copy",
+codigos:["Se abre con llave"],
+observacion:"ELDIER WHITE Pintura de Pared",
+mapa:"https://img.freepik.com/vector-premium/ilustracion-vectorial-simbolo-casa-ubicacion-diseno-conceptual-servicio-entrega-domicilio_929545-241.jpg?semt=ais_rp_progressive&w=740&q=80"
+},
+{
+nombre:"Southwood",
+ubicacion:"https://maps.app.goo.gl/kWfhQhuf3zPQWUKc9",
+codigos:["La apertura es con LLAVE"],
+observacion:"informen a Carlos Color de pared y puertas",
+mapa:"https://img.freepik.com/vector-premium/ilustracion-vectorial-simbolo-casa-ubicacion-diseno-conceptual-servicio-entrega-domicilio_929545-241.jpg?semt=ais_rp_progressive&w=740&q=80"
+},
+{
+nombre:"Stone Heaven",
+ubicacion:"https://maps.app.goo.gl/zDAT1PwapZabneeGA?g_st=com.google.maps.preview.copy",
+codigos:["Se abre con llave"],
+observacion:"ELDIER WHITE Pintura de Pared",
+mapa:"https://img.freepik.com/vector-premium/ilustracion-vectorial-simbolo-casa-ubicacion-diseno-conceptual-servicio-entrega-domicilio_929545-241.jpg?semt=ais_rp_progressive&w=740&q=80"
+},
+{
+nombre:"Sweetbarb",
+ubicacion:"https://maps.app.goo.gl/7isakJKFXfRfemVL8?g_st=com.google.maps.preview.copy",
+codigos:["El intendente el unico que abre, anticipar"],
+observacion:"AGRABBLE GRAY Pintura de paredes",
+mapa:"https://img.freepik.com/vector-premium/ilustracion-vectorial-simbolo-casa-ubicacion-diseno-conceptual-servicio-entrega-domicilio_929545-241.jpg?semt=ais_rp_progressive&w=740&q=80"
+},
+{
+nombre:"Ventura Manor",
+ubicacion:"https://maps.app.goo.gl/VQ5YJdAhS3oYCRfv7?g_st=com.google.maps.preview.copy",
+codigos:["0125","0225","0424","2293"],
+observacion:"ELDIER WHITE Color Paredes",
+mapa:"https://img.freepik.com/vector-premium/ilustracion-vectorial-simbolo-casa-ubicacion-diseno-conceptual-servicio-entrega-domicilio_929545-241.jpg?semt=ais_rp_progressive&w=740&q=80"
+},
+{
+nombre:"Vickers States",
+ubicacion:"https://maps.app.goo.gl/PSueiJaBBFnnQEb17",
+codigos:["La apertura es con LLAVE"],
+observacion:"informen a Carlos Color de pared y puertas",
+mapa:"https://img.freepik.com/vector-premium/ilustracion-vectorial-simbolo-casa-ubicacion-diseno-conceptual-servicio-entrega-domicilio_929545-241.jpg?semt=ais_rp_progressive&w=740&q=80"
+},
+{
+nombre:"Young Oaks",
+ubicacion:"https://maps.app.goo.gl/cVPbCu48iCHRbjRG9?g_st=com.google.maps.preview.copy",
+codigos:["Se abre con llave"],
+observacion:"Puertas negras",
+mapa:"https://img.freepik.com/vector-premium/ilustracion-vectorial-simbolo-casa-ubicacion-diseno-conceptual-servicio-entrega-domicilio_929545-241.jpg?semt=ais_rp_progressive&w=740&q=80"
+}
+];
 
-    const hoy = new Date();
-    const hoyStr = ('0' + (hoy.getMonth() + 1)).slice(-2) + '-' + ('0' + hoy.getDate()).slice(-2);
+datosColonias.sort((a,b)=>a.nombre.localeCompare(b.nombre));
 
-    if (fechasCumpleanos.includes(hoyStr)) {
-      const globos = ['🎈','🎉','🥳','🎊'];
-      const pasteles = ['🎂','🧁'];
+const input = document.getElementById("coloniaInput");
+const dropdown = document.getElementById("opcionesColonias");
+const tablaDatos = document.getElementById("tablaDatos");
+const nombreColonia = document.getElementById("nombreColonia");
+const imageStage = document.getElementById("imageStage");
+const imageInner = document.getElementById("imageInner");
+const mapaImagen = document.getElementById("mapaImagen");
 
-      for (let i = 0; i < 30; i++) {
-        const emoji = document.createElement('div');
-        emoji.className = 'emoji-balloon';
-        emoji.textContent = globos[Math.floor(Math.random() * globos.length)];
-        emoji.style.left = Math.random() * 100 + 'vw';
-        emoji.style.bottom = '-' + (Math.random() * 100) + 'vh';
-        emoji.style.animationDuration = (6 + Math.random() * 6) + 's';
-        emoji.style.animationDelay = (Math.random() * 5) + 's';
-        document.body.appendChild(emoji);
-      }
+let opcionesFiltradas = [...datosColonias];
+let indiceActivo = -1;
+let currentScale = 1;
+let startDistance = 0;
+let startScale = 1;
 
-      for (let i = 0; i < 10; i++) {
-        const emoji = document.createElement('div');
-        emoji.className = 'emoji-cake';
-        emoji.textContent = pasteles[Math.floor(Math.random() * pasteles.length)];
-        emoji.style.left = Math.random() * 100 + 'vw';
-        emoji.style.bottom = '-' + (Math.random() * 100) + 'vh';
-        emoji.style.animationDuration = (8 + Math.random() * 6) + 's';
-        emoji.style.animationDelay = (Math.random() * 5) + 's';
-        document.body.appendChild(emoji);
-      }
-
-      for (let i = 0; i < 100; i++) {
-        const confetti = document.createElement('div');
-        confetti.className = 'confetti';
-        confetti.style.left = Math.random() * 100 + 'vw';
-        confetti.style.top = '-' + (Math.random() * 100) + 'vh';
-        confetti.style.backgroundColor = colorAleatorio();
-        confetti.style.animationDuration = (3 + Math.random() * 3) + 's';
-        confetti.style.animationDelay = (Math.random() * 5) + 's';
-        document.body.appendChild(confetti);
-      }
+function renderDropdown(lista){
+    if(!lista.length){
+        dropdown.innerHTML = '<div class="dropdown-vacio">No se encontraron colonias.</div>';
+        dropdown.classList.add('visible');
+        return;
     }
 
-    function colorAleatorio() {
-      const colores = ['#FF69B4', '#87CEFA', '#FFD700', '#ADFF2F', '#FFA07A', '#DA70D6'];
-      return colores[Math.floor(Math.random() * colores.length)];
+    dropdown.innerHTML = lista.map((colonia, index)=>
+        `<div class="dropdown-item ${index===indiceActivo ? 'activa' : ''}" data-nombre="${colonia.nombre}">${colonia.nombre}</div>`
+    ).join('');
+
+    dropdown.classList.add('visible');
+}
+
+function ocultarDropdown(){
+    dropdown.classList.remove('visible');
+}
+
+function actualizarBotonLimpiar(){
+    clearBtn.classList.toggle('visible', input.value.trim().length > 0);
+}
+
+function enfocarBuscador(){
+    setTimeout(()=>{
+        input.focus({ preventScroll:true });
+    }, 50);
+}
+
+function filtrarColonias(texto){
+    const valor = texto.trim().toLowerCase();
+    opcionesFiltradas = datosColonias.filter(c => c.nombre.toLowerCase().includes(valor));
+    indiceActivo = -1;
+    renderDropdown(opcionesFiltradas);
+}
+
+
+const recentPanel = document.getElementById("recentPanel");
+const recentChips = document.getElementById("recentChips");
+
+function getRecientes(){
+    try{
+        return JSON.parse(localStorage.getItem("colonias_recientes") || "[]");
+    }catch(e){ return []; }
+}
+
+function saveReciente(nombre){
+    let lista = getRecientes().filter(x => x !== nombre);
+    lista.unshift(nombre);
+    lista = lista.slice(0,6);
+    localStorage.setItem("colonias_recientes", JSON.stringify(lista));
+    renderRecientes();
+}
+
+function renderRecientes(){
+    const lista = getRecientes();
+    if(!lista.length){
+        recentPanel.style.display = "none";
+        return;
     }
-  });
-</script>
+    recentPanel.style.display = "block";
+    recentChips.innerHTML = lista.map(n => `<button class="recent-chip" onclick="seleccionarColoniaPorNombre('${n}')">${n}</button>`).join("");
+}
 
+function seleccionarColoniaPorNombre(nombre){
+    const colonia = datosColonias.find(c => c.nombre === nombre);
+    saveReciente(nombre);
+    if(!colonia) return;
 
-<style>
-  #mensaje-domingo {
-    display: none;
-    position: fixed;
-    top: 20px;
-    left: 50%;
-    transform: translateX(-50%);
-    background: #fff8dc;
-    border: 2px solid #ffae00;
-    color: #8b0000;
-    padding: 20px 30px;
-    border-radius: 12px;
-    font-size: 18px;
-    font-weight: bold;
-    box-shadow: 0 0 10px rgba(0,0,0,0.2);
-    z-index: 10000;
-    animation: aparecerMensaje 1s ease-out;
-    transition: opacity 1s ease-in-out;
-  }
+    tablaDatos.style.display = "table";
+    nombreColonia.style.display = "block";
+    nombreColonia.innerText = colonia.nombre;
 
-  @keyframes aparecerMensaje {
-    from { opacity: 0; transform: translateX(-50%) translateY(-20px); }
-    to { opacity: 1; transform: translateX(-50%) translateY(0); }
-  }
-</style>
+    document.getElementById("ubicacion").innerHTML =
+    `<a href="${colonia.ubicacion}" target="_blank" rel="noopener noreferrer">Abrir en Google Maps</a>`;
 
-<div id="mensaje-domingo">🚨 📝 Recuerda pedir el día de hoy tu material a la persona encargada, y recuerda llevar todo tu material.</div>
-<audio id="campana-sonido" src="https://assets.mixkit.co/active_storage/sfx/1908/1908-preview.mp3" preload="auto"></audio>
+    const listaCodigos = `<ul>${colonia.codigos.map(c=>`<li>${c}</li>`).join('')}</ul>`;
 
-<script>
-  document.addEventListener("DOMContentLoaded", function () {
-    const hoy = new Date();
-    const esDomingo = hoy.getDay() === 0;
+    document.getElementById("codigos").innerHTML = listaCodigos;
+    document.getElementById("observacion").innerText = colonia.observacion;
+    mapaImagen.src = colonia.mapa;
+    mapaImagen.alt = `Mapa de ${colonia.nombre}`;
 
-    if (esDomingo) {
-      const mensaje = document.getElementById("mensaje-domingo");
-      const campana = document.getElementById("campana-sonido");
+    resetZoom();
+    ocultarDropdown();
+    input.value = "";
+    actualizarBotonLimpiar();
+renderRecientes();
+    input.blur();
+    setTimeout(()=>{
+        input.scrollIntoView({behavior:'smooth', block:'center'});
+    }, 120);
+}
 
-      mensaje.style.display = "block";
-      campana.play().catch(e => console.log("Autoplay bloqueado por el navegador"));
+function resetZoom(){
+    currentScale = 1;
+    imageInner.style.transform = `scale(${currentScale})`;
+    imageStage.scrollLeft = 0;
+}
 
-      setTimeout(() => {
-        mensaje.style.opacity = "0";
-        setTimeout(() => mensaje.remove(), 1000);
-      }, 5000);
+input.addEventListener("focus", ()=>{
+    filtrarColonias(input.value);
+});
+
+input.addEventListener("click", ()=>{
+    filtrarColonias(input.value);
+});
+
+input.addEventListener("input", ()=>{
+    filtrarColonias(input.value);
+});
+
+input.addEventListener("keydown", (e)=>{
+    if(!dropdown.classList.contains('visible')) return;
+
+    if(e.key === 'ArrowDown'){
+        e.preventDefault();
+        indiceActivo = Math.min(indiceActivo + 1, opcionesFiltradas.length - 1);
+        renderDropdown(opcionesFiltradas);
+    }else if(e.key === 'ArrowUp'){
+        e.preventDefault();
+        indiceActivo = Math.max(indiceActivo - 1, 0);
+        renderDropdown(opcionesFiltradas);
+    }else if(e.key === 'Enter'){
+        e.preventDefault();
+        if(indiceActivo >= 0 && opcionesFiltradas[indiceActivo]){
+            input.value = opcionesFiltradas[indiceActivo].nombre;
+            seleccionarColoniaPorNombre(opcionesFiltradas[indiceActivo].nombre);
+        }else if(opcionesFiltradas.length === 1){
+            input.value = opcionesFiltradas[0].nombre;
+            seleccionarColoniaPorNombre(opcionesFiltradas[0].nombre);
+        }
+    }else if(e.key === 'Escape'){
+        ocultarDropdown();
     }
-  });
-</script>
+});
 
+dropdown.addEventListener('click', (e)=>{
+    const item = e.target.closest('.dropdown-item');
+    if(!item) return;
+    const nombre = item.dataset.nombre;
+    input.value = nombre;
+    seleccionarColoniaPorNombre(nombre);
+});
 
-<script>
-  function mostrarOcultarTabla() {
-    const tabla = document.getElementById("tabla-colores");
-    tabla.style.display = tabla.style.display === "none" ? "block" : "none";
-  }
-</script>
+clearBtn.addEventListener('click', ()=>{
+    input.value = '';
+    actualizarBotonLimpiar();
+renderRecientes();
+    filtrarColonias('');
+    enfocarBuscador();
+});
 
-<div id="mensajeFestivo"></div>
-<script>
-(function () {
-  const hoy = new Date();
-  const dia = hoy.getDate();
-  const mes = hoy.getMonth() + 1;
-
-  const mensaje = document.getElementById("mensajeFestivo");
-  let iconos = [];
-  let texto = "";
-
-  /* 🎄 NAVIDAD */
-  if (mes === 12 && dia === 25) {
-    texto = "🎄 Feliz Navidad a todos 🎄<br>Que el amor, la paz y la unión llenen sus hogares";
-    iconos = ["❄️", "🎄", "⛄"];
-  }
-
-  /* 🎆 AÑO NUEVO */
-  if (mes === 1 && dia === 1) {
-    texto = "🎆 Feliz Año Nuevo 🎆<br>Cumplan sus metas y deseos<br>Dios les bendiga";
-    iconos = ["🎆", "✨", "⭐"];
-  }
-
-  if (texto !== "") {
-    mensaje.innerHTML = texto;
-    mensaje.style.display = "block";
-    mensaje.style.animation = "aparecer 0.5s ease";
-
-    setTimeout(() => {
-      mensaje.style.display = "none";
-    }, 5000);
-
-    crearIconos(iconos);
-  }
-
-  function crearIconos(lista) {
-    for (let i = 0; i < 25; i++) {
-      const icono = document.createElement("div");
-      icono.className = "icono-festivo";
-      icono.innerHTML = lista[Math.floor(Math.random() * lista.length)];
-      icono.style.left = Math.random() * 100 + "vw";
-      icono.style.fontSize = (18 + Math.random() * 22) + "px";
-      icono.style.animationDuration = (3 + Math.random() * 4) + "s";
-
-      document.body.appendChild(icono);
-
-      setTimeout(() => {
-        icono.remove();
-      }, 8000);
+document.addEventListener('click', (e)=>{
+    if(!e.target.closest('.buscador-wrapper')){
+        ocultarDropdown();
     }
-  }
-})();
+});
+
+function getDistance(touches){
+    const dx = touches[0].clientX - touches[1].clientX;
+    const dy = touches[0].clientY - touches[1].clientY;
+    return Math.hypot(dx, dy);
+}
+
+imageStage.addEventListener('touchstart', (e)=>{
+    if(e.touches.length === 2){
+        startDistance = getDistance(e.touches);
+        startScale = currentScale;
+    }
+}, { passive:true });
+
+imageStage.addEventListener('touchmove', (e)=>{
+    if(e.touches.length === 2){
+        const distance = getDistance(e.touches);
+        const nextScale = Math.min(4, Math.max(1, startScale * (distance / startDistance)));
+        currentScale = nextScale;
+        imageInner.style.transform = `scale(${currentScale})`;
+    }
+}, { passive:true });
+
+mapaImagen.addEventListener('dblclick', ()=>{
+    currentScale = currentScale === 1 ? 2 : 1;
+    imageInner.style.transform = `scale(${currentScale})`;
+});
+
+window.addEventListener('resize', resetZoom);
+actualizarBotonLimpiar();
+renderRecientes();
+
+// abrir imagen en nueva pestaña al hacer clic
+if (typeof mapaImagen !== 'undefined') {
+    mapaImagen.style.cursor = 'pointer';
+    mapaImagen.addEventListener('click', function(){
+        if(this.src){
+            window.open(this.src, '_blank');
+        }
+    });
+}
+
 </script>
-
-
 </body>
 </html>
-
