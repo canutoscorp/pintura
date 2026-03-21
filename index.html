@@ -344,6 +344,102 @@ a:hover{
     background:#dce9ff;
 }
 
+
+
+.sherwin-section{
+    margin:34px auto 0;
+    max-width:760px;
+    background:linear-gradient(180deg,#ffffff 0%,#eef5ff 100%);
+    border:1px solid #d7e4f7;
+    border-radius:20px;
+    padding:22px 18px;
+    box-shadow:0 10px 26px rgba(20,45,90,0.10);
+}
+
+.sherwin-badge{
+    width:82px;
+    height:auto;
+    display:block;
+    margin:0 auto 12px;
+}
+
+.sherwin-title{
+    margin:0;
+    color:#17315f;
+    font-size:24px;
+}
+
+.sherwin-subtitle{
+    margin:8px 0 16px;
+    color:#5b7399;
+    font-size:15px;
+}
+
+.sherwin-select{
+    width:100%;
+    max-width:560px;
+    margin:0 auto;
+    padding:15px 16px;
+    border-radius:14px;
+    border:2px solid #9bb4d8;
+    background:#f7fbff;
+    font-size:17px;
+    color:#17315f;
+    box-shadow:0 6px 16px rgba(0,0,0,0.07);
+    outline:none;
+}
+
+.sherwin-select:focus{
+    border-color:#2a5298;
+    box-shadow:0 0 0 4px rgba(42,82,152,0.14), 0 8px 18px rgba(0,0,0,0.10);
+}
+
+.sherwin-link-box{
+    margin:16px auto 0;
+    max-width:560px;
+    min-height:58px;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    padding:14px 16px;
+    border-radius:16px;
+    background:#ffffff;
+    border:1px solid #d7e4f7;
+    box-shadow:inset 0 1px 0 rgba(255,255,255,0.6);
+}
+
+.sherwin-link-box a{
+    display:inline-block;
+    background:#2a5298;
+    color:#fff;
+    padding:12px 16px;
+    border-radius:12px;
+    text-decoration:none;
+    font-weight:700;
+    box-shadow:0 8px 18px rgba(42,82,152,0.22);
+}
+
+.sherwin-link-box a:hover{
+    text-decoration:none;
+    transform:translateY(-1px);
+}
+
+@media(max-width:600px){
+    .sherwin-section{
+        padding:18px 14px;
+        border-radius:18px;
+    }
+
+    .sherwin-title{
+        font-size:21px;
+    }
+
+    .sherwin-select{
+        font-size:16px;
+        padding:14px;
+    }
+}
+
 </style>
 </head>
 
@@ -397,372 +493,47 @@ Mapa Ubicación Casas
 </tbody>
 </table>
 </div>
+
+
+<div class="sherwin-section">
+    <img class="sherwin-badge" src="https://th.bing.com/th/id/R.70ad88d6c68ab6c5a35e44052905646b?rik=IirQYv5QtLGM%2bA&pid=ImgRaw&r=0" alt="Nueva ubicación">
+    <h2 class="sherwin-title">Selecciona tienda Sherwin</h2>
+    <p class="sherwin-subtitle">Migrado desde tu página index para mantener las mismas ubicaciones de pintura.</p>
+
+    <select id="opcionesSherwin" class="sherwin-select">
+        <option value="">Selecciona TIENDA DE PINTURA</option>
+        <option value="https://maps.app.goo.gl/Hx764K4gzaL7329S8?g_st=iw">Sherwin Daphne</option>
+        <option value="https://maps.app.goo.gl/17LSgeqZ1APifhdb7?g_st=iw">Sherwin Tamarindo o Pace</option>
+        <option value="https://maps.app.goo.gl/Nw7rbU4Z2Emuzqz1A?g_st=iw">Sherwin Milla 9</option>
+        <option value="https://maps.app.goo.gl/Sf3zG3jGxJc2ZkLTA?g_st=iw">Sherwin CrestView</option>
+        <option value="https://maps.app.goo.gl/kityMzpEeDjduqaGA?g_st=iw">Sherwin Foley 98</option>
+        <option value="https://maps.app.goo.gl/L8soGhgc1eeFRYLa6?g_st=iw">Sherwin GavinsLanding</option>
+        <option value="https://maps.app.goo.gl/eDANGh1xbrTp2EXd8?g_st=a">Lost Key</option>
+        <option value="https://maps.app.goo.gl/WGtrRJyeTKo9B7zd6?g_st=ipc">Gulf Breeze por ROMAN</option>
+        <option value="https://maps.app.goo.gl/RESD4QvGDDt1Z2fA7?g_st=a">Mobile</option>
+    </select>
+
+    <div id="hipervinculoSherwin" class="sherwin-link-box">
+        <span>Elige una tienda y aquí aparecerá el botón para abrir la ubicación.</span>
+    </div>
+</div>
+
 </div>
 
 <script>
 const datosColonias = [
 {
-nombre:"Airway Oaks",
-ubicacion:"https://maps.app.goo.gl/dtX87he5Nh2EbH7u5?g_st=com.google.maps.preview.copy",
-codigos:["El intendente es el que abre la puerta, preveniar al llegar"],
-observacion:"ALABASTER paredes",
-mapa:"https://s3.amazonaws.com/holidaybuilders.com/wp-content/uploads/2023/05/16145910/GULF_Cornerstone_Airway-Oaks_SiteMap_5-12-23-1024x796.jpg"
-},
-{
-nombre:"Bently",
-ubicacion:"https://maps.app.goo.gl/WJVKUzT34WqWDPf58?g_st=iw",
-codigos:["El intendente el unico que abre, anticipar"],
-observacion:"Sin Informacion Adicional",
-mapa:"https://img.freepik.com/vector-premium/ilustracion-vectorial-simbolo-casa-ubicacion-diseno-conceptual-servicio-entrega-domicilio_929545-241.jpg?semt=ais_rp_progressive&w=740&q=80"
-},
-{
-nombre:"Bosques del Sur",
-ubicacion:"https://maps.google.com/?q=Bosques+del+Sur",
-codigos:["7890","Portón 3"],
-observacion:"Casas nuevas, vigilancia 24/7.",
-mapa:"https://img.freepik.com/vector-premium/ilustracion-vectorial-simbolo-casa-ubicacion-diseno-conceptual-servicio-entrega-domicilio_929545-241.jpg?semt=ais_rp_progressive&w=740&q=80"
-},
-{
-nombre:"Bridlewood",
-ubicacion:"https://maps.app.goo.gl/pXzpEuwvbV2r4GQ8A?g_st=com.google.maps.preview.copy",
-codigos:["0125","0225","2293"],
-observacion:"ELDIER WHITE paredes",
-mapa:"https://img.freepik.com/vector-premium/ilustracion-vectorial-simbolo-casa-ubicacion-diseno-conceptual-servicio-entrega-domicilio_929545-241.jpg?semt=ais_rp_progressive&w=740&q=80"
-},
-{
-nombre:"Brookheaven",
-ubicacion:"https://maps.app.goo.gl/eJzakFUraCPnGwj98?g_st=com.google.maps.preview.copy",
-codigos:["0125","0225","1668","2155","0126","2506","3036"],
-observacion:"Eldier White paredes",
-mapa:"https://img.freepik.com/vector-premium/ilustracion-vectorial-simbolo-casa-ubicacion-diseno-conceptual-servicio-entrega-domicilio_929545-241.jpg?semt=ais_rp_progressive&w=740&q=80"
-},
-{
-nombre:"Cadence",
-ubicacion:"https://maps.app.goo.gl/Seibf8AVTk3Gr4EJ8?g_st=com.google.maps.preview.copy",
-codigos:["2293"],
-observacion:"Observaciones para Cadence",
-mapa:"https://img.freepik.com/vector-premium/ilustracion-vectorial-simbolo-casa-ubicacion-diseno-conceptual-servicio-entrega-domicilio_929545-241.jpg?semt=ais_rp_progressive&w=740&q=80"
-},
-{
-nombre:"Captain Cove",
-ubicacion:"https://maps.app.goo.gl/upbhxQj37EvtuHhB8",
-codigos:["informar de codigos, si es Dr Horton ocupar codigos conocidos"],
-observacion:"informen a Carlos Color de pared y puertas",
-mapa:"https://img.freepik.com/vector-premium/ilustracion-vectorial-simbolo-casa-ubicacion-diseno-conceptual-servicio-entrega-domicilio_929545-241.jpg?semt=ais_rp_progressive&w=740&q=80"
-},
-{
-nombre:"Carrington",
-ubicacion:"https://maps.app.goo.gl/8qDwgMAss6Gt5r4u8?g_st=com.google.maps.preview.copy",
-codigos:["El intendente es el que abre la puerta, preveniar al llegar"],
-observacion:"Textura Gruesa y por lo regular paredes son 400 y cielo Flat pero checar bien, pintura AGRABBLE GRAY",
-mapa:"https://img.freepik.com/vector-premium/ilustracion-vectorial-simbolo-casa-ubicacion-diseno-conceptual-servicio-entrega-domicilio_929545-241.jpg?semt=ais_rp_progressive&w=740&q=80"
-},
-{
-nombre:"Cottages of Aventura",
-ubicacion:"https://maps.app.goo.gl/GMKY2zg7Z3QW8hEh7?g_st=com.google.maps.preview.copy",
-codigos:["Se Abre con LLave"],
-observacion:"Pintar en  primeras puertas principales (negro) y columnas | SNOWBOUND paredes",
-mapa:"https://img.freepik.com/vector-premium/ilustracion-vectorial-simbolo-casa-ubicacion-diseno-conceptual-servicio-entrega-domicilio_929545-241.jpg?semt=ais_rp_progressive&w=740&q=80"
-},
-{
-nombre:"Country Club States",
-ubicacion:"https://maps.app.goo.gl/NyRfv8LNobnNZgh37",
-codigos:["Necesitamos saber codigos","0226"],
-observacion:"First Start",
-mapa:"https://img.freepik.com/vector-premium/ilustracion-vectorial-simbolo-casa-ubicacion-diseno-conceptual-servicio-entrega-domicilio_929545-241.jpg?semt=ais_rp_progressive&w=740&q=80"
-},
-{
-nombre:"Days Landing",
-ubicacion:"https://maps.app.goo.gl/HBHUhNGU2CBtZeNVA?g_st=com.google.maps.preview.copy",
-codigos:["0125","0225","2293","0325"],
-observacion:"ELDIER WHITE paredes",
-mapa:"https://img.freepik.com/vector-premium/ilustracion-vectorial-simbolo-casa-ubicacion-diseno-conceptual-servicio-entrega-domicilio_929545-241.jpg?semt=ais_rp_progressive&w=740&q=80"
-},
-{
-nombre:"Deer Ridge Crossing",
-ubicacion:"https://maps.app.goo.gl/BsK6bwjb64i1sdKS6",
-codigos:["La apertura es con LLAVE"],
-observacion:"Eldier White color de pared | Paredes Eldier White",
-mapa:"https://img.freepik.com/vector-premium/ilustracion-vectorial-simbolo-casa-ubicacion-diseno-conceptual-servicio-entrega-domicilio_929545-241.jpg?semt=ais_rp_progressive&w=740&q=80"
-},
-{
-nombre:"Dry Creek",
-ubicacion:"https://maps.app.goo.gl/qEQRnzXHro6XobXw8?g_st=com.google.maps.preview.copy",
-codigos:["Intendente Apertura la puerta"],
-observacion:"",
-mapa:"https://img.freepik.com/vector-premium/ilustracion-vectorial-simbolo-casa-ubicacion-diseno-conceptual-servicio-entrega-domicilio_929545-241.jpg?semt=ais_rp_progressive&w=740&q=80"
-},
-{
-nombre:"Eagle Pointe",
-ubicacion:"https://maps.app.goo.gl/3NynNqUsfpiwKv8Y7?g_st=com.google.maps.preview.copy",
-codigos:["Apertura con llave","La apertura es con LLAVE"],
-observacion:"Informen cual es el color de la pintura de pared y si la puerta es un solo color (ejemplo negro) | Paredes Eldier White",
-mapa:"https://dlqxt4mfnxo6k.cloudfront.net/dsldhomes.com/aHR0cHM6Ly9zMy5hbWF6b25hd3MuY29tL2J1aWxkZXJjbG91ZC82NjhjNjVmNjJiZGE3NGZhNWZmMzIyMjMwODc5YTBkZi5qcGVn/webp/1200/1200"
-},
-{
-nombre:"Ellies Cove",
-ubicacion:"https://maps.app.goo.gl/1wYGLwCCCkAz3apu5",
-codigos:["0325","1355","0126","2506","1999","1998","0226","2027"],
-observacion:"Departamentos | Eldier White | Departamentos, Paredes Eldier White",
-mapa:"https://img.freepik.com/vector-premium/ilustracion-vectorial-simbolo-casa-ubicacion-diseno-conceptual-servicio-entrega-domicilio_929545-241.jpg?semt=ais_rp_progressive&w=740&q=80"
-},
-{
-nombre:"Fairchild",
-ubicacion:"https://maps.app.goo.gl/LH7Fxov2AQqHGdeE9?g_st=com.google.maps.preview.copy",
-codigos:["0125","0225","2293"],
-observacion:"ELDIER WHITE paredes",
-mapa:"https://img.freepik.com/vector-premium/ilustracion-vectorial-simbolo-casa-ubicacion-diseno-conceptual-servicio-entrega-domicilio_929545-241.jpg?semt=ais_rp_progressive&w=740&q=80"
-},
-{
-nombre:"Floridatown",
-ubicacion:"https://maps.app.goo.gl/sg8oo6V2hafZH8JZA",
-codigos:["INFORMEN DE LOS CODIGOS"],
-observacion:"Alabaster",
-mapa:"https://img.freepik.com/vector-premium/ilustracion-vectorial-simbolo-casa-ubicacion-diseno-conceptual-servicio-entrega-domicilio_929545-241.jpg?semt=ais_rp_progressive&w=740&q=80"
-},
-{
-nombre:"Forest Shores",
-ubicacion:" https://maps.app.goo.gl/zr8HXRXwX3ZCvd8T6?g_st=iw",
-codigos:["0125","0225","0325","1969","0126"],
-observacion:"ELDIER WHITE Color Paredes | Departamentos",
-mapa:"https://img.freepik.com/vector-premium/ilustracion-vectorial-simbolo-casa-ubicacion-diseno-conceptual-servicio-entrega-domicilio_929545-241.jpg?semt=ais_rp_progressive&w=740&q=80"
-},
-{
-nombre:"Freeport",
-ubicacion:"https://maps.app.goo.gl/MaLCYrgowFBRWFxi8",
-codigos:["La apertura es con LLAVE"],
-observacion:"informen a Carlos Color de pared y puertas | Paredes Eldier White",
-mapa:"https://img.freepik.com/vector-premium/ilustracion-vectorial-simbolo-casa-ubicacion-diseno-conceptual-servicio-entrega-domicilio_929545-241.jpg?semt=ais_rp_progressive&w=740&q=80"
-},
-{
-nombre:"Gavin Landing",
-ubicacion:"https://maps.app.goo.gl/RKRXUDCGhFhhQtQB6?g_st=iw",
-codigos:["0125","0225","1355","Dependiendo el numero de lote agreguen el prefijo 01 o bien 010 es decir si es el lote 12 el codigo seria 0112, si es el lote 6 el codigo seria 0106"],
-observacion:"ELDIER WHITE Color Paredes",
-mapa:"https://www.drhorton.com/-/media/drhorton/productcatalog/244-pensacola-west/22794-gavins-landing-ths/gavinslandingplat.png?rev=066b98c85a3443bcbf3027f13a4550ab"
-},
-{
-nombre:"Gaylen Oaks",
-ubicacion:"https://maps.app.goo.gl/LAhsMGCK1F39NA559",
-codigos:["0126","0226","2027","2030","Al parecer va ascendiendo los codigos"],
-observacion:"Eldier White color de pared | Paredes Eldier White",
-mapa:"https://img.freepik.com/vector-premium/ilustracion-vectorial-simbolo-casa-ubicacion-diseno-conceptual-servicio-entrega-domicilio_929545-241.jpg?semt=ais_rp_progressive&w=740&q=80"
-},
-{
-nombre:"Gleenhollow",
-ubicacion:"https://maps.app.goo.gl/FTHaGaHRT1ZTTkQh9?g_st=com.google.maps.preview.copy",
-codigos:["El intendente abre la puerta"],
-observacion:"Agrable Gray",
-mapa:"https://img.freepik.com/vector-premium/ilustracion-vectorial-simbolo-casa-ubicacion-diseno-conceptual-servicio-entrega-domicilio_929545-241.jpg?semt=ais_rp_progressive&w=740&q=80"
-},
-{
-nombre:"Gleenlakes",
-ubicacion:"https://maps.app.goo.gl/EJQTG49rb1nLe9mX9?g_st=com.google.maps.preview.copy",
-codigos:["Se abre con LLave"],
-observacion:"ELDIER WHITE Pintura de paredes | Nueva Fase SNOWBOUND pintura pared",
-mapa:"https://img.freepik.com/vector-premium/ilustracion-vectorial-simbolo-casa-ubicacion-diseno-conceptual-servicio-entrega-domicilio_929545-241.jpg?semt=ais_rp_progressive&w=740&q=80"
-},
-{
-nombre:"GrassLand",
-ubicacion:"https://maps.app.goo.gl/JJP1u4sJaWtQQy7T7?g_st=ipc",
-codigos:["La apertura es con LLAVE"],
-observacion:"Snowbound y puertas negras",
-mapa:"https://img.freepik.com/vector-premium/ilustracion-vectorial-simbolo-casa-ubicacion-diseno-conceptual-servicio-entrega-domicilio_929545-241.jpg?semt=ais_rp_progressive&w=740&q=80"
-},
-{
-nombre:"Greenbrier",
-ubicacion:"https://maps.app.goo.gl/4hkt3to6ikkNokvu5?g_st=com.google.maps.preview.copy",
-codigos:["La apertura es con LLAVE"],
-observacion:"SNOWBOUND color de pared | TRICORN BLACK Puertas Principales",
-mapa:"https://img.freepik.com/vector-premium/ilustracion-vectorial-simbolo-casa-ubicacion-diseno-conceptual-servicio-entrega-domicilio_929545-241.jpg?semt=ais_rp_progressive&w=740&q=80"
-},
-{
-nombre:"Heritage Plantation",
-ubicacion:"https://maps.app.goo.gl/gNZEVDUsy38uN46j6",
-codigos:["La apertura es con LLAVE","0126","0226","2027"],
-observacion:"informen a Carlos Color de pared y puertas | Paredes Eldier White",
-mapa:"https://img.freepik.com/vector-premium/ilustracion-vectorial-simbolo-casa-ubicacion-diseno-conceptual-servicio-entrega-domicilio_929545-241.jpg?semt=ais_rp_progressive&w=740&q=80"
-},
-{
-nombre:"Hihglands",
-ubicacion:"https://maps.app.goo.gl/r1iTLBdi966sEa1x5?g_st=com.google.maps.preview.copy",
-codigos:["0125","0225","2293","9572"],
-observacion:"ELDIER WHITE paredes",
-mapa:"https://img.freepik.com/vector-premium/ilustracion-vectorial-simbolo-casa-ubicacion-diseno-conceptual-servicio-entrega-domicilio_929545-241.jpg?semt=ais_rp_progressive&w=740&q=80"
-},
-{
-nombre:"Huston",
-ubicacion:"https://maps.app.goo.gl/gWUhiHUoatYMDYFi9?g_st=a",
-codigos:["DSLD","La apertura es con llave"],
-observacion:"informen a Carlos Color de pared y puertas | Llevar escalera de extension para pintar Ventanita.",
-mapa:"https://img.freepik.com/vector-premium/ilustracion-vectorial-simbolo-casa-ubicacion-diseno-conceptual-servicio-entrega-domicilio_929545-241.jpg?semt=ais_rp_progressive&w=740&q=80"
-},
-{
 nombre:"Iron Rock",
 ubicacion:"https://maps.app.goo.gl/tRuUwmUBdDAuFeDz8?g_st=iw",
-codigos:["Porton #1717","La apertura es con LLAVE","DSLD La Apertura es con llave"],
-observacion:"BEIGE Color Puerta Trasera | Tener color Beige ya que puede tener que pintarse puerta trasera",
+codigos:["DSLD La Apertura es con llave"],
+observacion:"Tener color Beige ya que puede tener que pintarse puerta trasera",
 mapa:"https://dlqxt4mfnxo6k.cloudfront.net/dsldhomes.com/aHR0cHM6Ly9zMy5hbWF6b25hd3MuY29tL2J1aWxkZXJjbG91ZC9kYmU3MjE3OTE3NDcwMTMzMTA2ZTM4OWQwYWUyODA0Ny5wbmc=/webp/2000/2000"
-},
-{
-nombre:"Lakes Of Woodbine",
-ubicacion:"https://maps.app.goo.gl/HmM53z1budcdthDu7?g_st=com.google.maps.preview.copy",
-codigos:["0125","0225","0325","1969","0126","2506"],
-observacion:"ELDIER WHITE Color Paredes",
-mapa:"https://www.drhorton.com/-/media/drhorton/productcatalog/244-pensacola-west/22668-lakes-of-woodbine/colored_plat_for_low.jpg?rev=11721f9c07c541c0b6d889332610eac8"
-},
-{
-nombre:"Lancelot",
-ubicacion:"https://maps.app.goo.gl/JZprTLfJDwPx9KEb8?g_st=com.google.maps.preview.copy",
-codigos:["0307","0125","0225","2323","0431","0325","0425"],
-observacion:"ELDIER WHITE Color Paredes",
-mapa:"https://img.freepik.com/vector-premium/ilustracion-vectorial-simbolo-casa-ubicacion-diseno-conceptual-servicio-entrega-domicilio_929545-241.jpg?semt=ais_rp_progressive&w=740&q=80"
-},
-{
-nombre:"Ledwick",
-ubicacion:"https://maps.app.goo.gl/EYTMnM4mwUvHHJ428?g_st=com.google.maps.preview.copy",
-codigos:["2293"],
-observacion:"ALABASTER paredes",
-mapa:"https://img.freepik.com/vector-premium/ilustracion-vectorial-simbolo-casa-ubicacion-diseno-conceptual-servicio-entrega-domicilio_929545-241.jpg?semt=ais_rp_progressive&w=740&q=80"
-},
-{
-nombre:"Liberty Farms",
-ubicacion:"https://maps.app.goo.gl/xQVjGEzHCJqUqZ5BA",
-codigos:["0226"],
-observacion:"Paredes Eldier White, puerta principal de acuerdo a color de Shutters",
-mapa:"https://img.freepik.com/vector-premium/ilustracion-vectorial-simbolo-casa-ubicacion-diseno-conceptual-servicio-entrega-domicilio_929545-241.jpg?semt=ais_rp_progressive&w=740&q=80"
-},
-{
-nombre:"Live Oaks",
-ubicacion:"https://maps.app.goo.gl/NSsiQWtFZfUxBvfF9?g_st=com.google.maps.preview.copy",
-codigos:["Se Abre con LLave"],
-observacion:"Puertas de Negro | SNOWBOUND paredes",
-mapa:"https://img.freepik.com/vector-premium/ilustracion-vectorial-simbolo-casa-ubicacion-diseno-conceptual-servicio-entrega-domicilio_929545-241.jpg?semt=ais_rp_progressive&w=740&q=80"
-},
-{
-nombre:"Lost Key",
-ubicacion:"https://maps.app.goo.gl/24Lot8Wwpzh2aBz27?g_st=com.google.maps.preview.copy",
-codigos:["Codigo 8004 candado ubicado junto a casa modelo","7474"],
-observacion:"SNOWBOUND Pintura de Pared",
-mapa:"https://img.freepik.com/vector-premium/ilustracion-vectorial-simbolo-casa-ubicacion-diseno-conceptual-servicio-entrega-domicilio_929545-241.jpg?semt=ais_rp_progressive&w=740&q=80"
-},
-{
-nombre:"Madelyn Woods",
-ubicacion:"https://maps.app.goo.gl/iiUzwJGCfVM2RxEu5?g_st=com.google.maps.preview.copy",
-codigos:["El numero de casa es el codigo"],
-observacion:"Por lo regular Shutters, gable y columnas son de Stain",
-mapa:"https://img.freepik.com/vector-premium/ilustracion-vectorial-simbolo-casa-ubicacion-diseno-conceptual-servicio-entrega-domicilio_929545-241.jpg?semt=ais_rp_progressive&w=740&q=80"
-},
-{
-nombre:"Martin Preserve",
-ubicacion:"https://maps.google.com?q=30.3765833,-87.3488333&entry=gps&lucs=,94224825,94227247,94227248,94231188,47071704,94259573,47069508,94218641,94203019,47084304,94208458,94208447&g_st=com.google.maps.preview.copy",
-codigos:["0295","0325","0125","0911","1355","0126"],
-observacion:"ELDIER WHITE Pintura de paredes",
-mapa:"https://www.drhorton.com/-/media/drhorton/productcatalog/244-pensacola-west/22696-martin-preserve/martinpreserveplat.jpg?rev=2e0cc2d0f9fa4977956e40fa8087ba03"
-},
-{
-nombre:"Mary Anette",
-ubicacion:"https://maps.app.goo.gl/au5cbN5kpXHjWiRJ8?g_st=com.google.maps.preview.copy",
-codigos:["2293"],
-observacion:"ALABASTER paredes",
-mapa:"https://img.freepik.com/vector-premium/ilustracion-vectorial-simbolo-casa-ubicacion-diseno-conceptual-servicio-entrega-domicilio_929545-241.jpg?semt=ais_rp_progressive&w=740&q=80"
-},
-{
-nombre:"Midtown",
-ubicacion:"https://maps.app.goo.gl/RFDW2Qu4jZNWGu9V8?g_st=com.google.maps.preview.copy",
-codigos:["0125","0225","2293","0325"],
-observacion:"ELDIER WHITE paredes",
-mapa:"https://img.freepik.com/vector-premium/ilustracion-vectorial-simbolo-casa-ubicacion-diseno-conceptual-servicio-entrega-domicilio_929545-241.jpg?semt=ais_rp_progressive&w=740&q=80"
-},
-{
-nombre:"Parkwood",
-ubicacion:"https://maps.app.goo.gl/GrWNg3XtjxFYH74z8?g_st=com.google.maps.preview.copy",
-codigos:["El intendente es el que abre la puerta, preveniar al llegar"],
-observacion:"Textura Gruesa, banos son por lo regular 400 y paredes normales flat, pintura AGRABBLE GRAY",
-mapa:"https://img.freepik.com/vector-premium/ilustracion-vectorial-simbolo-casa-ubicacion-diseno-conceptual-servicio-entrega-domicilio_929545-241.jpg?semt=ais_rp_progressive&w=740&q=80"
-},
-{
-nombre:"Patriot",
-ubicacion:"https://maps.app.goo.gl/3B1vdMqSgVoQhhn96?g_st=com.google.maps.preview.copy",
-codigos:["0125","0225"],
-observacion:"Eldier White",
-mapa:"https://img.freepik.com/vector-premium/ilustracion-vectorial-simbolo-casa-ubicacion-diseno-conceptual-servicio-entrega-domicilio_929545-241.jpg?semt=ais_rp_progressive&w=740&q=80"
 },
 {
 nombre:"Pecan Grove",
 ubicacion:"https://maps.app.goo.gl/969hXbGc3JL74z4v6?g_st=iw",
-codigos:["La apertura es con LLAVE","Lennar La apertura es con llave"],
+codigos:["Lennar La apertura es con llave"],
 observacion:"SNOWBOUND color de pared",
-mapa:"https://img.freepik.com/vector-premium/ilustracion-vectorial-simbolo-casa-ubicacion-diseno-conceptual-servicio-entrega-domicilio_929545-241.jpg?semt=ais_rp_progressive&w=740&q=80"
-},
-{
-nombre:"Pless Landing",
-ubicacion:"https://maps.app.goo.gl/3kJkQJMu3yz3figz7?g_st=com.google.maps.preview.copy",
-codigos:["0125","0424","0225"],
-observacion:"ELDIER WHITE Color Paredes",
-mapa:"https://img.freepik.com/vector-premium/ilustracion-vectorial-simbolo-casa-ubicacion-diseno-conceptual-servicio-entrega-domicilio_929545-241.jpg?semt=ais_rp_progressive&w=740&q=80"
-},
-{
-nombre:"Quilanding",
-ubicacion:"https://maps.app.goo.gl/fGqrBRZhRaeao4rf9?g_st=com.google.maps.preview.copy",
-codigos:["Se abre con LLave"],
-observacion:"ELDIER WHITE Pintura de paredes",
-mapa:"https://img.freepik.com/vector-premium/ilustracion-vectorial-simbolo-casa-ubicacion-diseno-conceptual-servicio-entrega-domicilio_929545-241.jpg?semt=ais_rp_progressive&w=740&q=80"
-},
-{
-nombre:"Rivers Cove",
-ubicacion:"https://maps.app.goo.gl/3y2ei6xbhZ2p247S6?g_st=com.google.maps.preview.copy",
-codigos:["0125","0225","0424","2293","0325","0126","2506"],
-observacion:"ELDIER WHITE Color Paredes",
-mapa:"https://img.freepik.com/vector-premium/ilustracion-vectorial-simbolo-casa-ubicacion-diseno-conceptual-servicio-entrega-domicilio_929545-241.jpg?semt=ais_rp_progressive&w=740&q=80"
-},
-{
-nombre:"Roman Oaks",
-ubicacion:"https://maps.app.goo.gl/jyVUoMh3VKFZTD9X7",
-codigos:["La apertura es con LLAVE"],
-observacion:"informen a Carlos Color de pared y puertas | Puertas negras.",
-mapa:"https://img.freepik.com/vector-premium/ilustracion-vectorial-simbolo-casa-ubicacion-diseno-conceptual-servicio-entrega-domicilio_929545-241.jpg?semt=ais_rp_progressive&w=740&q=80"
-},
-{
-nombre:"Russell Crossing",
-ubicacion:"https://maps.app.goo.gl/TCLAnUJ4a4fgLzSSA",
-codigos:["0125","0225","0325","1969","0126","Si la letra de lote es A entonces le corresponde el valor 01, si es B el valor 02, si es C el Valor 03 y asi sucesivamente entonces la clave para abrir la puerta se armara colocando el valor de la letra del lote mas el numero del lote. Ejemplo: lote 12a el codigo sera 0112 si fuera lote 6C seria 0306"],
-observacion:"ELDIER WHITE Color Paredes",
-mapa:"https://img.freepik.com/vector-premium/ilustracion-vectorial-simbolo-casa-ubicacion-diseno-conceptual-servicio-entrega-domicilio_929545-241.jpg?semt=ais_rp_progressive&w=740&q=80"
-},
-{
-nombre:"Sanctuary",
-ubicacion:"https://maps.app.goo.gl/bm6uYQYM2UE4hzLt5?g_st=com.google.maps.preview.copy",
-codigos:["0125","0225","7531","0126","2506","0911","0226"],
-observacion:"ELDIER WHITE Color Paredes",
-mapa:"https://img.freepik.com/vector-premium/ilustracion-vectorial-simbolo-casa-ubicacion-diseno-conceptual-servicio-entrega-domicilio_929545-241.jpg?semt=ais_rp_progressive&w=740&q=80"
-},
-{
-nombre:"Sentinel Ridge",
-ubicacion:"https://maps.app.goo.gl/Rq3vStzLmnwhb2fZ7?g_st=com.google.maps.preview.copy",
-codigos:["Se Abre con LLave"],
-observacion:"Siempre checar si tiene Gable avisar para pedir la pintura",
-mapa:"https://dlqxt4mfnxo6k.cloudfront.net/dsldhomes.com/aHR0cHM6Ly9zMy5hbWF6b25hd3MuY29tL2J1aWxkZXJjbG91ZC85ODg1YmY0NWZiOGE1NWVlMGQ5ZWFjMTQyNGM0YWU1NS5qcGVn/webp/2000/2000"
-},
-{
-nombre:"Silverlake",
-ubicacion:"https://maps.app.goo.gl/5VeGDXwGo42KZVD28?g_st=com.google.maps.preview.copy",
-codigos:["0304"],
-observacion:"ELDIER WHITE Color Paredes",
-mapa:"https://img.freepik.com/vector-premium/ilustracion-vectorial-simbolo-casa-ubicacion-diseno-conceptual-servicio-entrega-domicilio_929545-241.jpg?semt=ais_rp_progressive&w=740&q=80"
-},
-{
-nombre:"Soundview",
-ubicacion:"https://maps.app.goo.gl/LsUEqUSVP7zJWGSU9?g_st=ipc",
-codigos:["0126","0226","1234","#4567","Puerta Azul"],
-observacion:"Departamentos, color de paredes Eldhier White",
-mapa:"https://img.freepik.com/vector-premium/ilustracion-vectorial-simbolo-casa-ubicacion-diseno-conceptual-servicio-entrega-domicilio_929545-241.jpg?semt=ais_rp_progressive&w=740&q=80"
-},
-{
-nombre:"Souther Palms",
-ubicacion:"https://maps.app.goo.gl/P8hyo3Lv9gFwEhGa6?g_st=com.google.maps.preview.copy",
-codigos:["Se abre con llave"],
-observacion:"ELDIER WHITE Pintura de Pared",
 mapa:"https://img.freepik.com/vector-premium/ilustracion-vectorial-simbolo-casa-ubicacion-diseno-conceptual-servicio-entrega-domicilio_929545-241.jpg?semt=ais_rp_progressive&w=740&q=80"
 },
 {
@@ -773,27 +544,6 @@ observacion:"informen a Carlos Color de pared y puertas",
 mapa:"https://img.freepik.com/vector-premium/ilustracion-vectorial-simbolo-casa-ubicacion-diseno-conceptual-servicio-entrega-domicilio_929545-241.jpg?semt=ais_rp_progressive&w=740&q=80"
 },
 {
-nombre:"Stone Heaven",
-ubicacion:"https://maps.app.goo.gl/zDAT1PwapZabneeGA?g_st=com.google.maps.preview.copy",
-codigos:["Se abre con llave"],
-observacion:"ELDIER WHITE Pintura de Pared",
-mapa:"https://img.freepik.com/vector-premium/ilustracion-vectorial-simbolo-casa-ubicacion-diseno-conceptual-servicio-entrega-domicilio_929545-241.jpg?semt=ais_rp_progressive&w=740&q=80"
-},
-{
-nombre:"Sweetbarb",
-ubicacion:"https://maps.app.goo.gl/7isakJKFXfRfemVL8?g_st=com.google.maps.preview.copy",
-codigos:["El intendente el unico que abre, anticipar"],
-observacion:"AGRABBLE GRAY Pintura de paredes",
-mapa:"https://img.freepik.com/vector-premium/ilustracion-vectorial-simbolo-casa-ubicacion-diseno-conceptual-servicio-entrega-domicilio_929545-241.jpg?semt=ais_rp_progressive&w=740&q=80"
-},
-{
-nombre:"Ventura Manor",
-ubicacion:"https://maps.app.goo.gl/VQ5YJdAhS3oYCRfv7?g_st=com.google.maps.preview.copy",
-codigos:["0125","0225","0424","2293"],
-observacion:"ELDIER WHITE Color Paredes",
-mapa:"https://img.freepik.com/vector-premium/ilustracion-vectorial-simbolo-casa-ubicacion-diseno-conceptual-servicio-entrega-domicilio_929545-241.jpg?semt=ais_rp_progressive&w=740&q=80"
-},
-{
 nombre:"Vickers States",
 ubicacion:"https://maps.app.goo.gl/PSueiJaBBFnnQEb17",
 codigos:["La apertura es con LLAVE"],
@@ -801,10 +551,115 @@ observacion:"informen a Carlos Color de pared y puertas",
 mapa:"https://img.freepik.com/vector-premium/ilustracion-vectorial-simbolo-casa-ubicacion-diseno-conceptual-servicio-entrega-domicilio_929545-241.jpg?semt=ais_rp_progressive&w=740&q=80"
 },
 {
-nombre:"Young Oaks",
-ubicacion:"https://maps.app.goo.gl/cVPbCu48iCHRbjRG9?g_st=com.google.maps.preview.copy",
-codigos:["Se abre con llave"],
-observacion:"Puertas negras",
+nombre:"Floridatown",
+ubicacion:"https://maps.app.goo.gl/sg8oo6V2hafZH8JZA",
+codigos:["INFORMEN DE LOS CODIGOS"],
+observacion:"Paredes Alabaster",
+mapa:"https://img.freepik.com/vector-premium/ilustracion-vectorial-simbolo-casa-ubicacion-diseno-conceptual-servicio-entrega-domicilio_929545-241.jpg?semt=ais_rp_progressive&w=740&q=80"
+},
+{
+nombre:"Liberty Farms",
+ubicacion:"https://maps.app.goo.gl/xQVjGEzHCJqUqZ5BA",
+codigos:["0226"],
+observacion:"Paredes Eldier White, puerta principal de acuerdo a color de Shutters",
+mapa:"https://img.freepik.com/vector-premium/ilustracion-vectorial-simbolo-casa-ubicacion-diseno-conceptual-servicio-entrega-domicilio_929545-241.jpg?semt=ais_rp_progressive&w=740&q=80"
+},
+{
+nombre:"Huston",
+ubicacion:"https://maps.app.goo.gl/gWUhiHUoatYMDYFi9?g_st=a",
+codigos:["La apertura es con llave"],
+observacion:"Llevar escalera de extension para pintar Ventanita.",
+mapa:"https://img.freepik.com/vector-premium/ilustracion-vectorial-simbolo-casa-ubicacion-diseno-conceptual-servicio-entrega-domicilio_929545-241.jpg?semt=ais_rp_progressive&w=740&q=80"
+},
+{
+nombre:"Soundview",
+ubicacion:"https://maps.app.goo.gl/LsUEqUSVP7zJWGSU9?g_st=ipc",
+codigos:["1234","#4567","Puerta Azul"],
+observacion:"Departamentos, color de paredes Eldhier White",
+mapa:"https://img.freepik.com/vector-premium/ilustracion-vectorial-simbolo-casa-ubicacion-diseno-conceptual-servicio-entrega-domicilio_929545-241.jpg?semt=ais_rp_progressive&w=740&q=80"
+},
+{
+nombre:"GrassLand",
+ubicacion:"https://maps.app.goo.gl/JJP1u4sJaWtQQy7T7?g_st=ipc",
+codigos:["La apertura es con LLAVE"],
+observacion:"Paredes Snowbound y puertas negras",
+mapa:"https://img.freepik.com/vector-premium/ilustracion-vectorial-simbolo-casa-ubicacion-diseno-conceptual-servicio-entrega-domicilio_929545-241.jpg?semt=ais_rp_progressive&w=740&q=80"
+},
+{
+nombre:"Country Club States",
+ubicacion:"https://maps.app.goo.gl/NyRfv8LNobnNZgh37",
+codigos:["0226"],
+observacion:"Paredes First Start",
+mapa:"https://img.freepik.com/vector-premium/ilustracion-vectorial-simbolo-casa-ubicacion-diseno-conceptual-servicio-entrega-domicilio_929545-241.jpg?semt=ais_rp_progressive&w=740&q=80"
+},
+{
+nombre:"Roman Oaks",
+ubicacion:"https://maps.app.goo.gl/jyVUoMh3VKFZTD9X7",
+codigos:["La apertura es con LLAVE"],
+observacion:"Puertas negras.",
+mapa:"https://img.freepik.com/vector-premium/ilustracion-vectorial-simbolo-casa-ubicacion-diseno-conceptual-servicio-entrega-domicilio_929545-241.jpg?semt=ais_rp_progressive&w=740&q=80"
+},
+{
+nombre:"Freeport",
+ubicacion:"https://maps.app.goo.gl/MaLCYrgowFBRWFxi8",
+codigos:["La apertura es con LLAVE"],
+observacion:"Paredes Eldier White",
+mapa:"https://img.freepik.com/vector-premium/ilustracion-vectorial-simbolo-casa-ubicacion-diseno-conceptual-servicio-entrega-domicilio_929545-241.jpg?semt=ais_rp_progressive&w=740&q=80"
+},
+{
+nombre:"Gaylen Oaks",
+ubicacion:"https://maps.app.goo.gl/LAhsMGCK1F39NA559",
+codigos:["0126","0226","2027"],
+observacion:"Paredes Eldier White",
+mapa:"https://img.freepik.com/vector-premium/ilustracion-vectorial-simbolo-casa-ubicacion-diseno-conceptual-servicio-entrega-domicilio_929545-241.jpg?semt=ais_rp_progressive&w=740&q=80"
+},
+{
+nombre:"Deer Ridge Crossing",
+ubicacion:"https://maps.app.goo.gl/BsK6bwjb64i1sdKS6",
+codigos:["La apertura es con LLAVE"],
+observacion:"Paredes Eldier White",
+mapa:"https://img.freepik.com/vector-premium/ilustracion-vectorial-simbolo-casa-ubicacion-diseno-conceptual-servicio-entrega-domicilio_929545-241.jpg?semt=ais_rp_progressive&w=740&q=80"
+},
+{
+nombre:"Heritage Plantation",
+ubicacion:"https://maps.app.goo.gl/gNZEVDUsy38uN46j6",
+codigos:["0126","0226","2027"],
+observacion:"Paredes Eldier White",
+mapa:"https://img.freepik.com/vector-premium/ilustracion-vectorial-simbolo-casa-ubicacion-diseno-conceptual-servicio-entrega-domicilio_929545-241.jpg?semt=ais_rp_progressive&w=740&q=80"
+},
+{
+nombre:"Eagle Pointe",
+ubicacion:"https://maps.app.goo.gl/3NynNqUsfpiwKv8Y7?g_st=com.google.maps.preview.copy",
+codigos:["La apertura es con LLAVE"],
+observacion:"Paredes Eldier White",
+mapa:"https://dlqxt4mfnxo6k.cloudfront.net/dsldhomes.com/aHR0cHM6Ly9zMy5hbWF6b25hd3MuY29tL2J1aWxkZXJjbG91ZC82NjhjNjVmNjJiZGE3NGZhNWZmMzIyMjMwODc5YTBkZi5qcGVn/webp/1200/1200"
+},
+{
+nombre:"Ellies Cove",
+ubicacion:"https://maps.app.goo.gl/1wYGLwCCCkAz3apu5",
+codigos:["0126","2506","1999","1998","0226","2027"],
+observacion:"Departamentos, Paredes Eldier White",
+mapa:"https://img.freepik.com/vector-premium/ilustracion-vectorial-simbolo-casa-ubicacion-diseno-conceptual-servicio-entrega-domicilio_929545-241.jpg?semt=ais_rp_progressive&w=740&q=80"
+},
+{
+nombre:"Gaylen Oaks",
+ubicacion:"https://maps.app.goo.gl/LAhsMGCK1F39NA559",
+codigos:["0126","0226","2027"],
+observacion:"Paredes Eldier White",
+mapa:"https://img.freepik.com/vector-premium/ilustracion-vectorial-simbolo-casa-ubicacion-diseno-conceptual-servicio-entrega-domicilio_929545-241.jpg?semt=ais_rp_progressive&w=740&q=80"
+},
+{
+nombre:"Gaylen Oaks",
+ubicacion:"https://maps.app.goo.gl/LAhsMGCK1F39NA559",
+codigos:["0126","0226","2027"],
+observacion:"Paredes Eldier White",
+mapa:"https://img.freepik.com/vector-premium/ilustracion-vectorial-simbolo-casa-ubicacion-diseno-conceptual-servicio-entrega-domicilio_929545-241.jpg?semt=ais_rp_progressive&w=740&q=80"
+},
+{
+nombre:"Bosques del Sur",
+ubicacion:"https://maps.google.com/?q=Bosques+del+Sur",
+codigos:["7890","Portón 3"],
+observacion:"Casas nuevas, vigilancia 24/7.",
 mapa:"https://img.freepik.com/vector-premium/ilustracion-vectorial-simbolo-casa-ubicacion-diseno-conceptual-servicio-entrega-domicilio_929545-241.jpg?semt=ais_rp_progressive&w=740&q=80"
 }
 ];
@@ -1021,6 +876,24 @@ if (typeof mapaImagen !== 'undefined') {
         if(this.src){
             window.open(this.src, '_blank');
         }
+    });
+}
+
+
+const opcionesSherwin = document.getElementById("opcionesSherwin");
+const hipervinculoSherwin = document.getElementById("hipervinculoSherwin");
+
+if(opcionesSherwin && hipervinculoSherwin){
+    opcionesSherwin.addEventListener("change", function(){
+        const url = this.value;
+        const nombre = this.options[this.selectedIndex].text;
+
+        if(!url){
+            hipervinculoSherwin.innerHTML = '<span>Elige una tienda y aquí aparecerá el botón para abrir la ubicación.</span>';
+            return;
+        }
+
+        hipervinculoSherwin.innerHTML = `<a href="${url}" target="_blank" rel="noopener noreferrer">Abrir ubicación de ${nombre}</a>`;
     });
 }
 
