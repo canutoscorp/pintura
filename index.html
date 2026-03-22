@@ -596,6 +596,154 @@ a:hover{
 }
 
 </style>
+
+<style id="sherwin-migrado-style">
+.sherwin-section{
+    margin: 38px auto 0;
+    max-width: 860px;
+    background: linear-gradient(180deg,#ffffff,#f5f9ff);
+    border: 1px solid #dbe6f4;
+    border-radius: 20px;
+    box-shadow: 0 12px 26px rgba(22,50,95,0.12);
+    padding: 24px 18px 22px;
+    text-align: center;
+}
+.sherwin-badge{
+    display:inline-flex;
+    align-items:center;
+    gap:8px;
+    background:#eaf2ff;
+    color:#1e3c72;
+    border:1px solid #cdddf6;
+    border-radius:999px;
+    padding:8px 14px;
+    font-weight:700;
+    margin-bottom:12px;
+}
+.sherwin-title{
+    margin:0 0 8px;
+    font-size:28px;
+    color:#1e3c72;
+    letter-spacing:.4px;
+}
+.sherwin-text{
+    margin:0 auto 18px;
+    max-width:680px;
+    color:#5a7399;
+    font-size:15px;
+    line-height:1.5;
+}
+.sherwin-hero{
+    width:96px;
+    height:auto;
+    display:block;
+    margin:0 auto 14px;
+    border-radius:16px;
+    background:#fff;
+    box-shadow:0 8px 20px rgba(0,0,0,0.08);
+    padding:8px;
+}
+.sherwin-panel{
+    max-width:580px;
+    margin:0 auto;
+    background:#eef4ff;
+    border:1px solid #d6e4f7;
+    border-radius:18px;
+    padding:16px;
+}
+.sherwin-select{
+    width:100%;
+    padding:15px 16px;
+    border-radius:14px;
+    border:2px solid #a7c0e8;
+    background:#fff;
+    color:#16325f;
+    font-size:17px;
+    outline:none;
+    box-shadow:0 4px 12px rgba(0,0,0,0.06);
+}
+.sherwin-select:focus{
+    border-color:#2a5298;
+    box-shadow:0 0 0 4px rgba(42,82,152,0.14), 0 8px 18px rgba(0,0,0,0.10);
+}
+.sherwin-link-wrap{
+    min-height:64px;
+    margin-top:14px;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+}
+.sherwin-link-btn{
+    display:inline-flex;
+    align-items:center;
+    justify-content:center;
+    gap:8px;
+    background:linear-gradient(90deg,#1e3c72,#2a5298);
+    color:#fff !important;
+    text-decoration:none;
+    font-weight:700;
+    padding:13px 18px;
+    border-radius:14px;
+    box-shadow:0 8px 18px rgba(30,60,114,0.22);
+}
+.sherwin-link-btn:hover{
+    text-decoration:none;
+    transform:translateY(-1px);
+}
+body.dark-mode .sherwin-section{
+    background:linear-gradient(180deg,#182335,#111827);
+    border-color:#334155;
+    box-shadow:0 12px 26px rgba(0,0,0,0.30);
+}
+body.dark-mode .sherwin-badge{
+    background:#22314b;
+    border-color:#355074;
+    color:#e2e8f0;
+}
+body.dark-mode .sherwin-title{
+    color:#f8fafc;
+}
+body.dark-mode .sherwin-text{
+    color:#cbd5e1;
+}
+body.dark-mode .sherwin-hero{
+    background:#1f2937;
+}
+body.dark-mode .sherwin-panel{
+    background:#1e293b;
+    border-color:#334155;
+}
+body.dark-mode .sherwin-select{
+    background:#0f172a;
+    color:#e2e8f0;
+    border-color:#475569;
+}
+@media(max-width:600px){
+    .sherwin-section{
+        padding:20px 12px 18px;
+        border-radius:18px;
+    }
+    .sherwin-title{
+        font-size:24px;
+    }
+    .sherwin-text{
+        font-size:14px;
+    }
+    .sherwin-panel{
+        padding:12px;
+        border-radius:16px;
+    }
+    .sherwin-select{
+        font-size:16px;
+        padding:14px;
+    }
+    .sherwin-link-btn{
+        width:100%;
+        padding:14px 16px;
+    }
+}
+</style>
+
 </head>
 
 <body>
@@ -1463,5 +1611,47 @@ renderCumplesDelMes();
 lanzarEfectosCumple();
 
 </script>
+
+<section class="sherwin-section" id="sherwinSection">
+    <div class="sherwin-badge">🎨 Selección de tiendas Sherwin-Williams</div>
+    <h2 class="sherwin-title">TIENDAS DE PINTURA</h2>
+    <p class="sherwin-text">Esta sección viene de tu página original y la acomodé con el estilo de la nueva para que se vea limpia, bonita y fácil de usar desde celular.</p>
+    <img class="sherwin-hero" src="https://th.bing.com/th/id/R.70ad88d6c68ab6c5a35e44052905646b?rik=IirQYv5QtLGM%2bA&pid=ImgRaw&r=0" alt="Ubicación de tiendas">
+    <div class="sherwin-panel">
+        <select id="sherwinSelect" class="sherwin-select" aria-label="Selecciona tienda de pintura">
+            <option value="">Selecciona TIENDA DE PINTURA</option>
+            <option value="https://maps.app.goo.gl/Hx764K4gzaL7329S8?g_st=iw">Sherwin Daphne</option>
+            <option value="https://maps.app.goo.gl/17LSgeqZ1APifhdb7?g_st=iw">Sherwin Tamarindo o Pace</option>
+            <option value="https://maps.app.goo.gl/Nw7rbU4Z2Emuzqz1A?g_st=iw">Sherwin Milla 9</option>
+            <option value="https://maps.app.goo.gl/Sf3zG3jGxJc2ZkLTA?g_st=iw">Sherwin CrestView</option>
+            <option value="https://maps.app.goo.gl/kityMzpEeDjduqaGA?g_st=iw">Sherwin Foley 98</option>
+            <option value="https://maps.app.goo.gl/L8soGhgc1eeFRYLa6?g_st=iw">Sherwin GavinsLanding</option>
+            <option value="https://maps.app.goo.gl/eDANGh1xbrTp2EXd8?g_st=a">Lost Key</option>
+            <option value="https://maps.app.goo.gl/WGtrRJyeTKo9B7zd6?g_st=ipc">Gulf Breeze por ROMAN</option>
+            <option value="https://maps.app.goo.gl/RESD4QvGDDt1Z2fA7?g_st=a">Mobile</option>
+        </select>
+        <div id="sherwinLinkWrap" class="sherwin-link-wrap"></div>
+    </div>
+</section>
+
+
+<script id="sherwin-migrado-script">
+(function(){
+    const sherwinSelect = document.getElementById('sherwinSelect');
+    const sherwinLinkWrap = document.getElementById('sherwinLinkWrap');
+    if(!sherwinSelect || !sherwinLinkWrap) return;
+
+    sherwinSelect.addEventListener('change', function(){
+        const url = this.value;
+        const nombre = this.options[this.selectedIndex].text;
+        if(!url){
+            sherwinLinkWrap.innerHTML = '';
+            return;
+        }
+        sherwinLinkWrap.innerHTML = `<a class="sherwin-link-btn" href="${url}" target="_blank" rel="noopener noreferrer">📍 Abrir ubicación de ${nombre}</a>`;
+    });
+})();
+</script>
+
 </body>
 </html>
