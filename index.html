@@ -595,6 +595,155 @@ a:hover{
     .birthday-today-banner strong{ font-size:25px; }
 }
 
+
+/* ===== Apartados en la misma página ===== */
+.top-tabs{
+    display:flex;
+    gap:10px;
+    overflow-x:auto;
+    padding-bottom:10px;
+    margin:0 0 20px;
+    -webkit-overflow-scrolling:touch;
+}
+.top-tab-btn{
+    flex-shrink:0;
+    padding:12px 16px;
+    border:none;
+    border-radius:14px;
+    background:#e2e8f0;
+    color:#1e3c72;
+    font-weight:800;
+    font-size:15px;
+    cursor:pointer;
+    box-shadow:0 4px 10px rgba(0,0,0,0.08);
+}
+.top-tab-btn.active{
+    background:linear-gradient(90deg,#1e3c72,#2a5298);
+    color:#fff;
+}
+.seccion{display:none;width:100%;}
+.seccion.activa{display:block;}
+.registro-shell,.material-shell{
+    margin:32px auto 0;
+    max-width:700px;
+    background:#fff;
+    border:1px solid #d9e4f3;
+    border-radius:22px;
+    box-shadow:0 12px 28px rgba(15,35,70,.10);
+    padding:22px 18px;
+    text-align:left;
+}
+.registro-shell h2,.material-shell h2{
+    text-align:center;
+    color:#1e3c72;
+    margin:0 0 18px;
+    font-size:28px;
+}
+.registro-shell textarea{
+    width:100%;
+    min-height:250px;
+    resize:vertical;
+    border-radius:12px;
+    border:1px solid #ccc;
+    padding:12px;
+    font-size:15px;
+    box-shadow:0 1px 3px rgba(0,0,0,0.1);
+    margin-bottom:12px;
+}
+.registro-shell input,.material-shell input{
+    width:100%;
+    padding:12px;
+    margin:8px 0;
+    border-radius:10px;
+    border:1px solid #ccc;
+    font-size:15px;
+}
+.registro-btn,.material-shell button{
+    width:100%;
+    background:#1a73e8;
+    color:white;
+    border:none;
+    border-radius:10px;
+    padding:12px;
+    font-size:16px;
+    margin-top:10px;
+    cursor:pointer;
+    transition:background 0.3s ease;
+}
+.registro-btn:hover,.material-shell button:hover{background:#155ab6;}
+.registro-btn.whatsapp{background:#25D366;}
+.registro-btn.whatsapp:hover{background:#1ea952;}
+.checkbox-container{
+    display:flex;
+    align-items:center;
+    justify-content:flex-start;
+    gap:8px;
+    margin-top:5px;
+}
+.checkbox-container input[type="checkbox"]{
+    width:20px;
+    height:20px;
+    accent-color:#1a73e8;
+    flex-shrink:0;
+}
+.checkbox-container label{
+    font-weight:500;
+    font-size:15px;
+    margin:0;
+}
+.material-shell{text-align:center;}
+.material-container{
+    width:100%;
+    max-width:420px;
+    margin:auto;
+    background:white;
+    padding:0;
+    border-radius:10px;
+}
+.material-shell h3{
+    color:#333;
+    font-size:18px;
+    margin:18px 0 10px;
+    text-align:center;
+}
+.producto{
+    cursor:pointer;
+    padding:10px;
+    margin:5px;
+    background:#007bff;
+    color:white;
+    display:block;
+    border-radius:8px;
+    font-weight:bold;
+    transition:0.3s;
+    font-size:16px;
+}
+.producto:hover{background:#0056b3;}
+.lista{
+    background:#fff3cd;
+    color:#856404;
+    padding:10px;
+    border-radius:8px;
+    border:1px solid #ffeeba;
+    min-height:60px;
+    text-align:left;
+    font-size:16px;
+    overflow-y:auto;
+    max-height:180px;
+}
+.cantidad{font-weight:bold;color:#d9534f;}
+.mensaje-adicional{
+    font-size:14px;
+    color:#555;
+    margin-top:20px;
+    text-align:center;
+    font-weight:bold;
+}
+@media(max-width:600px){
+    .top-tab-btn{font-size:14px;padding:12px 14px;}
+    .registro-shell h2,.material-shell h2{font-size:24px;}
+}
+
 </style>
 
 <style id="sherwin-migrado-style">
@@ -749,6 +898,17 @@ body.dark-mode .sherwin-select{
 <body>
 <div class="main-wrapper">
 <header>LOZANO PAINTING</header>
+
+
+<div class="top-tabs">
+    <button class="top-tab-btn active" data-seccion="buscar">BUSCAR</button>
+    <button class="top-tab-btn" data-seccion="sherwin">SHERWIN-WILLIAMS</button>
+    <button class="top-tab-btn" data-seccion="registro">REGISTRO</button>
+    <button class="top-tab-btn" data-seccion="material">MATERIAL</button>
+</div>
+
+<div id="buscar" class="seccion activa">
+
 
 <label for="coloniaInput">Buscar o Seleccionar Colonia</label>
 <div class="buscador-wrapper">
@@ -1617,6 +1777,9 @@ renderCumplesDelMes();
 lanzarEfectosCumple();
 
 </script>
+</div>
+
+<div id="sherwin" class="seccion">
 <br><br><br>
 <section class="sherwin-section" id="sherwinSection">
     <div class="sherwin-badge">🎨 Selección de tiendas Sherwin-Williams</div>
@@ -1656,6 +1819,244 @@ lanzarEfectosCumple();
         }
         sherwinLinkWrap.innerHTML = `<a class="sherwin-link-btn" href="${url}" target="_blank" rel="noopener noreferrer">📍 Abrir ubicación de ${nombre}</a>`;
     });
+})();
+</script>
+</div>
+
+</html>
+
+<div id="registro" class="seccion">
+  <section class="registro-shell">
+    <h2>Registro de Trabajo</h2>
+
+    <textarea id="output" placeholder="Aquí aparecerá la información..."></textarea>
+
+    <label>Hora de Entrada:</label>
+    <input type="time" id="entrada" step="60">
+
+    <label>Hora de Salida:</label>
+    <input type="time" id="salida" step="60">
+
+    <div class="checkbox-container">
+      <input type="checkbox" id="diaSiguiente">
+      <label for="diaSiguiente">Marcar si sales al día siguiente</label>
+    </div>
+
+    <label>Tiempo de Lonche (minutos):</label>
+    <input type="number" id="lonche" placeholder="Ej. 30">
+
+    <button class="registro-btn" onclick="calcularHoras()">Calcular Horas</button>
+
+    <label>Nombre del trabajador:</label>
+    <input type="text" id="nombreTrabajador" placeholder="Escribe el nombre">
+    <button class="registro-btn" onclick="agregarTrabajador()">Agregar Trabajador</button>
+
+    <label>Nombre de la Colonia/Casa Particular:</label>
+    <input type="text" id="coloniaRegistro" placeholder="Casa/Colonia">
+    <button class="registro-btn" onclick="agregarColoniaRegistro()">Agregar Colonia</button>
+
+    <label>Número de Lote/Casa:</label>
+    <input type="text" id="lote" placeholder="Lote o número de casa">
+
+    <label>Actividades Realizadas:</label>
+    <input type="text" id="actividad" placeholder="Ej. Pintura de interior">
+    <button class="registro-btn" onclick="agregarActividad()">Agregar</button>
+
+    <label>Pendientes:</label>
+    <input type="text" id="pendientesRegistro" placeholder="Ej. Retocar puerta principal">
+    <button class="registro-btn" onclick="agregarPendientesRegistro()">Agregar</button>
+
+    <button class="registro-btn whatsapp" onclick="enviarWhatsAppRegistro()">Enviar x WhatsApp</button>
+  </section>
+</div>
+
+<div id="material" class="seccion">
+  <section class="material-shell">
+    <h2>Material</h2>
+    <div class="material-container">
+      <h3>Selecciona los productos:</h3>
+      <div id="productos-container"></div>
+
+      <h3>Otros productos:</h3>
+      <input type="text" id="productoPersonalizado" placeholder="Escribe un producto y presiona Enter">
+
+      <h3>Lista de selección:</h3>
+      <div class="lista" id="listaProductos">Se requiere:</div>
+
+      <button onclick="copiarYEnviar()">Copiar y Enviar a WhatsApp</button>
+
+      <p class="mensaje-adicional">Si la persona a cargo no se encuentra disponible, copia el pedido para enviarlo a la persona asignada temporalmente. Gracias.</p>
+      <button onclick="copiarPedido()">Copiar pedido</button>
+    </div>
+  </section>
+</div>
+
+<script>
+(function(){
+  const botones = document.querySelectorAll('.top-tab-btn');
+  const secciones = document.querySelectorAll('.seccion');
+
+  function mostrarSeccion(id){
+    secciones.forEach(sec => sec.classList.toggle('activa', sec.id === id));
+    botones.forEach(btn => btn.classList.toggle('active', btn.dataset.seccion === id));
+    window.scrollTo({top:0, behavior:'smooth'});
+  }
+
+  botones.forEach(btn => {
+    btn.addEventListener('click', () => mostrarSeccion(btn.dataset.seccion));
+  });
+
+  function formatoFecha() {
+    const dias = ['Domingo','Lunes','Martes','Miércoles','Jueves','Viernes','Sábado'];
+    const meses = ['Enero','Febrero','Marzo','Abril','Mayo','Junio','Julio','Agosto','Septiembre','Octubre','Noviembre','Diciembre'];
+    const hoy = new Date();
+    return `*${dias[hoy.getDay()]}, ${hoy.getDate()} de ${meses[hoy.getMonth()]}*`;
+  }
+
+  const output = document.getElementById('output');
+  if(output){ output.value = formatoFecha() + "\n\n"; }
+
+  window.formato12Horas = function(timeStr) {
+    let [h, m] = timeStr.split(':').map(Number);
+    const ampm = h >= 12 ? 'p.m.' : 'a.m.';
+    h = h % 12 || 12;
+    return `${h}:${m.toString().padStart(2, '0')} ${ampm}`;
+  }
+
+  window.calcularHoras = function() {
+    const entrada = document.getElementById('entrada').value;
+    const salida = document.getElementById('salida').value;
+    const lonche = parseInt(document.getElementById('lonche').value) || 0;
+    const diaSig = document.getElementById('diaSiguiente').checked;
+    if (!entrada || !salida) return alert('Por favor selecciona las horas.');
+
+    let t1 = new Date(`2025-01-01T${entrada}`);
+    let t2 = new Date(`2025-01-01T${salida}`);
+    if (diaSig) t2.setDate(t2.getDate() + 1);
+    let diff = (t2 - t1) / 60000 - lonche;
+
+    const horas = Math.floor(diff / 60);
+    const minutos = diff % 60;
+
+    const texto = `Hora de Entrada: ${formato12Horas(entrada)}\nHora de Salida: ${formato12Horas(salida)}\nTiempo de lonche: ${lonche} minutos\nTiempo Laborado: ${horas} Horas ${minutos} Minutos _El tiempo de lonche ya va descontado_\n\n`;
+    document.getElementById('output').value += texto;
+  }
+
+  window.agregarTrabajador = function() {
+    const nombre = document.getElementById('nombreTrabajador').value.trim();
+    if (!nombre) return;
+    document.getElementById('output').value += `Nombre del Trabajador: ${nombre}\n`;
+    document.getElementById('nombreTrabajador').value = '';
+  }
+
+  window.agregarColoniaRegistro = function() {
+    const col = document.getElementById('coloniaRegistro').value.trim();
+    if (!col) return;
+    const area = document.getElementById('output');
+    area.value += `\n*${col}*\n`;
+    document.getElementById('coloniaRegistro').value = '';
+  }
+
+  window.agregarActividad = function() {
+    const lote = document.getElementById('lote').value.trim();
+    const act = document.getElementById('actividad').value.trim();
+    if (!lote || !act) return;
+    document.getElementById('output').value += `* ${lote} ${act}\n`;
+    document.getElementById('lote').value = '';
+    document.getElementById('actividad').value = '';
+  }
+
+  window.agregarPendientesRegistro = function() {
+    const pend = document.getElementById('pendientesRegistro').value.trim();
+    if (!pend) return;
+    document.getElementById('output').value += `*Pendientes:* ${pend}\n`;
+    document.getElementById('pendientesRegistro').value = '';
+  }
+
+  window.enviarWhatsAppRegistro = function() {
+    const texto = encodeURIComponent(document.getElementById('output').value);
+    const url = `https://wa.me/+12517521659?text=${texto}`;
+    window.open(url, '_blank');
+  }
+
+  const productos = ["Potty", "Caulk Rojo", "Caulk Rosa", "Caulk Azul", "Caulk Clear", "Cinta Tape", "Solo",
+                     "Plastico Ventanas", "Plastico Piso", "Musket Brown", "Tricorn Black", "Tuxedo", "Beige",
+                     "Pintura Piso", "Lija 120", "Lija 150", "Lija 180"];
+  let carrito = {};
+  const contenedor = document.getElementById("productos-container");
+
+  if(contenedor){
+    productos.forEach(producto => {
+      let btn = document.createElement("div");
+      btn.className = "producto";
+      btn.textContent = producto;
+      btn.onclick = () => agregarProducto(producto);
+      contenedor.appendChild(btn);
+    });
+  }
+
+  window.agregarProducto = function(nombre) {
+    if (carrito[nombre]) carrito[nombre]++;
+    else carrito[nombre] = 1;
+    actualizarLista();
+  }
+
+  const productoPersonalizado = document.getElementById("productoPersonalizado");
+  if(productoPersonalizado){
+    productoPersonalizado.addEventListener("keypress", function(event) {
+      if (event.key === "Enter") {
+        let nombre = this.value.trim();
+        if (nombre) {
+          agregarProducto(nombre);
+          this.value = "";
+        }
+      }
+    });
+  }
+
+  window.actualizarLista = function() {
+    let lista = "<strong>Se requiere:</strong><br>";
+    for (let producto in carrito) {
+      lista += `<span class="cantidad">${carrito[producto]}</span> - ${producto}<br>`;
+    }
+    document.getElementById("listaProductos").innerHTML = lista;
+  }
+
+  window.copiarPedido = function() {
+    let mensaje = "Se requiere:\n";
+    for (let producto in carrito) {
+      mensaje += `${carrito[producto]} - ${producto}\n`;
+    }
+    if (mensaje.trim() === "Se requiere:") {
+      alert("Agrega productos antes de copiar.");
+      return;
+    }
+    navigator.clipboard.writeText(mensaje).then(() => {
+      alert("Pedido copiado al portapapeles.");
+    }).catch(() => {
+      let tempInput = document.createElement("textarea");
+      tempInput.value = mensaje;
+      document.body.appendChild(tempInput);
+      tempInput.select();
+      document.execCommand("copy");
+      document.body.removeChild(tempInput);
+      alert("Pedido copiado al portapapeles.");
+    });
+  }
+
+  window.copiarYEnviar = function() {
+    let mensaje = "Se requiere:\n";
+    for (let producto in carrito) {
+      mensaje += `${carrito[producto]} - ${producto}\n`;
+    }
+    if (mensaje.trim() === "Se requiere:") {
+      alert("Agrega productos antes de enviar.");
+      return;
+    }
+    const numeroWhatsApp = "12512562787";
+    const url = `https://wa.me/${numeroWhatsApp}?text=${encodeURIComponent(mensaje)}`;
+    window.open(url, '_blank');
+  }
 })();
 </script>
 
