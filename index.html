@@ -1048,19 +1048,293 @@ body.dark-mode .sherwin-select{
 }
 </style>
 
+
+<style id="premium-app-mode">
+:root{
+  --app-bg1:#eef4fb;
+  --app-bg2:#f8fbff;
+  --app-card:#ffffff;
+  --app-ink:#17325c;
+  --app-muted:#6b7f9f;
+  --app-line:#d8e4f4;
+  --app-primary:#1e3c72;
+  --app-primary-2:#2a5298;
+  --app-success:#16a34a;
+  --app-shadow:0 16px 36px rgba(21,45,84,.12);
+  --app-radius:22px;
+}
+
+html,body{
+  min-height:100%;
+  background:
+    radial-gradient(circle at top left, rgba(59,130,246,.12), transparent 24%),
+    radial-gradient(circle at top right, rgba(125,211,252,.12), transparent 20%),
+    linear-gradient(180deg,var(--app-bg1),var(--app-bg2));
+}
+
+body{
+  padding-bottom:92px;
+}
+
+.main-wrapper{
+  max-width:980px !important;
+  padding:14px !important;
+}
+
+header{
+  position:sticky;
+  top:0;
+  z-index:200;
+  margin-bottom:18px !important;
+  border-radius:24px !important;
+  background:linear-gradient(135deg,var(--app-primary),var(--app-primary-2)) !important;
+  box-shadow:0 14px 34px rgba(30,60,114,.22) !important;
+  font-size:26px !important;
+  letter-spacing:1px !important;
+  backdrop-filter:blur(10px);
+}
+
+.buscador-wrapper{
+  top:88px !important;
+}
+
+.search-shell,
+.section-card,
+.sherwin-section,
+.registro-shell,
+.material-shell{
+  border-radius:24px !important;
+  box-shadow:var(--app-shadow) !important;
+}
+
+.search-shell{
+  background:rgba(255,255,255,.92) !important;
+  backdrop-filter:blur(10px);
+}
+
+input,
+select,
+textarea,
+.registro-shell input,
+.material-shell input,
+.registro-shell textarea{
+  min-height:54px;
+  border-radius:16px !important;
+  font-size:16px !important;
+}
+
+textarea,
+.registro-shell textarea{
+  min-height:170px;
+}
+
+.section-card,
+.sherwin-section,
+.registro-shell,
+.material-shell{
+  overflow:hidden;
+  border:1px solid var(--app-line) !important;
+  background:linear-gradient(180deg,#ffffff,#fbfdff) !important;
+}
+
+.section-body{
+  padding:22px 18px !important;
+}
+
+.section-title,
+.sherwin-title,
+.registro-shell h2,
+.material-shell h2{
+  font-size:28px !important;
+  line-height:1.15;
+}
+
+.app-hint,
+.nearby-note,
+.section-subtitle{
+  color:var(--app-muted) !important;
+}
+
+.top-tabs{
+  position:fixed !important;
+  left:12px;
+  right:12px;
+  bottom:12px;
+  z-index:9999;
+  display:grid !important;
+  grid-template-columns:repeat(5,minmax(0,1fr)) !important;
+  gap:8px !important;
+  padding:10px !important;
+  margin:0 !important;
+  background:rgba(255,255,255,.86);
+  backdrop-filter:blur(16px);
+  border:1px solid rgba(216,228,244,.95);
+  border-radius:24px;
+  box-shadow:0 18px 36px rgba(15,35,70,.18);
+}
+
+.top-tab-btn{
+  min-width:0 !important;
+  width:100% !important;
+  padding:12px 8px 14px !important;
+  border-radius:18px !important;
+  font-size:12px !important;
+  line-height:1.15 !important;
+  font-weight:900 !important;
+  background:transparent !important;
+  color:#355277 !important;
+  box-shadow:none !important;
+  border:1px solid transparent !important;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  text-align:center;
+}
+
+.top-tab-btn.active{
+  background:linear-gradient(135deg,var(--app-primary),var(--app-primary-2)) !important;
+  color:#fff !important;
+  box-shadow:0 10px 22px rgba(30,60,114,.24) !important;
+}
+
+.top-tab-btn.active::after{
+  bottom:6px !important;
+  left:20px !important;
+  right:20px !important;
+  height:3px !important;
+}
+
+.seccion{
+  display:none;
+  width:100%;
+  opacity:0;
+  transform:translateY(16px) scale(.985);
+}
+.seccion.activa{
+  display:block;
+  animation:premiumScreenIn .32s cubic-bezier(.22,.8,.2,1) both;
+}
+@keyframes premiumScreenIn{
+  from{opacity:0;transform:translateY(18px) scale(.985);}
+  to{opacity:1;transform:translateY(0) scale(1);}
+}
+
+.top-tab-btn,
+.action-btn,
+.registro-btn,
+.material-shell button,
+.nearby-btn,
+.clear-btn,
+.back-to-top{
+  transition:transform .18s ease, box-shadow .18s ease, filter .18s ease, background .22s ease !important;
+}
+.top-tab-btn:active,
+.action-btn:active,
+.registro-btn:active,
+.material-shell button:active,
+.nearby-btn:active,
+.clear-btn:active,
+.back-to-top:active{
+  transform:scale(.98);
+}
+
+.back-to-top{
+  right:16px !important;
+  bottom:108px !important;
+  width:58px !important;
+  height:58px !important;
+  border-radius:18px !important;
+  box-shadow:0 14px 28px rgba(30,60,114,.24) !important;
+}
+
+.action-btn,
+.registro-btn,
+.material-shell button{
+  border-radius:16px !important;
+  font-weight:900 !important;
+}
+
+.visit-gallery img,
+.quick-card img,
+.important-top-image,
+.sherwin-hero{
+  border-radius:20px !important;
+}
+
+.quick-card{
+  border-radius:22px !important;
+}
+
+.birthday-card{
+  background:
+    radial-gradient(circle at top right, rgba(251,191,36,.18), transparent 34%),
+    linear-gradient(180deg,#ffffff,#fffdf7) !important;
+}
+.birthday-list li{
+  border-radius:18px !important;
+}
+
+.nearby-btn{
+  border-radius:18px !important;
+}
+
+.dropdown{
+  border-radius:18px !important;
+}
+
+@media(max-width:760px){
+  .main-wrapper{
+    padding:10px !important;
+  }
+  header{
+    font-size:22px !important;
+    border-radius:20px !important;
+    padding:16px 12px !important;
+  }
+  .buscador-wrapper{
+    top:78px !important;
+  }
+  .section-title,
+  .sherwin-title,
+  .registro-shell h2,
+  .material-shell h2{
+    font-size:24px !important;
+  }
+  .top-tabs{
+    left:10px;
+    right:10px;
+    bottom:10px;
+    gap:6px !important;
+    padding:8px !important;
+  }
+  .top-tab-btn{
+    font-size:11px !important;
+    padding:10px 4px 12px !important;
+    border-radius:16px !important;
+  }
+}
+</style>
+
 </head>
 
 <body>
 <div class="main-wrapper">
 <header>LOZANO PAINTING</header>
 
+<div id="appStatusChip" style="display:flex;justify-content:center;margin:-4px 0 12px;">
+  <div style="background:rgba(255,255,255,.92);backdrop-filter:blur(10px);border:1px solid #d8e4f4;color:#355277;padding:8px 14px;border-radius:999px;font-weight:800;font-size:13px;box-shadow:0 8px 20px rgba(15,35,70,.08);">
+    Modo app premium
+  </div>
+</div>
+
+
 
 <div class="top-tabs">
-    <button class="top-tab-btn active" data-seccion="buscar">BUSCAR</button>
-    <button class="top-tab-btn" data-seccion="cumpleanos">CUMPLEAÑOS</button>
-    <button class="top-tab-btn" data-seccion="sherwin">SHERWIN-WILLIAMS</button>
-    <button class="top-tab-btn" data-seccion="registro">REGISTRO</button>
-    <button class="top-tab-btn" data-seccion="material">MATERIAL</button>
+    <button class="top-tab-btn active" data-seccion="buscar">🔎<br>BUSCAR</button>
+    <button class="top-tab-btn" data-seccion="cumpleanos">🎂<br>CUMPLEAÑOS</button>
+    <button class="top-tab-btn" data-seccion="sherwin">🎨<br>SHERWIN-WILLIAMS</button>
+    <button class="top-tab-btn" data-seccion="registro">📝<br>REGISTRO</button>
+    <button class="top-tab-btn" data-seccion="material">📦<br>MATERIAL</button>
 </div>
 
 <div id="buscar" class="seccion activa">
