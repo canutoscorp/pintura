@@ -893,6 +893,161 @@ body.dark-mode .sherwin-select{
 }
 </style>
 
+
+<style id="tabs-mobile-visible-fix">
+.top-tabs{
+    display:grid !important;
+    grid-template-columns:repeat(2, minmax(0,1fr)) !important;
+    gap:10px !important;
+    overflow:visible !important;
+    padding-bottom:0 !important;
+}
+.top-tab-btn{
+    width:100% !important;
+    min-width:0 !important;
+    white-space:normal !important;
+    line-height:1.2 !important;
+    text-align:center !important;
+}
+@media(min-width:700px){
+    .top-tabs{
+        grid-template-columns:repeat(5, minmax(0,1fr)) !important;
+    }
+}
+</style>
+
+
+<style id="tab-animation-fix">
+/* Cumpleaños solo en Buscar */
+
+
+/* Animación tipo app */
+.seccion{
+    display:none;
+    width:100%;
+    opacity:0;
+    transform:translateY(14px) scale(0.985);
+}
+.seccion.activa{
+    display:block;
+    animation:appTabIn .28s ease both;
+}
+@keyframes appTabIn{
+    from{
+        opacity:0;
+        transform:translateY(14px) scale(0.985);
+    }
+    to{
+        opacity:1;
+        transform:translateY(0) scale(1);
+    }
+}
+.top-tab-btn{
+    transition:transform .18s ease, box-shadow .18s ease, background .2s ease, color .2s ease;
+}
+.top-tab-btn:hover{
+    transform:translateY(-1px);
+}
+.top-tab-btn.active{
+    box-shadow:0 10px 20px rgba(30,60,114,.20);
+}
+</style>
+
+
+<style id="active-tab-glow-line">
+.top-tab-btn{
+    position:relative;
+}
+.top-tab-btn.active::after{
+    content:"";
+    position:absolute;
+    left:14px;
+    right:14px;
+    bottom:-6px;
+    height:4px;
+    border-radius:999px;
+    background:linear-gradient(90deg,#7dd3fc,#ffffff,#7dd3fc);
+    box-shadow:0 0 10px rgba(125,211,252,.95), 0 0 18px rgba(125,211,252,.65);
+}
+</style>
+
+
+<style id="cumpleanos-visible-fix">
+#cumpleanos .birthday-card,
+#cumpleanos #birthdaySection{
+    display:block !important;
+}
+#cumpleanos .birthday-list{
+    display:grid !important;
+}
+</style>
+
+
+<style id="sherwin-cerca-extra-style">
+.nearby-actions{
+    margin-top:16px;
+    display:grid;
+    gap:12px;
+}
+.nearby-btn{
+    display:flex;
+    align-items:center;
+    justify-content:flex-start;
+    gap:12px;
+    width:100%;
+    padding:14px 16px;
+    border-radius:16px;
+    text-decoration:none;
+    font-weight:800;
+    color:#17325c !important;
+    background:linear-gradient(180deg,#ffffff,#f5f9ff);
+    border:1px solid #d8e4f4;
+    box-shadow:0 10px 20px rgba(30,60,114,0.10);
+    transition:transform .18s ease, box-shadow .18s ease, border-color .18s ease;
+}
+.nearby-btn:hover{
+    text-decoration:none;
+    transform:translateY(-1px);
+    border-color:#9db8e2;
+    box-shadow:0 14px 24px rgba(30,60,114,0.14);
+}
+.nearby-icon{
+    width:40px;
+    height:40px;
+    border-radius:12px;
+    display:inline-flex;
+    align-items:center;
+    justify-content:center;
+    background:linear-gradient(135deg,#1e3c72,#2a5298);
+    color:#fff;
+    font-size:20px;
+    flex:0 0 40px;
+    box-shadow:0 8px 16px rgba(30,60,114,0.18);
+}
+.nearby-text{
+    display:flex;
+    flex-direction:column;
+    align-items:flex-start;
+    text-align:left;
+    line-height:1.2;
+}
+.nearby-title{
+    font-size:15px;
+}
+.nearby-sub{
+    margin-top:4px;
+    font-size:12px;
+    font-weight:600;
+    color:#6b7f9f;
+}
+.nearby-note{
+    margin-top:10px;
+    font-size:14px;
+    color:#5a7399;
+    line-height:1.4;
+}
+</style>
+
 </head>
 
 <body>
@@ -902,6 +1057,7 @@ body.dark-mode .sherwin-select{
 
 <div class="top-tabs">
     <button class="top-tab-btn active" data-seccion="buscar">BUSCAR</button>
+    <button class="top-tab-btn" data-seccion="cumpleanos">CUMPLEAÑOS</button>
     <button class="top-tab-btn" data-seccion="sherwin">SHERWIN-WILLIAMS</button>
     <button class="top-tab-btn" data-seccion="registro">REGISTRO</button>
     <button class="top-tab-btn" data-seccion="material">MATERIAL</button>
@@ -986,39 +1142,7 @@ Mapa Ubicación Casas
     </div>
   </div>
 </div>
-
-<div class="quick-links">
-  <div class="quick-card">
-    <img src="https://copiza.com/wp-content/uploads/2019/12/11-tiendas-copiza-1.jpg" alt="Solicita material">
-    <h3>Toca y Solicita Material</h3>
-        <a class="action-btn" href="https://canutoscorp.github.io/Material" target="_blank" rel="noopener noreferrer">Abrir Material</a>
-  </div>
-
-  <div class="quick-card">
-    <img src="https://img.freepik.com/vector-gratis/asistencia-papel-lista-comprobacion-dibujos-animados-icono-vectorial-ilustracion-educacion-negocio-aislado-plano_138676-10698.jpg" alt="Registro de trabajo">
-    <h3>Registro de Trabajo</h3>
-       <a class="action-btn" href="https://canutoscorp.github.io/reporte/" target="_blank" rel="noopener noreferrer">Abrir Registro</a>
-  </div>
 </div>
-
-<div class="section-card birthday-card" id="birthdaySection">
-  <div class="section-body">
-    <div class="birthday-header">
-      <div style="font-size:30px;">🎂</div>
-      <h2 class="section-title" style="margin:0;">Feliz cumpleaños este mes</h2>
-      <div style="font-size:30px;">🎉</div>
-    </div>
-    <p class="section-subtitle"></p>
-    <ul class="birthday-list" id="birthdayList"></ul>
-  </div>
-</div>
-
-<div class="birthday-today-banner" id="birthdayTodayBanner">
-  <div style="font-size:18px; font-weight:700;">Felicidades a este día a:</div>
-  <strong id="birthdayTodayNames"></strong>
-</div>
-
-<button class="back-to-top" id="backToTop" title="Ir arriba">↑</button>
 
 </div>
 
@@ -1777,6 +1901,34 @@ renderCumplesDelMes();
 lanzarEfectosCumple();
 
 </script>
+
+
+
+
+
+
+</div>
+
+
+<div id="cumpleanos" class="seccion">
+<div class="section-card birthday-card" id="birthdaySection">
+  <div class="section-body">
+    <div class="birthday-header">
+      <div style="font-size:30px;">🎂</div>
+      <h2 class="section-title" style="margin:0;">Feliz cumpleaños este mes</h2>
+      <div style="font-size:30px;">🎉</div>
+    </div>
+    <p class="section-subtitle"></p>
+    <ul class="birthday-list" id="birthdayList"></ul>
+  </div>
+</div>
+
+<div class="birthday-today-banner" id="birthdayTodayBanner">
+  <div style="font-size:18px; font-weight:700;">Felicidades a este día a:</div>
+  <strong id="birthdayTodayNames"></strong>
+</div>
+
+<button class="back-to-top" id="backToTop" title="Ir arriba">↑</button>
 </div>
 
 <div id="sherwin" class="seccion">
@@ -1800,6 +1952,38 @@ lanzarEfectosCumple();
             <option value="https://maps.app.goo.gl/RESD4QvGDDt1Z2fA7?g_st=a">Mobile</option>
         </select>
         <div id="sherwinLinkWrap" class="sherwin-link-wrap"></div>
+        <div class="nearby-actions">
+            <a class="nearby-btn" href="https://www.google.com/maps/search/Sherwin-Williams+near+me" target="_blank" rel="noopener noreferrer">
+                <span class="nearby-icon">🎨</span>
+                <span class="nearby-text">
+                    <span class="nearby-title">Abrir una tienda Sherwin-Williams que se encuentre cerca de mí</span>
+                    <span class="nearby-sub">Buscar la tienda más cercana en Google Maps</span>
+                </span>
+            </a>
+            <a class="nearby-btn" href="https://www.google.com/maps/search/hamburguesas+near+me" target="_blank" rel="noopener noreferrer">
+                <span class="nearby-icon">🍔</span>
+                <span class="nearby-text">
+                    <span class="nearby-title">Hamburguesas cerca de mí</span>
+                    <span class="nearby-sub">Abrir opciones cercanas en Google Maps</span>
+                </span>
+            </a>
+            <a class="nearby-btn" href="https://www.google.com/maps/search/tacos+near+me" target="_blank" rel="noopener noreferrer">
+                <span class="nearby-icon">🌮</span>
+                <span class="nearby-text">
+                    <span class="nearby-title">Tacos cerca de mí</span>
+                    <span class="nearby-sub">Encontrar lugares cercanos rápidamente</span>
+                </span>
+            </a>
+            <a class="nearby-btn" href="https://www.google.com/maps/search/gasolinera+gasolina+barata+near+me" target="_blank" rel="noopener noreferrer">
+                <span class="nearby-icon">⛽</span>
+                <span class="nearby-text">
+                    <span class="nearby-title">Gasolinera con gasolina barata cerca de mí</span>
+                    <span class="nearby-sub">Buscar estaciones cercanas en Google Maps</span>
+                </span>
+            </a>
+        </div>
+        <div class="nearby-note">Estas opciones abren Google Maps con una búsqueda cercana usando tu ubicación actual.</div>Estas opciones abren Google Maps con una búsqueda cercana usando tu ubicación actual.</div>
+
     </div>
 </section>
 
@@ -2057,6 +2241,38 @@ lanzarEfectosCumple();
     const url = `https://wa.me/${numeroWhatsApp}?text=${encodeURIComponent(mensaje)}`;
     window.open(url, '_blank');
   }
+})();
+</script>
+
+
+<script id="cumpleanos-fix-script">
+(function(){
+  function forzarRenderCumpleanos(){
+    try{
+      if (typeof renderCumplesDelMes === 'function') {
+        renderCumplesDelMes();
+      }
+      if (typeof lanzarEfectosCumple === 'function') {
+        // no auto relaunch banner here to avoid repeated popups
+      }
+    }catch(e){}
+  }
+
+  // render on load
+  if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', forzarRenderCumpleanos);
+  } else {
+    forzarRenderCumpleanos();
+  }
+
+  // render when clicking tab
+  document.querySelectorAll('.top-tab-btn').forEach(btn=>{
+    btn.addEventListener('click', ()=>{
+      if (btn.dataset.seccion === 'cumpleanos') {
+        setTimeout(forzarRenderCumpleanos, 50);
+      }
+    });
+  });
 })();
 </script>
 
