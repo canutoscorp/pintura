@@ -1393,12 +1393,42 @@ textarea,
 }
 </style>
 
+
+<style id="splash-shine-vibrate-style">
+#splash .logo-wrap{
+  position:relative;
+  display:inline-block;
+  border-radius:20px;
+  overflow:hidden;
+}
+#splash .logo-wrap::after{
+  content:"";
+  position:absolute;
+  top:-20%;
+  left:-75%;
+  width:45%;
+  height:140%;
+  transform:rotate(18deg);
+  background:linear-gradient(90deg, rgba(255,255,255,0), rgba(255,255,255,.55), rgba(255,255,255,0));
+  animation:logoShine 2.4s ease-in-out infinite;
+  pointer-events:none;
+}
+@keyframes logoShine{
+  0%{left:-75%;}
+  45%{left:140%;}
+  100%{left:140%;}
+}
+#splash img{
+  display:block;
+}
+</style>
+
 </head>
 
 <body>
 
 <div id="splash">
- <img src="https://canutoscorp.github.io/pintura/icono.png">
+ <div class="logo-wrap"><img src="https://canutoscorp.github.io/pintura/icono.png"></div>
  <h1>Lozano Painting</h1>
  <p>Cargando sistema...</p>
  <div id="loader"><div></div></div>
@@ -2633,17 +2663,26 @@ lanzarEfectosCumple();
 </script>
 
 
+
 <script id="splash-inteligente-fix">
 window.addEventListener("load", () => {
   const today = new Date().toDateString();
   const lastShown = localStorage.getItem("splashDate");
   const firstVisit = localStorage.getItem("firstVisitDone");
   const splash = document.getElementById("splash");
-
   if (!splash) return;
+
+  function vibrateSoft(){
+    try{
+      if (navigator.vibrate) {
+        navigator.vibrate([35, 30, 45]);
+      }
+    }catch(e){}
+  }
 
   function hideSplash(delayMs) {
     localStorage.setItem("splashDate", today);
+    vibrateSoft();
     setTimeout(() => {
       splash.style.transition = "opacity .4s ease";
       splash.style.opacity = "0";
@@ -2667,6 +2706,7 @@ window.addEventListener("load", () => {
   hideSplash(1400);
 });
 </script>
+
 
 </body>
 </html>
