@@ -2616,5 +2616,41 @@ lanzarEfectosCumple();
 })();
 </script>
 
+
+<script id="splash-inteligente-fix">
+window.addEventListener("load", () => {
+  const today = new Date().toDateString();
+  const lastShown = localStorage.getItem("splashDate");
+  const firstVisit = localStorage.getItem("firstVisitDone");
+  const splash = document.getElementById("splash");
+
+  if (!splash) return;
+
+  function hideSplash(delayMs) {
+    localStorage.setItem("splashDate", today);
+    setTimeout(() => {
+      splash.style.transition = "opacity .4s ease";
+      splash.style.opacity = "0";
+      setTimeout(() => {
+        if (splash && splash.parentNode) splash.parentNode.removeChild(splash);
+      }, 400);
+    }, delayMs);
+  }
+
+  if (!firstVisit) {
+    localStorage.setItem("firstVisitDone", "true");
+    hideSplash(2200);
+    return;
+  }
+
+  if (lastShown === today) {
+    splash.remove();
+    return;
+  }
+
+  hideSplash(1400);
+});
+</script>
+
 </body>
 </html>
