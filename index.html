@@ -1315,9 +1315,79 @@ textarea,
 }
 </style>
 
+
+<style id="splash-style">
+#splash{
+ position:fixed;
+ inset:0;
+ background:linear-gradient(135deg,#1e3c72,#2a5298);
+ display:flex;
+ align-items:center;
+ justify-content:center;
+ flex-direction:column;
+ z-index:10000;
+ color:#fff;
+ font-family:sans-serif;
+}
+#splash img{
+ width:90px;
+ height:90px;
+ border-radius:20px;
+ margin-bottom:16px;
+ box-shadow:0 10px 20px rgba(0,0,0,.3);
+}
+#splash h1{
+ margin:0;
+ font-size:24px;
+}
+#splash p{
+ margin-top:8px;
+ font-size:14px;
+ opacity:.8;
+}
+#loader{
+ margin-top:18px;
+ width:120px;
+ height:4px;
+ background:rgba(255,255,255,.2);
+ border-radius:10px;
+ overflow:hidden;
+}
+#loader div{
+ width:0%;
+ height:100%;
+ background:#fff;
+ animation:load 1.6s ease forwards;
+}
+@keyframes load{
+ from{width:0%;}
+ to{width:100%;}
+}
+</style>
+
+
+<style id="splash-anim-extra">
+#splash img{
+ animation:logoPop 1.2s ease;
+}
+@keyframes logoPop{
+ 0%{transform:scale(0.6);opacity:0;}
+ 60%{transform:scale(1.1);}
+ 100%{transform:scale(1);opacity:1;}
+}
+</style>
+
 </head>
 
 <body>
+
+<div id="splash">
+ <img src="https://canutoscorp.github.io/reporte/icono.png">
+ <h1>Lozano Painting</h1>
+ <p>Cargando sistema...</p>
+ <div id="loader"><div></div></div>
+</div>
+
 <div class="main-wrapper">
 <header>LOZANO PAINTING</header>
 
@@ -1407,7 +1477,7 @@ Mapa Ubicación Casas
       <h2>Información importante</h2>
       <div class="important-copy">
         DR HORTON: las claves más actuales son las siguientes:<br>
-        <span style="font-size:22px; color:#7c4f00;">0126, 2506, 0325, 1998, 1990, 3036, 0911, 0226, 1128 y 2603</span>
+        <span style="font-size:22px; color:#7c4f00;">0126, 2506, 0325, 1998, 1990, 3036, 0911 y 0226</span>
       </div>
     </div>
   </div>
