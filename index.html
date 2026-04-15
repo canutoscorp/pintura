@@ -1423,6 +1423,124 @@ textarea,
 }
 </style>
 
+
+<style id="share-location-style">
+.location-actions{
+    display:flex;
+    flex-wrap:wrap;
+    gap:10px;
+    justify-content:center;
+}
+.location-action-btn{
+    display:inline-flex;
+    align-items:center;
+    justify-content:center;
+    gap:8px;
+    padding:12px 16px;
+    border-radius:14px;
+    font-weight:800;
+    text-decoration:none;
+    border:none;
+    cursor:pointer;
+    box-shadow:0 8px 18px rgba(30,60,114,.14);
+    transition:transform .18s ease, filter .18s ease;
+}
+.location-action-btn:hover{
+    transform:translateY(-1px);
+    filter:brightness(1.03);
+    text-decoration:none;
+}
+.location-action-btn.maps{
+    background:linear-gradient(90deg,#1e3c72,#2a5298);
+    color:#fff !important;
+}
+.location-action-btn.share{
+    background:linear-gradient(90deg,#0f766e,#14b8a6);
+    color:#fff !important;
+}
+.share-overlay{
+    position:fixed;
+    inset:0;
+    background:rgba(15,23,42,.52);
+    display:none;
+    align-items:center;
+    justify-content:center;
+    padding:18px;
+    z-index:10000;
+}
+.share-overlay.active{ display:flex; }
+.share-modal{
+    width:min(100%,420px);
+    background:#fff;
+    border-radius:22px;
+    box-shadow:0 24px 48px rgba(15,23,42,.25);
+    border:1px solid #d9e4f3;
+    padding:22px 18px;
+    text-align:center;
+}
+.share-modal h3{
+    margin:0 0 10px;
+    color:#1e3c72;
+    font-size:22px;
+}
+.share-modal p{
+    margin:0 0 14px;
+    color:#5d7394;
+    line-height:1.45;
+}
+.share-options{
+    display:grid;
+    grid-template-columns:repeat(2,minmax(0,1fr));
+    gap:12px;
+    margin-top:12px;
+}
+.share-option-btn{
+    border:none;
+    border-radius:18px;
+    padding:16px 12px;
+    cursor:pointer;
+    font-weight:900;
+    background:linear-gradient(180deg,#ffffff,#f5f9ff);
+    border:1px solid #d9e4f3;
+    box-shadow:0 10px 18px rgba(15,35,70,.10);
+    color:#17325c;
+    display:flex;
+    flex-direction:column;
+    align-items:center;
+    justify-content:center;
+    gap:10px;
+}
+.share-option-btn:hover{ transform:translateY(-1px); }
+.share-icon{
+    width:54px;
+    height:54px;
+    border-radius:18px;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    color:#fff;
+    font-size:26px;
+    box-shadow:0 10px 18px rgba(15,35,70,.16);
+}
+.share-icon.sms{ background:linear-gradient(135deg,#2563eb,#60a5fa); }
+.share-icon.wa{ background:linear-gradient(135deg,#16a34a,#25D366); }
+.share-close{
+    margin-top:14px;
+    border:none;
+    border-radius:14px;
+    padding:12px 16px;
+    background:#eef4ff;
+    color:#1e3c72;
+    font-weight:800;
+    cursor:pointer;
+}
+.share-mini-note{
+    margin-top:10px;
+    font-size:12px;
+    color:#7a8dac;
+}
+</style>
+
 </head>
 
 <body>
@@ -2037,10 +2155,15 @@ function seleccionarColoniaPorNombre(nombre){
     nombreColonia.style.display = "block";
     nombreColonia.innerText = colonia.nombre;
 
-    document.getElementById("ubicacion").innerHTML =
-    `<a href="${colonia.ubicacion}" target="_blank" rel="noopener noreferrer">Abrir en Google Maps</a>`;
+    
+document.getElementById("ubicacion").innerHTML =
+    `<div class="location-actions">
+        <a class="location-action-btn maps" href="${colonia.ubicacion}" target="_blank" rel="noopener noreferrer">📍 Abrir en Google Maps</a>
+        <button class="location-action-btn share" type="button" onclick='compartirUbicacionColonia(${JSON.stringify(colonia.nombre)}, ${JSON.stringify(colonia.ubicacion)})'>📤 Compartir Ubicación</button>
+    </div>`;
 
-    const listaCodigos = `<ul>${colonia.codigos.map(c=>`<li>${c}</li>`).join('')}</ul>`;
+const listaCodigos =
+ `<ul>${colonia.codigos.map(c=>`<li>${c}</li>`).join('')}</ul>`;
 
     document.getElementById("codigos").innerHTML = listaCodigos;
     document.getElementById("observacion").innerText = colonia.observacion;
@@ -2707,6 +2830,91 @@ window.addEventListener("load", () => {
 });
 </script>
 
+
+
+<div class="share-overlay" id="shareOverlay">
+  <div class="share-modal">
+    <h3>Dirección de la Colonia se ha copiado</h3>
+    <p>¿Deseas enviar por:</p>
+    <div class="share-options">
+      <button class="share-option-btn" id="sendSmsBtn" type="button">
+        <span class="share-icon sms">💬</span>
+        <span>Mensajes</span>
+      </button>
+      <button class="share-option-btn" id="sendWaBtn" type="button">
+        <span class="share-icon wa">🟢</span>
+        <span>WhatsApp</span>
+      </button>
+    </div>
+    <div class="share-mini-note">La dirección ya quedó copiada y también se abrirá la app seleccionada con el enlace preparado.</div>
+    <button class="share-close" id="shareCloseBtn" type="button">Cerrar</button>
+  </div>
+</div>
+
+
+<script id="share-location-script">
+(function(){
+  let ubicacionParaCompartir = '';
+  let nombreColoniaCompartir = '';
+
+  function copiarTexto(texto){
+    if (navigator.clipboard && navigator.clipboard.writeText) {
+      return navigator.clipboard.writeText(texto);
+    }
+    return new Promise((resolve, reject) => {
+      try{
+        const temp = document.createElement('textarea');
+        temp.value = texto;
+        document.body.appendChild(temp);
+        temp.select();
+        document.execCommand('copy');
+        document.body.removeChild(temp);
+        resolve();
+      }catch(e){
+        reject(e);
+      }
+    });
+  }
+
+  window.compartirUbicacionColonia = function(nombreColonia, ubicacion){
+    nombreColoniaCompartir = nombreColonia || '';
+    ubicacionParaCompartir = ubicacion || '';
+    copiarTexto(ubicacionParaCompartir).finally(() => {
+      const overlay = document.getElementById('shareOverlay');
+      if (overlay) overlay.classList.add('active');
+    });
+  };
+
+  const overlay = document.getElementById('shareOverlay');
+  const closeBtn = document.getElementById('shareCloseBtn');
+  const smsBtn = document.getElementById('sendSmsBtn');
+  const waBtn = document.getElementById('sendWaBtn');
+
+  if (closeBtn) {
+    closeBtn.addEventListener('click', () => overlay.classList.remove('active'));
+  }
+
+  if (overlay) {
+    overlay.addEventListener('click', (e) => {
+      if (e.target === overlay) overlay.classList.remove('active');
+    });
+  }
+
+  if (smsBtn) {
+    smsBtn.addEventListener('click', () => {
+      const mensaje = `Ubicación de la colonia ${nombreColoniaCompartir}: ${ubicacionParaCompartir}`;
+      window.location.href = `sms:?&body=${encodeURIComponent(mensaje)}`;
+    });
+  }
+
+  if (waBtn) {
+    waBtn.addEventListener('click', () => {
+      const mensaje = `Ubicación de la colonia ${nombreColoniaCompartir}: ${ubicacionParaCompartir}`;
+      window.open(`https://wa.me/?text=${encodeURIComponent(mensaje)}`, '_blank');
+    });
+  }
+})();
+</script>
 
 </body>
 </html>
