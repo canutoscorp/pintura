@@ -1377,12 +1377,28 @@ textarea,
 }
 </style>
 
+
+<style id="splash-extra-anim">
+#splash img{
+  animation:logoPop 1.2s ease, logoFloat 2.8s ease-in-out infinite;
+}
+@keyframes logoFloat{
+  0%{transform:translateY(0)}
+  50%{transform:translateY(-6px)}
+  100%{transform:translateY(0)}
+}
+/* subtle shine */
+#splash img::after{
+  content:"";
+}
+</style>
+
 </head>
 
 <body>
 
 <div id="splash">
- <img src="https://canutoscorp.github.io/reporte/icono.png">
+ <img src="https://canutoscorp.github.io/pintura/icono.png">
  <h1>Lozano Painting</h1>
  <p>Cargando sistema...</p>
  <div id="loader"><div></div></div>
