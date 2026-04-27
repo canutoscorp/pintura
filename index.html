@@ -1539,6 +1539,46 @@ textarea,
     font-size:12px;
     color:#7a8dac;
 }
+
+/* ===== Aviso un día antes de cumpleaños ===== */
+.birthday-tomorrow-banner{
+    display:none;
+    position:fixed;
+    left:16px;
+    right:16px;
+    top:18px;
+    max-width:760px;
+    margin:auto;
+    background:linear-gradient(135deg,#fff7cc,#ffd166,#f59e0b);
+    color:#5f3700;
+    padding:22px 18px;
+    border-radius:24px;
+    box-shadow:0 22px 44px rgba(120,70,0,.28);
+    z-index:10001;
+    text-align:center;
+    border:2px solid rgba(255,255,255,.75);
+    animation:tomorrowFlash .65s ease both, tomorrowGlow 1s ease-in-out infinite alternate;
+}
+.birthday-tomorrow-banner .spark{
+    display:block;
+    font-size:32px;
+    margin-bottom:6px;
+}
+.birthday-tomorrow-banner strong{
+    display:block;
+    font-size:24px;
+    margin-top:8px;
+}
+@keyframes tomorrowFlash{
+    0%{opacity:0; transform:translateY(-18px) scale(.94); filter:brightness(1.4);}
+    55%{opacity:1; transform:translateY(0) scale(1.04); filter:brightness(1.25);}
+    100%{opacity:1; transform:translateY(0) scale(1); filter:brightness(1);}
+}
+@keyframes tomorrowGlow{
+    from{box-shadow:0 18px 38px rgba(245,158,11,.32), 0 0 0 rgba(255,255,255,0);}
+    to{box-shadow:0 24px 52px rgba(245,158,11,.48), 0 0 28px rgba(255,255,255,.95);}
+}
+
 </style>
 
 </head>
@@ -2413,6 +2453,29 @@ function lanzarEfectosCumple(){
   }
 }
 
+function lanzarAvisoCumpleManana(){
+  const hoy = new Date();
+  const manana = new Date(hoy);
+  manana.setDate(hoy.getDate() + 1);
+
+  const cumpleanerosManana = personasCumple.filter(p =>
+    p.dia === manana.getDate() && p.mes === (manana.getMonth() + 1)
+  );
+
+  if(!cumpleanerosManana.length) return;
+
+  const banner = document.getElementById("birthdayTomorrowBanner");
+  const namesEl = document.getElementById("birthdayTomorrowNames");
+  if(!banner || !namesEl) return;
+
+  namesEl.textContent = cumpleanerosManana.map(p => p.nombre).join(", ");
+  banner.style.display = "block";
+
+  setTimeout(() => {
+    banner.style.display = "none";
+  }, 3000);
+}
+
 const backToTopBtn = document.getElementById("backToTop");
 if(backToTopBtn){
   backToTopBtn.addEventListener("click", () => {
@@ -2422,6 +2485,7 @@ if(backToTopBtn){
 
 renderCumplesDelMes();
 lanzarEfectosCumple();
+lanzarAvisoCumpleManana();
 
 </script>
 
@@ -2449,6 +2513,12 @@ lanzarEfectosCumple();
 <div class="birthday-today-banner" id="birthdayTodayBanner">
   <div style="font-size:18px; font-weight:700;">Felicidades a este día a:</div>
   <strong id="birthdayTodayNames"></strong>
+</div>
+
+<div class="birthday-tomorrow-banner" id="birthdayTomorrowBanner">
+  <span class="spark">✨🎂🎉</span>
+  <div style="font-size:18px; font-weight:900;">El día de mañana alguien cumple años</div>
+  <strong id="birthdayTomorrowNames"></strong>
 </div>
 
 <button class="back-to-top" id="backToTop" title="Ir arriba">↑</button>
@@ -2524,7 +2594,12 @@ lanzarEfectosCumple();
             sherwinLinkWrap.innerHTML = '';
             return;
         }
-        sherwinLinkWrap.innerHTML = `<a class="sherwin-link-btn" href="${url}" target="_blank" rel="noopener noreferrer">📍 Abrir ubicación de ${nombre}</a>`;
+        sherwinLinkWrap.innerHTML = `
+          <div class="location-actions">
+            <a class="sherwin-link-btn" href="${url}" target="_blank" rel="noopener noreferrer">📍 Abrir ubicación de ${nombre}</a>
+            <button class="location-action-btn share" type="button" onclick='compartirUbicacionTienda(${JSON.stringify(nombre)}, ${JSON.stringify(url)})'>📤 Compartir Ubicación</button>
+          </div>
+        `;
     });
 })();
 </script>
@@ -2848,8 +2923,8 @@ window.addEventListener("load", () => {
 
 <div class="share-overlay" id="shareOverlay">
   <div class="share-modal">
-    <h3>Dirección de la Colonia se ha copiado</h3>
-    <p>¿Deseas enviar por:</p>
+    <h3 id="shareModalTitle">Ubicación copiada</h3>
+    <p id="shareModalText">¿Deseas enviar por:</p>
     <div class="share-options">
       <button class="share-option-btn" id="sendSmsBtn" type="button">
         <span class="share-icon sms">💬</span>
@@ -2870,6 +2945,7 @@ window.addEventListener("load", () => {
 (function(){
   let ubicacionParaCompartir = '';
   let nombreColoniaCompartir = '';
+  let tipoUbicacionCompartir = 'colonia';
 
   function copiarTexto(texto){
     if (navigator.clipboard && navigator.clipboard.writeText) {
@@ -2890,13 +2966,35 @@ window.addEventListener("load", () => {
     });
   }
 
-  window.compartirUbicacionColonia = function(nombreColonia, ubicacion){
-    nombreColoniaCompartir = nombreColonia || '';
+  function abrirModalCompartir(nombre, ubicacion, tipo){
+    nombreColoniaCompartir = nombre || '';
     ubicacionParaCompartir = ubicacion || '';
+    tipoUbicacionCompartir = tipo || 'ubicacion';
+
+    const title = document.getElementById('shareModalTitle');
+    const text = document.getElementById('shareModalText');
+
+    if(title){
+      title.textContent = tipoUbicacionCompartir === 'tienda'
+        ? 'Ubicación de la tienda se ha copiado'
+        : 'Dirección de la colonia se ha copiado';
+    }
+    if(text){
+      text.textContent = '¿Deseas enviar por:';
+    }
+
     copiarTexto(ubicacionParaCompartir).finally(() => {
       const overlay = document.getElementById('shareOverlay');
       if (overlay) overlay.classList.add('active');
     });
+  }
+
+  window.compartirUbicacionColonia = function(nombreColonia, ubicacion){
+    abrirModalCompartir(nombreColonia, ubicacion, 'colonia');
+  };
+
+  window.compartirUbicacionTienda = function(nombreTienda, ubicacion){
+    abrirModalCompartir(nombreTienda, ubicacion, 'tienda');
   };
 
   const overlay = document.getElementById('shareOverlay');
@@ -2916,14 +3014,16 @@ window.addEventListener("load", () => {
 
   if (smsBtn) {
     smsBtn.addEventListener('click', () => {
-      const mensaje = `Ubicación de la colonia ${nombreColoniaCompartir}: ${ubicacionParaCompartir}`;
+      const etiqueta = tipoUbicacionCompartir === 'tienda' ? 'tienda' : 'colonia';
+      const mensaje = `Ubicación de la ${etiqueta} ${nombreColoniaCompartir}: ${ubicacionParaCompartir}`;
       window.location.href = `sms:?&body=${encodeURIComponent(mensaje)}`;
     });
   }
 
   if (waBtn) {
     waBtn.addEventListener('click', () => {
-      const mensaje = `Ubicación de la colonia ${nombreColoniaCompartir}: ${ubicacionParaCompartir}`;
+      const etiqueta = tipoUbicacionCompartir === 'tienda' ? 'tienda' : 'colonia';
+      const mensaje = `Ubicación de la ${etiqueta} ${nombreColoniaCompartir}: ${ubicacionParaCompartir}`;
       window.open(`https://wa.me/?text=${encodeURIComponent(mensaje)}`, '_blank');
     });
   }
