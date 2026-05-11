@@ -1581,15 +1581,204 @@ textarea,
 
 </style>
 
+
+<style id="birthday-start-center-style">
+#birthdayStartBanner{
+    display:none;
+    position:fixed;
+    inset:0;
+    z-index:10002;
+    align-items:center;
+    justify-content:center;
+    padding:18px;
+    background:rgba(15,23,42,.18);
+    pointer-events:none;
+}
+#birthdayStartBanner .birthday-start-card{
+    width:min(92vw,560px);
+    background:linear-gradient(135deg,#1e3c72,#2a5298 60%,#0ea5e9);
+    color:#fff;
+    border-radius:28px;
+    padding:28px 22px;
+    text-align:center;
+    box-shadow:0 26px 56px rgba(15,23,42,.32);
+    border:2px solid rgba(255,255,255,.32);
+    animation:birthdayStartPop .45s ease both, birthdayStartGlow .9s ease-in-out infinite alternate;
+    position:relative;
+    overflow:hidden;
+}
+#birthdayStartBanner .birthday-start-card::before{
+    content:"";
+    position:absolute;
+    top:-40%;
+    left:-70%;
+    width:45%;
+    height:180%;
+    background:linear-gradient(90deg,transparent,rgba(255,255,255,.55),transparent);
+    transform:rotate(22deg);
+    animation:birthdayStartShine 1.4s ease-in-out infinite;
+}
+#birthdayStartBanner .birthday-start-icons{
+    font-size:34px;
+    margin-bottom:8px;
+}
+#birthdayStartBanner .birthday-start-title{
+    font-size:20px;
+    font-weight:900;
+    letter-spacing:.3px;
+    position:relative;
+    z-index:1;
+}
+#birthdayStartBanner strong{
+    display:block;
+    margin-top:10px;
+    font-size:clamp(26px,6vw,42px);
+    line-height:1.1;
+    position:relative;
+    z-index:1;
+}
+@keyframes birthdayStartPop{
+    from{opacity:0; transform:scale(.88) translateY(12px);}
+    to{opacity:1; transform:scale(1) translateY(0);}
+}
+@keyframes birthdayStartGlow{
+    from{box-shadow:0 22px 48px rgba(30,60,114,.32),0 0 0 rgba(125,211,252,0);}
+    to{box-shadow:0 30px 66px rgba(30,60,114,.45),0 0 26px rgba(125,211,252,.95);}
+}
+@keyframes birthdayStartShine{
+    0%{left:-70%;}
+    55%{left:130%;}
+    100%{left:130%;}
+}
+</style>
+
+<style>
+
+/* ===== Aviso de cumpleaños al iniciar con confeti ===== */
+.start-birthday-overlay{
+    display:none;
+    position:fixed;
+    inset:0;
+    z-index:10002;
+    align-items:center;
+    justify-content:center;
+    background:rgba(15,23,42,.18);
+    backdrop-filter:blur(3px);
+    pointer-events:none;
+}
+.start-birthday-card{
+    width:min(92%,560px);
+    background:
+      radial-gradient(circle at top right, rgba(255,255,255,.55), transparent 34%),
+      linear-gradient(135deg,#1e3c72,#2a5298);
+    color:#fff;
+    padding:28px 22px;
+    border-radius:28px;
+    box-shadow:0 26px 54px rgba(15,23,42,.35);
+    border:2px solid rgba(255,255,255,.42);
+    text-align:center;
+    animation:startBirthdayPop .45s ease both, startBirthdayGlow 1s ease-in-out infinite alternate;
+    position:relative;
+    overflow:hidden;
+}
+.start-birthday-card::before{
+    content:"";
+    position:absolute;
+    inset:-30%;
+    background:linear-gradient(120deg,transparent,rgba(255,255,255,.25),transparent);
+    transform:translateX(-90%) rotate(12deg);
+    animation:startBirthdayShine 1.8s ease-in-out infinite;
+}
+.start-birthday-emojis{
+    font-size:38px;
+    line-height:1;
+    margin-bottom:10px;
+    position:relative;
+    z-index:1;
+}
+.start-birthday-title{
+    font-size:20px;
+    font-weight:900;
+    letter-spacing:.2px;
+    position:relative;
+    z-index:1;
+}
+.start-birthday-names{
+    display:block;
+    margin-top:12px;
+    font-size:clamp(28px,7vw,46px);
+    font-weight:1000;
+    color:#fff7cc;
+    text-shadow:0 4px 12px rgba(0,0,0,.28);
+    position:relative;
+    z-index:1;
+}
+.start-birthday-confetti{
+    position:fixed;
+    top:-16px;
+    width:10px;
+    height:16px;
+    border-radius:4px;
+    z-index:10003;
+    pointer-events:none;
+    animation:startConfettiFall linear forwards;
+}
+.start-birthday-float{
+    position:fixed;
+    z-index:10003;
+    pointer-events:none;
+    font-size:28px;
+    animation:startEmojiFloat linear forwards;
+}
+@keyframes startBirthdayPop{
+    from{opacity:0;transform:scale(.88) translateY(16px);}
+    to{opacity:1;transform:scale(1) translateY(0);}
+}
+@keyframes startBirthdayGlow{
+    from{box-shadow:0 22px 46px rgba(30,60,114,.34),0 0 0 rgba(255,255,255,0);}
+    to{box-shadow:0 28px 60px rgba(30,60,114,.42),0 0 34px rgba(255,255,255,.85);}
+}
+@keyframes startBirthdayShine{
+    0%{transform:translateX(-90%) rotate(12deg);}
+    55%{transform:translateX(90%) rotate(12deg);}
+    100%{transform:translateX(90%) rotate(12deg);}
+}
+@keyframes startConfettiFall{
+    0%{transform:translateY(0) rotate(0deg);opacity:1;}
+    100%{transform:translateY(110vh) rotate(760deg);opacity:0;}
+}
+@keyframes startEmojiFloat{
+    0%{transform:translateY(0) rotate(0deg);opacity:1;}
+    100%{transform:translateY(-120vh) rotate(320deg);opacity:0;}
+}
+
+</style>
 </head>
 
 <body>
+
+<div class="start-birthday-overlay" id="startBirthdayOverlay">
+  <div class="start-birthday-card">
+    <div class="start-birthday-emojis">🎉 🎂 🎈 ✨</div>
+    <div class="start-birthday-title">Felicidades en este día a:</div>
+    <strong class="start-birthday-names" id="startBirthdayNames"></strong>
+  </div>
+</div>
+
 
 <div id="splash">
  <div class="logo-wrap"><img src="https://canutoscorp.github.io/pintura/icono.png"></div>
  <h1>Lozano Painting</h1>
  <p>Cargando sistema...</p>
  <div id="loader"><div></div></div>
+</div>
+
+<div id="birthdayStartBanner">
+  <div class="birthday-start-card">
+    <div class="birthday-start-icons">🎂 ✨ 🎉</div>
+    <div class="birthday-start-title">Felicidades en este día a:</div>
+    <strong id="birthdayStartNames"></strong>
+  </div>
 </div>
 
 <div class="main-wrapper">
@@ -2462,6 +2651,31 @@ function lanzarEfectosCumple(){
   }
 }
 
+
+function lanzarMensajeCumpleInicio(){
+  const hoy = new Date();
+  const cumpleanerosHoy = personasCumple.filter(p =>
+    p.dia === hoy.getDate() && p.mes === (hoy.getMonth() + 1)
+  );
+
+  if(!cumpleanerosHoy.length) return;
+
+  const banner = document.getElementById("birthdayStartBanner");
+  const namesEl = document.getElementById("birthdayStartNames");
+  if(!banner || !namesEl) return;
+
+  namesEl.textContent = cumpleanerosHoy.map(p => p.nombre).join(", ");
+  banner.style.display = "flex";
+
+  try{
+    if(navigator.vibrate){ navigator.vibrate([30, 25, 40]); }
+  }catch(e){}
+
+  setTimeout(() => {
+    banner.style.display = "none";
+  }, 3000);
+}
+
 function lanzarAvisoCumpleManana(){
   const hoy = new Date();
   const manana = new Date(hoy);
@@ -2493,7 +2707,6 @@ if(backToTopBtn){
 }
 
 renderCumplesDelMes();
-lanzarEfectosCumple();
 lanzarAvisoCumpleManana();
 
 </script>
@@ -2902,6 +3115,14 @@ window.addEventListener("load", () => {
     }catch(e){}
   }
 
+  function mostrarCumpleDespuesSplash(){
+    try{
+      if (typeof lanzarMensajeCumpleInicio === 'function') {
+        lanzarMensajeCumpleInicio();
+      }
+    }catch(e){}
+  }
+
   function hideSplash(delayMs) {
     localStorage.setItem("splashDate", today);
     vibrateSoft();
@@ -2910,6 +3131,7 @@ window.addEventListener("load", () => {
       splash.style.opacity = "0";
       setTimeout(() => {
         if (splash && splash.parentNode) splash.parentNode.removeChild(splash);
+        mostrarCumpleDespuesSplash();
       }, 400);
     }, delayMs);
   }
@@ -2922,6 +3144,7 @@ window.addEventListener("load", () => {
 
   if (lastShown === today) {
     splash.remove();
+    mostrarCumpleDespuesSplash();
     return;
   }
 
@@ -3036,6 +3259,97 @@ window.addEventListener("load", () => {
       const mensaje = `Ubicación de la ${etiqueta} ${nombreColoniaCompartir}: ${ubicacionParaCompartir}`;
       window.open(`https://wa.me/?text=${encodeURIComponent(mensaje)}`, '_blank');
     });
+  }
+})();
+</script>
+
+
+<script id="start-birthday-confetti-script">
+(function(){
+  let mensajeInicioMostrado = false;
+  let efectosOriginalesActivados = false;
+
+  function listaCumples(){
+    try{
+      if (Array.isArray(window.personasCumple)) return window.personasCumple;
+      if (typeof personasCumple !== "undefined" && Array.isArray(personasCumple)) return personasCumple;
+    }catch(e){}
+    return [];
+  }
+
+  function obtenerCumpleanerosDeHoy(){
+    const lista = listaCumples();
+    const hoy = new Date();
+    const dia = hoy.getDate();
+    const mes = hoy.getMonth() + 1;
+
+    return lista.filter(p => Number(p.dia) === dia && Number(p.mes) === mes);
+  }
+
+  function activarEfectosOriginalesCumple(){
+    if(efectosOriginalesActivados) return;
+    efectosOriginalesActivados = true;
+
+    try{
+      if(typeof lanzarEfectosCumple === "function"){
+        lanzarEfectosCumple();
+      }
+    }catch(e){}
+  }
+
+  window.mostrarMensajeCumpleInicio = function(){
+    if(mensajeInicioMostrado) return;
+
+    const cumpleaneros = obtenerCumpleanerosDeHoy();
+    if(!cumpleaneros.length) return;
+
+    mensajeInicioMostrado = true;
+
+    const overlay = document.getElementById("startBirthdayOverlay");
+    const names = document.getElementById("startBirthdayNames");
+    if(!overlay || !names) return;
+
+    names.textContent = cumpleaneros.map(p => p.nombre).join(", ");
+    overlay.style.display = "flex";
+
+    setTimeout(() => {
+      overlay.style.display = "none";
+    }, 3000);
+  };
+
+  function esperarSplashYMostrar(){
+    const intentar = () => {
+      const splash = document.getElementById("splash");
+
+      if(!splash || !document.body.contains(splash)){
+        activarEfectosOriginalesCumple();
+        setTimeout(window.mostrarMensajeCumpleInicio, 250);
+        return;
+      }
+
+      const visible = getComputedStyle(splash).display !== "none" && splash.style.opacity !== "0";
+      if(!visible){
+        activarEfectosOriginalesCumple();
+        setTimeout(window.mostrarMensajeCumpleInicio, 250);
+        return;
+      }
+
+      setTimeout(intentar, 180);
+    };
+
+    intentar();
+
+    // Respaldo por si el splash no reporta bien su estado.
+    setTimeout(function(){
+      activarEfectosOriginalesCumple();
+      window.mostrarMensajeCumpleInicio();
+    }, 5200);
+  }
+
+  if(document.readyState === "complete"){
+    esperarSplashYMostrar();
+  }else{
+    window.addEventListener("load", esperarSplashYMostrar);
   }
 })();
 </script>
