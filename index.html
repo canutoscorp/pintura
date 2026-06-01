@@ -570,22 +570,7 @@ a:hover{
     0%{transform:translateY(0) rotate(0deg); opacity:1;}
     100%{transform:translateY(120vh) rotate(720deg); opacity:0;}
 }
-.back-to-top{
-    position:fixed;
-    right:18px;
-    bottom:18px;
-    width:52px;
-    height:52px;
-    border:none;
-    border-radius:999px;
-    background:linear-gradient(135deg,#1e3c72,#2a5298);
-    color:#fff;
-    font-size:24px;
-    font-weight:800;
-    box-shadow:0 14px 26px rgba(30,60,114,.28);
-    cursor:pointer;
-    z-index:9997;
-}
+
 .back-to-top:hover{ transform:translateY(-2px); }
 @media(max-width:700px){
     .quick-links{ grid-template-columns:1fr; }
@@ -596,7 +581,7 @@ a:hover{
 }
 
 
-/* ===== Apartados en la misma pÃ¡gina ===== */
+/* ===== Apartados en la misma página ===== */
 .top-tabs{
     display:flex;
     gap:10px;
@@ -918,10 +903,10 @@ body.dark-mode .sherwin-select{
 
 
 <style id="tab-animation-fix">
-/* CumpleaÃ±os solo en Buscar */
+/* Cumpleaños solo en Buscar */
 
 
-/* AnimaciÃ³n tipo app */
+/* Animación tipo app */
 .seccion{
     display:none;
     width:100%;
@@ -1225,9 +1210,7 @@ textarea,
 .material-shell button,
 .nearby-btn,
 .clear-btn,
-.back-to-top{
-  transition:transform .18s ease, box-shadow .18s ease, filter .18s ease, background .22s ease !important;
-}
+
 .top-tab-btn:active,
 .action-btn:active,
 .registro-btn:active,
@@ -1238,14 +1221,7 @@ textarea,
   transform:scale(.98);
 }
 
-.back-to-top{
-  right:16px !important;
-  bottom:108px !important;
-  width:58px !important;
-  height:58px !important;
-  border-radius:18px !important;
-  box-shadow:0 14px 28px rgba(30,60,114,.24) !important;
-}
+
 
 .action-btn,
 .registro-btn,
@@ -1540,7 +1516,7 @@ textarea,
     color:#7a8dac;
 }
 
-/* ===== Aviso un dÃ­a antes de cumpleaÃ±os ===== */
+/* ===== Aviso un día antes de cumpleaños ===== */
 .birthday-tomorrow-banner{
     display:none;
     position:fixed;
@@ -1654,7 +1630,7 @@ textarea,
 
 <style>
 
-/* ===== Aviso de cumpleaÃ±os al iniciar con confeti ===== */
+/* ===== Aviso de cumpleaños al iniciar con confeti ===== */
 .start-birthday-overlay{
     display:none;
     position:fixed;
@@ -1767,14 +1743,269 @@ textarea,
 <link rel="apple-touch-icon" sizes="180x180" href="https://canutoscorp.github.io/pintura/icono.png">
 <link rel="manifest" id="appManifest">
 
+
+<style id="birthday-final-fix-style">
+#cumpleanos .birthday-card,
+#cumpleanos #birthdaySection,
+#birthdaySection{
+    display:block !important;
+}
+#cumpleanos .birthday-list,
+#birthdayList{
+    display:grid !important;
+    visibility:visible !important;
+    opacity:1 !important;
+}
+.start-birthday-overlay{
+    display:none;
+    position:fixed;
+    inset:0;
+    z-index:10002;
+    align-items:center;
+    justify-content:center;
+    background:rgba(15,23,42,.18);
+    backdrop-filter:blur(3px);
+    pointer-events:none;
+}
+.start-birthday-card{
+    width:min(92%,560px);
+    background:radial-gradient(circle at top right, rgba(255,255,255,.55), transparent 34%),linear-gradient(135deg,#1e3c72,#2a5298);
+    color:#fff;
+    padding:28px 22px;
+    border-radius:28px;
+    box-shadow:0 26px 54px rgba(15,23,42,.35);
+    border:2px solid rgba(255,255,255,.42);
+    text-align:center;
+    animation:startBirthdayPop .45s ease both, startBirthdayGlow 1s ease-in-out infinite alternate;
+    position:relative;
+    overflow:hidden;
+}
+.start-birthday-emojis{font-size:38px;line-height:1;margin-bottom:10px;position:relative;z-index:1;}
+.start-birthday-title{font-size:20px;font-weight:900;position:relative;z-index:1;}
+.start-birthday-names{display:block;margin-top:12px;font-size:clamp(28px,7vw,46px);font-weight:1000;color:#fff7cc;text-shadow:0 4px 12px rgba(0,0,0,.28);position:relative;z-index:1;}
+@keyframes startBirthdayPop{from{opacity:0;transform:scale(.88) translateY(16px);}to{opacity:1;transform:scale(1) translateY(0);}}
+@keyframes startBirthdayGlow{from{box-shadow:0 22px 46px rgba(30,60,114,.34),0 0 0 rgba(255,255,255,0);}to{box-shadow:0 28px 60px rgba(30,60,114,.42),0 0 34px rgba(255,255,255,.85);}}
+</style>
+
+
+<style id="auto-dark-mode-style">
+/* ===== MODO OSCURO AUTOMÁTICO 7PM - 7AM ===== */
+body.auto-dark-mode{
+    background:
+      radial-gradient(circle at top left, rgba(59,130,246,.16), transparent 28%),
+      radial-gradient(circle at top right, rgba(14,165,233,.12), transparent 24%),
+      linear-gradient(180deg,#07111f,#0f172a 55%,#111827) !important;
+    color:#e5eefc !important;
+}
+
+body.auto-dark-mode header{
+    background:linear-gradient(135deg,#020617,#1e3a8a,#0f766e) !important;
+    color:#ffffff !important;
+    box-shadow:0 14px 34px rgba(0,0,0,.46) !important;
+}
+
+body.auto-dark-mode label,
+body.auto-dark-mode .section-title,
+body.auto-dark-mode .sherwin-title,
+body.auto-dark-mode .registro-shell h2,
+body.auto-dark-mode .material-shell h2,
+body.auto-dark-mode .quick-card h3,
+body.auto-dark-mode .nombre-colonia,
+body.auto-dark-mode h2,
+body.auto-dark-mode h3{
+    color:#dbeafe !important;
+    text-shadow:0 1px 0 rgba(0,0,0,.22);
+}
+
+body.auto-dark-mode .section-subtitle,
+body.auto-dark-mode .app-hint,
+body.auto-dark-mode .nearby-note,
+body.auto-dark-mode .sherwin-text,
+body.auto-dark-mode p,
+body.auto-dark-mode .zoom-help,
+body.auto-dark-mode .mensaje-adicional{
+    color:#b6c6dc !important;
+}
+
+body.auto-dark-mode .search-shell,
+body.auto-dark-mode .section-card,
+body.auto-dark-mode .quick-card,
+body.auto-dark-mode .sherwin-section,
+body.auto-dark-mode .sherwin-panel,
+body.auto-dark-mode .registro-shell,
+body.auto-dark-mode .material-shell,
+body.auto-dark-mode .material-container,
+body.auto-dark-mode .nombre-colonia,
+body.auto-dark-mode table,
+body.auto-dark-mode .dropdown,
+body.auto-dark-mode .share-modal{
+    background:linear-gradient(180deg,rgba(15,23,42,.96),rgba(17,24,39,.94)) !important;
+    border-color:#334155 !important;
+    box-shadow:0 16px 38px rgba(0,0,0,.42) !important;
+}
+
+body.auto-dark-mode input,
+body.auto-dark-mode select,
+body.auto-dark-mode textarea,
+body.auto-dark-mode .sherwin-select,
+body.auto-dark-mode .registro-shell input,
+body.auto-dark-mode .material-shell input,
+body.auto-dark-mode .registro-shell textarea{
+    background:#020617 !important;
+    color:#f8fafc !important;
+    border-color:#475569 !important;
+    box-shadow:0 4px 14px rgba(0,0,0,.25) !important;
+}
+
+body.auto-dark-mode input::placeholder,
+body.auto-dark-mode textarea::placeholder{
+    color:#94a3b8 !important;
+}
+
+body.auto-dark-mode input:focus,
+body.auto-dark-mode select:focus,
+body.auto-dark-mode textarea:focus,
+body.auto-dark-mode .sherwin-select:focus{
+    border-color:#38bdf8 !important;
+    box-shadow:0 0 0 4px rgba(56,189,248,.16), 0 8px 18px rgba(0,0,0,.32) !important;
+}
+
+body.auto-dark-mode .dropdown-item{
+    background:#020617 !important;
+    color:#e5eefc !important;
+    border-color:#1e293b !important;
+}
+
+body.auto-dark-mode .dropdown-item:hover,
+body.auto-dark-mode .dropdown-item:active,
+body.auto-dark-mode .dropdown-item.activa{
+    background:#1e3a8a !important;
+    color:#ffffff !important;
+}
+
+body.auto-dark-mode .dropdown-vacio{
+    color:#cbd5e1 !important;
+    background:#020617 !important;
+}
+
+body.auto-dark-mode th{
+    background:linear-gradient(135deg,#1e3a8a,#0f766e) !important;
+    color:#ffffff !important;
+}
+
+body.auto-dark-mode td{
+    background:#0f172a !important;
+    color:#e5eefc !important;
+    border-color:#334155 !important;
+}
+
+body.auto-dark-mode .mapa-celda,
+body.auto-dark-mode .image-stage{
+    background:#020617 !important;
+    border-color:#334155 !important;
+    color:#e5eefc !important;
+}
+
+body.auto-dark-mode a{
+    color:#93c5fd !important;
+}
+
+body.auto-dark-mode .top-tabs{
+    background:rgba(2,6,23,.9) !important;
+    border-color:#334155 !important;
+    box-shadow:0 18px 36px rgba(0,0,0,.48) !important;
+}
+
+body.auto-dark-mode .top-tab-btn{
+    color:#cbd5e1 !important;
+    background:transparent !important;
+}
+
+body.auto-dark-mode .top-tab-btn.active{
+    background:linear-gradient(135deg,#1e3a8a,#0f766e) !important;
+    color:#ffffff !important;
+    box-shadow:0 10px 22px rgba(14,165,233,.2) !important;
+}
+
+body.auto-dark-mode .birthday-list li,
+body.auto-dark-mode .lista,
+body.auto-dark-mode .important-box,
+body.auto-dark-mode .nearby-btn,
+body.auto-dark-mode .recent-chip{
+    background:#111827 !important;
+    color:#e5eefc !important;
+    border-color:#334155 !important;
+}
+
+body.auto-dark-mode .important-box h2,
+body.auto-dark-mode .important-copy,
+body.auto-dark-mode .birthday-list .day{
+    color:#fde68a !important;
+}
+
+body.auto-dark-mode .important-highlight{
+    background:#fde68a !important;
+    color:#422006 !important;
+}
+
+body.auto-dark-mode .producto{
+    background:linear-gradient(135deg,#1e3a8a,#0284c7) !important;
+    color:#ffffff !important;
+}
+
+body.auto-dark-mode .clear-btn,
+body.auto-dark-mode .share-close{
+    background:#1e293b !important;
+    color:#dbeafe !important;
+}
+
+body.auto-dark-mode .share-option-btn{
+    background:#111827 !important;
+    color:#e5eefc !important;
+    border-color:#334155 !important;
+}
+
+body.auto-dark-mode .visitor-badge,
+body.auto-dark-mode img{
+    filter:none;
+}
+
+body.auto-dark-mode .dark-mode-pill{
+    background:rgba(15,23,42,.85) !important;
+    color:#dbeafe !important;
+    border-color:#334155 !important;
+}
+
+.dark-mode-pill{
+    position:fixed;
+    left:14px;
+    top:14px;
+    z-index:9998;
+    background:rgba(255,255,255,.86);
+    color:#1e3c72;
+    border:1px solid #d8e4f4;
+    border-radius:999px;
+    padding:7px 11px;
+    font-size:12px;
+    font-weight:900;
+    box-shadow:0 10px 22px rgba(15,35,70,.14);
+    backdrop-filter:blur(10px);
+    display:none;
+}
+
+.dark-mode-pill.visible{
+    display:inline-flex;
+}
+</style>
+
 </head>
 
 <body>
 
 <div class="start-birthday-overlay" id="startBirthdayOverlay">
   <div class="start-birthday-card">
-    <div class="start-birthday-emojis">ðŸŽ‰ ðŸŽ‚ ðŸŽˆ âœ¨</div>
-    <div class="start-birthday-title">Felicidades en este dÃ­a a:</div>
+    <div class="start-birthday-emojis">🎉 🎂 🎈 ✨</div>
+    <div class="start-birthday-title">Felicidades en este día a:</div>
     <strong class="start-birthday-names" id="startBirthdayNames"></strong>
   </div>
 </div>
@@ -1789,8 +2020,8 @@ textarea,
 
 <div id="birthdayStartBanner">
   <div class="birthday-start-card">
-    <div class="birthday-start-icons">ðŸŽ‚ âœ¨ ðŸŽ‰</div>
-    <div class="birthday-start-title">Felicidades en este dÃ­a a:</div>
+    <div class="birthday-start-icons">🎂 ✨ 🎉</div>
+    <div class="birthday-start-title">Felicidades en este día a:</div>
     <strong id="birthdayStartNames"></strong>
   </div>
 </div>
@@ -1803,11 +2034,11 @@ textarea,
 
 
 <div class="top-tabs">
-    <button class="top-tab-btn active" data-seccion="buscar">ðŸ”Ž<br>BUSCAR</button>
-    <button class="top-tab-btn" data-seccion="cumpleanos">ðŸŽ‚<br>CUMPLEAÃ‘OS</button>
-    <button class="top-tab-btn" data-seccion="sherwin">ðŸŽ¨<br>SHERWIN-WILLIAMS</button>
-    <button class="top-tab-btn" data-seccion="registro">ðŸ“<br>REGISTRO</button>
-    <button class="top-tab-btn" data-seccion="material">ðŸ“¦<br>MATERIAL</button>
+    <button class="top-tab-btn active" data-seccion="buscar">🔎<br>BUSCAR</button>
+    <button class="top-tab-btn" data-seccion="cumpleanos">🎂<br>CUMPLEAÑOS</button>
+    <button class="top-tab-btn" data-seccion="sherwin">🎨<br>SHERWIN-WILLIAMS</button>
+    <button class="top-tab-btn" data-seccion="registro">📝<br>REGISTRO</button>
+    <button class="top-tab-btn" data-seccion="material">📦<br>MATERIAL</button>
 </div>
 
 <div id="buscar" class="seccion activa">
@@ -1816,15 +2047,15 @@ textarea,
 <label for="coloniaInput">Buscar o Seleccionar Colonia</label>
 <div class="buscador-wrapper">
     <div class="search-shell">
-        <span class="search-icon">ðŸ”Ž</span>
+        <span class="search-icon">🔎</span>
         <input id="coloniaInput" placeholder="Busca una colonia..." autocomplete="off" enterkeyhint="search">
-        <button id="clearBtn" class="clear-btn" type="button" aria-label="Limpiar bÃºsqueda">Ã—</button>
+        <button id="clearBtn" class="clear-btn" type="button" aria-label="Limpiar búsqueda">×</button>
     </div>
     <div id="opcionesColonias" class="dropdown"></div>
 </div>
-<div class="app-hint">Toca el buscador para abrir opciones. Al elegir una colonia, el campo se limpia para la siguiente bÃºsqueda.</div>
+<div class="app-hint">Toca el buscador para abrir opciones. Al elegir una colonia, el campo se limpia para la siguiente búsqueda.</div>
 <div id="recentPanel" class="recent-panel" style="max-width:560px;margin:15px auto 0;text-align:left;display:none;">
-    <div style="font-weight:bold;margin-bottom:8px;">ðŸ•˜ Colonias recientes</div>
+    <div style="font-weight:bold;margin-bottom:8px;">🕘 Colonias recientes</div>
     <div id="recentChips" style="display:flex;flex-wrap:wrap;gap:8px;"></div>
 </div>
 
@@ -1834,24 +2065,24 @@ textarea,
 <table id="tablaDatos" style="display:none;">
 <thead>
 <tr>
-<th>UbicaciÃ³n</th>
-<th>CÃ³digos</th>
-<th>ObservaciÃ³n</th>
+<th>Ubicación</th>
+<th>Códigos</th>
+<th>Observación</th>
 </tr>
 </thead>
 <tbody>
 <tr>
-<td id="ubicacion" data-label="UbicaciÃ³n"></td>
-<td id="codigos" data-label="CÃ³digos"></td>
-<td id="observacion" data-label="ObservaciÃ³n"></td>
+<td id="ubicacion" data-label="Ubicación"></td>
+<td id="codigos" data-label="Códigos"></td>
+<td id="observacion" data-label="Observación"></td>
 </tr>
 <tr>
 <td colspan="3" class="mapa-celda">
-Mapa UbicaciÃ³n Casas
+Mapa Ubicación Casas
 <div class="zoom-help">En celular puedes agrandar la imagen con dos dedos.</div>
 <div class="image-stage" id="imageStage">
     <div class="image-inner" id="imageInner">
-        <img id="mapaImagen" src="" alt="Mapa de ubicaciÃ³n">
+        <img id="mapaImagen" src="" alt="Mapa de ubicación">
     </div>
 </div>
 </td>
@@ -1863,7 +2094,7 @@ Mapa UbicaciÃ³n Casas
 
 <div class="section-card visit-card">
   <div class="section-body">
-    <h2 class="section-title">Visitas a la pÃ¡gina</h2>
+    <h2 class="section-title">Visitas a la página</h2>
     <p class="section-subtitle"></p>
     <div class="visitor-badge">
       <img src="https://visitor-badge.laobi.icu/badge?page_id=canutoscorp.pintura" alt="Visitas">
@@ -1879,11 +2110,11 @@ Mapa UbicaciÃ³n Casas
     <img class="important-top-image" src="https://media3.giphy.com/media/VQAWMJfKUfJvuyBWEn/giphy.gif?cid=790b7611ae100ab0231871fd1d34098be2c3bddcecf47801&rid=giphy.gif&ct=ts" alt="Aviso importante">
     <div class="important-box">
       <div style="text-align:center;">
-        <span class="important-highlight">ATENCIÃ“N ANTES DE EMPEZAR</span>
+        <span class="important-highlight">ATENCIÓN ANTES DE EMPEZAR</span>
       </div>
-      <h2>InformaciÃ³n importante</h2>
+      <h2>Información importante</h2>
       <div class="important-copy">
-        DR HORTON: las claves mÃ¡s actuales son las siguientes:<br>
+        DR HORTON: las claves más actuales son las siguientes:<br>
         <span style="font-size:22px; color:#7c4f00;">0126, 2506, 0325, 1998, 1990, 3036, 0911, 0226 y 0326</span>
       </div>
     </div>
@@ -2422,8 +2653,8 @@ function seleccionarColoniaPorNombre(nombre){
     
 document.getElementById("ubicacion").innerHTML =
     `<div class="location-actions">
-        <a class="location-action-btn maps" href="${colonia.ubicacion}" target="_blank" rel="noopener noreferrer">ðŸ“ Abrir en Google Maps</a>
-        <button class="location-action-btn share" type="button" onclick='compartirUbicacionColonia(${JSON.stringify(colonia.nombre)}, ${JSON.stringify(colonia.ubicacion)})'>ðŸ“¤ Compartir UbicaciÃ³n</button>
+        <a class="location-action-btn maps" href="${colonia.ubicacion}" target="_blank" rel="noopener noreferrer">📍 Abrir en Google Maps</a>
+        <button class="location-action-btn share" type="button" onclick='compartirUbicacionColonia(${JSON.stringify(colonia.nombre)}, ${JSON.stringify(colonia.ubicacion)})'>📤 Compartir Ubicación</button>
     </div>`;
 
 const listaCodigos =
@@ -2541,7 +2772,7 @@ window.addEventListener('resize', resetZoom);
 actualizarBotonLimpiar();
 renderRecientes();
 
-// abrir imagen en nueva pestaÃ±a al hacer clic
+// abrir imagen en nueva pestaña al hacer clic
 if (typeof mapaImagen !== 'undefined') {
     mapaImagen.style.cursor = 'pointer';
     mapaImagen.addEventListener('click', function(){
@@ -2596,7 +2827,7 @@ function renderCumplesDelMes(){
     .sort((a,b) => a.dia - b.dia);
 
   if(!filtradas.length){
-    list.innerHTML = '<li>No hay cumpleaÃ±os registrados este mes.</li>';
+    list.innerHTML = '<li>No hay cumpleaños registrados este mes.</li>';
     return;
   }
 
@@ -2627,8 +2858,8 @@ function lanzarEfectosCumple(){
     }, 3000);
   }
 
-  const globos = ['ðŸŽˆ','ðŸŽ‰','ðŸ¥³','ðŸŽŠ'];
-  const pasteles = ['ðŸŽ‚','ðŸ§'];
+  const globos = ['🎈','🎉','🥳','🎊'];
+  const pasteles = ['🎂','🧁'];
   const colores = ['#FF69B4','#87CEFA','#FFD700','#ADFF2F','#FFA07A','#DA70D6'];
 
   for (let i = 0; i < 30; i++) {
@@ -2713,6 +2944,809 @@ function lanzarAvisoCumpleManana(){
   }, 3000);
 }
 
+    window.scrollTo({ top: 0, behavior: "smooth" });
+  });
+}
+
+renderCumplesDelMes();
+lanzarAvisoCumpleManana();
+
+</script>
+<script id="busqueda-colonias-restaurada">
+const datosColonias = [
+{
+nombre:"Airway Oaks",
+ubicacion:"https://maps.app.goo.gl/dtX87he5Nh2EbH7u5?g_st=com.google.maps.preview.copy",
+codigos:["El intendente es el que abre la puerta, preveniar al llegar"],
+observacion:"ALABASTER paredes",
+mapa:"https://s3.amazonaws.com/holidaybuilders.com/wp-content/uploads/2023/05/16145910/GULF_Cornerstone_Airway-Oaks_SiteMap_5-12-23-1024x796.jpg"
+},
+{
+nombre:"Bently",
+ubicacion:"https://maps.app.goo.gl/WJVKUzT34WqWDPf58?g_st=iw",
+codigos:["El intendente el unico que abre, anticipar"],
+observacion:"Sin Informacion Adicional",
+mapa:"https://img.freepik.com/vector-premium/ilustracion-vectorial-simbolo-casa-ubicacion-diseno-conceptual-servicio-entrega-domicilio_929545-241.jpg?semt=ais_rp_progressive&w=740&q=80"
+},
+{
+nombre:"Enclave",
+ubicacion:"https://maps.app.goo.gl/cmNtGfVCaX7oTKE39",
+codigos:["0226"],
+observacion:"Departamentos",
+mapa:"https://img.freepik.com/vector-premium/ilustracion-vectorial-simbolo-casa-ubicacion-diseno-conceptual-servicio-entrega-domicilio_929545-241.jpg?semt=ais_rp_progressive&w=740&q=80"
+},
+{
+nombre:"Oxford",
+ubicacion:"https://maps.app.goo.gl/AwccHTwQk3dYUXsz8",
+codigos:["0226"],
+observacion:"ELDIER WHITE paredes",
+mapa:"https://img.freepik.com/vector-premium/ilustracion-vectorial-simbolo-casa-ubicacion-diseno-conceptual-servicio-entrega-domicilio_929545-241.jpg?semt=ais_rp_progressive&w=740&q=80"
+},
+{
+nombre:"Greenfield",
+ubicacion:"https://maps.app.goo.gl/LWGvpLmnecUJag4G9?g_st=iw",
+codigos:["0226"],
+observacion:"Drift y las casas tienen marcos cuadrados en las ventanas tambien",
+mapa:"https://img.freepik.com/vector-premium/ilustracion-vectorial-simbolo-casa-ubicacion-diseno-conceptual-servicio-entrega-domicilio_929545-241.jpg?semt=ais_rp_progressive&w=740&q=80"
+},
+{
+nombre:"Bridlewood",
+ubicacion:"https://maps.app.goo.gl/pXzpEuwvbV2r4GQ8A?g_st=com.google.maps.preview.copy",
+codigos:["0125","0225","2293"],
+observacion:"ELDIER WHITE paredes",
+mapa:"https://img.freepik.com/vector-premium/ilustracion-vectorial-simbolo-casa-ubicacion-diseno-conceptual-servicio-entrega-domicilio_929545-241.jpg?semt=ais_rp_progressive&w=740&q=80"
+},
+{
+nombre:"Brookheaven",
+ubicacion:"https://maps.app.goo.gl/eJzakFUraCPnGwj98?g_st=com.google.maps.preview.copy",
+codigos:["0125","0225","1668","2155","0126","2506","3036","1128","2603"],
+observacion:"Eldier White paredes",
+mapa:"https://img.freepik.com/vector-premium/ilustracion-vectorial-simbolo-casa-ubicacion-diseno-conceptual-servicio-entrega-domicilio_929545-241.jpg?semt=ais_rp_progressive&w=740&q=80"
+},
+{
+nombre:"Cadence",
+ubicacion:"https://maps.app.goo.gl/Seibf8AVTk3Gr4EJ8?g_st=com.google.maps.preview.copy",
+codigos:["2293"],
+observacion:"Observaciones para Cadence",
+mapa:"https://img.freepik.com/vector-premium/ilustracion-vectorial-simbolo-casa-ubicacion-diseno-conceptual-servicio-entrega-domicilio_929545-241.jpg?semt=ais_rp_progressive&w=740&q=80"
+},
+{
+nombre:"Captain Cove",
+ubicacion:"https://maps.app.goo.gl/upbhxQj37EvtuHhB8",
+codigos:["informar de codigos, si es Dr Horton ocupar codigos conocidos"],
+observacion:"informen a Carlos Color de pared y puertas",
+mapa:"https://img.freepik.com/vector-premium/ilustracion-vectorial-simbolo-casa-ubicacion-diseno-conceptual-servicio-entrega-domicilio_929545-241.jpg?semt=ais_rp_progressive&w=740&q=80"
+},
+{
+nombre:"Carrington",
+ubicacion:"https://maps.app.goo.gl/8qDwgMAss6Gt5r4u8?g_st=com.google.maps.preview.copy",
+codigos:["El intendente es el que abre la puerta, preveniar al llegar"],
+observacion:"Textura Gruesa y por lo regular paredes son 400 y cielo Flat pero checar bien, pintura AGRABBLE GRAY",
+mapa:"https://img.freepik.com/vector-premium/ilustracion-vectorial-simbolo-casa-ubicacion-diseno-conceptual-servicio-entrega-domicilio_929545-241.jpg?semt=ais_rp_progressive&w=740&q=80"
+},
+{
+nombre:"Cottages of Aventura",
+ubicacion:"https://maps.app.goo.gl/GMKY2zg7Z3QW8hEh7?g_st=com.google.maps.preview.copy",
+codigos:["Se Abre con LLave"],
+observacion:"Pintar en  primeras puertas principales (negro) y columnas | SNOWBOUND paredes",
+mapa:"https://img.freepik.com/vector-premium/ilustracion-vectorial-simbolo-casa-ubicacion-diseno-conceptual-servicio-entrega-domicilio_929545-241.jpg?semt=ais_rp_progressive&w=740&q=80"
+},
+{
+nombre:"Country Club States",
+ubicacion:"https://maps.app.goo.gl/NyRfv8LNobnNZgh37",
+codigos:["Necesitamos saber codigos","0226"],
+observacion:"First Start",
+mapa:"https://img.freepik.com/vector-premium/ilustracion-vectorial-simbolo-casa-ubicacion-diseno-conceptual-servicio-entrega-domicilio_929545-241.jpg?semt=ais_rp_progressive&w=740&q=80"
+},
+{
+nombre:"Days Landing",
+ubicacion:"https://maps.app.goo.gl/HBHUhNGU2CBtZeNVA?g_st=com.google.maps.preview.copy",
+codigos:["0125","0225","2293","0325"],
+observacion:"ELDIER WHITE paredes",
+mapa:"https://img.freepik.com/vector-premium/ilustracion-vectorial-simbolo-casa-ubicacion-diseno-conceptual-servicio-entrega-domicilio_929545-241.jpg?semt=ais_rp_progressive&w=740&q=80"
+},
+{
+nombre:"Deer Ridge Crossing",
+ubicacion:"https://maps.app.goo.gl/BsK6bwjb64i1sdKS6",
+codigos:["La apertura es con LLAVE"],
+observacion:"Eldier White color de pared | Paredes Eldier White",
+mapa:"https://img.freepik.com/vector-premium/ilustracion-vectorial-simbolo-casa-ubicacion-diseno-conceptual-servicio-entrega-domicilio_929545-241.jpg?semt=ais_rp_progressive&w=740&q=80"
+},
+{
+nombre:"Dry Creek",
+ubicacion:"https://maps.app.goo.gl/qEQRnzXHro6XobXw8?g_st=com.google.maps.preview.copy",
+codigos:["Intendente Apertura la puerta"],
+observacion:"",
+mapa:"https://img.freepik.com/vector-premium/ilustracion-vectorial-simbolo-casa-ubicacion-diseno-conceptual-servicio-entrega-domicilio_929545-241.jpg?semt=ais_rp_progressive&w=740&q=80"
+},
+{
+nombre:"Eagle Pointe",
+ubicacion:"https://maps.app.goo.gl/3NynNqUsfpiwKv8Y7?g_st=com.google.maps.preview.copy",
+codigos:["Apertura con llave","La apertura es con LLAVE"],
+observacion:"Informen cual es el color de la pintura de pared y si la puerta es un solo color (ejemplo negro) | Paredes Eldier White",
+mapa:"https://dlqxt4mfnxo6k.cloudfront.net/dsldhomes.com/aHR0cHM6Ly9zMy5hbWF6b25hd3MuY29tL2J1aWxkZXJjbG91ZC82NjhjNjVmNjJiZGE3NGZhNWZmMzIyMjMwODc5YTBkZi5qcGVn/webp/1200/1200"
+},
+{
+nombre:"Ellies Cove",
+ubicacion:"https://maps.app.goo.gl/1wYGLwCCCkAz3apu5",
+codigos:["0325","1355","0126","2506","1999","1998","0226","2027"],
+observacion:"Departamentos | Eldier White | Departamentos, Paredes Eldier White",
+mapa:"https://img.freepik.com/vector-premium/ilustracion-vectorial-simbolo-casa-ubicacion-diseno-conceptual-servicio-entrega-domicilio_929545-241.jpg?semt=ais_rp_progressive&w=740&q=80"
+},
+{
+nombre:"Fairchild",
+ubicacion:"https://maps.app.goo.gl/LH7Fxov2AQqHGdeE9?g_st=com.google.maps.preview.copy",
+codigos:["0125","0225","2293"],
+observacion:"ELDIER WHITE paredes",
+mapa:"https://img.freepik.com/vector-premium/ilustracion-vectorial-simbolo-casa-ubicacion-diseno-conceptual-servicio-entrega-domicilio_929545-241.jpg?semt=ais_rp_progressive&w=740&q=80"
+},
+{
+nombre:"Floridatown",
+ubicacion:"https://maps.app.goo.gl/sg8oo6V2hafZH8JZA",
+codigos:["INFORMEN DE LOS CODIGOS"],
+observacion:"Alabaster",
+mapa:"https://img.freepik.com/vector-premium/ilustracion-vectorial-simbolo-casa-ubicacion-diseno-conceptual-servicio-entrega-domicilio_929545-241.jpg?semt=ais_rp_progressive&w=740&q=80"
+},
+{
+nombre:"Forest Shores",
+ubicacion:" https://maps.app.goo.gl/zr8HXRXwX3ZCvd8T6?g_st=iw",
+codigos:["0125","0225","0325","1969","0126"],
+observacion:"ELDIER WHITE Color Paredes | Departamentos",
+mapa:"https://img.freepik.com/vector-premium/ilustracion-vectorial-simbolo-casa-ubicacion-diseno-conceptual-servicio-entrega-domicilio_929545-241.jpg?semt=ais_rp_progressive&w=740&q=80"
+},
+{
+nombre:"Freeport",
+ubicacion:"https://maps.app.goo.gl/MaLCYrgowFBRWFxi8",
+codigos:["La apertura es con LLAVE"],
+observacion:"informen a Carlos Color de pared y puertas | Paredes Eldier White",
+mapa:"https://img.freepik.com/vector-premium/ilustracion-vectorial-simbolo-casa-ubicacion-diseno-conceptual-servicio-entrega-domicilio_929545-241.jpg?semt=ais_rp_progressive&w=740&q=80"
+},
+{
+nombre:"Gavin Landing",
+ubicacion:"https://maps.app.goo.gl/RKRXUDCGhFhhQtQB6?g_st=iw",
+codigos:["0125","0225","1355","Dependiendo el numero de lote agreguen el prefijo 01 o bien 010 es decir si es el lote 12 el codigo seria 0112, si es el lote 6 el codigo seria 0106"],
+observacion:"ELDIER WHITE Color Paredes",
+mapa:"https://www.drhorton.com/-/media/drhorton/productcatalog/244-pensacola-west/22794-gavins-landing-ths/gavinslandingplat.png?rev=066b98c85a3443bcbf3027f13a4550ab"
+},
+{
+nombre:"Gaylen Oaks",
+ubicacion:"https://maps.app.goo.gl/LAhsMGCK1F39NA559",
+codigos:["0126","0226","2027","2020","2030","Al parecer va ascendiendo los codigos"],
+observacion:"Eldier White color de pared | Paredes Eldier White",
+mapa:"https://img.freepik.com/vector-premium/ilustracion-vectorial-simbolo-casa-ubicacion-diseno-conceptual-servicio-entrega-domicilio_929545-241.jpg?semt=ais_rp_progressive&w=740&q=80"
+},
+{
+nombre:"Gleenhollow",
+ubicacion:"https://maps.app.goo.gl/FTHaGaHRT1ZTTkQh9?g_st=com.google.maps.preview.copy",
+codigos:["El intendente abre la puerta"],
+observacion:"Agrable Gray",
+mapa:"https://img.freepik.com/vector-premium/ilustracion-vectorial-simbolo-casa-ubicacion-diseno-conceptual-servicio-entrega-domicilio_929545-241.jpg?semt=ais_rp_progressive&w=740&q=80"
+},
+{
+nombre:"Gleenlakes",
+ubicacion:"https://maps.app.goo.gl/EJQTG49rb1nLe9mX9?g_st=com.google.maps.preview.copy",
+codigos:["Se abre con LLave"],
+observacion:"ELDIER WHITE Pintura de paredes | Nueva Fase SNOWBOUND pintura pared",
+mapa:"https://img.freepik.com/vector-premium/ilustracion-vectorial-simbolo-casa-ubicacion-diseno-conceptual-servicio-entrega-domicilio_929545-241.jpg?semt=ais_rp_progressive&w=740&q=80"
+},
+{
+nombre:"GrassLand",
+ubicacion:"https://maps.app.goo.gl/JJP1u4sJaWtQQy7T7?g_st=ipc",
+codigos:["La apertura es con LLAVE"],
+observacion:"Snowbound y puertas negras",
+mapa:"https://img.freepik.com/vector-premium/ilustracion-vectorial-simbolo-casa-ubicacion-diseno-conceptual-servicio-entrega-domicilio_929545-241.jpg?semt=ais_rp_progressive&w=740&q=80"
+},
+{
+nombre:"Greenbrier",
+ubicacion:"https://maps.app.goo.gl/4hkt3to6ikkNokvu5?g_st=com.google.maps.preview.copy",
+codigos:["La apertura es con LLAVE"],
+observacion:"SNOWBOUND color de pared | TRICORN BLACK Puertas Principales",
+mapa:"https://img.freepik.com/vector-premium/ilustracion-vectorial-simbolo-casa-ubicacion-diseno-conceptual-servicio-entrega-domicilio_929545-241.jpg?semt=ais_rp_progressive&w=740&q=80"
+},
+{
+nombre:"Heritage Plantation",
+ubicacion:"https://maps.app.goo.gl/gNZEVDUsy38uN46j6",
+codigos:["La apertura es con LLAVE","0126","0226","2027"],
+observacion:"informen a Carlos Color de pared y puertas | Paredes Eldier White",
+mapa:"https://img.freepik.com/vector-premium/ilustracion-vectorial-simbolo-casa-ubicacion-diseno-conceptual-servicio-entrega-domicilio_929545-241.jpg?semt=ais_rp_progressive&w=740&q=80"
+},
+{
+nombre:"Hihglands",
+ubicacion:"https://maps.app.goo.gl/r1iTLBdi966sEa1x5?g_st=com.google.maps.preview.copy",
+codigos:["0125","0225","2293","9572"],
+observacion:"ELDIER WHITE paredes",
+mapa:"https://img.freepik.com/vector-premium/ilustracion-vectorial-simbolo-casa-ubicacion-diseno-conceptual-servicio-entrega-domicilio_929545-241.jpg?semt=ais_rp_progressive&w=740&q=80"
+},
+{
+nombre:"Huston",
+ubicacion:"https://maps.app.goo.gl/gWUhiHUoatYMDYFi9?g_st=a",
+codigos:["DSLD","La apertura es con llave"],
+observacion:"informen a Carlos Color de pared y puertas | Llevar escalera de extension para pintar Ventanita.",
+mapa:"https://img.freepik.com/vector-premium/ilustracion-vectorial-simbolo-casa-ubicacion-diseno-conceptual-servicio-entrega-domicilio_929545-241.jpg?semt=ais_rp_progressive&w=740&q=80"
+},
+{
+nombre:"Iron Rock",
+ubicacion:"https://maps.app.goo.gl/tRuUwmUBdDAuFeDz8?g_st=iw",
+codigos:["Porton #1717","La apertura es con LLAVE","DSLD La Apertura es con llave"],
+observacion:"BEIGE Color Puerta Trasera | Tener color Beige ya que puede tener que pintarse puerta trasera",
+mapa:"https://dlqxt4mfnxo6k.cloudfront.net/dsldhomes.com/aHR0cHM6Ly9zMy5hbWF6b25hd3MuY29tL2J1aWxkZXJjbG91ZC9kYmU3MjE3OTE3NDcwMTMzMTA2ZTM4OWQwYWUyODA0Ny5wbmc=/webp/2000/2000"
+},   
+    {
+nombre:"Jay Rd",
+ubicacion:"https://maps.app.goo.gl/QfzuGxygpDPuNQUA8",
+codigos:["Apertura a 4a digitos con el numero de la casa"],
+observacion:"La pintura es 400 y se aplica stain",
+mapa:"https://dlqxt4mfnxo6k.cloudfront.net/dsldhomes.com/aHR0cHM6Ly9zMy5hbWF6b25hd3MuY29tL2J1aWxkZXJjbG91ZC9kYmU3MjE3OTE3NDcwMTMzMTA2ZTM4OWQwYWUyODA0Ny5wbmc=/webp/2000/2000"
+},
+{
+nombre:"Lakes Of Woodbine",
+ubicacion:"https://maps.app.goo.gl/HmM53z1budcdthDu7?g_st=com.google.maps.preview.copy",
+codigos:["0125","0225","0325","1969","0126","2506"],
+observacion:"ELDIER WHITE Color Paredes",
+mapa:"https://www.drhorton.com/-/media/drhorton/productcatalog/244-pensacola-west/22668-lakes-of-woodbine/colored_plat_for_low.jpg?rev=11721f9c07c541c0b6d889332610eac8"
+},
+{
+nombre:"Lancelot",
+ubicacion:"https://maps.app.goo.gl/JZprTLfJDwPx9KEb8?g_st=com.google.maps.preview.copy",
+codigos:["0307","0125","0225","2323","0431","0325","0425","A=01, B=02, C=03, D=04... mas lote; Ejemplo Lote 3D, el codigo seria=0403"],
+observacion:"ELDIER WHITE Color Paredes",
+mapa:"https://img.freepik.com/vector-premium/ilustracion-vectorial-simbolo-casa-ubicacion-diseno-conceptual-servicio-entrega-domicilio_929545-241.jpg?semt=ais_rp_progressive&w=740&q=80"
+},
+{
+nombre:"Ledwick",
+ubicacion:"https://maps.app.goo.gl/EYTMnM4mwUvHHJ428?g_st=com.google.maps.preview.copy",
+codigos:["2293"],
+observacion:"ALABASTER paredes",
+mapa:"https://img.freepik.com/vector-premium/ilustracion-vectorial-simbolo-casa-ubicacion-diseno-conceptual-servicio-entrega-domicilio_929545-241.jpg?semt=ais_rp_progressive&w=740&q=80"
+},
+{
+nombre:"Leighton Villages",
+ubicacion:"https://maps.app.goo.gl/oWkyHVSLENRarmGPA",
+codigos:["INFORMEN SI SE NECESITA CODIGO DE PUERTA"],
+observacion:"INFORMEN DEL COLOR DE PAREDES POR FAVOR",
+mapa:"https://img.freepik.com/vector-premium/ilustracion-vectorial-simbolo-casa-ubicacion-diseno-conceptual-servicio-entrega-domicilio_929545-241.jpg?semt=ais_rp_progressive&w=740&q=80"
+},
+{
+nombre:"Liberty Farms",
+ubicacion:"https://maps.app.goo.gl/xQVjGEzHCJqUqZ5BA",
+codigos:["0226","0326"],
+observacion:"Paredes Eldier White, puerta principal de acuerdo a color de Shutters",
+mapa:"https://img.freepik.com/vector-premium/ilustracion-vectorial-simbolo-casa-ubicacion-diseno-conceptual-servicio-entrega-domicilio_929545-241.jpg?semt=ais_rp_progressive&w=740&q=80"
+},
+{
+nombre:"Live Oaks",
+ubicacion:"https://maps.app.goo.gl/NSsiQWtFZfUxBvfF9?g_st=com.google.maps.preview.copy",
+codigos:["Se Abre con LLave"],
+observacion:"Puertas de Negro | SNOWBOUND paredes",
+mapa:"https://img.freepik.com/vector-premium/ilustracion-vectorial-simbolo-casa-ubicacion-diseno-conceptual-servicio-entrega-domicilio_929545-241.jpg?semt=ais_rp_progressive&w=740&q=80"
+},
+{
+nombre:"Lost Key",
+ubicacion:"https://maps.app.goo.gl/24Lot8Wwpzh2aBz27?g_st=com.google.maps.preview.copy",
+codigos:["Codigo 8004 candado ubicado junto a casa modelo","7474"],
+observacion:"SNOWBOUND Pintura de Pared",
+mapa:"https://img.freepik.com/vector-premium/ilustracion-vectorial-simbolo-casa-ubicacion-diseno-conceptual-servicio-entrega-domicilio_929545-241.jpg?semt=ais_rp_progressive&w=740&q=80"
+},
+{
+nombre:"Madelyn Woods",
+ubicacion:"https://maps.app.goo.gl/iiUzwJGCfVM2RxEu5?g_st=com.google.maps.preview.copy",
+codigos:["El numero de casa es el codigo"],
+observacion:"Por lo regular Shutters, gable y columnas son de Stain",
+mapa:"https://img.freepik.com/vector-premium/ilustracion-vectorial-simbolo-casa-ubicacion-diseno-conceptual-servicio-entrega-domicilio_929545-241.jpg?semt=ais_rp_progressive&w=740&q=80"
+},
+{
+nombre:"Martin Preserve",
+ubicacion:"https://maps.google.com?q=30.3765833,-87.3488333&entry=gps&lucs=,94224825,94227247,94227248,94231188,47071704,94259573,47069508,94218641,94203019,47084304,94208458,94208447&g_st=com.google.maps.preview.copy",
+codigos:["0295","0325","0125","0911","1355","0126"],
+observacion:"ELDIER WHITE Pintura de paredes",
+mapa:"https://www.drhorton.com/-/media/drhorton/productcatalog/244-pensacola-west/22696-martin-preserve/martinpreserveplat.jpg?rev=2e0cc2d0f9fa4977956e40fa8087ba03"
+},
+{
+nombre:"Mary Anette",
+ubicacion:"https://maps.app.goo.gl/au5cbN5kpXHjWiRJ8?g_st=com.google.maps.preview.copy",
+codigos:["2293"],
+observacion:"ALABASTER paredes",
+mapa:"https://img.freepik.com/vector-premium/ilustracion-vectorial-simbolo-casa-ubicacion-diseno-conceptual-servicio-entrega-domicilio_929545-241.jpg?semt=ais_rp_progressive&w=740&q=80"
+},
+{
+nombre:"Midtown",
+ubicacion:"https://maps.app.goo.gl/RFDW2Qu4jZNWGu9V8?g_st=com.google.maps.preview.copy",
+codigos:["0125","0225","2293","0325"],
+observacion:"ELDIER WHITE paredes",
+mapa:"https://img.freepik.com/vector-premium/ilustracion-vectorial-simbolo-casa-ubicacion-diseno-conceptual-servicio-entrega-domicilio_929545-241.jpg?semt=ais_rp_progressive&w=740&q=80"
+},
+{
+nombre:"Parkwood",
+ubicacion:"https://maps.app.goo.gl/GrWNg3XtjxFYH74z8?g_st=com.google.maps.preview.copy",
+codigos:["El intendente es el que abre la puerta, preveniar al llegar"],
+observacion:"Textura Gruesa, banos son por lo regular 400 y paredes normales flat, pintura AGRABBLE GRAY",
+mapa:"https://img.freepik.com/vector-premium/ilustracion-vectorial-simbolo-casa-ubicacion-diseno-conceptual-servicio-entrega-domicilio_929545-241.jpg?semt=ais_rp_progressive&w=740&q=80"
+},
+{
+nombre:"Patriot",
+ubicacion:"https://maps.app.goo.gl/3B1vdMqSgVoQhhn96?g_st=com.google.maps.preview.copy",
+codigos:["0125","0225"],
+observacion:"Eldier White",
+mapa:"https://img.freepik.com/vector-premium/ilustracion-vectorial-simbolo-casa-ubicacion-diseno-conceptual-servicio-entrega-domicilio_929545-241.jpg?semt=ais_rp_progressive&w=740&q=80"
+},
+{
+nombre:"Pecan Grove",
+ubicacion:"https://maps.app.goo.gl/969hXbGc3JL74z4v6?g_st=iw",
+codigos:["La apertura es con LLAVE","Lennar La apertura es con llave"],
+observacion:"SNOWBOUND color de pared",
+mapa:"https://img.freepik.com/vector-premium/ilustracion-vectorial-simbolo-casa-ubicacion-diseno-conceptual-servicio-entrega-domicilio_929545-241.jpg?semt=ais_rp_progressive&w=740&q=80"
+},
+{
+nombre:"Pless Landing",
+ubicacion:"https://maps.app.goo.gl/3kJkQJMu3yz3figz7?g_st=com.google.maps.preview.copy",
+codigos:["0125","0424","0225"],
+observacion:"ELDIER WHITE Color Paredes",
+mapa:"https://img.freepik.com/vector-premium/ilustracion-vectorial-simbolo-casa-ubicacion-diseno-conceptual-servicio-entrega-domicilio_929545-241.jpg?semt=ais_rp_progressive&w=740&q=80"
+},
+{
+nombre:"Quilanding",
+ubicacion:"https://maps.app.goo.gl/fGqrBRZhRaeao4rf9?g_st=com.google.maps.preview.copy",
+codigos:["Se abre con LLave"],
+observacion:"ELDIER WHITE Pintura de paredes",
+mapa:"https://img.freepik.com/vector-premium/ilustracion-vectorial-simbolo-casa-ubicacion-diseno-conceptual-servicio-entrega-domicilio_929545-241.jpg?semt=ais_rp_progressive&w=740&q=80"
+},
+{
+nombre:"Rivers Cove",
+ubicacion:"https://maps.app.goo.gl/3y2ei6xbhZ2p247S6?g_st=com.google.maps.preview.copy",
+codigos:["0125","0225","0424","2293","0325","0126","2506","0326"],
+observacion:"ELDIER WHITE Color Paredes",
+mapa:"https://img.freepik.com/vector-premium/ilustracion-vectorial-simbolo-casa-ubicacion-diseno-conceptual-servicio-entrega-domicilio_929545-241.jpg?semt=ais_rp_progressive&w=740&q=80"
+},
+{
+nombre:"Roman Oaks",
+ubicacion:"https://maps.app.goo.gl/jyVUoMh3VKFZTD9X7",
+codigos:["La apertura es con LLAVE"],
+observacion:"informen a Carlos Color de pared y puertas | Puertas negras.",
+mapa:"https://img.freepik.com/vector-premium/ilustracion-vectorial-simbolo-casa-ubicacion-diseno-conceptual-servicio-entrega-domicilio_929545-241.jpg?semt=ais_rp_progressive&w=740&q=80"
+},
+{
+nombre:"Russell Crossing",
+ubicacion:"https://maps.app.goo.gl/TCLAnUJ4a4fgLzSSA",
+codigos:["0125","0225","0325","1969","0126","Si la letra de lote es A entonces le corresponde el valor 01, si es B el valor 02, si es C el Valor 03 y asi sucesivamente entonces la clave para abrir la puerta se armara colocando el valor de la letra del lote mas el numero del lote. Ejemplo: lote 12a el codigo sera 0112 si fuera lote 6C seria 0306"],
+observacion:"ELDIER WHITE Color Paredes",
+mapa:"https://img.freepik.com/vector-premium/ilustracion-vectorial-simbolo-casa-ubicacion-diseno-conceptual-servicio-entrega-domicilio_929545-241.jpg?semt=ais_rp_progressive&w=740&q=80"
+},
+{
+nombre:"Sanctuary",
+ubicacion:"https://maps.app.goo.gl/bm6uYQYM2UE4hzLt5?g_st=com.google.maps.preview.copy",
+codigos:["0125","0225","7531","0126","2506","0911","0226"],
+observacion:"ELDIER WHITE Color Paredes",
+mapa:"https://img.freepik.com/vector-premium/ilustracion-vectorial-simbolo-casa-ubicacion-diseno-conceptual-servicio-entrega-domicilio_929545-241.jpg?semt=ais_rp_progressive&w=740&q=80"
+},
+{
+nombre:"Sentinel Ridge",
+ubicacion:"https://maps.app.goo.gl/Rq3vStzLmnwhb2fZ7?g_st=com.google.maps.preview.copy",
+codigos:["Se Abre con LLave"],
+observacion:"Siempre checar si tiene Gable avisar para pedir la pintura",
+mapa:"https://dlqxt4mfnxo6k.cloudfront.net/dsldhomes.com/aHR0cHM6Ly9zMy5hbWF6b25hd3MuY29tL2J1aWxkZXJjbG91ZC85ODg1YmY0NWZiOGE1NWVlMGQ5ZWFjMTQyNGM0YWU1NS5qcGVn/webp/2000/2000"
+},
+{
+nombre:"Silverlake",
+ubicacion:"https://maps.app.goo.gl/5VeGDXwGo42KZVD28?g_st=com.google.maps.preview.copy",
+codigos:["0304"],
+observacion:"ELDIER WHITE Color Paredes",
+mapa:"https://img.freepik.com/vector-premium/ilustracion-vectorial-simbolo-casa-ubicacion-diseno-conceptual-servicio-entrega-domicilio_929545-241.jpg?semt=ais_rp_progressive&w=740&q=80"
+},
+{
+nombre:"Soundview",
+ubicacion:"https://maps.app.goo.gl/LsUEqUSVP7zJWGSU9?g_st=ipc",
+codigos:["0126","0226","1234","#4567","Puerta Azul"],
+observacion:"Departamentos, color de paredes Eldhier White",
+mapa:"https://img.freepik.com/vector-premium/ilustracion-vectorial-simbolo-casa-ubicacion-diseno-conceptual-servicio-entrega-domicilio_929545-241.jpg?semt=ais_rp_progressive&w=740&q=80"
+},
+{
+nombre:"Souther Palms",
+ubicacion:"https://maps.app.goo.gl/P8hyo3Lv9gFwEhGa6?g_st=com.google.maps.preview.copy",
+codigos:["Se abre con llave"],
+observacion:"ELDIER WHITE Pintura de Pared",
+mapa:"https://img.freepik.com/vector-premium/ilustracion-vectorial-simbolo-casa-ubicacion-diseno-conceptual-servicio-entrega-domicilio_929545-241.jpg?semt=ais_rp_progressive&w=740&q=80"
+},
+{
+nombre:"Southwood",
+ubicacion:"https://maps.app.goo.gl/kWfhQhuf3zPQWUKc9",
+codigos:["La apertura es con LLAVE"],
+observacion:"informen a Carlos Color de pared y puertas",
+mapa:"https://img.freepik.com/vector-premium/ilustracion-vectorial-simbolo-casa-ubicacion-diseno-conceptual-servicio-entrega-domicilio_929545-241.jpg?semt=ais_rp_progressive&w=740&q=80"
+},
+{
+nombre:"Stone Heaven",
+ubicacion:"https://maps.app.goo.gl/zDAT1PwapZabneeGA?g_st=com.google.maps.preview.copy",
+codigos:["Se abre con llave"],
+observacion:"ELDIER WHITE Pintura de Pared",
+mapa:"https://img.freepik.com/vector-premium/ilustracion-vectorial-simbolo-casa-ubicacion-diseno-conceptual-servicio-entrega-domicilio_929545-241.jpg?semt=ais_rp_progressive&w=740&q=80"
+},
+{
+nombre:"Sweetbarb",
+ubicacion:"https://maps.app.goo.gl/7isakJKFXfRfemVL8?g_st=com.google.maps.preview.copy",
+codigos:["El intendente el unico que abre, anticipar"],
+observacion:"AGRABBLE GRAY Pintura de paredes",
+mapa:"https://img.freepik.com/vector-premium/ilustracion-vectorial-simbolo-casa-ubicacion-diseno-conceptual-servicio-entrega-domicilio_929545-241.jpg?semt=ais_rp_progressive&w=740&q=80"
+},
+{
+nombre:"Ventura Manor",
+ubicacion:"https://maps.app.goo.gl/VQ5YJdAhS3oYCRfv7?g_st=com.google.maps.preview.copy",
+codigos:["0125","0225","0424","2293"],
+observacion:"ELDIER WHITE Color Paredes",
+mapa:"https://img.freepik.com/vector-premium/ilustracion-vectorial-simbolo-casa-ubicacion-diseno-conceptual-servicio-entrega-domicilio_929545-241.jpg?semt=ais_rp_progressive&w=740&q=80"
+},
+{
+nombre:"Vickers States",
+ubicacion:"https://maps.app.goo.gl/PSueiJaBBFnnQEb17",
+codigos:["La apertura es con LLAVE"],
+observacion:"informen a Carlos Color de pared y puertas",
+mapa:"https://img.freepik.com/vector-premium/ilustracion-vectorial-simbolo-casa-ubicacion-diseno-conceptual-servicio-entrega-domicilio_929545-241.jpg?semt=ais_rp_progressive&w=740&q=80"
+},
+{
+nombre:"Young Oaks",
+ubicacion:"https://maps.app.goo.gl/cVPbCu48iCHRbjRG9?g_st=com.google.maps.preview.copy",
+codigos:["Se abre con llave"],
+observacion:"Puertas negras",
+mapa:"https://img.freepik.com/vector-premium/ilustracion-vectorial-simbolo-casa-ubicacion-diseno-conceptual-servicio-entrega-domicilio_929545-241.jpg?semt=ais_rp_progressive&w=740&q=80"
+}
+];
+
+datosColonias.sort((a,b)=>a.nombre.localeCompare(b.nombre));
+
+const input = document.getElementById("coloniaInput");
+const dropdown = document.getElementById("opcionesColonias");
+const tablaDatos = document.getElementById("tablaDatos");
+const nombreColonia = document.getElementById("nombreColonia");
+const imageStage = document.getElementById("imageStage");
+const imageInner = document.getElementById("imageInner");
+const mapaImagen = document.getElementById("mapaImagen");
+
+let opcionesFiltradas = [...datosColonias];
+let indiceActivo = -1;
+let currentScale = 1;
+let startDistance = 0;
+let startScale = 1;
+
+function renderDropdown(lista){
+    if(!lista.length){
+        dropdown.innerHTML = '<div class="dropdown-vacio">No se encontraron colonias.</div>';
+        dropdown.classList.add('visible');
+        return;
+    }
+
+    dropdown.innerHTML = lista.map((colonia, index)=>
+        `<div class="dropdown-item ${index===indiceActivo ? 'activa' : ''}" data-nombre="${colonia.nombre}">${colonia.nombre}</div>`
+    ).join('');
+
+    dropdown.classList.add('visible');
+}
+
+function ocultarDropdown(){
+    dropdown.classList.remove('visible');
+}
+
+function actualizarBotonLimpiar(){
+    clearBtn.classList.toggle('visible', input.value.trim().length > 0);
+}
+
+function enfocarBuscador(){
+    setTimeout(()=>{
+        input.focus({ preventScroll:true });
+    }, 50);
+}
+
+function filtrarColonias(texto){
+    const valor = texto.trim().toLowerCase();
+    opcionesFiltradas = datosColonias.filter(c => c.nombre.toLowerCase().includes(valor));
+    indiceActivo = -1;
+    renderDropdown(opcionesFiltradas);
+}
+
+
+const recentPanel = document.getElementById("recentPanel");
+const recentChips = document.getElementById("recentChips");
+
+function getRecientes(){
+    try{
+        return JSON.parse(localStorage.getItem("colonias_recientes") || "[]");
+    }catch(e){ return []; }
+}
+
+function saveReciente(nombre){
+    let lista = getRecientes().filter(x => x !== nombre);
+    lista.unshift(nombre);
+    lista = lista.slice(0,6);
+    localStorage.setItem("colonias_recientes", JSON.stringify(lista));
+    renderRecientes();
+}
+
+function renderRecientes(){
+    const lista = getRecientes();
+    if(!lista.length){
+        recentPanel.style.display = "none";
+        return;
+    }
+    recentPanel.style.display = "block";
+    recentChips.innerHTML = lista.map(n => `<button class="recent-chip" onclick="seleccionarColoniaPorNombre('${n}')">${n}</button>`).join("");
+}
+
+function seleccionarColoniaPorNombre(nombre){
+    const colonia = datosColonias.find(c => c.nombre === nombre);
+    saveReciente(nombre);
+    if(!colonia) return;
+
+    tablaDatos.style.display = "table";
+    nombreColonia.style.display = "block";
+    nombreColonia.innerText = colonia.nombre;
+
+    
+document.getElementById("ubicacion").innerHTML =
+    `<div class="location-actions">
+        <a class="location-action-btn maps" href="${colonia.ubicacion}" target="_blank" rel="noopener noreferrer">📍 Abrir en Google Maps</a>
+        <button class="location-action-btn share" type="button" onclick='compartirUbicacionColonia(${JSON.stringify(colonia.nombre)}, ${JSON.stringify(colonia.ubicacion)})'>📤 Compartir Ubicación</button>
+    </div>`;
+
+const listaCodigos =
+ `<ul>${colonia.codigos.map(c=>`<li>${c}</li>`).join('')}</ul>`;
+
+    document.getElementById("codigos").innerHTML = listaCodigos;
+    document.getElementById("observacion").innerText = colonia.observacion;
+    mapaImagen.src = colonia.mapa;
+    mapaImagen.alt = `Mapa de ${colonia.nombre}`;
+
+    resetZoom();
+    ocultarDropdown();
+    input.value = "";
+    actualizarBotonLimpiar();
+renderRecientes();
+    input.blur();
+    setTimeout(()=>{
+        input.scrollIntoView({behavior:'smooth', block:'center'});
+    }, 120);
+}
+
+function resetZoom(){
+    currentScale = 1;
+    imageInner.style.transform = `scale(${currentScale})`;
+    imageStage.scrollLeft = 0;
+}
+
+input.addEventListener("focus", ()=>{
+    filtrarColonias(input.value);
+});
+
+input.addEventListener("click", ()=>{
+    filtrarColonias(input.value);
+});
+
+input.addEventListener("input", ()=>{
+    filtrarColonias(input.value);
+});
+
+input.addEventListener("keydown", (e)=>{
+    if(!dropdown.classList.contains('visible')) return;
+
+    if(e.key === 'ArrowDown'){
+        e.preventDefault();
+        indiceActivo = Math.min(indiceActivo + 1, opcionesFiltradas.length - 1);
+        renderDropdown(opcionesFiltradas);
+    }else if(e.key === 'ArrowUp'){
+        e.preventDefault();
+        indiceActivo = Math.max(indiceActivo - 1, 0);
+        renderDropdown(opcionesFiltradas);
+    }else if(e.key === 'Enter'){
+        e.preventDefault();
+        if(indiceActivo >= 0 && opcionesFiltradas[indiceActivo]){
+            input.value = opcionesFiltradas[indiceActivo].nombre;
+            seleccionarColoniaPorNombre(opcionesFiltradas[indiceActivo].nombre);
+        }else if(opcionesFiltradas.length === 1){
+            input.value = opcionesFiltradas[0].nombre;
+            seleccionarColoniaPorNombre(opcionesFiltradas[0].nombre);
+        }
+    }else if(e.key === 'Escape'){
+        ocultarDropdown();
+    }
+});
+
+dropdown.addEventListener('click', (e)=>{
+    const item = e.target.closest('.dropdown-item');
+    if(!item) return;
+    const nombre = item.dataset.nombre;
+    input.value = nombre;
+    seleccionarColoniaPorNombre(nombre);
+});
+
+clearBtn.addEventListener('click', ()=>{
+    input.value = '';
+    actualizarBotonLimpiar();
+renderRecientes();
+    filtrarColonias('');
+    enfocarBuscador();
+});
+
+document.addEventListener('click', (e)=>{
+    if(!e.target.closest('.buscador-wrapper')){
+        ocultarDropdown();
+    }
+});
+
+function getDistance(touches){
+    const dx = touches[0].clientX - touches[1].clientX;
+    const dy = touches[0].clientY - touches[1].clientY;
+    return Math.hypot(dx, dy);
+}
+
+imageStage.addEventListener('touchstart', (e)=>{
+    if(e.touches.length === 2){
+        startDistance = getDistance(e.touches);
+        startScale = currentScale;
+    }
+}, { passive:true });
+
+imageStage.addEventListener('touchmove', (e)=>{
+    if(e.touches.length === 2){
+        const distance = getDistance(e.touches);
+        const nextScale = Math.min(4, Math.max(1, startScale * (distance / startDistance)));
+        currentScale = nextScale;
+        imageInner.style.transform = `scale(${currentScale})`;
+    }
+}, { passive:true });
+
+mapaImagen.addEventListener('dblclick', ()=>{
+    currentScale = currentScale === 1 ? 2 : 1;
+    imageInner.style.transform = `scale(${currentScale})`;
+});
+
+window.addEventListener('resize', resetZoom);
+actualizarBotonLimpiar();
+renderRecientes();
+
+// abrir imagen en nueva pestaña al hacer clic
+if (typeof mapaImagen !== 'undefined') {
+    mapaImagen.style.cursor = 'pointer';
+    mapaImagen.addEventListener('click', function(){
+        if(this.src){
+            window.open(this.src, '_blank');
+        }
+    });
+}
+
+
+const personasCumple = [
+  { nombre: "Rebeca Mota", dia: 13, mes: 4 },
+  { nombre: "Milton", dia: 6, mes: 4 },
+  { nombre: "Miguel Carrera", dia: 23, mes: 2 },
+  { nombre: "ISMAEL LOPEZ", dia: 10, mes: 9 },
+  { nombre: "Carlos Corona", dia: 15, mes: 3 },
+  { nombre: "Eulises Flores", dia: 11, mes: 5 },
+  { nombre: "Josue Lopez", dia: 12, mes: 3 },
+  { nombre: "Elisa Janeth", dia: 26, mes: 9 },
+  { nombre: "Isaac Lopez", dia: 8, mes: 3 },
+  { nombre: "Aury Medina", dia: 14, mes: 9 },
+  { nombre: "Marcy Lozano", dia: 2, mes: 6 },
+  { nombre: "Emmanuel Lopez", dia: 25, mes: 11 },
+  { nombre: "Jose Ulises Lopez", dia: 1, mes: 1 },
+  { nombre: "Reyna Lopez", dia: 3, mes: 8 },
+  { nombre: "Ruth Rodriguez", dia: 3, mes: 11 },
+  { nombre: "Ashley Ramirez", dia: 20, mes: 9 },
+  { nombre: "Milton", dia: 17, mes: 12 },
+  { nombre: "Las Mujeres mas Hermosas del Mundo, Felicidades Mamitas", dia: 10, mes: 5 },
+  { nombre: "A los hombres Trabajadores, buenos, santos, Feliz Dia del Padre", dia: 21, mes: 6 },
+  { nombre: "Paola Flores", dia: 19, mes: 9 },
+  { nombre: "Luis Medina CUATE", dia: 20, mes: 4 },
+  { nombre: "Jose Mena", dia: 5, mes: 8 },
+  { nombre: "Miguel Aldair", dia: 12, mes: 6 },
+  { nombre: "Jose Guillen", dia: 18, mes: 3 },
+  { nombre: "Karla Aimee", dia: 1, mes: 5 }
+];
+
+function getMesNombre(mes){
+  const meses = ["Enero","Febrero","Marzo","Abril","Mayo","Junio","Julio","Agosto","Septiembre","Octubre","Noviembre","Diciembre"];
+  return meses[mes - 1];
+}
+
+function renderCumplesDelMes(){
+  const hoy = new Date();
+  const mesActual = hoy.getMonth() + 1;
+  const list = document.getElementById("birthdayList");
+  if(!list) return;
+
+  const filtradas = personasCumple
+    .filter(p => p.mes === mesActual)
+    .sort((a,b) => a.dia - b.dia);
+
+  if(!filtradas.length){
+    list.innerHTML = '<li>No hay cumpleaños registrados este mes.</li>';
+    return;
+  }
+
+  list.innerHTML = filtradas.map(p => `
+    <li>
+      <span class="day">${String(p.dia).padStart(2,'0')} de ${getMesNombre(p.mes)}</span>
+      <strong>${p.nombre}</strong>
+    </li>
+  `).join("");
+}
+
+function lanzarEfectosCumple(){
+  const hoy = new Date();
+  const cumpleanerosHoy = personasCumple.filter(p =>
+    p.dia === hoy.getDate() && p.mes === (hoy.getMonth() + 1)
+  );
+
+  if(!cumpleanerosHoy.length) return;
+
+  const names = cumpleanerosHoy.map(p => p.nombre).join(", ");
+  const banner = document.getElementById("birthdayTodayBanner");
+  const namesEl = document.getElementById("birthdayTodayNames");
+  if(banner && namesEl){
+    namesEl.textContent = names;
+    banner.style.display = "block";
+    setTimeout(() => {
+      banner.style.display = "none";
+    }, 3000);
+  }
+
+  const globos = ['🎈','🎉','🥳','🎊'];
+  const pasteles = ['🎂','🧁'];
+  const colores = ['#FF69B4','#87CEFA','#FFD700','#ADFF2F','#FFA07A','#DA70D6'];
+
+  for (let i = 0; i < 30; i++) {
+    const emoji = document.createElement('div');
+    emoji.className = 'emoji-balloon';
+    emoji.textContent = globos[Math.floor(Math.random() * globos.length)];
+    emoji.style.left = Math.random() * 100 + 'vw';
+    emoji.style.bottom = '-' + (Math.random() * 100) + 'vh';
+    emoji.style.animationDuration = (6 + Math.random() * 6) + 's';
+    emoji.style.animationDelay = (Math.random() * 2) + 's';
+    document.body.appendChild(emoji);
+  }
+
+  for (let i = 0; i < 10; i++) {
+    const emoji = document.createElement('div');
+    emoji.className = 'emoji-cake';
+    emoji.textContent = pasteles[Math.floor(Math.random() * pasteles.length)];
+    emoji.style.left = Math.random() * 100 + 'vw';
+    emoji.style.bottom = '-' + (Math.random() * 100) + 'vh';
+    emoji.style.animationDuration = (8 + Math.random() * 6) + 's';
+    emoji.style.animationDelay = (Math.random() * 2) + 's';
+    document.body.appendChild(emoji);
+  }
+
+  for (let i = 0; i < 100; i++) {
+    const confetti = document.createElement('div');
+    confetti.className = 'confetti';
+    confetti.style.left = Math.random() * 100 + 'vw';
+    confetti.style.top = '-' + (Math.random() * 100) + 'vh';
+    confetti.style.backgroundColor = colores[Math.floor(Math.random() * colores.length)];
+    confetti.style.animationDuration = (3 + Math.random() * 3) + 's';
+    confetti.style.animationDelay = (Math.random() * 2) + 's';
+    document.body.appendChild(confetti);
+  }
+}
+
+function lanzarAvisoCumpleManana(){
+  const hoy = new Date();
+  const manana = new Date(hoy);
+  manana.setDate(hoy.getDate() + 1);
+
+  const cumpleanerosManana = personasCumple.filter(p =>
+    p.dia === manana.getDate() && p.mes === (manana.getMonth() + 1)
+  );
+
+  if(!cumpleanerosManana.length) return;
+
+  const banner = document.getElementById("birthdayTomorrowBanner");
+  const namesEl = document.getElementById("birthdayTomorrowNames");
+  if(!banner || !namesEl) return;
+
+  namesEl.textContent = cumpleanerosManana.map(p => p.nombre).join(", ");
+  banner.style.display = "block";
+
+  setTimeout(() => {
+    banner.style.display = "none";
+  }, 3000);
+}
+
 const backToTopBtn = document.getElementById("backToTop");
 if(backToTopBtn){
   backToTopBtn.addEventListener("click", () => {
@@ -2721,6 +3755,7 @@ if(backToTopBtn){
 }
 
 renderCumplesDelMes();
+lanzarEfectosCumple();
 lanzarAvisoCumpleManana();
 
 </script>
@@ -2737,9 +3772,9 @@ lanzarAvisoCumpleManana();
 <div class="section-card birthday-card" id="birthdaySection">
   <div class="section-body">
     <div class="birthday-header">
-      <div style="font-size:30px;">ðŸŽ‚</div>
-      <h2 class="section-title" style="margin:0;">Feliz cumpleaÃ±os este mes</h2>
-      <div style="font-size:30px;">ðŸŽ‰</div>
+      <div style="font-size:30px;">🎂</div>
+      <h2 class="section-title" style="margin:0;">Feliz cumpleaños este mes</h2>
+      <div style="font-size:30px;">🎉</div>
     </div>
     <p class="section-subtitle"></p>
     <ul class="birthday-list" id="birthdayList"></ul>
@@ -2747,26 +3782,26 @@ lanzarAvisoCumpleManana();
 </div>
 
 <div class="birthday-today-banner" id="birthdayTodayBanner">
-  <div style="font-size:18px; font-weight:700;">Felicidades a este dÃ­a a:</div>
+  <div style="font-size:18px; font-weight:700;">Felicidades a este día a:</div>
   <strong id="birthdayTodayNames"></strong>
 </div>
 
 <div class="birthday-tomorrow-banner" id="birthdayTomorrowBanner">
-  <span class="spark">âœ¨ðŸŽ‚ðŸŽ‰</span>
-  <div style="font-size:18px; font-weight:900;">El dÃ­a de maÃ±ana alguien cumple aÃ±os</div>
+  <span class="spark">✨🎂🎉</span>
+  <div style="font-size:18px; font-weight:900;">El día de mañana alguien cumple años</div>
   <strong id="birthdayTomorrowNames"></strong>
 </div>
 
-<button class="back-to-top" id="backToTop" title="Ir arriba">â†‘</button>
+
 </div>
 
 <div id="sherwin" class="seccion">
 <br><br><br>
 <section class="sherwin-section" id="sherwinSection">
-    <div class="sherwin-badge">ðŸŽ¨ SelecciÃ³n de tiendas Sherwin-Williams</div>
+    <div class="sherwin-badge">🎨 Selección de tiendas Sherwin-Williams</div>
     <h2 class="sherwin-title">TIENDAS DE PINTURA</h2>
     <p class="sherwin-text"></p>
-    <img class="sherwin-hero" src="https://dowitcherdesigns.com/wp-content/uploads/2023/03/sw-logo-stacked.png" alt="UbicaciÃ³n de tiendas">
+    <img class="sherwin-hero" src="https://dowitcherdesigns.com/wp-content/uploads/2023/03/sw-logo-stacked.png" alt="Ubicación de tiendas">
     <div class="sherwin-panel">
         <select id="sherwinSelect" class="sherwin-select" aria-label="Selecciona tienda de pintura">
             <option value="">Selecciona TIENDA DE PINTURA</option>
@@ -2784,35 +3819,35 @@ lanzarAvisoCumpleManana();
         <div id="sherwinLinkWrap" class="sherwin-link-wrap"></div>
         <div class="nearby-actions">
             <a class="nearby-btn" href="https://www.google.com/maps/search/Sherwin-Williams+near+me" target="_blank" rel="noopener noreferrer">
-                <span class="nearby-icon">ðŸŽ¨</span>
+                <span class="nearby-icon">🎨</span>
                 <span class="nearby-text">
-                    <span class="nearby-title">Abrir una tienda Sherwin-Williams que se encuentre cerca de mÃ­</span>
-                    <span class="nearby-sub">Buscar la tienda mÃ¡s cercana en Google Maps</span>
+                    <span class="nearby-title">Abrir una tienda Sherwin-Williams que se encuentre cerca de mí</span>
+                    <span class="nearby-sub">Buscar la tienda más cercana en Google Maps</span>
                 </span>
             </a>
             <a class="nearby-btn" href="https://www.google.com/maps/search/hamburguesas+near+me" target="_blank" rel="noopener noreferrer">
-                <span class="nearby-icon">ðŸ”</span>
+                <span class="nearby-icon">🍔</span>
                 <span class="nearby-text">
-                    <span class="nearby-title">Hamburguesas cerca de mÃ­</span>
+                    <span class="nearby-title">Hamburguesas cerca de mí</span>
                     <span class="nearby-sub">Abrir opciones cercanas en Google Maps</span>
                 </span>
             </a>
             <a class="nearby-btn" href="https://www.google.com/maps/search/tacos+near+me" target="_blank" rel="noopener noreferrer">
-                <span class="nearby-icon">ðŸŒ®</span>
+                <span class="nearby-icon">🌮</span>
                 <span class="nearby-text">
-                    <span class="nearby-title">Tacos cerca de mÃ­</span>
-                    <span class="nearby-sub">Encontrar lugares cercanos rÃ¡pidamente</span>
+                    <span class="nearby-title">Tacos cerca de mí</span>
+                    <span class="nearby-sub">Encontrar lugares cercanos rápidamente</span>
                 </span>
             </a>
             <a class="nearby-btn" href="https://www.google.com/maps/search/gasolinera+gasolina+barata+near+me" target="_blank" rel="noopener noreferrer">
-                <span class="nearby-icon">â›½</span>
+                <span class="nearby-icon">⛽</span>
                 <span class="nearby-text">
-                    <span class="nearby-title">Gasolinera con gasolina barata cerca de mÃ­</span>
+                    <span class="nearby-title">Gasolinera con gasolina barata cerca de mí</span>
                     <span class="nearby-sub">Buscar estaciones cercanas en Google Maps</span>
                 </span>
             </a>
         </div>
-        <div class="nearby-note">Estas opciones abren Google Maps con una bÃºsqueda cercana usando tu ubicaciÃ³n actual.</div>Estas opciones abren Google Maps con una bÃºsqueda cercana usando tu ubicaciÃ³n actual.</div>
+        <div class="nearby-note">Estas opciones abren Google Maps con una búsqueda cercana usando tu ubicación actual.</div>Estas opciones abren Google Maps con una búsqueda cercana usando tu ubicación actual.</div>
 
     </div>
 </section>
@@ -2833,8 +3868,8 @@ lanzarAvisoCumpleManana();
         }
         sherwinLinkWrap.innerHTML = `
           <div class="location-actions">
-            <a class="sherwin-link-btn" href="${url}" target="_blank" rel="noopener noreferrer">ðŸ“ Abrir ubicaciÃ³n de ${nombre}</a>
-            <button class="location-action-btn share" type="button" onclick='compartirUbicacionTienda(${JSON.stringify(nombre)}, ${JSON.stringify(url)})'>ðŸ“¤ Compartir UbicaciÃ³n</button>
+            <a class="sherwin-link-btn" href="${url}" target="_blank" rel="noopener noreferrer">📍 Abrir ubicación de ${nombre}</a>
+            <button class="location-action-btn share" type="button" onclick='compartirUbicacionTienda(${JSON.stringify(nombre)}, ${JSON.stringify(url)})'>📤 Compartir Ubicación</button>
           </div>
         `;
     });
@@ -2848,7 +3883,7 @@ lanzarAvisoCumpleManana();
   <section class="registro-shell">
     <h2>Registro de Trabajo</h2>
 
-    <textarea id="output" placeholder="AquÃ­ aparecerÃ¡ la informaciÃ³n..."></textarea>
+    <textarea id="output" placeholder="Aquí aparecerá la información..."></textarea>
 
     <label>Hora de Entrada:</label>
     <input type="time" id="entrada" step="60">
@@ -2858,7 +3893,7 @@ lanzarAvisoCumpleManana();
 
     <div class="checkbox-container">
       <input type="checkbox" id="diaSiguiente">
-      <label for="diaSiguiente">Marcar si sales al dÃ­a siguiente</label>
+      <label for="diaSiguiente">Marcar si sales al día siguiente</label>
     </div>
 
     <label>Tiempo de Lonche (minutos):</label>
@@ -2874,8 +3909,8 @@ lanzarAvisoCumpleManana();
     <input type="text" id="coloniaRegistro" placeholder="Casa/Colonia">
     <button class="registro-btn" onclick="agregarColoniaRegistro()">Agregar Colonia</button>
 
-    <label>NÃºmero de Lote/Casa:</label>
-    <input type="text" id="lote" placeholder="Lote o nÃºmero de casa">
+    <label>Número de Lote/Casa:</label>
+    <input type="text" id="lote" placeholder="Lote o número de casa">
 
     <label>Actividades Realizadas:</label>
     <input type="text" id="actividad" placeholder="Ej. Pintura de interior">
@@ -2899,7 +3934,7 @@ lanzarAvisoCumpleManana();
       <h3>Otros productos:</h3>
       <input type="text" id="productoPersonalizado" placeholder="Escribe un producto y presiona Enter">
 
-      <h3>Lista de selecciÃ³n:</h3>
+      <h3>Lista de selección:</h3>
       <div class="lista" id="listaProductos">Se requiere:</div>
 
       <button onclick="copiarYEnviar()">Copiar y Enviar a WhatsApp</button>
@@ -2926,7 +3961,7 @@ lanzarAvisoCumpleManana();
   });
 
   function formatoFecha() {
-    const dias = ['Domingo','Lunes','Martes','MiÃ©rcoles','Jueves','Viernes','SÃ¡bado'];
+    const dias = ['Domingo','Lunes','Martes','Miércoles','Jueves','Viernes','Sábado'];
     const meses = ['Enero','Febrero','Marzo','Abril','Mayo','Junio','Julio','Agosto','Septiembre','Octubre','Noviembre','Diciembre'];
     const hoy = new Date();
     return `*${dias[hoy.getDay()]}, ${hoy.getDate()} de ${meses[hoy.getMonth()]}*`;
@@ -3170,19 +4205,19 @@ window.addEventListener("load", () => {
 
 <div class="share-overlay" id="shareOverlay">
   <div class="share-modal">
-    <h3 id="shareModalTitle">UbicaciÃ³n copiada</h3>
-    <p id="shareModalText">Â¿Deseas enviar por:</p>
+    <h3 id="shareModalTitle">Ubicación copiada</h3>
+    <p id="shareModalText">¿Deseas enviar por:</p>
     <div class="share-options">
       <button class="share-option-btn" id="sendSmsBtn" type="button">
-        <span class="share-icon sms">ðŸ’¬</span>
+        <span class="share-icon sms">💬</span>
         <span>Mensajes</span>
       </button>
       <button class="share-option-btn" id="sendWaBtn" type="button">
-        <span class="share-icon wa">ðŸŸ¢</span>
+        <span class="share-icon wa">🟢</span>
         <span>WhatsApp</span>
       </button>
     </div>
-    <div class="share-mini-note">La direcciÃ³n ya quedÃ³ copiada y tambiÃ©n se abrirÃ¡ la app seleccionada con el enlace preparado.</div>
+    <div class="share-mini-note">La dirección ya quedó copiada y también se abrirá la app seleccionada con el enlace preparado.</div>
     <button class="share-close" id="shareCloseBtn" type="button">Cerrar</button>
   </div>
 </div>
@@ -3223,11 +4258,11 @@ window.addEventListener("load", () => {
 
     if(title){
       title.textContent = tipoUbicacionCompartir === 'tienda'
-        ? 'UbicaciÃ³n de la tienda se ha copiado'
-        : 'DirecciÃ³n de la colonia se ha copiado';
+        ? 'Ubicación de la tienda se ha copiado'
+        : 'Dirección de la colonia se ha copiado';
     }
     if(text){
-      text.textContent = 'Â¿Deseas enviar por:';
+      text.textContent = '¿Deseas enviar por:';
     }
 
     copiarTexto(ubicacionParaCompartir).finally(() => {
@@ -3262,7 +4297,7 @@ window.addEventListener("load", () => {
   if (smsBtn) {
     smsBtn.addEventListener('click', () => {
       const etiqueta = tipoUbicacionCompartir === 'tienda' ? 'tienda' : 'colonia';
-      const mensaje = `UbicaciÃ³n de la ${etiqueta} ${nombreColoniaCompartir}: ${ubicacionParaCompartir}`;
+      const mensaje = `Ubicación de la ${etiqueta} ${nombreColoniaCompartir}: ${ubicacionParaCompartir}`;
       window.location.href = `sms:?&body=${encodeURIComponent(mensaje)}`;
     });
   }
@@ -3270,100 +4305,9 @@ window.addEventListener("load", () => {
   if (waBtn) {
     waBtn.addEventListener('click', () => {
       const etiqueta = tipoUbicacionCompartir === 'tienda' ? 'tienda' : 'colonia';
-      const mensaje = `UbicaciÃ³n de la ${etiqueta} ${nombreColoniaCompartir}: ${ubicacionParaCompartir}`;
+      const mensaje = `Ubicación de la ${etiqueta} ${nombreColoniaCompartir}: ${ubicacionParaCompartir}`;
       window.open(`https://wa.me/?text=${encodeURIComponent(mensaje)}`, '_blank');
     });
-  }
-})();
-</script>
-
-
-<script id="start-birthday-confetti-script">
-(function(){
-  let mensajeInicioMostrado = false;
-  let efectosOriginalesActivados = false;
-
-  function listaCumples(){
-    try{
-      if (Array.isArray(window.personasCumple)) return window.personasCumple;
-      if (typeof personasCumple !== "undefined" && Array.isArray(personasCumple)) return personasCumple;
-    }catch(e){}
-    return [];
-  }
-
-  function obtenerCumpleanerosDeHoy(){
-    const lista = listaCumples();
-    const hoy = new Date();
-    const dia = hoy.getDate();
-    const mes = hoy.getMonth() + 1;
-
-    return lista.filter(p => Number(p.dia) === dia && Number(p.mes) === mes);
-  }
-
-  function activarEfectosOriginalesCumple(){
-    if(efectosOriginalesActivados) return;
-    efectosOriginalesActivados = true;
-
-    try{
-      if(typeof lanzarEfectosCumple === "function"){
-        lanzarEfectosCumple();
-      }
-    }catch(e){}
-  }
-
-  window.mostrarMensajeCumpleInicio = function(){
-    if(mensajeInicioMostrado) return;
-
-    const cumpleaneros = obtenerCumpleanerosDeHoy();
-    if(!cumpleaneros.length) return;
-
-    mensajeInicioMostrado = true;
-
-    const overlay = document.getElementById("startBirthdayOverlay");
-    const names = document.getElementById("startBirthdayNames");
-    if(!overlay || !names) return;
-
-    names.textContent = cumpleaneros.map(p => p.nombre).join(", ");
-    overlay.style.display = "flex";
-
-    setTimeout(() => {
-      overlay.style.display = "none";
-    }, 3000);
-  };
-
-  function esperarSplashYMostrar(){
-    const intentar = () => {
-      const splash = document.getElementById("splash");
-
-      if(!splash || !document.body.contains(splash)){
-        activarEfectosOriginalesCumple();
-        setTimeout(window.mostrarMensajeCumpleInicio, 250);
-        return;
-      }
-
-      const visible = getComputedStyle(splash).display !== "none" && splash.style.opacity !== "0";
-      if(!visible){
-        activarEfectosOriginalesCumple();
-        setTimeout(window.mostrarMensajeCumpleInicio, 250);
-        return;
-      }
-
-      setTimeout(intentar, 180);
-    };
-
-    intentar();
-
-    // Respaldo por si el splash no reporta bien su estado.
-    setTimeout(function(){
-      activarEfectosOriginalesCumple();
-      window.mostrarMensajeCumpleInicio();
-    }, 5200);
-  }
-
-  if(document.readyState === "complete"){
-    esperarSplashYMostrar();
-  }else{
-    window.addEventListener("load", esperarSplashYMostrar);
   }
 })();
 </script>
@@ -3376,6 +4320,92 @@ window.addEventListener("load", () => {
   const manifestURL = URL.createObjectURL(blob);
   const manifestLink = document.getElementById("appManifest");
   if(manifestLink) manifestLink.setAttribute("href", manifestURL);
+})();
+</script>
+
+
+
+
+<script id="birthday-render-final-fix">
+(function(){
+  function listaCumples(){
+    try{
+      if(Array.isArray(window.personasCumple) && window.personasCumple.length) return window.personasCumple;
+      if(typeof personasCumple !== "undefined" && Array.isArray(personasCumple) && personasCumple.length){
+        window.personasCumple = personasCumple;
+        return personasCumple;
+      }
+    }catch(e){}
+    return [];
+  }
+  function nombreMes(i){
+    return ["Enero","Febrero","Marzo","Abril","Mayo","Junio","Julio","Agosto","Septiembre","Octubre","Noviembre","Diciembre"][i] || "";
+  }
+  function renderCumplesSeguro(){
+    const hoy = new Date();
+    const mes = hoy.getMonth() + 1;
+    const cont = document.getElementById("birthdayList");
+    if(!cont) return;
+    const lista = listaCumples().filter(p => Number(p.mes) === mes).sort((a,b)=>Number(a.dia)-Number(b.dia));
+    cont.innerHTML = lista.length
+      ? lista.map(p => `<li><span class="day">${String(p.dia).padStart(2,"0")} de ${nombreMes(Number(p.mes)-1)}</span>${p.nombre}</li>`).join("")
+      : `<li><span class="day">Sin registros</span> No hay cumpleaños registrados este mes.</li>`;
+  }
+  function mostrarMensajeInicio(){
+    const hoy = new Date();
+    const cumpleHoy = listaCumples().filter(p => Number(p.dia) === hoy.getDate() && Number(p.mes) === hoy.getMonth()+1);
+    if(!cumpleHoy.length) return;
+    const overlay = document.getElementById("startBirthdayOverlay");
+    const names = document.getElementById("startBirthdayNames");
+    if(!overlay || !names) return;
+    names.textContent = cumpleHoy.map(p=>p.nombre).join(", ");
+    overlay.style.display = "flex";
+    setTimeout(()=>overlay.style.display="none", 3000);
+  }
+  function iniciar(){
+    renderCumplesSeguro();
+    setTimeout(function(){
+      try{ if(typeof lanzarEfectosCumple === "function") lanzarEfectosCumple(); }catch(e){}
+      mostrarMensajeInicio();
+    }, 2100);
+  }
+  if(document.readyState === "loading") document.addEventListener("DOMContentLoaded", iniciar);
+  else iniciar();
+  window.renderCumplesSeguro = renderCumplesSeguro;
+})();
+</script>
+
+
+<script id="auto-dark-mode-script">
+(function(){
+  function aplicarModoPorHora(){
+    const ahora = new Date();
+    const hora = ahora.getHours();
+    const esNoche = hora >= 19 || hora < 7;
+
+    document.body.classList.toggle("auto-dark-mode", esNoche);
+
+    let pill = document.getElementById("darkModePill");
+    if(!pill){
+      pill = document.createElement("div");
+      pill.id = "darkModePill";
+      pill.className = "dark-mode-pill";
+      document.body.appendChild(pill);
+    }
+
+    if(esNoche){
+      pill.textContent = "🌙 Modo oscuro automático";
+      pill.classList.add("visible");
+      setTimeout(() => pill.classList.remove("visible"), 3500);
+    }else{
+      pill.classList.remove("visible");
+    }
+  }
+
+  aplicarModoPorHora();
+
+  // Revisa cada minuto por si la página queda abierta al cambiar de 6:59 a 7:00.
+  setInterval(aplicarModoPorHora, 60000);
 })();
 </script>
 
