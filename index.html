@@ -2061,8 +2061,35 @@ body.auto-dark-mode .birthday-video-names{
 }
 </style>
 
+
+<style id="birthday-banner-final-position-fix">
+#birthdayTodayBanner,
+#birthdayTomorrowBanner{
+    position:fixed !important;
+    left:16px !important;
+    right:16px !important;
+    top:18px !important;
+    bottom:auto !important;
+    margin:0 auto !important;
+    max-width:760px !important;
+    z-index:20050 !important;
+}
+</style>
+
 </head>
 <body>
+
+<div class="birthday-today-banner" id="birthdayTodayBanner">
+<div style="font-size:18px; font-weight:700;">Felicidades a este día a:</div>
+<strong id="birthdayTodayNames"></strong>
+</div>
+
+<div class="birthday-tomorrow-banner" id="birthdayTomorrowBanner">
+<span class="spark">✨🎂🎉</span>
+<div style="font-size:18px; font-weight:900;">El día de mañana cumplirá años:</div>
+<strong id="birthdayTomorrowNames"></strong>
+</div>
+
 <div class="start-birthday-overlay" id="startBirthdayOverlay">
 <div class="start-birthday-card">
 <div class="start-birthday-emojis">🎉 🎂 🎈 ✨</div>
@@ -3037,12 +3064,24 @@ function mostrarVideoCumpleanosDelDia(){
 }
 
 
+
+let avisoCumpleMananaMostrado = false;
+
+function mostrarAvisoCumpleMananaDespuesDeCarga(){
+  if(avisoCumpleMananaMostrado) return;
+  avisoCumpleMananaMostrado = true;
+
+  // Espera breve para que termine por completo la transición del splash.
+  setTimeout(() => {
+    lanzarAvisoCumpleManana();
+  }, 250);
+}
+
 let funcionesCumpleanosIniciadas = false;
 function iniciarFuncionesCumpleanos(){
   if(funcionesCumpleanosIniciadas) return;
   funcionesCumpleanosIniciadas = true;
   renderCumplesDelMes();
-  lanzarAvisoCumpleManana();
   mostrarVideoCumpleanosDelDia();
 }
 
@@ -3082,15 +3121,8 @@ if(document.readyState === "loading"){
 </div>
 </div>
 </div>
-<div class="birthday-today-banner" id="birthdayTodayBanner">
-<div style="font-size:18px; font-weight:700;">Felicidades a este día a:</div>
-<strong id="birthdayTodayNames"></strong>
-</div>
-<div class="birthday-tomorrow-banner" id="birthdayTomorrowBanner">
-<span class="spark">✨🎂🎉</span>
-<div style="font-size:18px; font-weight:900;">El día de mañana cumplirá años:</div>
-<strong id="birthdayTomorrowNames"></strong>
-</div>
+
+
 </div>
 <div class="seccion" id="sherwin">
 <br/><br/><br/>
@@ -3462,6 +3494,7 @@ window.addEventListener("load", () => {
 
   if (lastShown === today) {
     splash.remove();
+    mostrarAvisoCumpleMananaDespuesDeCarga();
     mostrarCumpleDespuesSplash();
     return;
   }
