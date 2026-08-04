@@ -1966,6 +1966,101 @@ body.auto-dark-mode .dark-mode-pill{
     display:inline-flex;
 }
 </style>
+
+<style id="birthday-video-and-tomorrow-enhancement">
+/* Aviso del día anterior: destello visible durante 3 segundos */
+.birthday-tomorrow-banner{
+    overflow:hidden;
+    background:
+      radial-gradient(circle at top right, rgba(255,255,255,.95), transparent 30%),
+      linear-gradient(135deg,#fff7cc,#ffd166,#f59e0b) !important;
+}
+.birthday-tomorrow-banner::before{
+    content:"";
+    position:absolute;
+    top:-35%;
+    left:-75%;
+    width:42%;
+    height:180%;
+    background:linear-gradient(90deg,transparent,rgba(255,255,255,.92),transparent);
+    transform:rotate(20deg);
+    animation:birthdayTomorrowShine 1.15s ease-in-out 2;
+    pointer-events:none;
+}
+.birthday-tomorrow-banner strong{
+    position:relative;
+    z-index:1;
+    color:#6b3100;
+    text-shadow:0 2px 8px rgba(255,255,255,.75);
+}
+@keyframes birthdayTomorrowShine{
+    0%{left:-75%;}
+    55%{left:135%;}
+    100%{left:135%;}
+}
+
+.birthday-video-section{
+    margin-top:20px;
+    padding:18px;
+    border-radius:22px;
+    border:1px solid #f4d77c;
+    background:
+      radial-gradient(circle at top right,rgba(255,230,120,.34),transparent 35%),
+      linear-gradient(180deg,#fffdf4,#fff8d9);
+    box-shadow:0 14px 28px rgba(118,86,0,.14);
+    text-align:center;
+    animation:birthdayVideoAppear .45s ease both;
+}
+.birthday-video-title{
+    color:#7c4f00;
+    font-size:18px;
+    font-weight:900;
+}
+.birthday-video-names{
+    display:block;
+    margin:8px 0 14px;
+    color:#1e3c72;
+    font-size:clamp(22px,5vw,32px);
+}
+.birthday-video-frame{
+    position:relative;
+    width:100%;
+    padding-top:56.25%;
+    overflow:hidden;
+    border-radius:18px;
+    background:#000;
+    box-shadow:0 12px 24px rgba(0,0,0,.18);
+}
+.birthday-video-frame iframe{
+    position:absolute;
+    inset:0;
+    width:100%;
+    height:100%;
+    border:0;
+}
+.birthday-video-note{
+    margin-top:10px;
+    color:#6b5b2f;
+    font-size:12px;
+    font-weight:700;
+}
+@keyframes birthdayVideoAppear{
+    from{opacity:0;transform:translateY(12px) scale(.985);}
+    to{opacity:1;transform:translateY(0) scale(1);}
+}
+body.auto-dark-mode .birthday-video-section{
+    background:linear-gradient(180deg,#1f2937,#111827) !important;
+    border-color:#854d0e !important;
+}
+body.auto-dark-mode .birthday-video-title,
+body.auto-dark-mode .birthday-video-note{
+    color:#fde68a !important;
+}
+body.auto-dark-mode .birthday-video-names{
+    color:#dbeafe !important;
+}
+</style>
+
 </head>
 <body>
 <div class="start-birthday-overlay" id="startBirthdayOverlay">
@@ -2899,8 +2994,63 @@ function lanzarAvisoCumpleManana(){
 }
 
 
-renderCumplesDelMes();
-lanzarAvisoCumpleManana();
+
+const videosCumpleanos = [
+  "fhKYVQT18xM",
+  "GnQC2zEDNBI",
+  "Fzqto8Cd35M",
+  "QFLALAszEpo",
+  "Jguqnlymeuk"
+];
+
+function mostrarVideoCumpleanosDelDia(){
+  const hoy = new Date();
+  const cumpleanerosHoy = personasCumple.filter(p =>
+    p.dia === hoy.getDate() && p.mes === (hoy.getMonth() + 1)
+  );
+
+  const section = document.getElementById("birthdayVideoSection");
+  const frame = document.getElementById("birthdayVideoFrame");
+  const namesEl = document.getElementById("birthdayVideoNames");
+  if(!section || !frame || !namesEl) return;
+
+  if(!cumpleanerosHoy.length){
+    section.style.display = "none";
+    frame.src = "";
+    return;
+  }
+
+  const nombres = cumpleanerosHoy.map(p => p.nombre).join(", ");
+  namesEl.textContent = nombres;
+
+  // Mantiene el mismo video durante todo el día y puede cambiar al día siguiente.
+  const claveDia = `${hoy.getFullYear()}-${hoy.getMonth()+1}-${hoy.getDate()}`;
+  let suma = 0;
+  for(const caracter of claveDia){
+    suma += caracter.charCodeAt(0);
+  }
+  const videoId = videosCumpleanos[suma % videosCumpleanos.length];
+
+  // YouTube exige silencio para permitir reproducción automática en la mayoría de navegadores.
+  frame.src = `https://www.youtube.com/embed/${videoId}?autoplay=1&mute=1&playsinline=1&controls=1&rel=0`;
+  section.style.display = "block";
+}
+
+
+let funcionesCumpleanosIniciadas = false;
+function iniciarFuncionesCumpleanos(){
+  if(funcionesCumpleanosIniciadas) return;
+  funcionesCumpleanosIniciadas = true;
+  renderCumplesDelMes();
+  lanzarAvisoCumpleManana();
+  mostrarVideoCumpleanosDelDia();
+}
+
+if(document.readyState === "loading"){
+  document.addEventListener("DOMContentLoaded", iniciarFuncionesCumpleanos);
+}else{
+  iniciarFuncionesCumpleanos();
+}
 
 </script>
 
@@ -2915,6 +3065,21 @@ lanzarAvisoCumpleManana();
 </div>
 <p class="section-subtitle"></p>
 <ul class="birthday-list" id="birthdayList"></ul>
+
+<div id="birthdayVideoSection" class="birthday-video-section" style="display:none;">
+  <div class="birthday-video-title">🎶 Video de cumpleaños para:</div>
+  <strong id="birthdayVideoNames" class="birthday-video-names"></strong>
+  <div class="birthday-video-frame">
+    <iframe
+      id="birthdayVideoFrame"
+      src=""
+      title="Video de cumpleaños"
+      allow="autoplay; encrypted-media; picture-in-picture"
+      allowfullscreen>
+    </iframe>
+  </div>
+  <div class="birthday-video-note">El video aparece únicamente durante el día del cumpleaños.</div>
+</div>
 </div>
 </div>
 <div class="birthday-today-banner" id="birthdayTodayBanner">
@@ -2923,7 +3088,7 @@ lanzarAvisoCumpleManana();
 </div>
 <div class="birthday-tomorrow-banner" id="birthdayTomorrowBanner">
 <span class="spark">✨🎂🎉</span>
-<div style="font-size:18px; font-weight:900;">El día de mañana alguien cumple años</div>
+<div style="font-size:18px; font-weight:900;">El día de mañana cumplirá años:</div>
 <strong id="birthdayTomorrowNames"></strong>
 </div>
 </div>
