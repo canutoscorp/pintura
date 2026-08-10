@@ -3544,7 +3544,7 @@ window.addEventListener("load", () => {
 <span>WhatsApp</span>
 </button>
 </div>
-<div class="share-mini-note">La dirección ya quedó copiada y también se abrirá la app seleccionada con el enlace preparado.</div>
+<div class="share-mini-note">La información quedó copiada y también se abrirá la app seleccionada con el mensaje preparado.</div>
 <button class="share-close" id="shareCloseBtn" type="button">Cerrar</button>
 </div>
 </div>
@@ -3553,6 +3553,7 @@ window.addEventListener("load", () => {
   let ubicacionParaCompartir = '';
   let nombreColoniaCompartir = '';
   let tipoUbicacionCompartir = 'colonia';
+  let mensajeParaCompartir = '';
 
   function copiarTexto(texto){
     if (navigator.clipboard && navigator.clipboard.writeText) {
@@ -3573,31 +3574,68 @@ window.addEventListener("load", () => {
     });
   }
 
-  function abrirModalCompartir(nombre, ubicacion, tipo){
+  function abrirModalCompartir(nombre, ubicacion, tipo, mensajePersonalizado){
     nombreColoniaCompartir = nombre || '';
     ubicacionParaCompartir = ubicacion || '';
     tipoUbicacionCompartir = tipo || 'ubicacion';
+
+    if (mensajePersonalizado) {
+      mensajeParaCompartir = mensajePersonalizado;
+    } else {
+      const etiqueta = tipoUbicacionCompartir === 'tienda' ? 'tienda' : 'colonia';
+      mensajeParaCompartir = `Ubicación de la ${etiqueta} ${nombreColoniaCompartir}:\n${ubicacionParaCompartir}`;
+    }
 
     const title = document.getElementById('shareModalTitle');
     const text = document.getElementById('shareModalText');
 
     if(title){
       title.textContent = tipoUbicacionCompartir === 'tienda'
-        ? 'Ubicación de la tienda se ha copiado'
-        : 'Dirección de la colonia se ha copiado';
+        ? 'Información de la tienda lista para compartir'
+        : 'Información de la colonia lista para compartir';
     }
     if(text){
       text.textContent = '¿Deseas enviar por:';
     }
 
-    copiarTexto(ubicacionParaCompartir).finally(() => {
+    copiarTexto(mensajeParaCompartir).finally(() => {
       const overlay = document.getElementById('shareOverlay');
       if (overlay) overlay.classList.add('active');
     });
   }
 
   window.compartirUbicacionColonia = function(nombreColonia, ubicacion){
-    abrirModalCompartir(nombreColonia, ubicacion, 'colonia');
+    let colonia = null;
+
+    try{
+      colonia = datosColonias.find(c => c.nombre === nombreColonia);
+    }catch(e){
+      colonia = null;
+    }
+
+    const codigos = colonia && Array.isArray(colonia.codigos) && colonia.codigos.length
+      ? colonia.codigos.join(', ')
+      : 'Sin códigos registrados';
+
+    const observacion = colonia && colonia.observacion
+      ? colonia.observacion
+      : 'Sin observaciones';
+
+    const mensaje =
+`LOZANO PAINTING
+
+COLONIA: ${nombreColonia}
+
+UBICACIÓN:
+${ubicacion}
+
+CÓDIGOS:
+${codigos}
+
+OBSERVACIONES:
+${observacion}`;
+
+    abrirModalCompartir(nombreColonia, ubicacion, 'colonia', mensaje);
   };
 
   window.compartirUbicacionTienda = function(nombreTienda, ubicacion){
@@ -3621,17 +3659,13 @@ window.addEventListener("load", () => {
 
   if (smsBtn) {
     smsBtn.addEventListener('click', () => {
-      const etiqueta = tipoUbicacionCompartir === 'tienda' ? 'tienda' : 'colonia';
-      const mensaje = `Ubicación de la ${etiqueta} ${nombreColoniaCompartir}: ${ubicacionParaCompartir}`;
-      window.location.href = `sms:?&body=${encodeURIComponent(mensaje)}`;
+      window.location.href = `sms:?&body=${encodeURIComponent(mensajeParaCompartir)}`;
     });
   }
 
   if (waBtn) {
     waBtn.addEventListener('click', () => {
-      const etiqueta = tipoUbicacionCompartir === 'tienda' ? 'tienda' : 'colonia';
-      const mensaje = `Ubicación de la ${etiqueta} ${nombreColoniaCompartir}: ${ubicacionParaCompartir}`;
-      window.open(`https://wa.me/?text=${encodeURIComponent(mensaje)}`, '_blank');
+      window.open(`https://wa.me/?text=${encodeURIComponent(mensajeParaCompartir)}`, '_blank');
     });
   }
 })();
