@@ -3420,7 +3420,8 @@ if(document.readyState === "loading"){
 <input id="lonche" placeholder="Ej. 30" type="number"/>
 <button class="registro-btn" onclick="calcularHoras()">Guardar horas del día</button>
 <label>Nombre de la Colonia/Casa Particular:</label>
-<input id="coloniaRegistro" placeholder="Casa/Colonia" type="text"/>
+<input autocomplete="off" id="coloniaRegistro" list="coloniasRegistroGuardadas" placeholder="Empieza a escribir el nombre de la colonia" type="text"/>
+<datalist id="coloniasRegistroGuardadas"></datalist>
 <button class="registro-btn" onclick="agregarColoniaRegistro()">Agregar Colonia</button>
 <label>Número de Lote/Casa:</label>
 <input id="lote" placeholder="Lote o número de casa" type="text"/>
@@ -3495,6 +3496,13 @@ if(document.readyState === "loading"){
 
   const output = document.getElementById('output');
   if(output){ output.value = formatoFecha() + "\n\n"; }
+
+  const listaColoniasRegistro = document.getElementById('coloniasRegistroGuardadas');
+  if(listaColoniasRegistro && typeof datosColonias !== 'undefined'){
+    listaColoniasRegistro.innerHTML = datosColonias
+      .map(colonia => `<option value="${String(colonia.nombre).replace(/&/g,'&amp;').replace(/"/g,'&quot;')}"></option>`)
+      .join('');
+  }
 
   const STORAGE_HORAS = 'lozano_registros_semanales_v1';
   const STORAGE_PAGOS = 'lozano_pagos_por_hora_v1';
