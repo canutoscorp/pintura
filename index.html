@@ -658,6 +658,31 @@ a:hover{
 .registro-btn:hover,.material-shell button:hover{background:#155ab6;}
 .registro-btn.whatsapp{background:#25D366;}
 .registro-btn.whatsapp:hover{background:#1ea952;}
+.weekly-summary{margin-top:28px;border-top:2px solid #d9e4f3;padding-top:22px;}
+.weekly-summary-head{text-align:center;margin-bottom:16px;}
+.weekly-summary-head h3{margin:0 0 6px;color:#1e3c72;font-size:24px;}
+.week-range{color:#5d7394;font-weight:700;margin-bottom:12px;}
+.week-nav{display:grid;grid-template-columns:1fr 1fr;gap:10px;}
+.week-nav button{margin:0;background:#eaf2ff;color:#1e3c72;border:1px solid #c8d9f0;}
+.worker-week-card{margin-top:18px;padding:18px;border:1px solid #d9e4f3;border-radius:18px;background:#f8fbff;box-shadow:0 8px 20px rgba(22,50,95,.09);}
+.worker-week-title{margin:0 0 8px;color:#1e3c72;font-size:22px;}
+.worker-total{font-weight:800;color:#17325c;margin-bottom:14px;}
+.pay-grid{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-bottom:14px;}
+.pay-grid label{font-size:14px;margin:0;text-align:left;}
+.pay-grid input{margin:6px 0 0!important;background:#fff;}
+.estimated-pay{padding:12px;border-radius:12px;background:#e9f8ef;color:#166534;font-weight:800;display:flex;align-items:center;}
+.weekly-table{margin:0;box-shadow:none;border:1px solid #d9e4f3;}
+.weekly-table th,.weekly-table td{padding:10px;text-align:left;}
+.weekly-table td:last-child{white-space:nowrap;font-weight:700;}
+.empty-week{padding:20px;border-radius:16px;background:#f1f5f9;color:#64748b;text-align:center;}
+.delete-day-btn{width:auto!important;margin:0 0 0 8px!important;padding:5px 8px!important;background:#fee2e2!important;color:#991b1b!important;font-size:12px!important;}
+@media(max-width:600px){
+  .pay-grid{grid-template-columns:1fr;}
+  .weekly-table,.weekly-table tbody{display:table!important;width:100%;}
+  .weekly-table tr{display:table-row!important;}
+  .weekly-table td{display:table-cell!important;width:auto!important;font-size:14px;padding:9px!important;}
+  .weekly-table td::before{display:none!important;}
+}
 .checkbox-container{
     display:flex;
     align-items:center;
@@ -2076,6 +2101,135 @@ body.auto-dark-mode .birthday-video-names{
 }
 </style>
 
+<style id="pleasant-colors-v2">
+/* Paleta suave: azul grisáceo, verde salvia y tonos crema */
+:root{
+  --soft-bg:#f3f6f4;
+  --soft-card:#ffffff;
+  --soft-primary:#496b78;
+  --soft-primary-2:#668d8a;
+  --soft-sage:#dce9e2;
+  --soft-blue:#e6eff2;
+  --soft-cream:#fbf5ec;
+  --soft-ink:#29434d;
+  --soft-muted:#667b80;
+  --soft-line:#d4e1de;
+}
+body:not(.auto-dark-mode){
+  background:linear-gradient(180deg,#edf3f1 0%,#f8f5ef 52%,#eef4f5 100%) !important;
+  color:var(--soft-ink);
+}
+body:not(.auto-dark-mode) header{
+  background:linear-gradient(120deg,#456875,#6f9991) !important;
+  box-shadow:0 10px 26px rgba(57,91,94,.20) !important;
+}
+body:not(.auto-dark-mode) .top-tab-btn{
+  background:#e5ece9 !important;
+  color:#3f6069 !important;
+  border:1px solid #d1dfdb !important;
+}
+body:not(.auto-dark-mode) .top-tab-btn.active{
+  background:linear-gradient(120deg,#4e7380,#70998f) !important;
+  color:#fff !important;
+}
+body:not(.auto-dark-mode) .top-tab-btn.active::after{
+  background:linear-gradient(90deg,#b9d8cd,#ffffff,#c5dce3) !important;
+  box-shadow:0 0 10px rgba(158,202,190,.75) !important;
+}
+body:not(.auto-dark-mode) .registro-shell{
+  background:rgba(255,255,255,.94) !important;
+  border-color:#d5e2de !important;
+  box-shadow:0 16px 34px rgba(59,88,87,.12) !important;
+}
+body:not(.auto-dark-mode) .registro-shell h2,
+body:not(.auto-dark-mode) .weekly-summary-head h3,
+body:not(.auto-dark-mode) .worker-week-title,
+body:not(.auto-dark-mode) .registro-shell label{
+  color:#3f6670 !important;
+}
+body:not(.auto-dark-mode) .registro-shell input,
+body:not(.auto-dark-mode) .registro-shell textarea{
+  background:#fbfdfc !important;
+  border:1px solid #cbdcd7 !important;
+  color:#29434d !important;
+  box-shadow:0 4px 12px rgba(66,96,94,.06) !important;
+}
+body:not(.auto-dark-mode) .registro-shell input:focus,
+body:not(.auto-dark-mode) .registro-shell textarea:focus{
+  border-color:#79a49a !important;
+  box-shadow:0 0 0 4px rgba(121,164,154,.16) !important;
+}
+body:not(.auto-dark-mode) .registro-btn:not(.whatsapp){
+  background:linear-gradient(120deg,#557d88,#729c93) !important;
+  box-shadow:0 8px 16px rgba(70,105,105,.16) !important;
+}
+body:not(.auto-dark-mode) .week-nav button{
+  background:#e6f0ec !important;
+  color:#466b70 !important;
+  border-color:#c9ddd6 !important;
+}
+body:not(.auto-dark-mode) .weekly-summary{border-color:#d8e4e0 !important;}
+body:not(.auto-dark-mode) .worker-week-card{
+  background:linear-gradient(145deg,#fbfdfc,#f7f3ec) !important;
+  border-color:#d7e3df !important;
+  box-shadow:0 10px 24px rgba(59,88,87,.10) !important;
+}
+body:not(.auto-dark-mode) .worker-total{
+  display:inline-block;background:#e2eee9;color:#345d61 !important;
+  padding:9px 12px;border-radius:12px;
+}
+body:not(.auto-dark-mode) .estimated-pay{
+  background:#e5f2e9 !important;color:#326146 !important;border:1px solid #cce2d3;
+}
+body:not(.auto-dark-mode) .weekly-table{border-color:#d3e0dc !important;}
+body:not(.auto-dark-mode) .weekly-table tr:nth-child(even){background:#f0f6f3 !important;}
+body:not(.auto-dark-mode) .weekly-table tr:nth-child(odd){background:#fffdf9 !important;}
+body:not(.auto-dark-mode) .empty-week{background:#edf3f1 !important;color:#657c7b !important;}
+
+body.auto-dark-mode .worker-week-card{
+  background:linear-gradient(145deg,#1e3035,#263a3a) !important;
+  border-color:#425c5c !important;
+}
+body.auto-dark-mode .weekly-summary{border-color:#42595c !important;}
+body.auto-dark-mode .weekly-summary-head h3,
+body.auto-dark-mode .worker-week-title,
+body.auto-dark-mode .worker-total{color:#d9ebe5 !important;}
+body.auto-dark-mode .estimated-pay{background:#254737 !important;color:#c9efda !important;}
+body.auto-dark-mode .weekly-table tr{background:#203338 !important;}
+</style>
+
+<style id="periodo-control-style">
+.periodo-shell{max-width:820px!important;text-align:left!important;background:linear-gradient(160deg,#ffffff,#f4f8f6)!important;}
+.periodo-shell>h2{text-align:center!important;margin-bottom:8px!important;}
+.periodo-intro{max-width:650px;margin:0 auto 20px;padding:14px 16px;border-radius:16px;background:#e8f2ee;color:#46656a;text-align:center;line-height:1.5;font-weight:650;border:1px solid #d1e3dc;}
+.periodo-setup{padding:18px;border-radius:18px;background:#fffaf3;border:1px solid #eadfce;box-shadow:0 8px 20px rgba(82,99,91,.08);}
+.periodo-setup.oculto,.periodo-setup[hidden]{display:none!important;visibility:hidden!important;height:0!important;overflow:hidden!important;margin:0!important;padding:0!important;border:0!important;}
+.periodo-setup h3,.periodo-people-head h3{margin:0 0 14px;color:#446a72;}
+.periodo-form-grid{display:grid;grid-template-columns:1fr 1fr;gap:14px;}
+.periodo-form-grid label,.periodo-entry-grid label{font-size:14px;color:#49676d;text-align:left;margin:0;}
+.periodo-form-grid input,.periodo-form-grid select,.periodo-entry-grid input{width:100%;margin:7px 0 0;padding:13px;border-radius:12px;border:1px solid #c9dbd5;background:#fff;color:#29434d;font-size:16px;outline:none;}
+.periodo-form-grid input:focus,.periodo-form-grid select:focus,.periodo-entry-grid input:focus{border-color:#6f9b91;box-shadow:0 0 0 4px rgba(111,155,145,.14);}
+.money-input{position:relative;}.money-input span{position:absolute;left:13px;top:19px;color:#477068;font-weight:900;z-index:1}.money-input input{padding-left:30px!important;}
+.periodo-main-btn,.periodo-action-btn{width:100%;border:0;border-radius:12px;padding:13px 16px;margin-top:14px;background:linear-gradient(120deg,#4f7881,#72a094);color:#fff;font-size:16px;font-weight:800;cursor:pointer;box-shadow:0 8px 18px rgba(67,103,101,.16);}
+.periodo-cancel-btn{display:none;width:100%;margin-top:9px;padding:11px;border-radius:12px;border:1px solid #d7c8b6;background:#fff;color:#776554;font-weight:800;cursor:pointer;}
+.periodo-setup.editando .periodo-cancel-btn{display:block;}
+.periodo-note{margin:10px 0 0;color:#788681;font-size:12px;text-align:center;}
+.periodo-add-worker{display:flex;align-items:center;justify-content:space-between;gap:16px;margin:18px 0 6px;padding:15px 16px;border-radius:16px;background:linear-gradient(135deg,#e8f2ee,#edf4f6);border:1px solid #d0e1dc;color:#46656a;}
+.periodo-add-worker.oculto{display:none;}.periodo-add-worker div{display:flex;flex-direction:column;gap:4px}.periodo-add-worker span{font-size:13px;line-height:1.4;color:#6c7f7c}.periodo-add-worker button{flex:0 0 auto;border:0;border-radius:11px;padding:11px 13px;background:#547b82;color:#fff;font-weight:800;cursor:pointer;box-shadow:0 6px 14px rgba(67,103,101,.15);}
+.periodo-people-head{display:flex;align-items:center;justify-content:space-between;margin:26px 0 10px;gap:10px;}
+.periodo-people-head h3{margin:0}.periodo-people-head span{background:#e5efeb;color:#486a67;padding:7px 10px;border-radius:999px;font-size:13px;font-weight:800;}
+.periodo-empty{padding:24px;border:1px dashed #b9cdc7;border-radius:17px;background:#f7faf8;color:#6d807d;text-align:center;}
+.periodo-card{margin-top:18px;border-radius:20px;border:1px solid #cfe0da;background:#fff;overflow:hidden;box-shadow:0 12px 26px rgba(57,88,86,.10);}
+.periodo-card-head{padding:18px;background:linear-gradient(125deg,#456c77,#729b91);color:#fff;}
+.periodo-card-name{display:flex;align-items:center;justify-content:space-between;gap:10px;margin-bottom:12px;}.periodo-card-name strong{font-size:22px;}.periodo-edit-btn{border:1px solid rgba(255,255,255,.65);background:rgba(255,255,255,.15);color:#fff;border-radius:10px;padding:8px 10px;cursor:pointer;font-weight:700;}
+.periodo-stats{display:grid;grid-template-columns:repeat(2,1fr);gap:10px;}.periodo-stat{padding:11px;border-radius:12px;background:rgba(255,255,255,.14);}.periodo-stat small{display:block;opacity:.82;margin-bottom:4px}.periodo-stat b{font-size:16px;}
+.periodo-card-body{padding:18px;}.periodo-range-row{display:flex;justify-content:space-between;align-items:center;gap:8px;margin-bottom:14px;padding-bottom:12px;border-bottom:1px solid #dbe7e3;}.periodo-range-row button{border:0;background:#e8f1ee;color:#416b68;border-radius:10px;padding:8px 10px;cursor:pointer;font-weight:800;}.periodo-range-label{text-align:center;color:#526e71;font-size:14px;font-weight:800;}
+.periodo-entry-box{padding:15px;border-radius:16px;background:#f7f3ec;border:1px solid #e9dfd1;}.periodo-entry-box h4{margin:0 0 12px;color:#526e71;}.periodo-entry-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:12px;}.periodo-check{display:flex!important;align-items:center;gap:8px;padding-top:10px}.periodo-check input{width:20px!important;margin:0!important;}.periodo-live-time{margin-top:12px;padding:11px;border-radius:11px;background:#e5f0eb;color:#3c625d;font-weight:800;text-align:center;}
+.periodo-days{margin-top:15px;display:grid;gap:8px;}.periodo-day{display:grid;grid-template-columns:1fr auto;align-items:center;gap:10px;padding:11px 12px;border-radius:12px;background:#f3f7f5;border:1px solid #dce7e3;color:#3e5d62;}.periodo-day.zero{opacity:.72}.periodo-day-time{font-weight:800;text-align:right}.periodo-day-actions button{border:0;border-radius:8px;padding:5px 8px;margin-left:5px;cursor:pointer;font-size:12px;font-weight:800}.periodo-day-actions .edit{background:#e4eef4;color:#3b6576}.periodo-day-actions .remove{background:#f8e7e5;color:#8a4d47}.periodo-whatsapp{background:#25a95b!important;}.periodo-delete-person{background:transparent!important;color:#a04d48!important;border:1px solid #e6c6c2!important;box-shadow:none!important;}
+@media(max-width:600px){.periodo-form-grid,.periodo-entry-grid,.periodo-stats{grid-template-columns:1fr}.periodo-card-body,.periodo-card-head{padding:14px}.periodo-range-row{align-items:stretch}.periodo-range-row button{font-size:12px;padding:8px}.periodo-day{grid-template-columns:1fr}.periodo-day-time{text-align:left}.periodo-people-head{align-items:flex-end}.periodo-shell{padding:16px 12px!important}.periodo-add-worker{align-items:stretch;flex-direction:column}.periodo-add-worker button{width:100%;}}
+body.auto-dark-mode .periodo-shell,body.auto-dark-mode .periodo-card{background:#17282d!important;border-color:#3e5857!important}body.auto-dark-mode .periodo-intro,body.auto-dark-mode .periodo-entry-box,body.auto-dark-mode .periodo-day,body.auto-dark-mode .periodo-setup{background:#20363a!important;color:#d4e7e1!important;border-color:#3e5857!important}body.auto-dark-mode .periodo-form-grid input,body.auto-dark-mode .periodo-form-grid select,body.auto-dark-mode .periodo-entry-grid input{background:#14262b;color:#e3efec;border-color:#496563}body.auto-dark-mode .periodo-card-body,body.auto-dark-mode .periodo-setup h3,body.auto-dark-mode .periodo-people-head h3,body.auto-dark-mode .periodo-entry-box h4{color:#d7e9e4!important}
+</style>
+
 </head>
 <body>
 
@@ -2117,7 +2271,7 @@ body.auto-dark-mode .birthday-video-names{
 <button class="top-tab-btn" data-seccion="cumpleanos">🎂<br/>CUMPLEAÑOS</button>
 <button class="top-tab-btn" data-seccion="sherwin">🎨<br/>SHERWIN-WILLIAMS</button>
 <button class="top-tab-btn" data-seccion="registro">📝<br/>REGISTRO</button>
-<button class="top-tab-btn" data-seccion="material">📦<br/>MATERIAL</button>
+<button class="top-tab-btn" data-seccion="material">⏱️<br/>PERIODO</button>
 </div>
 <div class="seccion activa" id="buscar">
 <label for="coloniaInput">Buscar o Seleccionar Colonia</label>
@@ -3249,6 +3403,11 @@ if(document.readyState === "loading"){
 <section class="registro-shell">
 <h2>Registro de Trabajo</h2>
 <textarea id="output" placeholder="Aquí aparecerá la información..."></textarea>
+<label>Fecha trabajada:</label>
+<input id="fechaTrabajo" type="date"/>
+<label>Nombre del trabajador:</label>
+<input id="nombreTrabajador" list="trabajadoresGuardados" placeholder="Escribe o selecciona el nombre" type="text"/>
+<datalist id="trabajadoresGuardados"></datalist>
 <label>Hora de Entrada:</label>
 <input id="entrada" step="60" type="time"/>
 <label>Hora de Salida:</label>
@@ -3259,10 +3418,7 @@ if(document.readyState === "loading"){
 </div>
 <label>Tiempo de Lonche (minutos):</label>
 <input id="lonche" placeholder="Ej. 30" type="number"/>
-<button class="registro-btn" onclick="calcularHoras()">Calcular Horas</button>
-<label>Nombre del trabajador:</label>
-<input id="nombreTrabajador" placeholder="Escribe el nombre" type="text"/>
-<button class="registro-btn" onclick="agregarTrabajador()">Agregar Trabajador</button>
+<button class="registro-btn" onclick="calcularHoras()">Guardar horas del día</button>
 <label>Nombre de la Colonia/Casa Particular:</label>
 <input id="coloniaRegistro" placeholder="Casa/Colonia" type="text"/>
 <button class="registro-btn" onclick="agregarColoniaRegistro()">Agregar Colonia</button>
@@ -3275,22 +3431,44 @@ if(document.readyState === "loading"){
 <input id="pendientesRegistro" placeholder="Ej. Retocar puerta principal" type="text"/>
 <button class="registro-btn" onclick="agregarPendientesRegistro()">Agregar</button>
 <button class="registro-btn whatsapp" onclick="enviarWhatsAppRegistro()">Enviar x WhatsApp</button>
+<div class="weekly-summary">
+<div class="weekly-summary-head">
+<h3>Resumen semanal por trabajador</h3>
+<div class="week-range" id="rangoSemana"></div>
+<div class="week-nav">
+<button class="registro-btn" type="button" onclick="cambiarSemana(-7)">← Semana anterior</button>
+<button class="registro-btn" type="button" onclick="cambiarSemana(7)">Semana siguiente →</button>
+</div>
+</div>
+<div id="resumenSemanal"></div>
+</div>
 </section>
 </div>
 <div class="seccion" id="material">
-<section class="material-shell">
-<h2>Material</h2>
-<div class="material-container">
-<h3>Selecciona los productos:</h3>
-<div id="productos-container"></div>
-<h3>Otros productos:</h3>
-<input id="productoPersonalizado" placeholder="Escribe un producto y presiona Enter" type="text"/>
-<h3>Lista de selección:</h3>
-<div class="lista" id="listaProductos">Se requiere:</div>
-<button onclick="copiarYEnviar()">Copiar y Enviar a WhatsApp</button>
-<p class="mensaje-adicional">Si la persona a cargo no se encuentra disponible, copia el pedido para enviarlo a la persona asignada temporalmente. Gracias.</p>
-<button onclick="copiarPedido()">Copiar pedido</button>
+<section class="material-shell periodo-shell">
+<h2>Control de Periodo</h2>
+<p class="periodo-intro">Aquí puedes llevar el control semanal de tus horas. Solo coloca tu nombre, lo que ganas por hora y los días de tu periodo.</p>
+<div class="periodo-setup">
+<h3>Configurar trabajador</h3>
+<div class="periodo-form-grid">
+<label>Escribe tu nombre<input id="periodoNombre" placeholder="Nombre completo" type="text"/></label>
+<label>¿Cuánto ganas por hora?<div class="money-input"><span>$</span><input id="periodoSueldo" min="0" placeholder="20.00" step="0.01" type="number"/></div></label>
+<label>¿Cuándo inicia tu semana?<select id="periodoInicio"></select></label>
+<label>¿Cuándo cierra tu semana?<select id="periodoCierre"></select></label>
 </div>
+<button class="periodo-main-btn" id="guardarPerfilPeriodo" type="button">Guardar trabajador</button>
+<button class="periodo-cancel-btn" id="cancelarPerfilPeriodo" type="button">Cancelar</button>
+<p class="periodo-note">El periodo debe abarcar siete días. Al elegir el inicio, el cierre correcto se seleccionará automáticamente.</p>
+</div>
+<div class="periodo-add-worker" id="periodoAgregarTrabajador">
+<div><b>¿Quieres registrar a otro trabajador?</b><span>Presiona el botón para ingresar su nombre, sueldo y periodo. Cada persona tendrá su información separada.</span></div>
+<button id="abrirPerfilPeriodo" type="button">＋ Agregar otro trabajador</button>
+</div>
+<div class="periodo-people-head">
+<h3>Trabajadores guardados</h3>
+<span id="periodoPersonasConteo"></span>
+</div>
+<div id="periodoPerfiles"></div>
 </section>
 </div>
 <script>
@@ -3318,6 +3496,37 @@ if(document.readyState === "loading"){
   const output = document.getElementById('output');
   if(output){ output.value = formatoFecha() + "\n\n"; }
 
+  const STORAGE_HORAS = 'lozano_registros_semanales_v1';
+  const STORAGE_PAGOS = 'lozano_pagos_por_hora_v1';
+  let semanaVisible = new Date();
+  semanaVisible.setHours(12,0,0,0);
+
+  function fechaLocalISO(fecha){
+    const y=fecha.getFullYear(), m=String(fecha.getMonth()+1).padStart(2,'0'), d=String(fecha.getDate()).padStart(2,'0');
+    return `${y}-${m}-${d}`;
+  }
+  const fechaTrabajo = document.getElementById('fechaTrabajo');
+  if(fechaTrabajo) fechaTrabajo.value = fechaLocalISO(new Date());
+  function leerJSON(clave){ try{return JSON.parse(localStorage.getItem(clave)||'{}')}catch(e){return {}} }
+  function guardarJSON(clave,valor){ localStorage.setItem(clave,JSON.stringify(valor)); }
+  function normalizarNombre(nombre){ return nombre.trim().replace(/\s+/g,' '); }
+  function inicioSemana(fecha){
+    const f=new Date(fecha); f.setHours(12,0,0,0);
+    f.setDate(f.getDate()-((f.getDay()+4)%7));
+    return f;
+  }
+  function textoDuracion(minutos){
+    minutos=Math.max(0,Math.round(Number(minutos)||0));
+    const h=Math.floor(minutos/60), m=minutos%60;
+    return `${h} ${h===1?'hora':'horas'}, ${m} ${m===1?'minuto':'minutos'}`;
+  }
+  function fechaCorta(fecha){ return fecha.toLocaleDateString('es-MX',{day:'numeric',month:'short',year:'numeric'}); }
+  function escaparHTML(valor){ return String(valor).replace(/[&<>'"]/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;',"'":'&#39;','"':'&quot;'}[c])); }
+  function actualizarTrabajadoresGuardados(){
+    const registros=leerJSON(STORAGE_HORAS), lista=document.getElementById('trabajadoresGuardados');
+    if(lista) lista.innerHTML=Object.keys(registros).sort((a,b)=>a.localeCompare(b,'es')).map(n=>`<option value="${escaparHTML(n)}"></option>`).join('');
+  }
+
   window.formato12Horas = function(timeStr) {
     let [h, m] = timeStr.split(':').map(Number);
     const ampm = h >= 12 ? 'p.m.' : 'a.m.';
@@ -3326,22 +3535,35 @@ if(document.readyState === "loading"){
   }
 
   window.calcularHoras = function() {
+    const nombre = normalizarNombre(document.getElementById('nombreTrabajador').value);
+    const fecha = document.getElementById('fechaTrabajo').value;
     const entrada = document.getElementById('entrada').value;
     const salida = document.getElementById('salida').value;
     const lonche = parseInt(document.getElementById('lonche').value) || 0;
     const diaSig = document.getElementById('diaSiguiente').checked;
+    if (!nombre) return alert('Escribe el nombre del trabajador.');
+    if (!fecha) return alert('Selecciona la fecha trabajada.');
     if (!entrada || !salida) return alert('Por favor selecciona las horas.');
 
     let t1 = new Date(`2025-01-01T${entrada}`);
     let t2 = new Date(`2025-01-01T${salida}`);
     if (diaSig) t2.setDate(t2.getDate() + 1);
     let diff = (t2 - t1) / 60000 - lonche;
+    if(diff < 0) return alert('La salida debe ser posterior a la entrada. Si saliste al día siguiente, marca esa opción.');
 
     const horas = Math.floor(diff / 60);
     const minutos = diff % 60;
 
-    const texto = `Hora de Entrada: ${formato12Horas(entrada)}\nHora de Salida: ${formato12Horas(salida)}\nTiempo de lonche: ${lonche} minutos\nTiempo Laborado: ${horas} Horas ${minutos} Minutos _El tiempo de lonche ya va descontado_\n\n`;
+    const texto = `Nombre del Trabajador: ${nombre}\nFecha: ${fecha}\nHora de Entrada: ${formato12Horas(entrada)}\nHora de Salida: ${formato12Horas(salida)}\nTiempo de lonche: ${lonche} minutos\nTiempo Laborado: ${horas} Horas ${minutos} Minutos _El tiempo de lonche ya va descontado_\n\n`;
     document.getElementById('output').value += texto;
+    const registros=leerJSON(STORAGE_HORAS);
+    if(!registros[nombre]) registros[nombre]={};
+    registros[nombre][fecha]={minutos:Math.round(diff),entrada,salida,lonche,diaSig};
+    guardarJSON(STORAGE_HORAS,registros);
+    semanaVisible=new Date(`${fecha}T12:00:00`);
+    actualizarTrabajadoresGuardados();
+    renderResumenSemanal();
+    alert('Horas guardadas en el resumen semanal.');
   }
 
   window.agregarTrabajador = function() {
@@ -3350,6 +3572,44 @@ if(document.readyState === "loading"){
     document.getElementById('output').value += `Nombre del Trabajador: ${nombre}\n`;
     document.getElementById('nombreTrabajador').value = '';
   }
+
+  window.cambiarSemana=function(dias){ semanaVisible.setDate(semanaVisible.getDate()+dias); renderResumenSemanal(); }
+  window.actualizarPago=function(nombre,valor){
+    const pagos=leerJSON(STORAGE_PAGOS); pagos[nombre]=Math.max(0,parseFloat(valor)||0); guardarJSON(STORAGE_PAGOS,pagos); renderResumenSemanal();
+  }
+  window.eliminarRegistroDia=function(nombre,fecha){
+    if(!confirm(`¿Eliminar las horas de ${nombre} del ${fecha}?`)) return;
+    const registros=leerJSON(STORAGE_HORAS);
+    if(registros[nombre]){ delete registros[nombre][fecha]; if(!Object.keys(registros[nombre]).length) delete registros[nombre]; }
+    guardarJSON(STORAGE_HORAS,registros); actualizarTrabajadoresGuardados(); renderResumenSemanal();
+  }
+  window.enviarResumenTrabajador=function(nombre){
+    const registros=leerJSON(STORAGE_HORAS), pagos=leerJSON(STORAGE_PAGOS), inicio=inicioSemana(semanaVisible), fin=new Date(inicio); fin.setDate(fin.getDate()+6);
+    const dias=['Miércoles','Jueves','Viernes','Sábado','Domingo','Lunes','Martes'];
+    let total=0, lineas=[];
+    dias.forEach((dia,i)=>{ const f=new Date(inicio); f.setDate(f.getDate()+i); const item=(registros[nombre]||{})[fechaLocalISO(f)]; const mins=item?item.minutos:0; total+=mins; lineas.push(`${dia} ${f.getDate()}: ${textoDuracion(mins)}`); });
+    const tarifa=Number(pagos[nombre])||0, cobro=(total/60)*tarifa;
+    const mensaje=`*${nombre}*\nSemana del ${fechaCorta(inicio)} al ${fechaCorta(fin)}\n\n*Total de horas trabajadas:* ${textoDuracion(total)}\n*Pago por hora:* $${tarifa.toFixed(2)}\n*Aproximado a cobrar:* $${cobro.toFixed(2)}\n\n${lineas.join('\n')}`;
+    window.open(`https://wa.me/?text=${encodeURIComponent(mensaje)}`,'_blank');
+  }
+
+  function renderResumenSemanal(){
+    const cont=document.getElementById('resumenSemanal'), rango=document.getElementById('rangoSemana'); if(!cont||!rango)return;
+    const registros=leerJSON(STORAGE_HORAS), pagos=leerJSON(STORAGE_PAGOS), inicio=inicioSemana(semanaVisible), fin=new Date(inicio); fin.setDate(fin.getDate()+6);
+    rango.textContent=`Miércoles ${fechaCorta(inicio)} — Martes ${fechaCorta(fin)}`;
+    const dias=['Miércoles','Jueves','Viernes','Sábado','Domingo','Lunes','Martes'];
+    const trabajadores=Object.keys(registros).filter(nombre=>dias.some((_,i)=>{const f=new Date(inicio);f.setDate(f.getDate()+i);return registros[nombre][fechaLocalISO(f)]})).sort((a,b)=>a.localeCompare(b,'es'));
+    if(!trabajadores.length){cont.innerHTML='<div class="empty-week">Todavía no hay horas guardadas para esta semana.</div>';return;}
+    cont.innerHTML=trabajadores.map(nombre=>{
+      let total=0;
+      const nombreSeguro=encodeURIComponent(nombre);
+      const filas=dias.map((dia,i)=>{const f=new Date(inicio);f.setDate(f.getDate()+i);const iso=fechaLocalISO(f),item=registros[nombre][iso],mins=item?item.minutos:0;total+=mins;return `<tr><td>${dia}<br><small>${f.getDate()}/${f.getMonth()+1}</small></td><td>${textoDuracion(mins)}${item?`<button class="delete-day-btn" onclick="eliminarRegistroDia(decodeURIComponent('${nombreSeguro}'),'${iso}')">Borrar</button>`:''}</td></tr>`}).join('');
+      const tarifa=Number(pagos[nombre])||0, cobro=total/60*tarifa;
+      return `<article class="worker-week-card"><h4 class="worker-week-title">${escaparHTML(nombre)}</h4><div class="worker-total">Total: ${textoDuracion(total)}</div><div class="pay-grid"><label>Pago por hora<input type="number" min="0" step="0.01" value="${tarifa||''}" placeholder="$0.00" onchange="actualizarPago(decodeURIComponent('${nombreSeguro}'),this.value)"></label><div class="estimated-pay">Aproximado a cobrar: $${cobro.toFixed(2)}</div></div><table class="weekly-table"><tbody>${filas}</tbody></table><button class="registro-btn whatsapp" type="button" onclick="enviarResumenTrabajador(decodeURIComponent('${nombreSeguro}'))">Enviar tabla de ${escaparHTML(nombre)} por WhatsApp</button></article>`;
+    }).join('');
+  }
+  actualizarTrabajadoresGuardados();
+  renderResumenSemanal();
 
   window.agregarColoniaRegistro = function() {
     const col = document.getElementById('coloniaRegistro').value.trim();
@@ -3459,6 +3719,82 @@ if(document.readyState === "loading"){
     const url = `https://wa.me/${numeroWhatsApp}?text=${encodeURIComponent(mensaje)}`;
     window.open(url, '_blank');
   }
+})();
+</script>
+<script id="periodo-control-script">
+(function(){
+  const CLAVE='lozano_control_periodos_v1';
+  const DIAS=['Domingo','Lunes','Martes','Miércoles','Jueves','Viernes','Sábado'];
+  let perfilEditando=null;
+  const $=id=>document.getElementById(id);
+  const leer=()=>{try{return JSON.parse(localStorage.getItem(CLAVE)||'{"perfiles":{},"registros":{}}')}catch(e){return {perfiles:{},registros:{}}}};
+  const guardar=d=>localStorage.setItem(CLAVE,JSON.stringify(d));
+  const iso=f=>`${f.getFullYear()}-${String(f.getMonth()+1).padStart(2,'0')}-${String(f.getDate()).padStart(2,'0')}`;
+  const fechaDe=s=>new Date(`${s}T12:00:00`);
+  const esc=s=>String(s).replace(/[&<>'"]/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;',"'":'&#39;','"':'&quot;'}[c]));
+  const dur=m=>{m=Math.max(0,Math.round(Number(m)||0));const h=Math.floor(m/60),r=m%60;return `${h} ${h===1?'hora':'horas'} ${r} ${r===1?'minuto':'minutos'}`};
+  const fechaBonita=f=>f.toLocaleDateString('es-MX',{day:'numeric',month:'short',year:'numeric'});
+  function inicioPeriodo(fecha,diaInicio){const f=new Date(fecha);f.setHours(12,0,0,0);f.setDate(f.getDate()-((f.getDay()-diaInicio+7)%7));return f}
+  function minutosTurno(entrada,salida,lonche,siguiente){
+    if(!entrada||!salida)return null;const [eh,em]=entrada.split(':').map(Number),[sh,sm]=salida.split(':').map(Number);
+    let total=(sh*60+sm)-(eh*60+em);if(siguiente)total+=1440;total-=Math.max(0,Number(lonche)||0);return total<0?null:total;
+  }
+  function llenarDias(){
+    const ini=$('periodoInicio'),cie=$('periodoCierre');if(!ini||!cie)return;
+    ini.innerHTML=cie.innerHTML=DIAS.map((d,i)=>`<option value="${i}">${d}</option>`).join('');ini.value='3';cie.value='2';
+    ini.addEventListener('change',()=>cie.value=(Number(ini.value)+6)%7);
+  }
+  function mostrarFormularioPeriodo(esEdicion=false){
+    const formulario=document.querySelector('.periodo-setup');
+    if(formulario){formulario.hidden=false;formulario.style.display='block';formulario.classList.remove('oculto');formulario.classList.toggle('editando',esEdicion);}
+    const agregar=$('periodoAgregarTrabajador');if(agregar)agregar.classList.add('oculto');
+  }
+  function ocultarFormularioPeriodo(){
+    const formulario=document.querySelector('.periodo-setup');
+    if(formulario){formulario.classList.add('oculto');formulario.classList.remove('editando');formulario.hidden=true;formulario.style.display='none';}
+    const agregar=$('periodoAgregarTrabajador');if(agregar)agregar.classList.remove('oculto');
+  }
+  function limpiarPerfil(){perfilEditando=null;$('periodoNombre').value='';$('periodoSueldo').value='';$('periodoInicio').value='3';$('periodoCierre').value='2';$('guardarPerfilPeriodo').textContent='Guardar trabajador';document.querySelector('.periodo-setup')?.classList.remove('editando');}
+  function guardarPerfil(){
+    const nombre=$('periodoNombre').value.trim().replace(/\s+/g,' '),sueldo=Number($('periodoSueldo').value),inicio=Number($('periodoInicio').value),cierre=Number($('periodoCierre').value);
+    if(!nombre)return alert('Escribe el nombre del trabajador.');if(!(sueldo>=0))return alert('Escribe cuánto gana por hora.');if(cierre!==(inicio+6)%7)return alert(`Para un periodo de siete días que inicia el ${DIAS[inicio]}, el cierre debe ser el ${DIAS[(inicio+6)%7]}.`);
+    const d=leer();let id=perfilEditando;
+    if(!id){const repetido=Object.entries(d.perfiles).find(([,p])=>p.nombre.toLowerCase()===nombre.toLowerCase());id=repetido?repetido[0]:`p${Date.now()}${Math.floor(Math.random()*1000)}`;}
+    d.perfiles[id]={...(d.perfiles[id]||{}),nombre,sueldo,inicio,cierre,vista:(d.perfiles[id]||{}).vista||iso(new Date())};if(!d.registros[id])d.registros[id]={};guardar(d);limpiarPerfil();ocultarFormularioPeriodo();render();setTimeout(()=>document.querySelector('.periodo-card')?.scrollIntoView({behavior:'smooth',block:'start'}),120);
+  }
+  window.editarPerfilPeriodo=id=>{const d=leer(),p=d.perfiles[id];if(!p)return;mostrarFormularioPeriodo(true);perfilEditando=id;$('periodoNombre').value=p.nombre;$('periodoSueldo').value=p.sueldo;$('periodoInicio').value=p.inicio;$('periodoCierre').value=p.cierre;$('guardarPerfilPeriodo').textContent='Guardar cambios';$('periodoNombre').focus();document.querySelector('.periodo-setup').scrollIntoView({behavior:'smooth',block:'center'});};
+  window.cambiarVistaPeriodo=(id,dias)=>{const d=leer(),p=d.perfiles[id];if(!p)return;const f=fechaDe(p.vista||iso(new Date()));f.setDate(f.getDate()+dias);p.vista=iso(f);guardar(d);render();};
+  window.calcularVistaPreviaPeriodo=id=>{const m=minutosTurno($(`pe-${id}`).value,$(`ps-${id}`).value,$(`pl-${id}`).value,$(`pn-${id}`).checked),c=$(`pt-${id}`);if(c)c.textContent=m===null?'Tiempo laborado: completa las horas correctamente':`Tiempo laborado: ${dur(m)}`;};
+  window.guardarDiaPeriodo=id=>{
+    const fecha=$(`pf-${id}`).value,entrada=$(`pe-${id}`).value,salida=$(`ps-${id}`).value,lonche=Number($(`pl-${id}`).value)||0,siguiente=$(`pn-${id}`).checked,m=minutosTurno(entrada,salida,lonche,siguiente);
+    if(!fecha)return alert('Selecciona la fecha trabajada.');if(m===null)return alert('Revisa la entrada y salida. Marca si la salida fue al día siguiente.');
+    const d=leer();if(!d.perfiles[id])return;d.registros[id]=d.registros[id]||{};d.registros[id][fecha]={entrada,salida,lonche,siguiente,minutos:m};d.perfiles[id].vista=fecha;guardar(d);render();
+  };
+  window.cargarDiaPeriodo=(id,fecha)=>{const d=leer(),r=(d.registros[id]||{})[fecha];if(!r)return;$(`pf-${id}`).value=fecha;$(`pe-${id}`).value=r.entrada;$(`ps-${id}`).value=r.salida;$(`pl-${id}`).value=r.lonche;$(`pn-${id}`).checked=!!r.siguiente;calcularVistaPreviaPeriodo(id);document.getElementById(`entrada-periodo-${id}`).scrollIntoView({behavior:'smooth',block:'center'});};
+  window.borrarDiaPeriodo=(id,fecha)=>{if(!confirm('¿Borrar las horas registradas de este día?'))return;const d=leer();if(d.registros[id])delete d.registros[id][fecha];guardar(d);render();};
+  window.borrarPersonaPeriodo=id=>{const d=leer(),p=d.perfiles[id];if(!p||!confirm(`¿Eliminar a ${p.nombre} y todos sus registros de Periodo?`))return;delete d.perfiles[id];delete d.registros[id];guardar(d);render();};
+  window.enviarPeriodoWhatsApp=id=>{
+    const d=leer(),p=d.perfiles[id];if(!p)return;const inicio=inicioPeriodo(fechaDe(p.vista||iso(new Date())),p.inicio),fin=new Date(inicio);fin.setDate(fin.getDate()+6);let total=0,diasTrabajados=0,lineas=[];
+    for(let i=0;i<7;i++){const f=new Date(inicio);f.setDate(f.getDate()+i);const r=(d.registros[id]||{})[iso(f)],m=r?r.minutos:0;total+=m;if(m>0)diasTrabajados++;lineas.push(`*${DIAS[f.getDay()]} ${f.getDate()}:* ${dur(m)}`)}
+    const cobro=total/60*Number(p.sueldo||0);const msg=`*CONTROL DE HORAS*\n_${fechaBonita(inicio)} al ${fechaBonita(fin)}_\n\n*Nombre del trabajador:* ${p.nombre}\n*Sueldo por hora:* $${Number(p.sueldo).toFixed(2)}\n*Inicio del periodo:* ${DIAS[p.inicio]}\n*Corte:* ${DIAS[p.cierre]}\n*Días trabajados:* ${diasTrabajados}\n*Tiempo laborado:* ${dur(total)}\n*Cobro aproximado:* $${cobro.toFixed(2)}\n\n*DETALLE POR DÍA*\n${lineas.join('\n')}\n\n_Estimación calculada según las horas registradas._`;
+    window.open(`https://wa.me/?text=${encodeURIComponent(msg)}`,'_blank');
+  };
+  function render(){
+    const d=leer(),contenedor=$('periodoPerfiles'),perfiles=Object.entries(d.perfiles);if(!contenedor)return;$('periodoPersonasConteo').textContent=`${perfiles.length} ${perfiles.length===1?'persona':'personas'}`;
+    if(!perfiles.length){contenedor.innerHTML='<div class="periodo-empty">Agrega el primer trabajador para comenzar a registrar sus horas.</div>';mostrarFormularioPeriodo(false);$('periodoAgregarTrabajador')?.classList.add('oculto');return;}
+    contenedor.innerHTML=perfiles.map(([id,p])=>{
+      const inicio=inicioPeriodo(fechaDe(p.vista||iso(new Date())),Number(p.inicio)),fin=new Date(inicio);fin.setDate(fin.getDate()+6);let total=0,trabajados=0;
+      const filas=Array.from({length:7},(_,i)=>{const f=new Date(inicio);f.setDate(f.getDate()+i);const fi=iso(f),r=(d.registros[id]||{})[fi],m=r?r.minutos:0;total+=m;if(m>0)trabajados++;return `<div class="periodo-day ${r?'':'zero'}"><div><b>${DIAS[f.getDay()]}</b> · ${fechaBonita(f)}</div><div class="periodo-day-time">${dur(m)}${r?`<span class="periodo-day-actions"><button class="edit" onclick="cargarDiaPeriodo('${id}','${fi}')">Editar</button><button class="remove" onclick="borrarDiaPeriodo('${id}','${fi}')">Borrar</button></span>`:''}</div></div>`}).join('');
+      const cobro=total/60*Number(p.sueldo||0),hoy=iso(new Date());
+      return `<article class="periodo-card"><div class="periodo-card-head"><div class="periodo-card-name"><strong>${esc(p.nombre)}</strong><button class="periodo-edit-btn" onclick="editarPerfilPeriodo('${id}')">Editar datos</button></div><div class="periodo-stats"><div class="periodo-stat"><small>Sueldo por hora</small><b>$${Number(p.sueldo).toFixed(2)}</b></div><div class="periodo-stat"><small>Periodo</small><b>${DIAS[p.inicio]} a ${DIAS[p.cierre]}</b></div><div class="periodo-stat"><small>Días trabajados</small><b>${trabajados}</b></div><div class="periodo-stat"><small>Tiempo laborado</small><b>${dur(total)}</b></div><div class="periodo-stat"><small>Cobro aproximado</small><b>$${cobro.toFixed(2)}</b></div></div></div><div class="periodo-card-body"><div class="periodo-range-row"><button onclick="cambiarVistaPeriodo('${id}',-7)">← Anterior</button><div class="periodo-range-label">${fechaBonita(inicio)}<br>al ${fechaBonita(fin)}</div><button onclick="cambiarVistaPeriodo('${id}',7)">Siguiente →</button></div><div class="periodo-entry-box" id="entrada-periodo-${id}"><h4>Agregar o modificar horas</h4><div class="periodo-entry-grid"><label>Fecha<input id="pf-${id}" type="date" value="${hoy}"></label><label>Hora de entrada<input id="pe-${id}" type="time" oninput="calcularVistaPreviaPeriodo('${id}')"></label><label>Hora de salida<input id="ps-${id}" type="time" oninput="calcularVistaPreviaPeriodo('${id}')"></label><label>Tiempo de lonche (minutos)<input id="pl-${id}" type="number" min="0" value="0" oninput="calcularVistaPreviaPeriodo('${id}')"></label><label class="periodo-check"><input id="pn-${id}" type="checkbox" onchange="calcularVistaPreviaPeriodo('${id}')"> La salida fue al día siguiente</label></div><div class="periodo-live-time" id="pt-${id}">Tiempo laborado: completa las horas</div><button class="periodo-action-btn" onclick="guardarDiaPeriodo('${id}')">Guardar horas del día</button></div><div class="periodo-days">${filas}</div><button class="periodo-action-btn periodo-whatsapp" onclick="enviarPeriodoWhatsApp('${id}')">Enviar información de ${esc(p.nombre)} por WhatsApp</button><button class="periodo-action-btn periodo-delete-person" onclick="borrarPersonaPeriodo('${id}')">Eliminar trabajador</button></div></article>`;
+    }).join('');
+  }
+  llenarDias();
+  $('guardarPerfilPeriodo')?.addEventListener('click',guardarPerfil);
+  $('abrirPerfilPeriodo')?.addEventListener('click',()=>{limpiarPerfil();mostrarFormularioPeriodo(false);document.querySelector('.periodo-setup')?.scrollIntoView({behavior:'smooth',block:'center'});setTimeout(()=>$('periodoNombre')?.focus(),250);});
+  $('cancelarPerfilPeriodo')?.addEventListener('click',()=>{limpiarPerfil();ocultarFormularioPeriodo();});
+  render();
+  if(Object.keys(leer().perfiles).length)ocultarFormularioPeriodo();
 })();
 </script>
 <script id="cumpleanos-fix-script">
@@ -3773,5 +4109,3 @@ ${observacion}`;
   setInterval(aplicarModoPorHora, 60000);
 })();
 </script>
-
-
