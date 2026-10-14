@@ -2230,6 +2230,22 @@ body.auto-dark-mode .weekly-table tr{background:#203338 !important;}
 body.auto-dark-mode .periodo-shell,body.auto-dark-mode .periodo-card{background:#17282d!important;border-color:#3e5857!important}body.auto-dark-mode .periodo-intro,body.auto-dark-mode .periodo-entry-box,body.auto-dark-mode .periodo-day,body.auto-dark-mode .periodo-setup{background:#20363a!important;color:#d4e7e1!important;border-color:#3e5857!important}body.auto-dark-mode .periodo-form-grid input,body.auto-dark-mode .periodo-form-grid select,body.auto-dark-mode .periodo-entry-grid input{background:#14262b;color:#e3efec;border-color:#496563}body.auto-dark-mode .periodo-card-body,body.auto-dark-mode .periodo-setup h3,body.auto-dark-mode .periodo-people-head h3,body.auto-dark-mode .periodo-entry-box h4{color:#d7e9e4!important}
 </style>
 
+
+<style id="colonia-cards-style">
+#buscar .colonia-dashboard{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:14px;max-width:780px;margin:18px auto 28px;text-align:left}
+#buscar .colonia-card{min-width:0;background:#fff;border:1px solid #e3e9f2;border-radius:24px;padding:20px;box-shadow:0 8px 25px #16335c09;color:#20304a;position:relative}
+#buscar .colonia-card h3{display:flex;align-items:center;gap:10px;margin:0 0 16px;font-size:16px;color:inherit}
+.colonia-icon{display:inline-flex;align-items:center;justify-content:center;width:40px;height:40px;border-radius:13px;flex-shrink:0}.colonia-icon svg{width:23px;height:23px}.blue{background:#eaf2ff;color:#2866df}.purple{background:#f1ebff;color:#7851c2}.red{background:#ffebef;color:#ca3e59}.amber{background:#fff3de;color:#b4771a}.green{background:#e4f6ef;color:#218467}
+.colonia-location-art{display:block;width:100%;max-height:155px;margin-bottom:14px}
+#buscar .location-actions{display:flex;flex-direction:column;gap:8px;margin:0}#buscar .location-action-btn{box-sizing:border-box;width:100%;margin:0;font-size:13px;border-radius:12px;padding:12px}
+#buscar .colonia-link{display:block;border-radius:13px;padding:13px 15px;background:#edf3ff;color:#235fc9;text-decoration:none;font-weight:700;font-size:14px;line-height:1.5}
+.colonia-store-name{font-size:18px;font-weight:700;line-height:1.4;margin:4px 0 16px}.colonia-muted{font-size:13px;line-height:1.6;color:#65758e}.colonia-observation{font-size:15px;line-height:1.7;white-space:pre-line;overflow-wrap:anywhere;margin:0}
+#buscar .colonia-map-card{grid-column:1/-1;display:flex;align-items:center;justify-content:space-between;gap:16px}#buscar .colonia-map-card h3{margin-bottom:6px}.colonia-map-card p{font-size:13px;color:#65758e;margin:0}.colonia-map-card .colonia-link{flex-shrink:0}
+.codes-gate{text-align:center;padding:12px 0}.codes-gate .gate-symbol{font-size:32px;margin-bottom:10px}.codes-gate p{line-height:1.5;font-size:14px;color:#65758e}.codes-gate input{box-sizing:border-box;width:100%;max-width:240px;border:1px solid #d6deed;border-radius:12px;padding:12px;text-align:center;letter-spacing:8px;font-size:20px;background:#f7f9fd;color:#20304a;margin:0 0 10px}.codes-gate button{display:block;width:100%;max-width:240px;margin:auto;background:#2866df;border:0;border-radius:12px;padding:12px;color:#fff;font-weight:700;cursor:pointer}.codes-error{min-height:19px;color:#c0394f!important;font-size:12px!important;margin:8px 0 0}.codes-open-head{display:flex;justify-content:space-between;align-items:center;margin-bottom:12px;font-size:12px;color:#218467}.codes-close{border:0;background:#eef1f7;color:#394b66;border-radius:50%;width:34px;height:34px;font-size:25px;cursor:pointer}.codes-list{list-style:none;padding:0!important;margin:0!important;display:flex;flex-wrap:wrap;gap:8px}.codes-list li{background:#f1f4fa;color:#293c59;border-radius:12px;padding:10px 13px;font-size:16px;line-height:1.5;overflow-wrap:anywhere;max-width:100%;box-sizing:border-box}.codes-list li.code-note{font-size:14px;width:100%}
+.colonia-dashboard button:focus-visible,.colonia-dashboard a:focus-visible,.colonia-dashboard input:focus-visible{outline:3px solid #97baff;outline-offset:3px}
+body.auto-dark-mode #buscar .colonia-card{background:#19283e;border-color:#31445c;color:#edf3ff}body.auto-dark-mode .colonia-muted,body.auto-dark-mode .codes-gate p,body.auto-dark-mode .colonia-map-card p{color:#b4c3d8}body.auto-dark-mode .colonia-link{background:#263d60;color:#b8d2ff}
+@media(max-width:480px){#buscar .colonia-dashboard{gap:10px}#buscar .colonia-card{padding:13px;border-radius:19px}#buscar .colonia-card h3{font-size:13px;gap:7px;flex-wrap:wrap}.colonia-icon{width:33px;height:33px;border-radius:11px}.colonia-icon svg{width:20px;height:20px}.colonia-store-name{font-size:15px}.colonia-observation{font-size:13px}.codes-gate p{font-size:12px}#buscar .location-action-btn{font-size:12px;padding:10px 5px}#buscar .colonia-map-card{align-items:flex-start;flex-direction:column}.colonia-map-card .colonia-link{box-sizing:border-box;width:100%;text-align:center}.codes-gate input{font-size:18px;letter-spacing:5px}}
+</style>
 </head>
 <body>
 
@@ -2289,34 +2305,12 @@ body.auto-dark-mode .periodo-shell,body.auto-dark-mode .periodo-card{background:
 <div id="recentChips" style="display:flex;flex-wrap:wrap;gap:8px;"></div>
 </div>
 <div class="nombre-colonia" id="nombreColonia" style="display:none;"></div>
-<div class="table-wrap">
-<table id="tablaDatos" style="display:none;">
-<thead>
-<tr>
-<th>Ubicación</th>
-<th>Códigos</th>
-<th>Observación</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td data-label="Ubicación" id="ubicacion"></td>
-<td data-label="Códigos" id="codigos"></td>
-<td data-label="Observación" id="observacion"></td>
-</tr>
-<tr>
-<td class="mapa-celda" colspan="3">
-Mapa Ubicación Casas
-<div class="zoom-help">En celular puedes agrandar la imagen con dos dedos.</div>
-<div class="image-stage" id="imageStage">
-<div class="image-inner" id="imageInner">
-<img alt="Mapa de ubicación" id="mapaImagen" src=""/>
-</div>
-</div>
-</td>
-</tr>
-</tbody>
-</table>
+<div id="tablaDatos" class="colonia-dashboard" style="display:none;">
+<article class="colonia-card location-card"><h3><span class="colonia-icon blue"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 10c0 6-8 12-8 12S4 16 4 10a8 8 0 1 1 16 0Z"/><circle cx="12" cy="10" r="3"/></svg></span>Ubicación</h3><svg class="colonia-location-art" viewBox="0 0 360 160" role="img" aria-label="Ilustración de ubicación de una colonia"><rect width="360" height="160" rx="18" fill="#eaf2ff"/><path d="M0 120 360 35M0 25l360 115M110 0l40 160M260 0l-30 160" stroke="#fff" stroke-width="18"/><g fill="#b8ccec"><rect x="35" y="40" width="40" height="30" rx="6"/><rect x="270" y="90" width="45" height="30" rx="6"/><rect x="180" y="110" width="28" height="24" rx="5"/></g><ellipse cx="180" cy="124" rx="29" ry="8" fill="#a5bce2"/><path d="M180 125s-35-32-35-62a35 35 0 1 1 70 0c0 30-35 62-35 62" fill="#2866df"/><circle cx="180" cy="62" r="13" fill="white"/></svg><div id="ubicacion"></div></article>
+<article class="colonia-card codes-card"><h3><span class="colonia-icon purple"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="5" y="10" width="14" height="11" rx="3"/><path d="M8 10V7a4 4 0 0 1 8 0v3M12 14v3"/></svg></span>Códigos de acceso</h3><div id="codigos"></div></article>
+<article class="colonia-card"><h3><span class="colonia-icon red"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3 9l2-6h14l2 6M3 9v3a3 3 0 0 0 4 2 3 3 0 0 0 5 0 3 3 0 0 0 5 0 3 3 0 0 0 4-2V9M5 14v7h14v-7M9 21v-5h6v5"/></svg></span>Sherwin-Williams</h3><div id="coloniaTienda"></div></article>
+<article class="colonia-card"><h3><span class="colonia-icon amber"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="5" y="3" width="14" height="18" rx="3"/><path d="M9 8h6M9 12h6M9 16h4"/></svg></span>Observaciones</h3><p id="observacion" class="colonia-observation"></p></article>
+<article class="colonia-card colonia-map-card"><div><h3><span class="colonia-icon green"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m3 6 6-3 6 3 6-3v15l-6 3-6-3-6 3ZM9 3v15M15 6v15"/></svg></span>Mapa de la colonia</h3><p>Consulta el plano de lotes en una ventana nueva.</p></div><a id="coloniaMapaLink" class="colonia-link" target="_blank" rel="noopener noreferrer">Abrir mapa ↗</a></article>
 </div>
 <div class="section-card visit-card">
 <div class="section-body">
@@ -2339,8 +2333,8 @@ Mapa Ubicación Casas
 </div>
 <h2>Información importante</h2>
 <div class="important-copy">
-        DR HORTON: las claves más actuales son las siguientes:<br/>
-<span style="font-size:22px; color:#7c4f00;">0126, 2506, 0325, 1998, 1990, 3036, 0911, 0226 y 0326</span>
+        DR HORTON: consulta los códigos de acceso de tu colonia.<br/>
+<span>Selecciona una colonia e ingresa tu contraseña en el cuadro de códigos para consultar la información.</span>
 </div>
 </div>
 </div>
@@ -2436,8 +2430,15 @@ mapa:"https://img.freepik.com/vector-premium/ilustracion-vectorial-simbolo-casa-
 {
 nombre:"Captain Cove",
 ubicacion:"https://maps.app.goo.gl/upbhxQj37EvtuHhB8",
-codigos:["informar de codigos, si es Dr Horton ocupar codigos conocidos"],
-observacion:"informen a Carlos Color de pared y puertas",
+codigos:["0426"],
+observacion:"Eldier white",
+mapa:"https://img.freepik.com/vector-premium/ilustracion-vectorial-simbolo-casa-ubicacion-diseno-conceptual-servicio-entrega-domicilio_929545-241.jpg?semt=ais_rp_progressive&w=740&q=80"
+},
+{
+nombre:"RoseMary Sounbd",
+ubicacion:"https://maps.app.goo.gl/vCH94waEDzbhkkdX6",
+codigos:["0426"],
+observacion:"Eldier white",
 mapa:"https://img.freepik.com/vector-premium/ilustracion-vectorial-simbolo-casa-ubicacion-diseno-conceptual-servicio-entrega-domicilio_929545-241.jpg?semt=ais_rp_progressive&w=740&q=80"
 },
 {
@@ -2693,6 +2694,13 @@ observacion:"ELDIER WHITE paredes",
 mapa:"https://img.freepik.com/vector-premium/ilustracion-vectorial-simbolo-casa-ubicacion-diseno-conceptual-servicio-entrega-domicilio_929545-241.jpg?semt=ais_rp_progressive&w=740&q=80"
 },
 {
+nombre:"Hammond Place",
+ubicacion:"https://maps.app.goo.gl/EJALquSBSyimJXRy8",
+codigos:["0426","2604"],
+observacion:"ELDIER WHITE paredes",
+mapa:"https://img.freepik.com/vector-premium/ilustracion-vectorial-simbolo-casa-ubicacion-diseno-conceptual-servicio-entrega-domicilio_929545-241.jpg?semt=ais_rp_progressive&w=740&q=80"
+},
+{
 nombre:"Parkwood",
 ubicacion:"https://maps.app.goo.gl/GrWNg3XtjxFYH74z8?g_st=com.google.maps.preview.copy",
 codigos:["El intendente es el que abre la puerta, preveniar al llegar"],
@@ -2847,9 +2855,9 @@ const input = document.getElementById("coloniaInput");
 const dropdown = document.getElementById("opcionesColonias");
 const tablaDatos = document.getElementById("tablaDatos");
 const nombreColonia = document.getElementById("nombreColonia");
-const imageStage = document.getElementById("imageStage");
-const imageInner = document.getElementById("imageInner");
-const mapaImagen = document.getElementById("mapaImagen");
+
+
+
 
 let opcionesFiltradas = [...datosColonias];
 let indiceActivo = -1;
@@ -2920,45 +2928,35 @@ function renderRecientes(){
     recentChips.innerHTML = lista.map(n => `<button class="recent-chip" onclick="seleccionarColoniaPorNombre('${n}')">${n}</button>`).join("");
 }
 
-function seleccionarColoniaPorNombre(nombre){
-    const colonia = datosColonias.find(c => c.nombre === nombre);
-    saveReciente(nombre);
-    if(!colonia) return;
-
-    tablaDatos.style.display = "table";
-    nombreColonia.style.display = "block";
-    nombreColonia.innerText = colonia.nombre;
-
-    
-document.getElementById("ubicacion").innerHTML =
-    `<div class="location-actions">
-        <a class="location-action-btn maps" href="${colonia.ubicacion}" target="_blank" rel="noopener noreferrer">📍 Abrir en Google Maps</a>
-        <button class="location-action-btn share" type="button" onclick='compartirUbicacionColonia(${JSON.stringify(colonia.nombre)}, ${JSON.stringify(colonia.ubicacion)})'>📤 Compartir Ubicación</button>
-    </div>`;
-
-const listaCodigos =
- `<ul>${colonia.codigos.map(c=>`<li>${c}</li>`).join('')}</ul>`;
-
-    document.getElementById("codigos").innerHTML = listaCodigos;
-    document.getElementById("observacion").innerText = colonia.observacion;
-    mapaImagen.src = colonia.mapa;
-    mapaImagen.alt = `Mapa de ${colonia.nombre}`;
-
-    resetZoom();
-    ocultarDropdown();
-    input.value = "";
-    actualizarBotonLimpiar();
-renderRecientes();
-    input.blur();
-    setTimeout(()=>{
-        input.scrollIntoView({behavior:'smooth', block:'center'});
-    }, 120);
+let coloniaSeleccionada = null;
+let codigosVisibles = false;
+const tiendasPorColonia = {"Airway Oaks": 1, "Bently": 2, "Blackwater": 1, "Bridlewood": 2, "Brookheaven": 2, "Cadence": 1, "Captain Cove": 7, "Carrington": 2, "Cottages of Aventura": 10, "Country Club States": null, "Days Landing": 3, "Deer Ridge Crossing": 8, "Dry Creek": 2, "Eagle Pointe": 2, "Ellies Cove": 5, "Enclave": 7, "Fairchild": 2, "Fallschase": 2, "Floridatown": 1, "Forest Shores": 7, "Freeport": null, "Gator Landing": 3, "Gavin Landing": 5, "Gaylen Oaks": 2, "Gleenhollow": 2, "Gleenlakes": 4, "GrassLand": 4, "Greenbrier": 4, "Greenfield": 1, "Hammond Place": 1, "Heritage Plantation": 3, "Hihglands": 3, "Huston": 3, "Independence": 3, "Iron Rock": 2, "Jay Rd": null, "Lakeland": 4, "Lakes Of Woodbine": 1, "Lancelot": 1, "Ledwick": 4, "Leighton Villages": 9, "Liberty Farms": 1, "Live Oaks": 4, "Lost Key": 6, "Madelyn Woods": 5, "Martin Preserve": 5, "Mary Anette": 2, "Midtown": 2, "Oxford": 3, "Parkwood": 1, "Patriot": 3, "Pecan Grove": 4, "Plantation Woods": 1, "Pless Landing": 4, "Quilanding": 4, "Rivers Cove": 1, "Roman Oaks": 8, "Russell Crossing": 5, "Sanctuary": 2, "Sentinel Ridge": 1, "Silverlake": 3, "Soundview": 8, "Souther Palms": 1, "Southwood": 4, "Stone Heaven": 4, "Sweetbarb": 2, "The Grove at Berryhill": 1, "Ventura Manor": 1, "Vickers States": 2, "Waterside": 8, "Young Oaks": 3, "RoseMary Sounbd": 8};
+const tiendasColonia = {"1": {"nombre": "Sherwin Tamarindo o Pace", "url": "https://maps.app.goo.gl/17LSgeqZ1APifhdb7?g_st=iw"}, "2": {"nombre": "Sherwin Milla 9", "url": "https://maps.app.goo.gl/Nw7rbU4Z2Emuzqz1A?g_st=iw"}, "3": {"nombre": "Sherwin CrestView", "url": "https://maps.app.goo.gl/Sf3zG3jGxJc2ZkLTA?g_st=iw"}, "4": {"nombre": "Sherwin Foley 98", "url": "https://maps.app.goo.gl/kityMzpEeDjduqaGA?g_st=iw"}, "5": {"nombre": "Sherwin 98 LostKey GavinsLanding", "url": "https://maps.app.goo.gl/L8soGhgc1eeFRYLa6?g_st=iw"}, "6": {"nombre": "Lost Key", "url": "https://maps.app.goo.gl/eDANGh1xbrTp2EXd8?g_st=a"}, "7": {"nombre": "Navarre (Captain Cove, Forest Shore, Enclave)", "url": "https://maps.app.goo.gl/s5YennQstL4Eq64C9?g_st=iw"}, "8": {"nombre": "Gulf Breeze (Roman, Soundview, Deer Ridge)", "url": "https://maps.app.goo.gl/WGtrRJyeTKo9B7zd6?g_st=ipc"}, "9": {"nombre": "Mobile", "url": "https://maps.app.goo.gl/RESD4QvGDDt1Z2fA7?g_st=a"}, "10": {"nombre": "Daphne", "url": "https://maps.app.goo.gl/oVrzR3z52UXeokh46"}};
+function escaparColonia(value){return String(value ?? '').replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));}
+function cerrarCodigosColonia(){
+ codigosVisibles=false;
+ document.getElementById('codigos').innerHTML=`<form class="codes-gate" onsubmit="desbloquearCodigosColonia(event)"><div class="gate-symbol" aria-hidden="true">🔒</div><p>Por seguridad, ingresa la contraseña para ver la información.</p><input id="coloniaClave" aria-label="Contraseña para ver los códigos" type="password" inputmode="numeric" maxlength="4" autocomplete="off" placeholder="••••" required><button type="submit">Ver códigos</button><p id="coloniaClaveError" class="codes-error" role="alert"></p></form>`;
 }
-
-function resetZoom(){
-    currentScale = 1;
-    imageInner.style.transform = `scale(${currentScale})`;
-    imageStage.scrollLeft = 0;
+function desbloquearCodigosColonia(event){
+ event.preventDefault();
+ const field=document.getElementById('coloniaClave');
+ if(field.value!=='1659'){document.getElementById('coloniaClaveError').textContent='Contraseña incorrecta. Intenta de nuevo.';field.value='';field.focus();return;}
+ if(!coloniaSeleccionada)return;
+ codigosVisibles=true;
+ document.getElementById('codigos').innerHTML=`<div class="codes-open-head"><span>Información desbloqueada</span><button class="codes-close" type="button" aria-label="Cerrar y ocultar códigos" onclick="cerrarCodigosColonia();document.getElementById('coloniaClave').focus()">×</button></div><ul class="codes-list">${coloniaSeleccionada.codigos.map(c=>`<li class="${/^\d+$/.test(c)?'':'code-note'}">${escaparColonia(c)}</li>`).join('')}</ul>`;
+ document.querySelector('.codes-close').focus();
+}
+function seleccionarColoniaPorNombre(nombre){
+ const colonia=datosColonias.find(c=>c.nombre===nombre);if(!colonia)return;
+ coloniaSeleccionada=colonia;cerrarCodigosColonia();saveReciente(nombre);
+ tablaDatos.style.display='grid';nombreColonia.style.display='block';nombreColonia.innerText=colonia.nombre;
+ document.getElementById('ubicacion').innerHTML=`<div class="location-actions"><a class="location-action-btn maps" href="${escaparColonia(colonia.ubicacion.trim())}" target="_blank" rel="noopener noreferrer">📍 Cómo llegar ↗</a><button class="location-action-btn share" type="button" id="compartirColoniaActual">↗ Compartir ubicación</button></div>`;
+ document.getElementById('compartirColoniaActual').onclick=()=>compartirUbicacionColonia(colonia.nombre,colonia.ubicacion.trim());
+ document.getElementById('observacion').textContent=colonia.observacion||'Sin observaciones registradas.';
+ const tienda=tiendasColonia[tiendasPorColonia[colonia.nombre]];
+ document.getElementById('coloniaTienda').innerHTML=tienda?`<p class="colonia-muted">Tienda asignada a esta colonia</p><div class="colonia-store-name">${escaparColonia(tienda.nombre)}</div>${tienda.url?`<a class="colonia-link" href="${escaparColonia(tienda.url)}" target="_blank" rel="noopener noreferrer">📍 Ir a la tienda ↗</a>`:'<p class="colonia-muted">Enlace de ubicación pendiente.</p>'}`:'<p class="colonia-muted">TIENDA NO ASIGNADA FAVOR DE INFORMAR AL ADMINISTRADOR</p>';
+ const mapa=document.getElementById('coloniaMapaLink');mapa.href=colonia.mapa;mapa.setAttribute('aria-label',`Abrir mapa de ${colonia.nombre} en una ventana nueva`);
+ ocultarDropdown();input.value='';actualizarBotonLimpiar();renderRecientes();input.blur();
 }
 
 input.addEventListener("focus", ()=>{
@@ -3020,279 +3018,8 @@ document.addEventListener('click', (e)=>{
     }
 });
 
-function getDistance(touches){
-    const dx = touches[0].clientX - touches[1].clientX;
-    const dy = touches[0].clientY - touches[1].clientY;
-    return Math.hypot(dx, dy);
-}
-
-imageStage.addEventListener('touchstart', (e)=>{
-    if(e.touches.length === 2){
-        startDistance = getDistance(e.touches);
-        startScale = currentScale;
-    }
-}, { passive:true });
-
-imageStage.addEventListener('touchmove', (e)=>{
-    if(e.touches.length === 2){
-        const distance = getDistance(e.touches);
-        const nextScale = Math.min(4, Math.max(1, startScale * (distance / startDistance)));
-        currentScale = nextScale;
-        imageInner.style.transform = `scale(${currentScale})`;
-    }
-}, { passive:true });
-
-mapaImagen.addEventListener('dblclick', ()=>{
-    currentScale = currentScale === 1 ? 2 : 1;
-    imageInner.style.transform = `scale(${currentScale})`;
-});
-
-window.addEventListener('resize', resetZoom);
 actualizarBotonLimpiar();
 renderRecientes();
-
-// abrir imagen en nueva pestaña al hacer clic
-if (typeof mapaImagen !== 'undefined') {
-    mapaImagen.style.cursor = 'pointer';
-    mapaImagen.addEventListener('click', function(){
-        if(this.src){
-            window.open(this.src, '_blank');
-        }
-    });
-}
-
-
-const personasCumple = [
-  { nombre: "Rebeca Mota", dia: 13, mes: 4 },
-  { nombre: "Milton", dia: 6, mes: 4 },
-  { nombre: "Miguel Carrera", dia: 23, mes: 2 },
-  { nombre: "ISMAEL LOPEZ", dia: 10, mes: 9 },
-  { nombre: "Carlos Corona", dia: 15, mes: 3 },
-  { nombre: "Eulises Flores", dia: 11, mes: 5 },
-  { nombre: "Josue Lopez", dia: 12, mes: 3 },
-  { nombre: "Elisa Janeth", dia: 26, mes: 9 },
-  { nombre: "Isaac Lopez", dia: 8, mes: 3 },
-  { nombre: "Aury Medina", dia: 14, mes: 9 },
-  { nombre: "Marcy Lozano", dia: 2, mes: 6 },
-  { nombre: "Emmanuel Lopez", dia: 25, mes: 11 },
-  { nombre: "Jose Ulises Lopez", dia: 1, mes: 1 },
-  { nombre: "Reyna Lopez", dia: 3, mes: 8 },
-  { nombre: "Ruth Rodriguez", dia: 3, mes: 11 },
-  { nombre: "Ashley Ramirez", dia: 20, mes: 9 },
-  { nombre: "Milton", dia: 17, mes: 12 },
-  { nombre: "Las Mujeres mas Hermosas del Mundo, Felicidades Mamitas", dia: 10, mes: 5 },
-  { nombre: "A los hombres Trabajadores, buenos, santos, Feliz Dia del Padre", dia: 21, mes: 6 },
-  { nombre: "Paola Flores", dia: 19, mes: 9 },
-  { nombre: "Luis Medina CUATE", dia: 20, mes: 4 },
-  { nombre: "Jose Mena", dia: 5, mes: 8 },
-  { nombre: "Miguel Aldair", dia: 12, mes: 6 },
-  { nombre: "Jose Guillen", dia: 18, mes: 3 },
-  { nombre: "Karla Aimee", dia: 1, mes: 5 }
-];
-
-function getMesNombre(mes){
-  const meses = ["Enero","Febrero","Marzo","Abril","Mayo","Junio","Julio","Agosto","Septiembre","Octubre","Noviembre","Diciembre"];
-  return meses[mes - 1];
-}
-
-function renderCumplesDelMes(){
-  const hoy = new Date();
-  const mesActual = hoy.getMonth() + 1;
-  const list = document.getElementById("birthdayList");
-  if(!list) return;
-
-  const filtradas = personasCumple
-    .filter(p => p.mes === mesActual)
-    .sort((a,b) => a.dia - b.dia);
-
-  if(!filtradas.length){
-    list.innerHTML = '<li>No hay cumpleaños registrados este mes.</li>';
-    return;
-  }
-
-  list.innerHTML = filtradas.map(p => `
-    <li>
-      <span class="day">${String(p.dia).padStart(2,'0')} de ${getMesNombre(p.mes)}</span>
-      <strong>${p.nombre}</strong>
-    </li>
-  `).join("");
-}
-
-function lanzarEfectosCumple(){
-  const hoy = new Date();
-  const cumpleanerosHoy = personasCumple.filter(p =>
-    p.dia === hoy.getDate() && p.mes === (hoy.getMonth() + 1)
-  );
-
-  if(!cumpleanerosHoy.length) return;
-
-  const names = cumpleanerosHoy.map(p => p.nombre).join(", ");
-  const banner = document.getElementById("birthdayTodayBanner");
-  const namesEl = document.getElementById("birthdayTodayNames");
-  if(banner && namesEl){
-    namesEl.textContent = names;
-    banner.style.display = "block";
-    setTimeout(() => {
-      banner.style.display = "none";
-    }, 3000);
-  }
-
-  const globos = ['🎈','🎉','🥳','🎊'];
-  const pasteles = ['🎂','🧁'];
-  const colores = ['#FF69B4','#87CEFA','#FFD700','#ADFF2F','#FFA07A','#DA70D6'];
-
-  for (let i = 0; i < 30; i++) {
-    const emoji = document.createElement('div');
-    emoji.className = 'emoji-balloon';
-    emoji.textContent = globos[Math.floor(Math.random() * globos.length)];
-    emoji.style.left = Math.random() * 100 + 'vw';
-    emoji.style.bottom = '-' + (Math.random() * 100) + 'vh';
-    emoji.style.animationDuration = (6 + Math.random() * 6) + 's';
-    emoji.style.animationDelay = (Math.random() * 2) + 's';
-    document.body.appendChild(emoji);
-  }
-
-  for (let i = 0; i < 10; i++) {
-    const emoji = document.createElement('div');
-    emoji.className = 'emoji-cake';
-    emoji.textContent = pasteles[Math.floor(Math.random() * pasteles.length)];
-    emoji.style.left = Math.random() * 100 + 'vw';
-    emoji.style.bottom = '-' + (Math.random() * 100) + 'vh';
-    emoji.style.animationDuration = (8 + Math.random() * 6) + 's';
-    emoji.style.animationDelay = (Math.random() * 2) + 's';
-    document.body.appendChild(emoji);
-  }
-
-  for (let i = 0; i < 100; i++) {
-    const confetti = document.createElement('div');
-    confetti.className = 'confetti';
-    confetti.style.left = Math.random() * 100 + 'vw';
-    confetti.style.top = '-' + (Math.random() * 100) + 'vh';
-    confetti.style.backgroundColor = colores[Math.floor(Math.random() * colores.length)];
-    confetti.style.animationDuration = (3 + Math.random() * 3) + 's';
-    confetti.style.animationDelay = (Math.random() * 2) + 's';
-    document.body.appendChild(confetti);
-  }
-}
-
-
-function lanzarMensajeCumpleInicio(){
-  const hoy = new Date();
-  const cumpleanerosHoy = personasCumple.filter(p =>
-    p.dia === hoy.getDate() && p.mes === (hoy.getMonth() + 1)
-  );
-
-  if(!cumpleanerosHoy.length) return;
-
-  const banner = document.getElementById("birthdayStartBanner");
-  const namesEl = document.getElementById("birthdayStartNames");
-  if(!banner || !namesEl) return;
-
-  namesEl.textContent = cumpleanerosHoy.map(p => p.nombre).join(", ");
-  banner.style.display = "flex";
-
-  try{
-    if(navigator.vibrate){ navigator.vibrate([30, 25, 40]); }
-  }catch(e){}
-
-  setTimeout(() => {
-    banner.style.display = "none";
-  }, 3000);
-}
-
-function lanzarAvisoCumpleManana(){
-  const hoy = new Date();
-  const manana = new Date(hoy);
-  manana.setDate(hoy.getDate() + 1);
-
-  const cumpleanerosManana = personasCumple.filter(p =>
-    p.dia === manana.getDate() && p.mes === (manana.getMonth() + 1)
-  );
-
-  if(!cumpleanerosManana.length) return;
-
-  const banner = document.getElementById("birthdayTomorrowBanner");
-  const namesEl = document.getElementById("birthdayTomorrowNames");
-  if(!banner || !namesEl) return;
-
-  namesEl.textContent = cumpleanerosManana.map(p => p.nombre).join(", ");
-  banner.style.display = "block";
-
-  setTimeout(() => {
-    banner.style.display = "none";
-  }, 3000);
-}
-
-
-
-const videosCumpleanos = [
-  "fhKYVQT18xM",
-  "GnQC2zEDNBI",
-  "Fzqto8Cd35M",
-  "QFLALAszEpo",
-  "Jguqnlymeuk"
-];
-
-function mostrarVideoCumpleanosDelDia(){
-  const hoy = new Date();
-  const cumpleanerosHoy = personasCumple.filter(p =>
-    p.dia === hoy.getDate() && p.mes === (hoy.getMonth() + 1)
-  );
-
-  const section = document.getElementById("birthdayVideoSection");
-  const frame = document.getElementById("birthdayVideoFrame");
-  const namesEl = document.getElementById("birthdayVideoNames");
-  if(!section || !frame || !namesEl) return;
-
-  if(!cumpleanerosHoy.length){
-    section.style.display = "none";
-    frame.src = "";
-    return;
-  }
-
-  const nombres = cumpleanerosHoy.map(p => p.nombre).join(", ");
-  namesEl.textContent = nombres;
-
-  // Mantiene el mismo video durante todo el día y puede cambiar al día siguiente.
-  const claveDia = `${hoy.getFullYear()}-${hoy.getMonth()+1}-${hoy.getDate()}`;
-  let suma = 0;
-  for(const caracter of claveDia){
-    suma += caracter.charCodeAt(0);
-  }
-  const videoId = videosCumpleanos[suma % videosCumpleanos.length];
-
-  // YouTube exige silencio para permitir reproducción automática en la mayoría de navegadores.
-  frame.src = `https://www.youtube.com/embed/${videoId}?autoplay=1&mute=1&playsinline=1&controls=1&rel=0`;
-  section.style.display = "block";
-}
-
-
-
-let avisoCumpleMananaMostrado = false;
-
-function mostrarAvisoCumpleMananaDespuesDeCarga(){
-  if(avisoCumpleMananaMostrado) return;
-  avisoCumpleMananaMostrado = true;
-
-  // Espera breve para que termine por completo la transición del splash.
-  setTimeout(() => {
-    lanzarAvisoCumpleManana();
-  }, 250);
-}
-
-let funcionesCumpleanosIniciadas = false;
-function iniciarFuncionesCumpleanos(){
-  if(funcionesCumpleanosIniciadas) return;
-  funcionesCumpleanosIniciadas = true;
-  renderCumplesDelMes();
-  mostrarVideoCumpleanosDelDia();
-}
-
-if(document.readyState === "loading"){
-  document.addEventListener("DOMContentLoaded", iniciarFuncionesCumpleanos);
-}else{
-  iniciarFuncionesCumpleanos();
-}
 
 </script>
 
@@ -3346,6 +3073,7 @@ if(document.readyState === "loading"){
 <option value="https://maps.app.goo.gl/eDANGh1xbrTp2EXd8?g_st=a">Lost Key</option>
 <option value="https://maps.app.goo.gl/s5YennQstL4Eq64C9?g_st=iw"> Navarre (Captain Cove, Forest Shore, Enclave)</option>
 <option value="https://maps.app.goo.gl/WGtrRJyeTKo9B7zd6?g_st=ipc">Gulf Breeze (Roman, Soundview, Deer Ridge)</option>
+<option value="https://maps.app.goo.gl/oVrzR3z52UXeokh46">Daphne</option>
 <option value="https://maps.app.goo.gl/RESD4QvGDDt1Z2fA7?g_st=a">Mobile</option>
 </select>
 <div class="sherwin-link-wrap" id="sherwinLinkWrap"></div>
@@ -3978,9 +3706,9 @@ window.addEventListener("load", () => {
       colonia = null;
     }
 
-    const codigos = colonia && Array.isArray(colonia.codigos) && colonia.codigos.length
+    const codigos = codigosVisibles && coloniaSeleccionada === colonia && colonia && Array.isArray(colonia.codigos) && colonia.codigos.length
       ? colonia.codigos.join(', ')
-      : 'Sin códigos registrados';
+      : 'Información protegida. Consulta los códigos en la página con tu contraseña.';
 
     const observacion = colonia && colonia.observacion
       ? colonia.observacion
