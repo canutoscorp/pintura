@@ -2246,7 +2246,62 @@ body.auto-dark-mode .periodo-shell,body.auto-dark-mode .periodo-card{background:
 body.auto-dark-mode #buscar .colonia-card{background:#19283e;border-color:#31445c;color:#edf3ff}body.auto-dark-mode .colonia-muted,body.auto-dark-mode .codes-gate p,body.auto-dark-mode .colonia-map-card p{color:#b4c3d8}body.auto-dark-mode .colonia-link{background:#263d60;color:#b8d2ff}
 @media(max-width:480px){#buscar .colonia-dashboard{gap:10px}#buscar .colonia-card{padding:13px;border-radius:19px}#buscar .colonia-card h3{font-size:13px;gap:7px;flex-wrap:wrap}.colonia-icon{width:33px;height:33px;border-radius:11px}.colonia-icon svg{width:20px;height:20px}.colonia-store-name{font-size:15px}.colonia-observation{font-size:13px}.codes-gate p{font-size:12px}#buscar .location-action-btn{font-size:12px;padding:10px 5px}#buscar .colonia-map-card{align-items:flex-start;flex-direction:column}.colonia-map-card .colonia-link{box-sizing:border-box;width:100%;text-align:center}.codes-gate input{font-size:18px;letter-spacing:5px}}
 </style>
-</head>
+<style id="metallic-theme">/* Acabado visual de titanio; no modifica controles ni datos. */
+body,body.auto-dark-mode,body:not(.auto-dark-mode){background:radial-gradient(ellipse at 85% 0%,#193341 0,transparent 45%),radial-gradient(ellipse at 0% 60%,#202a3b 0,transparent 50%),#090e16!important;color:#e3eaf3!important;background-attachment:fixed!important}
+body header,body.auto-dark-mode header,body:not(.auto-dark-mode) header{background:linear-gradient(118deg,#101722 0%,#384553 32%,#192330 49%,#55616d 50%,#202c3b 53%,#111c2a 100%)!important;border:1px solid #788997!important;border-bottom-color:#5acbe1!important;box-shadow:inset 0 1px 0 #d7e3ed66,0 12px 35px #0008,0 1px 18px #4dd7ed33!important;color:#f0f6ff!important;text-shadow:0 2px 3px #000,0 0 20px #b6e8ff55;letter-spacing:2px}
+body .top-tabs{background:linear-gradient(160deg,#2a3543,#101722 55%,#1e2836)!important;border:1px solid #526171!important;box-shadow:inset 0 1px 0 #cfdeec33,0 8px 30px #0009!important}
+body .top-tab-btn,body:not(.auto-dark-mode) .top-tab-btn{color:#b9c9d9!important}
+body .top-tab-btn.active,body:not(.auto-dark-mode) .top-tab-btn.active{background:linear-gradient(145deg,#3d586a,#172e40 60%,#1d5461)!important;color:#effcff!important;box-shadow:inset 0 1px 0 #e0f7ff66,0 0 18px #64d8ee33!important;border:1px solid #74c4d088}
+body .search-shell{background:linear-gradient(140deg,#273340,#0c1420 55%,#202d3c)!important;border:1px solid #788a9e!important;box-shadow:inset 0 1px 1px #f2f7ff33,0 0 0 4px #101722,0 0 0 5px #65798f55,0 10px 22px #0005!important}
+body input,body select,body textarea,body.auto-dark-mode input,body.auto-dark-mode select{background:#101a27!important;color:#eaf5ff!important;border-color:#53677c!important;color-scheme:dark}
+body input::placeholder,body textarea::placeholder{color:#92a6bc!important}
+body label,body h2,body h3{color:#e0eaf5!important}
+body .app-hint{background:#182330!important;color:#b6c8da!important;border:1px solid #35495c}
+body .dropdown{background:#131f2d!important;border:1px solid #61788d!important;box-shadow:0 15px 35px #000a!important}
+body .dropdown-item{color:#dcecf9!important;border-color:#2e4051!important}
+body .dropdown-item:hover,body .dropdown-item.activa{background:#2e485b!important;color:#fff!important}
+body #buscar .colonia-card,body.auto-dark-mode #buscar .colonia-card,body .section-card,body .sherwin-panel,body .registro-shell,body .periodo-shell,body .periodo-card,body .share-modal{background:linear-gradient(135deg,#303c4b 0%,#1b2635 35%,#131e2c 70%,#263342 100%)!important;border:1px solid #617184!important;box-shadow:inset 0 1px 0 #d5e6f233,inset 0 -1px 0 #0008,0 12px 25px #0004!important;color:#e1eaf5!important}
+body #buscar .colonia-card{transition:border-color .2s,box-shadow .2s}
+body #buscar .colonia-card:hover{border-color:#8bc9dd!important;box-shadow:inset 0 1px 0 #e2f4ff44,0 12px 30px #0006,0 0 18px #6bcadd15!important}
+body .colonia-icon{background:linear-gradient(135deg,#b8c6d3,#586a7b 45%,#d4dee7 48%,#768a9c 52%,#263a4e)!important;color:#08283a!important;box-shadow:inset 0 1px 0 #fff9,0 3px 7px #0006;border:1px solid #c3d6e377}
+body .colonia-muted,body .codes-gate p,body .colonia-map-card p,body .section-subtitle,body .sherwin-text{color:#bacbdc!important}
+body #buscar .colonia-link,body #buscar .location-action-btn,body .codes-gate button{background:linear-gradient(155deg,#52728b,#263f55 50%,#152e43)!important;color:#e9f9ff!important;border:1px solid #84b1c5!important;box-shadow:inset 0 1px 0 #e3f6ff44,0 4px 10px #0004!important}
+body #buscar .location-action-btn.share{background:linear-gradient(155deg,#3d737d,#224754 55%,#16333e)!important}
+body .recent-chip,body .codes-list li,body .birthday-list li{background:linear-gradient(145deg,#344354,#1b2b3d)!important;color:#e3f0ff!important;border:1px solid #536b81!important}
+body .codes-close{background:#364b60!important;color:#e7f6ff!important;border:1px solid #7894aa}
+body .codes-error{color:#ff9da9!important}
+body .colonia-location-art{filter:saturate(.55) brightness(.85);border-radius:16px;border:1px solid #8299ad66}
+body #nombreColonia{position:relative;isolation:isolate;overflow:hidden;background:linear-gradient(110deg,#1b2736,#3d4e60 35%,#1b2b3e 65%,#182431)!important;color:#e5f6ff!important;border:1px solid #8197aa!important;border-left:3px solid #8ce5f4!important;border-radius:18px;box-shadow:inset 0 1px 0 #e8f4ff55,0 7px 25px #0005!important;letter-spacing:1.5px;text-shadow:0 2px 2px #0008,0 0 18px #82dcff44}
+#nombreColonia.metal-reveal{animation:colonia-reveal .85s steps(var(--colonia-letters,20),end) both}
+#nombreColonia.metal-reveal::after{content:"";position:absolute;inset:0;pointer-events:none;background:linear-gradient(105deg,transparent 35%,#c6efff22 48%,#fff5 50%,transparent 65%);transform:translateX(-130%);animation:colonia-shine 1.2s .6s ease-out both}
+@keyframes colonia-reveal{from{clip-path:inset(0 100% 0 0);opacity:.3}to{clip-path:inset(0 0 0 0);opacity:1}}
+@keyframes colonia-shine{to{transform:translateX(130%)}}
+@media(prefers-reduced-motion:reduce){#nombreColonia.metal-reveal,#nombreColonia.metal-reveal::after{animation:none!important}body #buscar .colonia-card{transition:none}}
+</style><style id="soft-interaction-style">/* Entrada escalonada y respuesta táctil decorativa. */
+#buscar .colonia-dashboard.cards-enter .colonia-card{
+ animation:card-soft-entry .55s cubic-bezier(.2,.75,.25,1) both;
+}
+#buscar .cards-enter .colonia-card:nth-child(2){animation-delay:70ms}
+#buscar .cards-enter .colonia-card:nth-child(3){animation-delay:140ms}
+#buscar .cards-enter .colonia-card:nth-child(4){animation-delay:210ms}
+#buscar .cards-enter .colonia-card:nth-child(5){animation-delay:280ms}
+@keyframes card-soft-entry{from{opacity:0;transform:translateY(16px) scale(.985)}to{opacity:1;transform:translateY(0) scale(1)}}
+body button,body a.location-action-btn,body a.colonia-link,body a.nearby-btn{
+ -webkit-tap-highlight-color:transparent;
+ transition:transform .16s ease,filter .2s ease;
+ touch-action:manipulation;
+}
+body button:not(:disabled):active,body a.location-action-btn:active,body a.colonia-link:active,body a.nearby-btn:active{
+ transform:translateY(2px) scale(.965);filter:brightness(1.2);
+}
+body button.touch-glow,body a.touch-glow{animation:button-touch-glow .38s ease-out}
+@keyframes button-touch-glow{0%{filter:brightness(1.35)}100%{filter:brightness(1)}}
+@media(prefers-reduced-motion:reduce){
+ #buscar .colonia-dashboard.cards-enter .colonia-card,body button.touch-glow,body a.touch-glow{animation:none!important}
+ body button,body a.location-action-btn,body a.colonia-link,body a.nearby-btn{transition:none!important}
+ body button:not(:disabled):active,body a.location-action-btn:active,body a.colonia-link:active,body a.nearby-btn:active{transform:none;filter:brightness(1.15)}
+}
+</style></head>
 <body>
 
 <div class="birthday-today-banner" id="birthdayTodayBanner">
@@ -3140,7 +3195,41 @@ renderRecientes();
 })();
 </script>
 
-</body></html>
+<script id="metallic-title-animation">// Animación decorativa independiente de la selección y los datos.
+(()=>{
+ const title=document.getElementById('nombreColonia');
+ if(!title)return;
+ const observer=new MutationObserver(()=>{
+  title.style.setProperty('--colonia-letters',Math.max(8,title.textContent.length));
+  title.classList.remove('metal-reveal');
+  void title.offsetWidth;
+  title.classList.add('metal-reveal');
+ });
+ observer.observe(title,{childList:true,characterData:true,subtree:true});
+})();
+</script><script id="soft-interaction-effects">(()=>{
+ const title=document.getElementById('nombreColonia');
+ const dashboard=document.getElementById('tablaDatos');
+ if(title && dashboard){
+  new MutationObserver(()=>{
+   dashboard.classList.remove('cards-enter');
+   void dashboard.offsetWidth;
+   dashboard.classList.add('cards-enter');
+  }).observe(title,{childList:true,characterData:true,subtree:true});
+ }
+ const selector='button,a.location-action-btn,a.colonia-link,a.nearby-btn';
+ const timers=new WeakMap();
+ document.addEventListener('click',event=>{
+  const button=event.target instanceof Element?event.target.closest(selector):null;
+  if(!button || button.disabled)return;
+  clearTimeout(timers.get(button));
+  button.classList.remove('touch-glow');
+  void button.offsetWidth;
+  button.classList.add('touch-glow');
+  timers.set(button,setTimeout(()=>{button.classList.remove('touch-glow');timers.delete(button);},420));
+ });
+})();
+</script></body></html>
 <div class="seccion" id="registro">
 <section class="registro-shell">
 <h2>Registro de Trabajo</h2>
@@ -3890,11 +3979,6 @@ const personasCumple = [
     "nombre": "Jose Mena",
     "dia": 5,
     "mes": 8
-  },
-  {
-    "nombre": "Glendys",
-    "dia": 27,
-    "mes": 1
   },
   {
     "nombre": "Miguel Aldair",
