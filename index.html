@@ -2350,6 +2350,18 @@ body #sherwin :is(.sherwin-link-wrap a,.sherwin-link){background:#29465d!importa
 body #cumpleanos .birthday-card{background:linear-gradient(135deg,#2b394a,#142131)!important;color:#edf5ff!important;border-color:#71899f!important}
 body #cumpleanos .birthday-list li{background:linear-gradient(145deg,#304559,#1a2d40)!important;color:#eef6ff!important;border-color:#7590a8!important}
 body #cumpleanos .birthday-list .day{color:#aeeaf5!important;-webkit-text-fill-color:#aeeaf5!important;font-weight:700}
+</style><style id="birthday-month-visibility">body .top-tabs .top-tab-btn[hidden],body #cumpleanos[hidden]{display:none!important}body .top-tabs.sin-cumpleanos{grid-template-columns:repeat(4,minmax(0,1fr))!important}</style><style id="birthday-restored-events-style">body #startBirthdayOverlay{z-index:100050!important;color:#f3f8ff!important;pointer-events:none}
+body #startBirthdayOverlay .start-birthday-card{background:linear-gradient(135deg,#344c65,#132438)!important;border:1px solid #93dbea;color:#f3f8ff!important}
+body #startBirthdayOverlay :is(.start-birthday-title,.start-birthday-names){color:#eff9ff!important;-webkit-text-fill-color:#eff9ff!important}
+body #birthdayTomorrowBanner{z-index:100060!important;color:#4b2900!important;-webkit-text-fill-color:#4b2900!important;pointer-events:none}
+body #birthdayTomorrowBanner strong{color:#4b2900!important;-webkit-text-fill-color:#4b2900!important}
+.birthday-restored-confetti{position:fixed;top:-40px;width:7px;height:12px;z-index:9000;pointer-events:none;animation:birthday-restored-fall 12s linear infinite both}
+.birthday-floating-icon{position:fixed;top:-60px;font-size:26px;line-height:1.2;z-index:9000;pointer-events:none;user-select:none;animation:birthday-icon-fall 18s linear infinite both;filter:drop-shadow(0 2px 4px #0004)}
+.birthday-floating-icon.rising{top:auto;bottom:-60px;animation-name:birthday-icon-rise}
+@keyframes birthday-icon-fall{0%{transform:translateY(-60px) rotate(-12deg);opacity:0}8%,85%{opacity:.8}100%{transform:translateY(calc(100vh + 120px)) rotate(30deg);opacity:0}}
+@keyframes birthday-icon-rise{0%{transform:translateY(60px) rotate(12deg);opacity:0}8%,85%{opacity:.8}100%{transform:translateY(calc(-100vh - 120px)) rotate(-25deg);opacity:0}}
+@media(prefers-reduced-motion:reduce){.birthday-floating-icon,.birthday-restored-confetti{display:none!important}}
+@keyframes birthday-restored-fall{from{transform:translateY(-20px) rotate(0deg);opacity:1}to{transform:translateY(110vh) rotate(650deg);opacity:0}}
 </style></head>
 <body>
 
@@ -4077,6 +4089,19 @@ window.personasCumple = personasCumple;
     const cont = document.getElementById("birthdayList");
     if(!cont) return;
     const lista = listaCumples().filter(p => Number(p.mes) === mes).sort((a,b)=>Number(a.dia)-Number(b.dia));
+    const botonCumple = document.querySelector('.top-tab-btn[data-seccion="cumpleanos"]');
+    const seccionCumple = document.getElementById('cumpleanos');
+    const hayCelebracion = lista.length > 0;
+    if(botonCumple) botonCumple.hidden = !hayCelebracion;
+    if(seccionCumple){
+      if(!hayCelebracion && seccionCumple.classList.contains('activa')){
+        const buscar = document.querySelector('.top-tab-btn[data-seccion="buscar"]');
+        if(buscar) buscar.click();
+      }
+      seccionCumple.hidden = !hayCelebracion;
+    }
+    const barra = document.querySelector('.top-tabs');
+    if(barra) barra.classList.toggle('sin-cumpleanos', !hayCelebracion);
     cont.innerHTML = lista.length
       ? lista.map(p => `<li><span class="day">${String(p.dia).padStart(2,"0")} de ${nombreMes(Number(p.mes)-1)}</span>${p.nombre}</li>`).join("")
       : `<li><span class="day">Sin registros</span> No hay cumpleaños registrados este mes.</li>`;
@@ -4095,13 +4120,15 @@ window.personasCumple = personasCumple;
   function iniciar(){
     renderCumplesSeguro();
     setTimeout(function(){
-      try{ if(typeof lanzarEfectosCumple === "function") lanzarEfectosCumple(); }catch(e){}
-      mostrarMensajeInicio();
+      if(typeof window.actualizarCelebracionesCumple === "function") window.actualizarCelebracionesCumple();
+
     }, 2100);
   }
   if(document.readyState === "loading") document.addEventListener("DOMContentLoaded", iniciar);
   else iniciar();
   window.renderCumplesSeguro = renderCumplesSeguro;
+  document.addEventListener('visibilitychange',()=>{if(!document.hidden) renderCumplesSeguro();});
+  setInterval(renderCumplesSeguro,60000);
 })();
 </script>
 <script id="auto-dark-mode-script">
@@ -4134,5 +4161,71 @@ window.personasCumple = personasCumple;
 
   // Revisa cada minuto por si la página queda abierta al cambiar de 6:59 a 7:00.
   setInterval(aplicarModoPorHora, 60000);
+})();
+</script>
+<script id="birthday-restored-events">(()=>{
+ let lastDay='';
+ const timers=[];
+ const byId=id=>document.getElementById(id);
+ const matches=date=>(window.personasCumple||[]).filter(p=>Number(p.dia)===date.getDate()&&Number(p.mes)===date.getMonth()+1);
+ const later=(fn,ms)=>{timers.push(setTimeout(fn,ms));};
+ function clearCelebration(){
+  timers.splice(0).forEach(clearTimeout);
+  ['startBirthdayOverlay','birthdayTodayBanner','birthdayTomorrowBanner','birthdayStartBanner'].forEach(id=>{const el=byId(id);if(el)el.style.display='none';});
+  document.querySelectorAll('[data-birthday-effect]').forEach(el=>el.remove());
+ }
+ function effects(){
+  if(window.matchMedia&&window.matchMedia('(prefers-reduced-motion: reduce)').matches)return;
+  const colors=['#8ce5f4','#fbd56a','#d9b4ff','#f68eaf'];
+  for(let i=0;i<24;i++){
+   const el=document.createElement('span');el.className='birthday-restored-confetti';el.setAttribute('data-birthday-effect','');el.setAttribute('aria-hidden','true');
+   el.style.left=(2+Math.random()*94)+'%';el.style.background=colors[i%colors.length];el.style.animationDelay=(-Math.random()*16)+'s';el.style.animationDuration=(12+Math.random()*8)+'s';document.body.appendChild(el);
+  }
+  const icons=['🥳','🎉','🎊','🎈','🪅','🪩'];
+  Array.from({length:36},(_,i)=>icons[i%icons.length]).forEach((icon,i)=>{
+   const el=document.createElement('span');el.className='birthday-floating-icon'+(i%2===0?' rising':'');el.textContent=icon;el.setAttribute('data-birthday-effect','');el.setAttribute('aria-hidden','true');
+   el.style.left=(2+Math.random()*92)+'%';el.style.fontSize=(22+Math.random()*14)+'px';el.style.animationDuration=(17+Math.random()*9)+'s';el.style.animationDelay=(-Math.random()*26)+'s';document.body.appendChild(el);
+  });
+ }
+ function run(){
+  const now=new Date(),key=[now.getFullYear(),now.getMonth(),now.getDate()].join('-');
+  if(key===lastDay)return;
+  const splash=byId('splash');
+  if(splash&&getComputedStyle(splash).display!=='none'){setTimeout(run,250);return;}
+  lastDay=key;clearCelebration();
+  const today=matches(now),tomorrowDate=new Date(now.getFullYear(),now.getMonth(),now.getDate()+1),tomorrow=matches(tomorrowDate);
+  const videoSection=byId('birthdayVideoSection'),videoFrame=byId('birthdayVideoFrame'),videoNames=byId('birthdayVideoNames');
+  if(videoSection&&videoFrame&&videoNames){
+   if(today.length){
+    const videos=['fhKYVQT18xM','GnQC2zEDNBI','Fzqto8Cd35M','QFLALAszEpo','Jguqnlymeuk'];
+    const dateKey=`${now.getFullYear()}-${now.getMonth()+1}-${now.getDate()}`;
+    const index=Array.from(dateKey).reduce((sum,c)=>sum+c.charCodeAt(0),0)%videos.length;
+    videoNames.textContent=today.map(p=>p.nombre).join(', ');
+    videoFrame.src=`https://www.youtube.com/embed/${videos[index]}?autoplay=1&mute=1&playsinline=1&controls=1&rel=0`;
+    videoSection.style.display='block';
+   }else{videoSection.style.display='none';videoFrame.removeAttribute('src');videoNames.textContent='';}
+  }
+  if(typeof window.renderCumplesSeguro==='function')window.renderCumplesSeguro();
+  const showTomorrow=()=>{
+   if(!tomorrow.length)return;
+   const banner=byId('birthdayTomorrowBanner'),names=byId('birthdayTomorrowNames');
+   if(!banner||!names)return;
+   names.textContent=tomorrow.map(p=>p.nombre).join(', ');banner.style.display='block';banner.setAttribute('role','status');
+   later(()=>{banner.style.display='none';},6500);
+  };
+  if(today.length){
+   const overlay=byId('startBirthdayOverlay'),names=byId('startBirthdayNames');
+   if(overlay&&names){names.textContent=today.map(p=>p.nombre).join(', ');overlay.style.display='flex';overlay.setAttribute('role','status');later(()=>{overlay.style.display='none';},5500);}
+   effects();later(showTomorrow,6000);
+  }else showTomorrow();
+ }
+ // Compatibilidad con los avisos que se ejecutan al terminar la carga.
+ window.mostrarAvisoCumpleMananaDespuesDeCarga=run;
+ window.lanzarMensajeCumpleInicio=run;
+ window.lanzarEfectosCumple=run;
+ window.actualizarCelebracionesCumple=run;
+ if(document.readyState==='loading')document.addEventListener('DOMContentLoaded',run);else run();
+ document.addEventListener('visibilitychange',()=>{if(!document.hidden)run();});
+ setInterval(run,60000);
 })();
 </script>
