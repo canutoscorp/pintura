@@ -2301,6 +2301,16 @@ body button.touch-glow,body a.touch-glow{animation:button-touch-glow .38s ease-o
  body button,body a.location-action-btn,body a.colonia-link,body a.nearby-btn{transition:none!important}
  body button:not(:disabled):active,body a.location-action-btn:active,body a.colonia-link:active,body a.nearby-btn:active{transform:none;filter:brightness(1.15)}
 }
+</style><style id="colonia-contrast-fix">
+body #buscar #opcionesColonias{background:#152232!important;border:1px solid #758ea5!important;color:#f0f6ff!important;color-scheme:dark}
+body #buscar #opcionesColonias .dropdown-item{background:#152232!important;color:#f0f6ff!important;-webkit-text-fill-color:#f0f6ff!important;border-bottom:1px solid #41546a!important;font-weight:600;line-height:1.5;opacity:1!important;text-shadow:none!important}
+body #buscar #opcionesColonias .dropdown-item:hover,body #buscar #opcionesColonias .dropdown-item:active,body #buscar #opcionesColonias .dropdown-item.activa{background:#304d67!important;color:#fff!important;-webkit-text-fill-color:#fff!important;box-shadow:inset 3px 0 #83e4f6}
+body #buscar #opcionesColonias .dropdown-vacio{background:#152232!important;color:#d1deeb!important;-webkit-text-fill-color:#d1deeb!important}
+body #buscar #tablaDatos .colonia-card h3,body #buscar #tablaDatos .colonia-store-name,body #buscar #tablaDatos #observacion{color:#f0f6ff!important;-webkit-text-fill-color:#f0f6ff!important}
+body #buscar #tablaDatos .colonia-muted,body #buscar #tablaDatos .codes-gate p,body #buscar #tablaDatos .colonia-map-card p{color:#cedbea!important}
+body #buscar #tablaDatos .codes-gate .codes-error{color:#ffb1bc!important}
+body #buscar #tablaDatos .codes-open-head{color:#9eefd0!important}
+body #buscar #tablaDatos a[aria-disabled="true"]{background:#253344!important;color:#cedbea!important;cursor:default;box-shadow:none!important}
 </style></head>
 <body>
 
@@ -2398,6 +2408,13 @@ body button.touch-glow,body a.touch-glow{animation:button-touch-glow .38s ease-o
 </div>
 <script>
 const datosColonias = [
+{
+nombre:"Yellow River",
+ubicacion:"https://maps.app.goo.gl/32HcvycL1PSMhex8A",
+codigos:["El intendente Abre con llave"],
+observacion:"Pintura Alabaster",
+mapa:""
+},
 {
 nombre:"Jubilee",
 ubicacion:"https://maps.app.goo.gl/UTj8zKQttcf9TRW47",
@@ -2681,7 +2698,7 @@ mapa:"https://img.freepik.com/vector-premium/ilustracion-vectorial-simbolo-casa-
 {
 nombre:"Lakes Of Woodbine",
 ubicacion:"https://maps.app.goo.gl/HmM53z1budcdthDu7?g_st=com.google.maps.preview.copy",
-codigos:["0126","2506","2604"],
+codigos:["0126","2506","2604","1668","0127"],
 observacion:"ELDIER WHITE Color Paredes",
 mapa:"https://www.drhorton.com/-/media/drhorton/productcatalog/244-pensacola-west/22668-lakes-of-woodbine/colored_plat_for_low.jpg?rev=11721f9c07c541c0b6d889332610eac8"
 },
@@ -2992,7 +3009,7 @@ function renderRecientes(){
 
 let coloniaSeleccionada = null;
 let codigosVisibles = false;
-const tiendasPorColonia = {"Jubilee": 1, "Airway Oaks": 1, "Bently": 2, "Blackwater": 1, "Bridlewood": 2, "Brookheaven": 2, "Cadence": 1, "Captain Cove": 7, "Carrington": 2, "Cottages of Aventura": 10, "Country Club States": null, "Days Landing": 3, "Deer Ridge Crossing": 8, "Dry Creek": 2, "Eagle Pointe": 2, "Ellies Cove": 5, "Enclave": 7, "Fairchild": 2, "Fallschase": 2, "Floridatown": 1, "Forest Shores": 7, "Freeport": null, "Gator Landing": 3, "Gavin Landing": 5, "Gaylen Oaks": 2, "Gleenhollow": 2, "Gleenlakes": 4, "GrassLand": 4, "Greenbrier": 4, "Greenfield": 1, "Hammond Place": 1, "Heritage Plantation": 3, "Hihglands": 3, "Huston": 3, "Independence": 3, "Iron Rock": 2, "Jay Rd": null, "Lakeland": 4, "Lakes Of Woodbine": 1, "Lancelot": 1, "Ledwick": 4, "Leighton Villages": 9, "Liberty Farms": 1, "Live Oaks": 4, "Lost Key": 6, "Madelyn Woods": 5, "Martin Preserve": 5, "Mary Anette": 2, "Midtown": 2, "Oxford": 3, "Parkwood": 1, "Patriot": 3, "Pecan Grove": 4, "Plantation Woods": 1, "Pless Landing": 4, "Quilanding": 4, "Rivers Cove": 1, "Roman Oaks": 8, "Russell Crossing": 5, "Sanctuary": 2, "Sentinel Ridge": 1, "Silverlake": 3, "Soundview": 8, "Souther Palms": 1, "Southwood": 4, "Stone Heaven": 4, "Sweetbarb": 2, "The Grove at Berryhill": 1, "Ventura Manor": 1, "Vickers States": 2, "Waterside": 8, "Young Oaks": 3, "RoseMary Sounbd": 8};
+const tiendasPorColonia = {"Yellow River": 1, "Jubilee": 1, "Airway Oaks": 1, "Bently": 2, "Blackwater": 1, "Bridlewood": 2, "Brookheaven": 2, "Cadence": 1, "Captain Cove": 7, "Carrington": 2, "Cottages of Aventura": 10, "Country Club States": null, "Days Landing": 3, "Deer Ridge Crossing": 8, "Dry Creek": 2, "Eagle Pointe": 2, "Ellies Cove": 5, "Enclave": 7, "Fairchild": 2, "Fallschase": 2, "Floridatown": 1, "Forest Shores": 7, "Freeport": null, "Gator Landing": 3, "Gavin Landing": 5, "Gaylen Oaks": 2, "Gleenhollow": 2, "Gleenlakes": 4, "GrassLand": 4, "Greenbrier": 4, "Greenfield": 1, "Hammond Place": 1, "Heritage Plantation": 3, "Hihglands": 3, "Huston": 3, "Independence": 3, "Iron Rock": 2, "Jay Rd": null, "Lakeland": 4, "Lakes Of Woodbine": 1, "Lancelot": 1, "Ledwick": 4, "Leighton Villages": 9, "Liberty Farms": 1, "Live Oaks": 4, "Lost Key": 6, "Madelyn Woods": 5, "Martin Preserve": 5, "Mary Anette": 2, "Midtown": 2, "Oxford": 3, "Parkwood": 1, "Patriot": 3, "Pecan Grove": 4, "Plantation Woods": 1, "Pless Landing": 4, "Quilanding": 4, "Rivers Cove": 1, "Roman Oaks": 8, "Russell Crossing": 5, "Sanctuary": 2, "Sentinel Ridge": 1, "Silverlake": 3, "Soundview": 8, "Souther Palms": 1, "Southwood": 4, "Stone Heaven": 4, "Sweetbarb": 2, "The Grove at Berryhill": 1, "Ventura Manor": 1, "Vickers States": 2, "Waterside": 8, "Young Oaks": 3, "RoseMary Sounbd": 8};
 const tiendasColonia = {"1": {"nombre": "Sherwin Tamarindo o Pace", "url": "https://maps.app.goo.gl/17LSgeqZ1APifhdb7?g_st=iw"}, "2": {"nombre": "Sherwin Milla 9", "url": "https://maps.app.goo.gl/Nw7rbU4Z2Emuzqz1A?g_st=iw"}, "3": {"nombre": "Sherwin CrestView", "url": "https://maps.app.goo.gl/Sf3zG3jGxJc2ZkLTA?g_st=iw"}, "4": {"nombre": "Sherwin Foley 98", "url": "https://maps.app.goo.gl/kityMzpEeDjduqaGA?g_st=iw"}, "5": {"nombre": "Sherwin 98 LostKey GavinsLanding", "url": "https://maps.app.goo.gl/L8soGhgc1eeFRYLa6?g_st=iw"}, "6": {"nombre": "Lost Key", "url": "https://maps.app.goo.gl/eDANGh1xbrTp2EXd8?g_st=a"}, "7": {"nombre": "Navarre (Captain Cove, Forest Shore, Enclave)", "url": "https://maps.app.goo.gl/s5YennQstL4Eq64C9?g_st=iw"}, "8": {"nombre": "Gulf Breeze (Roman, Soundview, Deer Ridge)", "url": "https://maps.app.goo.gl/WGtrRJyeTKo9B7zd6?g_st=ipc"}, "9": {"nombre": "Mobile", "url": "https://maps.app.goo.gl/RESD4QvGDDt1Z2fA7?g_st=a"}, "10": {"nombre": "Daphne", "url": "https://maps.app.goo.gl/oVrzR3z52UXeokh46"}};
 function escaparColonia(value){return String(value ?? '').replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));}
 function cerrarCodigosColonia(){
@@ -3017,7 +3034,9 @@ function seleccionarColoniaPorNombre(nombre){
  document.getElementById('observacion').textContent=colonia.observacion||'Sin observaciones registradas.';
  const tienda=tiendasColonia[tiendasPorColonia[colonia.nombre]];
  document.getElementById('coloniaTienda').innerHTML=tienda?`<p class="colonia-muted">Tienda asignada a esta colonia</p><div class="colonia-store-name">${escaparColonia(tienda.nombre)}</div>${tienda.url?`<a class="colonia-link" href="${escaparColonia(tienda.url)}" target="_blank" rel="noopener noreferrer">📍 Ir a la tienda ↗</a>`:'<p class="colonia-muted">Enlace de ubicación pendiente.</p>'}`:'<p class="colonia-muted">TIENDA NO ASIGNADA FAVOR DE INFORMAR AL ADMINISTRADOR</p>';
- const mapa=document.getElementById('coloniaMapaLink');mapa.href=colonia.mapa;mapa.setAttribute('aria-label',`Abrir mapa de ${colonia.nombre} en una ventana nueva`);
+ const mapa=document.getElementById('coloniaMapaLink');
+ if(colonia.mapa){mapa.href=colonia.mapa;mapa.textContent='Abrir mapa ↗';mapa.removeAttribute('aria-disabled');mapa.setAttribute('aria-label',`Abrir mapa de ${colonia.nombre} en una ventana nueva`);}
+ else{mapa.removeAttribute('href');mapa.textContent='Plano pendiente de agregar';mapa.setAttribute('aria-disabled','true');mapa.setAttribute('aria-label',`Plano de ${colonia.nombre} pendiente de agregar`);}
  ocultarDropdown();input.value='';actualizarBotonLimpiar();renderRecientes();input.blur();
 }
 
