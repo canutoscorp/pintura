@@ -2362,6 +2362,30 @@ body #birthdayTomorrowBanner strong{color:#4b2900!important;-webkit-text-fill-co
 @keyframes birthday-icon-rise{0%{transform:translateY(60px) rotate(12deg);opacity:0}8%,85%{opacity:.8}100%{transform:translateY(calc(-100vh - 120px)) rotate(-25deg);opacity:0}}
 @media(prefers-reduced-motion:reduce){.birthday-floating-icon,.birthday-restored-confetti{display:none!important}}
 @keyframes birthday-restored-fall{from{transform:translateY(-20px) rotate(0deg);opacity:1}to{transform:translateY(110vh) rotate(650deg);opacity:0}}
+</style><style id="hours-payment-design">body #material .periodo-card{border-radius:24px;overflow:hidden;margin-top:22px}
+body #material .periodo-card-head{background:linear-gradient(125deg,#31475d,#111f30)!important;padding:22px}
+body #material .periodo-card-name strong{font-size:24px;letter-spacing:.5px}
+.hours-period-caption{color:#c8d9e9;font-size:14px;margin:8px 0 20px}
+body #material .hours-pay-hero{display:flex;flex-direction:column;text-align:center;gap:8px;padding:25px 12px;border:1px solid #7dd8ef;border-radius:20px;background:linear-gradient(120deg,#35495b,#14283b 65%,#293f50);box-shadow:inset 0 1px 0 #d7f7ff44,0 0 20px #5bdcf022}
+body #material .hours-pay-hero>span{font-size:19px;color:#e9f3ff}
+body #material .hours-pay-hero strong{font-size:clamp(38px,9vw,64px);color:#7cf1b4!important;-webkit-text-fill-color:#7cf1b4!important;letter-spacing:1px;line-height:1.15;text-shadow:0 3px 8px #0008;overflow-wrap:anywhere}
+body #material .hours-pay-hero small{font-size:12px;color:#ceddea}
+body #material .periodo-stats{grid-template-columns:repeat(3,minmax(0,1fr))!important;margin-top:16px;gap:10px}
+body #material .periodo-stat{display:flex;flex-direction:column;justify-content:center;align-items:center;text-align:center;gap:8px;min-width:0;padding:14px 6px;background:linear-gradient(135deg,#2b4054,#142436)!important}
+body #material .periodo-stat>span{font-size:26px;color:#7de4f6}
+body #material .periodo-stat b{font-size:17px;line-height:1.35}
+body #material .periodo-stat small{font-size:12px;margin:0;color:#ccdae9!important}
+body #material .hours-register-btn{background:linear-gradient(160deg,#1388ae,#155675)!important;border-color:#7dd9ec!important;font-size:18px;padding:16px;margin:0 0 14px}
+.hours-entry-details{margin:0 0 18px}.hours-entry-details>summary{cursor:pointer;color:#b9e7f4;padding:12px 4px;font-weight:700}.hours-detail-title{font-size:21px;margin:22px 0 12px}
+body #material .periodo-days{gap:0;border:1px solid #597c94;border-radius:16px;overflow:hidden;margin:0}
+body #material .periodo-day{border:0!important;border-bottom:1px solid #496177!important;border-radius:0;padding:14px 12px;grid-template-columns:minmax(0,1fr) minmax(0,1fr);font-size:14px}
+body #material .periodo-day:nth-child(even){background:#192b3e!important}body #material .periodo-day:last-child{border-bottom:0!important}
+.hours-day-pay{display:block;color:#7cf1b4!important;-webkit-text-fill-color:#7cf1b4!important;font-size:18px;margin:5px 0}
+body #material .periodo-day-time{text-align:right;font-size:13px}.periodo-day-actions{display:block;margin-top:7px}
+body #material .periodo-whatsapp{margin-top:20px;padding:16px;font-size:16px}
+body #material .periodo-delete-person{font-size:12px;max-width:200px;display:block;margin:18px auto 0}
+body .top-tabs [data-seccion="material"]{font-size:10px!important;line-height:1.25}
+@media(max-width:420px){body #material .periodo-card-head,body #material .periodo-card-body{padding:14px}body #material .periodo-stat b{font-size:14px}body #material .periodo-stat small{font-size:10px}body #material .periodo-stats{gap:6px}body #material .periodo-day{padding:12px 9px;font-size:12px}}
 </style></head>
 <body>
 
@@ -2402,8 +2426,8 @@ body #birthdayTomorrowBanner strong{color:#4b2900!important;-webkit-text-fill-co
 <button class="top-tab-btn active" data-seccion="buscar">🔎<br/>BUSCAR</button>
 <button class="top-tab-btn" data-seccion="cumpleanos">🎂<br/>CUMPLEAÑOS</button>
 <button class="top-tab-btn" data-seccion="sherwin">🎨<br/>SHERWIN-WILLIAMS</button>
-<button class="top-tab-btn" data-seccion="registro">📝<br/>REGISTRO</button>
-<button class="top-tab-btn" data-seccion="material">⏱️<br/>PERIODO</button>
+<button class="top-tab-btn" data-seccion="registro">📝<br/>BITÁCORA</button>
+<button class="top-tab-btn" data-seccion="material">⏱️<br/>CONTROL DE<br/>HORAS Y PAGO</button>
 </div>
 <div class="seccion activa" id="buscar">
 <label for="coloniaInput">Buscar o Seleccionar Colonia</label>
@@ -3302,7 +3326,7 @@ renderRecientes();
 </script></body></html>
 <div class="seccion" id="registro">
 <section class="registro-shell">
-<h2>Registro de Trabajo</h2>
+<h2>Bitácora</h2>
 <textarea id="output" placeholder="Aquí aparecerá la información..."></textarea>
 <label>Fecha trabajada:</label>
 <input id="fechaTrabajo" type="date"/>
@@ -3348,7 +3372,7 @@ renderRecientes();
 </div>
 <div class="seccion" id="material">
 <section class="material-shell periodo-shell">
-<h2>Control de Periodo</h2>
+<h2>Control de horas y pago</h2>
 <p class="periodo-intro">Aquí puedes llevar el control semanal de tus horas. Solo coloca tu nombre, lo que ganas por hora y los días de tu periodo.</p>
 <div class="periodo-setup">
 <h3>Configurar trabajador</h3>
@@ -3673,13 +3697,14 @@ renderRecientes();
   }
   window.editarPerfilPeriodo=id=>{const d=leer(),p=d.perfiles[id];if(!p)return;mostrarFormularioPeriodo(true);perfilEditando=id;$('periodoNombre').value=p.nombre;$('periodoSueldo').value=p.sueldo;$('periodoInicio').value=p.inicio;$('periodoCierre').value=p.cierre;$('guardarPerfilPeriodo').textContent='Guardar cambios';$('periodoNombre').focus();document.querySelector('.periodo-setup').scrollIntoView({behavior:'smooth',block:'center'});};
   window.cambiarVistaPeriodo=(id,dias)=>{const d=leer(),p=d.perfiles[id];if(!p)return;const f=fechaDe(p.vista||iso(new Date()));f.setDate(f.getDate()+dias);p.vista=iso(f);guardar(d);render();};
+  window.abrirEntradaHoras=id=>{const panel=$(`form-horas-${id}`);if(panel)panel.open=true;$(`pf-${id}`).value=iso(new Date());$(`pe-${id}`).value='';$(`ps-${id}`).value='';$(`pl-${id}`).value='0';$(`pn-${id}`).checked=false;calcularVistaPreviaPeriodo(id);document.getElementById(`entrada-periodo-${id}`).scrollIntoView({behavior:'smooth',block:'center'});};
   window.calcularVistaPreviaPeriodo=id=>{const m=minutosTurno($(`pe-${id}`).value,$(`ps-${id}`).value,$(`pl-${id}`).value,$(`pn-${id}`).checked),c=$(`pt-${id}`);if(c)c.textContent=m===null?'Tiempo laborado: completa las horas correctamente':`Tiempo laborado: ${dur(m)}`;};
   window.guardarDiaPeriodo=id=>{
     const fecha=$(`pf-${id}`).value,entrada=$(`pe-${id}`).value,salida=$(`ps-${id}`).value,lonche=Number($(`pl-${id}`).value)||0,siguiente=$(`pn-${id}`).checked,m=minutosTurno(entrada,salida,lonche,siguiente);
     if(!fecha)return alert('Selecciona la fecha trabajada.');if(m===null)return alert('Revisa la entrada y salida. Marca si la salida fue al día siguiente.');
     const d=leer();if(!d.perfiles[id])return;d.registros[id]=d.registros[id]||{};d.registros[id][fecha]={entrada,salida,lonche,siguiente,minutos:m};d.perfiles[id].vista=fecha;guardar(d);render();
   };
-  window.cargarDiaPeriodo=(id,fecha)=>{const d=leer(),r=(d.registros[id]||{})[fecha];if(!r)return;$(`pf-${id}`).value=fecha;$(`pe-${id}`).value=r.entrada;$(`ps-${id}`).value=r.salida;$(`pl-${id}`).value=r.lonche;$(`pn-${id}`).checked=!!r.siguiente;calcularVistaPreviaPeriodo(id);document.getElementById(`entrada-periodo-${id}`).scrollIntoView({behavior:'smooth',block:'center'});};
+  window.cargarDiaPeriodo=(id,fecha)=>{const d=leer(),r=(d.registros[id]||{})[fecha];if(!r)return;const panel=$(`form-horas-${id}`);if(panel)panel.open=true;$(`pf-${id}`).value=fecha;$(`pe-${id}`).value=r.entrada;$(`ps-${id}`).value=r.salida;$(`pl-${id}`).value=r.lonche;$(`pn-${id}`).checked=!!r.siguiente;calcularVistaPreviaPeriodo(id);document.getElementById(`entrada-periodo-${id}`).scrollIntoView({behavior:'smooth',block:'center'});};
   window.borrarDiaPeriodo=(id,fecha)=>{if(!confirm('¿Borrar las horas registradas de este día?'))return;const d=leer();if(d.registros[id])delete d.registros[id][fecha];guardar(d);render();};
   window.borrarPersonaPeriodo=id=>{const d=leer(),p=d.perfiles[id];if(!p||!confirm(`¿Eliminar a ${p.nombre} y todos sus registros de Periodo?`))return;delete d.perfiles[id];delete d.registros[id];guardar(d);render();};
   window.enviarPeriodoWhatsApp=id=>{
@@ -3693,9 +3718,9 @@ renderRecientes();
     if(!perfiles.length){contenedor.innerHTML='<div class="periodo-empty">Agrega el primer trabajador para comenzar a registrar sus horas.</div>';mostrarFormularioPeriodo(false);$('periodoAgregarTrabajador')?.classList.add('oculto');return;}
     contenedor.innerHTML=perfiles.map(([id,p])=>{
       const inicio=inicioPeriodo(fechaDe(p.vista||iso(new Date())),Number(p.inicio)),fin=new Date(inicio);fin.setDate(fin.getDate()+6);let total=0,trabajados=0;
-      const filas=Array.from({length:7},(_,i)=>{const f=new Date(inicio);f.setDate(f.getDate()+i);const fi=iso(f),r=(d.registros[id]||{})[fi],m=r?r.minutos:0;total+=m;if(m>0)trabajados++;return `<div class="periodo-day ${r?'':'zero'}"><div><b>${DIAS[f.getDay()]}</b> · ${fechaBonita(f)}</div><div class="periodo-day-time">${dur(m)}${r?`<span class="periodo-day-actions"><button class="edit" onclick="cargarDiaPeriodo('${id}','${fi}')">Editar</button><button class="remove" onclick="borrarDiaPeriodo('${id}','${fi}')">Borrar</button></span>`:''}</div></div>`}).join('');
+      const filas=Array.from({length:7},(_,i)=>{const f=new Date(inicio);f.setDate(f.getDate()+i);const fi=iso(f),r=(d.registros[id]||{})[fi],m=r?r.minutos:0;total+=m;if(m>0)trabajados++;return `<div class="periodo-day ${r?'':'zero'}"><div><b>${DIAS[f.getDay()]}</b> · ${fechaBonita(f)}</div><div class="periodo-day-time">${r?dur(m):'Sin registrar'}<span class="hours-day-pay">${r?'$'+(m/60*Number(p.sueldo||0)).toFixed(2):'—'}</span>${r?`<span class="periodo-day-actions"><button class="edit" onclick="cargarDiaPeriodo('${id}','${fi}')">Editar</button><button class="remove" onclick="borrarDiaPeriodo('${id}','${fi}')">Borrar</button></span>`:''}</div></div>`}).join('');
       const cobro=total/60*Number(p.sueldo||0),hoy=iso(new Date());
-      return `<article class="periodo-card"><div class="periodo-card-head"><div class="periodo-card-name"><strong>${esc(p.nombre)}</strong><button class="periodo-edit-btn" onclick="editarPerfilPeriodo('${id}')">Editar datos</button></div><div class="periodo-stats"><div class="periodo-stat"><small>Sueldo por hora</small><b>$${Number(p.sueldo).toFixed(2)}</b></div><div class="periodo-stat"><small>Periodo</small><b>${DIAS[p.inicio]} a ${DIAS[p.cierre]}</b></div><div class="periodo-stat"><small>Días trabajados</small><b>${trabajados}</b></div><div class="periodo-stat"><small>Tiempo laborado</small><b>${dur(total)}</b></div><div class="periodo-stat"><small>Cobro aproximado</small><b>$${cobro.toFixed(2)}</b></div></div></div><div class="periodo-card-body"><div class="periodo-range-row"><button onclick="cambiarVistaPeriodo('${id}',-7)">← Anterior</button><div class="periodo-range-label">${fechaBonita(inicio)}<br>al ${fechaBonita(fin)}</div><button onclick="cambiarVistaPeriodo('${id}',7)">Siguiente →</button></div><div class="periodo-entry-box" id="entrada-periodo-${id}"><h4>Agregar o modificar horas</h4><div class="periodo-entry-grid"><label>Fecha<input id="pf-${id}" type="date" value="${hoy}"></label><label>Hora de entrada<input id="pe-${id}" type="time" oninput="calcularVistaPreviaPeriodo('${id}')"></label><label>Hora de salida<input id="ps-${id}" type="time" oninput="calcularVistaPreviaPeriodo('${id}')"></label><label>Tiempo de lonche (minutos)<input id="pl-${id}" type="number" min="0" value="0" oninput="calcularVistaPreviaPeriodo('${id}')"></label><label class="periodo-check"><input id="pn-${id}" type="checkbox" onchange="calcularVistaPreviaPeriodo('${id}')"> La salida fue al día siguiente</label></div><div class="periodo-live-time" id="pt-${id}">Tiempo laborado: completa las horas</div><button class="periodo-action-btn" onclick="guardarDiaPeriodo('${id}')">Guardar horas del día</button></div><div class="periodo-days">${filas}</div><button class="periodo-action-btn periodo-whatsapp" onclick="enviarPeriodoWhatsApp('${id}')">Enviar información de ${esc(p.nombre)} por WhatsApp</button><button class="periodo-action-btn periodo-delete-person" onclick="borrarPersonaPeriodo('${id}')">Eliminar trabajador</button></div></article>`;
+      return `<article class="periodo-card"><div class="periodo-card-head"><div class="periodo-card-name"><strong>${esc(p.nombre)}</strong><button class="periodo-edit-btn" onclick="editarPerfilPeriodo('${id}')">Editar datos</button></div><div class="hours-period-caption">📅 ${fechaBonita(inicio)} al ${fechaBonita(fin)}</div><div class="hours-pay-hero"><span>Llevas acumulado</span><strong>$${cobro.toFixed(2)}</strong><small>Estimado según tus horas registradas</small></div><div class="periodo-stats"><div class="periodo-stat"><span aria-hidden="true">◷</span><b>${dur(total)}</b><small>Horas trabajadas</small></div><div class="periodo-stat"><span aria-hidden="true">＄</span><b>$${Number(p.sueldo).toFixed(2)}</b><small>Pago por hora</small></div><div class="periodo-stat"><span aria-hidden="true">▦</span><b>${trabajados} ${trabajados===1?'día':'días'}</b><small>Días trabajados</small></div></div></div><div class="periodo-card-body"><div class="periodo-range-row"><button onclick="cambiarVistaPeriodo('${id}',-7)">← Anterior</button><div class="periodo-range-label">${fechaBonita(inicio)}<br>al ${fechaBonita(fin)}</div><button onclick="cambiarVistaPeriodo('${id}',7)">Siguiente →</button></div><button class="periodo-action-btn hours-register-btn" type="button" onclick="abrirEntradaHoras('${id}')">＋ Registrar horas de hoy</button><details class="hours-entry-details" id="form-horas-${id}"><summary>Agregar o modificar horas</summary><div class="periodo-entry-box" id="entrada-periodo-${id}"><h4>Agregar o modificar horas</h4><div class="periodo-entry-grid"><label>Fecha<input id="pf-${id}" type="date" value="${hoy}"></label><label>Hora de entrada<input id="pe-${id}" type="time" oninput="calcularVistaPreviaPeriodo('${id}')"></label><label>Hora de salida<input id="ps-${id}" type="time" oninput="calcularVistaPreviaPeriodo('${id}')"></label><label>Tiempo de lonche (minutos)<input id="pl-${id}" type="number" min="0" value="0" oninput="calcularVistaPreviaPeriodo('${id}')"></label><label class="periodo-check"><input id="pn-${id}" type="checkbox" onchange="calcularVistaPreviaPeriodo('${id}')"> La salida fue al día siguiente</label></div><div class="periodo-live-time" id="pt-${id}">Tiempo laborado: completa las horas</div><button class="periodo-action-btn" onclick="guardarDiaPeriodo('${id}')">Guardar horas del día</button></div></details><h4 class="hours-detail-title">Detalle del periodo</h4><div class="periodo-days">${filas}</div><button class="periodo-action-btn periodo-whatsapp" onclick="enviarPeriodoWhatsApp('${id}')">Compartir resumen por WhatsApp</button><button class="periodo-action-btn periodo-delete-person" onclick="borrarPersonaPeriodo('${id}')">Eliminar trabajador</button></div></article>`;
     }).join('');
   }
   llenarDias();
