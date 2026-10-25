@@ -3,6 +3,7 @@
 const cfg=window.LOZANO_CONFIG,$=id=>document.getElementById(id);
 let session=null,colonies=[],stores=[],editing=null,editingStore=null,currentView='coloniesView';
 const msg=(text,error=false)=>{$('message').textContent=text;$('message').classList.toggle('error',error);};
+if(!document.getElementById('storeSearch')||!document.getElementById('storeDialog')){msg('Se cargó una versión anterior del administrador. Abre admin.html?actualizar=20261025-tiendas-2 y vuelve a intentar.',true);return;}
 const esc=v=>String(v??'').replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
 async function fetchTimed(url,options){const controller=new AbortController(),timeout=setTimeout(()=>controller.abort(),25000);try{return await fetch(url,{...options,signal:controller.signal,cache:'no-store'});}finally{clearTimeout(timeout);}}
 function forget(){session=null;sessionStorage.removeItem('lozano_admin_session');$('dashboard').hidden=true;$('loginPanel').hidden=false;if($('colonyDialog').open)$('colonyDialog').close();if($('storeDialog').open)$('storeDialog').close();$('stores').textContent='';$('colonies').textContent='';$('users').textContent='';$('history').textContent='';}
