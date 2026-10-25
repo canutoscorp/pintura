@@ -1,11 +1,11 @@
 'use strict';
 (()=>{
 const cfg=window.LOZANO_CONFIG,$=id=>document.getElementById(id);
-let session=null,colonies=[],stores=[],editing=null,currentView='coloniesView';
+let session=null,colonies=[],stores=[],editing=null,editingStore=null,currentView='coloniesView';
 const msg=(text,error=false)=>{$('message').textContent=text;$('message').classList.toggle('error',error);};
 const esc=v=>String(v??'').replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
 async function fetchTimed(url,options){const controller=new AbortController(),timeout=setTimeout(()=>controller.abort(),25000);try{return await fetch(url,{...options,signal:controller.signal,cache:'no-store'});}finally{clearTimeout(timeout);}}
-function forget(){session=null;sessionStorage.removeItem('lozano_admin_session');$('dashboard').hidden=true;$('loginPanel').hidden=false;if($('colonyDialog').open)$('colonyDialog').close();$('colonies').textContent='';$('users').textContent='';$('history').textContent='';}
+function forget(){session=null;sessionStorage.removeItem('lozano_admin_session');$('dashboard').hidden=true;$('loginPanel').hidden=false;if($('colonyDialog').open)$('colonyDialog').close();if($('storeDialog').open)$('storeDialog').close();$('stores').textContent='';$('colonies').textContent='';$('users').textContent='';$('history').textContent='';}
 async function api(action,data={}){
  if(!session&&action!=='login')throw Error('Inicia sesión.');
  const headers={'Content-Type':'application/json',apikey:cfg.publishableKey};
@@ -21,13 +21,13 @@ async function task(fn,errorTarget){
  finally{document.querySelectorAll('button').forEach(b=>b.disabled=false);}
 }
 function remember(){sessionStorage.setItem('lozano_admin_session',JSON.stringify(session));}
-function showView(id){currentView=id;for(const v of ['coloniesView','usersView','historyView'])$(v).hidden=v!==id;document.querySelectorAll('[data-view]').forEach(b=>b.classList.toggle('selected',b.dataset.view===id));}
+function showView(id){currentView=id;for(const v of ['coloniesView','storesView','usersView','historyView'])$(v).hidden=v!==id;document.querySelectorAll('[data-view]').forEach(b=>b.classList.toggle('selected',b.dataset.view===id));}
 async function load(){
  const data=await api('list');colonies=data.colonies||[];stores=data.stores||[];session.owner=!!data.owner;remember();
  $('identity').textContent='Sesión: '+data.display_name;document.querySelectorAll('.ownerOnly').forEach(e=>e.hidden=!session.owner);
  $('loginPanel').hidden=true;$('dashboard').hidden=false;
  $('storeSelect').innerHTML='<option value="">TIENDA NO ASIGNADA</option>'+stores.map(s=>`<option value="${s.id}">${esc(s.name)}</option>`).join('');
- render();if(!session.owner&&currentView!=='coloniesView')showView('coloniesView');
+ render();renderStores();if(!session.owner&&!['coloniesView','storesView'].includes(currentView))showView('coloniesView');
 }
 function render(){
  const search=$('search').value.trim().toLocaleLowerCase('es'),inactive=$('includeInactive').checked;
@@ -40,6 +40,18 @@ function openColony(c){
  if(c){for(const name of ['name','location_url','notes','map_url','store_id'])form.elements[name].value=c[name]??'';form.elements.access_codes.value=c.access_codes.join('\n');}
  $('colonyDialog').showModal();form.elements.name.focus();
 }
+function renderStores(){
+ const search=$('storeSearch').value.trim().toLocaleLowerCase('es');
+ const list=stores.filter(s=>s.name.toLocaleLowerCase('es').includes(search));
+ $('storeCount').textContent=`${list.length} tiendas`;
+ $('stores').innerHTML=list.length?list.map(s=>{const count=colonies.filter(c=>c.store_id===s.id&&c.active).length;return `<article class="row"><div><h3>${esc(s.name)}</h3><p>${count} ${count===1?'colonia activa asignada':'colonias activas asignadas'}</p><a class="store-map" href="${esc(s.url)}" target="_blank" rel="noopener noreferrer">Ver ubicación en Google Maps ↗</a></div><button data-edit-store="${s.id}">Editar tienda</button></article>`;}).join(''):'<p class="panel">No hay tiendas que coincidan.</p>';
+}
+function openStore(store){editingStore=store?{...store}:null;const form=$('storeForm');form.reset();$('storeError').textContent='';$('storeFormTitle').textContent=store?'Editar tienda':'Agregar tienda Sherwin-Williams';if(store){form.elements.name.value=store.name;form.elements.url.value=store.url;}$('storeDialog').showModal();form.elements.name.focus();}
+$('storeSearch').oninput=renderStores;
+$('newStore').onclick=()=>openStore(null);
+$('closeStore').onclick=$('cancelStore').onclick=()=>$('storeDialog').close();
+$('stores').onclick=e=>{const button=e.target.closest('[data-edit-store]');if(button)openStore(stores.find(s=>s.id===Number(button.dataset.editStore)));};
+$('storeForm').onsubmit=e=>{e.preventDefault();const data=Object.fromEntries(new FormData(e.currentTarget));if(editingStore){data.id=editingStore.id;data.updated_at=editingStore.updated_at;}$('storeError').textContent='';task(async()=>{await api('save_store',data);$('storeDialog').close();await load();msg('Tienda guardada. Ya puedes asignarla a las colonias.');},$('storeError'));};
 $('editorMode').onclick=()=>{$('pinLogin').hidden=false;$('ownerLogin').hidden=true;$('editorMode').classList.add('selected');$('ownerMode').classList.remove('selected');};
 $('ownerMode').onclick=()=>{$('pinLogin').hidden=true;$('ownerLogin').hidden=false;$('ownerMode').classList.add('selected');$('editorMode').classList.remove('selected');};
 $('pinLogin').onsubmit=e=>{e.preventDefault();const form=e.currentTarget,data=Object.fromEntries(new FormData(form));task(async()=>{const login=await api('login',data);session={token:login.token,owner:false};form.elements.pin.value='';remember();await load();msg('Sesión iniciada.');});};
