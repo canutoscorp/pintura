@@ -17,6 +17,7 @@
   work:(action,data={})=>request(action,data),
   pay:(action,data={})=>request(action,data),
   bill:(action,data={})=>request(action,data),
+  house:(action,data={})=>request(action,data),
   clear(){pinToken=null;rootJWT=null;}
  };
 })();
