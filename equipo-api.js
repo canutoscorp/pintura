@@ -16,6 +16,7 @@
   async logout(){try{if(rootJWT){await fetch(cfg.url+'/auth/v1/logout',{method:'POST',headers:{apikey:cfg.publishableKey,Authorization:'Bearer '+rootJWT}});}else if(pinToken)await request('logout');}finally{this.clear();}},
   work:(action,data={})=>request(action,data),
   pay:(action,data={})=>request(action,data),
+  bill:(action,data={})=>request(action,data),
   clear(){pinToken=null;rootJWT=null;}
  };
 })();
