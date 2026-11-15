@@ -26,7 +26,8 @@
   try{
    let target;
    if(next==='panel'){$('connectedPanel').innerHTML=panel();target='connectedPanel';}
-   else if(['horas','bitacora','trabajo','visitas'].includes(next)){await window.LozanoWork.open(next==='horas'?'hours':next==='visitas'?'visits':'log');target='workMount';if(next==='trabajo'){const h=$('workView').querySelector('h2');if(h)h.textContent='Tipo de trabajo';const phase=$('workLogForm')?.elements.namedItem('phase');if(phase)phase.setAttribute('aria-label','Tipo de trabajo para este lote');}}
+   else if(next==='trabajo'){window.LozanoHouse.openWork();target='houseMount';}
+   else if(['horas','bitacora','visitas'].includes(next)){await window.LozanoWork.open(next==='horas'?'hours':next==='visitas'?'visits':'log');target='workMount';}
    else if(next==='nomina'){await window.LozanoPay.open();target='payMount';}
    else if(next==='casas'){await window.LozanoBill.open();target='billMount';}
    else if(['consultar','express','pendientes'].includes(next)){window.LozanoHouse.open(next==='consultar'?'lookup':next==='express'?'express':'pending');target='houseMount';}
