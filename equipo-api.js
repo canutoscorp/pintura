@@ -14,6 +14,7 @@
   async setup(data){const result=await request('setup',data);pinToken=result.token;return result;},
   me:()=>request('me'),users:()=>request('users'),saveUser:data=>request('save_user',data),setActive:data=>request('set_active',data),resetPin:data=>request('reset_pin',data),audit:before=>request('audit',{before}),export:()=>request('export'),
   async logout(){try{if(rootJWT){await fetch(cfg.url+'/auth/v1/logout',{method:'POST',headers:{apikey:cfg.publishableKey,Authorization:'Bearer '+rootJWT}});}else if(pinToken)await request('logout');}finally{this.clear();}},
+  work:(action,data={})=>request(action,data),
   clear(){pinToken=null;rootJWT=null;}
  };
 })();
