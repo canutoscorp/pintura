@@ -3,3 +3,21 @@
 body.connected-new-view #connectedPublicMessages,body.connected-new-view #connectedAnniversaries{display:none}
 
 #connectedBackBar{display:flex;justify-content:flex-start;margin:8px 0 18px}#connectedBackBar[hidden]{display:none!important}#connectedBackButton{min-height:46px;padding:12px 17px;border:1px solid #99c8d7;border-radius:12px;background:linear-gradient(135deg,#355d75,#1b3a4f);color:#f2fbff!important;-webkit-text-fill-color:#f2fbff!important;font:700 15px 'Segoe UI',sans-serif;cursor:pointer;box-shadow:0 4px 12px #0003}#connectedBackButton:hover{background:#376f87}#connectedBackButton:active{transform:scale(.98)}#connectedBackButton:focus-visible{outline:3px solid #b5eff3;outline-offset:3px}@media(max-width:480px){#connectedBackButton{width:100%;text-align:left}}
+
+/* Captura sin efectos flotantes; los festejos permanecen en las vistas públicas. */
+body:is(.connected-new-view,:has(#material.activa),:has(dialog[open])) :is([data-birthday-effect],.start-birthday-confetti,#startBirthdayOverlay,#birthdayStartBanner,#birthdayTodayBanner,#birthdayTomorrowBanner){visibility:hidden!important;animation-play-state:paused!important}
+@media screen and (max-width:640px){
+#connectedWorkspace .work-scroll:has(.mobile-financial-cards){overflow:visible}
+#connectedWorkspace .mobile-financial-cards{display:block;min-width:0!important;width:100%;border-collapse:separate;margin:16px 0;background:transparent!important}
+#connectedWorkspace .mobile-financial-cards thead{position:absolute;width:1px;height:1px;padding:0;overflow:hidden;clip-path:inset(50%);white-space:nowrap}
+#connectedWorkspace .mobile-financial-cards tbody{display:grid;gap:16px;width:100%}
+#connectedWorkspace .mobile-financial-cards tr{display:block;min-width:0;width:100%;box-sizing:border-box;border:1px solid #66899f;border-radius:16px;padding:14px;background:linear-gradient(145deg,#243d50,#132636)!important;box-shadow:0 4px 12px #0002}
+#connectedWorkspace .mobile-financial-cards td{display:block;width:auto!important;padding:10px 0;border-bottom:1px solid #496274;overflow-wrap:anywhere;white-space:normal;text-align:left!important;background:transparent!important}
+#connectedWorkspace .mobile-financial-cards td[data-label]::before{content:attr(data-label);color:#b4d5e5;font-size:12px;font-weight:600;display:block;margin-bottom:6px}
+#connectedWorkspace .mobile-financial-cards td:first-child{font-size:18px;font-weight:700;color:#d3f8ff}
+#connectedWorkspace .mobile-financial-cards td.mobile-card-action,#connectedWorkspace .mobile-financial-cards td[colspan]{display:block;border:0;padding:12px 0 0}
+#connectedWorkspace .mobile-financial-cards td.mobile-card-action::before{display:none}
+#connectedWorkspace .mobile-financial-cards .mobile-card-action button{width:100%;margin:0;min-height:48px}
+#connectedWorkspace .mobile-financial-cards .work-check{margin:0;min-width:0;flex-wrap:wrap}
+#connectedWorkspace .mobile-financial-cards td .work-warning,#connectedWorkspace .mobile-financial-cards td .bill-note{grid-column:2}
+}
