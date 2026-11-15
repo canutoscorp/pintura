@@ -1,0 +1,4279 @@
+<!DOCTYPE html>
+
+<html lang="es">
+<head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>LOZANO PAINTING</title>
+<style>
+*{ box-sizing:border-box; }
+
+body{
+    font-family:'Segoe UI',sans-serif;
+    margin:0;
+    background:#f2f6fa;
+    display:block;
+}
+
+.main-wrapper{
+    width:100%;
+    max-width:900px;
+    padding:20px;
+    text-align:center;
+    margin:0 auto;
+}
+
+header{
+    background:linear-gradient(90deg,#1e3c72,#2a5298);
+    color:white;
+    padding:20px;
+    font-size:28px;
+    font-weight:bold;
+    border-radius:12px;
+    box-shadow:0 4px 12px rgba(0,0,0,0.2);
+    margin-bottom:30px;
+    letter-spacing:2px;
+}
+
+label{
+    font-weight:bold;
+    font-size:18px;
+    color:#1e3c72;
+    display:block;
+    margin-bottom:10px;
+}
+
+.buscador-wrapper{
+    position:sticky;
+    top:10px;
+    width:100%;
+    max-width:560px;
+    margin:0 auto 10px;
+    z-index:40;
+}
+
+.search-shell{
+    position:relative;
+    background:#ffffff;
+    border-radius:18px;
+    box-shadow:0 10px 24px rgba(22,50,95,0.14);
+    border:1px solid #dbe6f4;
+    padding:8px;
+}
+
+.search-icon{
+    position:absolute;
+    left:20px;
+    top:50%;
+    transform:translateY(-50%);
+    font-size:18px;
+    color:#52709b;
+    pointer-events:none;
+}
+
+input{
+    width:100%;
+    padding:17px 52px 17px 48px;
+    font-size:18px;
+    border-radius:14px;
+    border:2px solid #9bb4d8;
+    outline:none;
+    background:#fff;
+    box-shadow:0 4px 14px rgba(0,0,0,0.08);
+    transition:all .2s ease;
+}
+
+.clear-btn{
+    position:absolute;
+    right:16px;
+    top:50%;
+    transform:translateY(-50%);
+    width:34px;
+    height:34px;
+    border:none;
+    border-radius:999px;
+    background:#edf4ff;
+    color:#23406f;
+    font-size:20px;
+    cursor:pointer;
+    display:none;
+}
+
+.clear-btn.visible{
+    display:block;
+}
+
+input:focus{
+    border-color:#2a5298;
+    box-shadow:0 0 0 4px rgba(42,82,152,0.14), 0 8px 18px rgba(0,0,0,0.10);
+}
+
+.dropdown{
+    position:absolute;
+    top:calc(100% + 8px);
+    left:0;
+    right:0;
+    background:#fff;
+    border:2px solid #d4e0f1;
+    border-radius:16px;
+    box-shadow:0 12px 26px rgba(0,0,0,0.14);
+    overflow:hidden;
+    z-index:20;
+    max-height:280px;
+    overflow-y:auto;
+    display:none;
+    text-align:left;
+}
+
+.dropdown.visible{
+    display:block;
+}
+
+.dropdown-item{
+    padding:15px 16px;
+    font-size:17px;
+    color:#16325f;
+    border-bottom:1px solid #edf2f8;
+    cursor:pointer;
+    background:#fff;
+}
+
+.dropdown-item:last-child{
+    border-bottom:none;
+}
+
+.dropdown-item:hover,
+.dropdown-item:active,
+.dropdown-item.activa{
+    background:#edf4ff;
+}
+
+.dropdown-vacio{
+    padding:16px;
+    color:#5d6f8a;
+    font-size:15px;
+}
+
+.app-hint{
+    margin:10px auto 0;
+    max-width:560px;
+    font-size:14px;
+    color:#5a7399;
+    background:#eef4ff;
+    border:1px solid #d8e5f7;
+    padding:10px 14px;
+    border-radius:14px;
+}
+
+.nombre-colonia{
+    margin-top:24px;
+    font-size:24px;
+    font-weight:bold;
+    color:#1e3c72;
+    letter-spacing:1px;
+    background:#fff;
+    border:1px solid #d9e4f3;
+    border-radius:16px;
+    padding:14px 16px;
+    box-shadow:0 6px 16px rgba(0,0,0,0.08);
+}
+
+.table-wrap{
+    width:100%;
+    overflow-x:auto;
+}
+
+table{
+    width:100%;
+    margin-top:15px;
+    border-collapse:collapse;
+    background:white;
+    border-radius:12px;
+    overflow:hidden;
+    box-shadow:0 6px 15px rgba(0,0,0,0.15);
+}
+
+th{
+    background:#2a5298;
+    color:white;
+    padding:12px;
+}
+
+td{
+    padding:12px;
+    border-bottom:1px solid #ddd;
+    vertical-align:top;
+}
+
+.mapa-celda{
+    background:#f4f8fc;
+    font-weight:bold;
+    text-align:center;
+}
+
+.zoom-help{
+    font-size:14px;
+    font-weight:600;
+    color:#45638d;
+    margin:8px 0 12px;
+}
+
+.image-stage{
+    width:100%;
+    overflow:auto;
+    -webkit-overflow-scrolling:touch;
+    border-radius:14px;
+    background:#eaf1fb;
+    border:1px solid #d4e0f1;
+    padding:12px;
+    touch-action:pan-x pan-y pinch-zoom;
+}
+
+.image-inner{
+    display:inline-block;
+    transform-origin:center center;
+    will-change:transform;
+}
+
+.mapa-celda img{
+    width:min(100%, 760px);
+    max-width:none;
+    height:auto;
+    display:block;
+    margin:0 auto;
+    border-radius:10px;
+    user-select:none;
+    -webkit-user-drag:none;
+    touch-action:none;
+}
+
+ul{
+    padding-left:20px;
+    text-align:left;
+    margin:0;
+}
+
+a{
+    color:#1e3c72;
+    font-weight:bold;
+    text-decoration:none;
+}
+
+a:hover{
+    text-decoration:underline;
+}
+
+@media(max-width:600px){
+    .main-wrapper{
+        padding:12px;
+    }
+
+    header{
+        font-size:24px;
+        padding:18px 14px;
+        border-radius:18px;
+    }
+
+    .buscador-wrapper{
+        top:8px;
+    }
+
+    .search-shell{
+        border-radius:20px;
+        padding:8px;
+    }
+
+    label{
+        font-size:19px;
+    }
+
+    input{
+        font-size:18px;
+        padding:18px 52px 18px 46px;
+    }
+
+    .dropdown-item{
+        font-size:18px;
+        padding:16px;
+    }
+
+    table, thead, tbody, tr, th, td{
+        display:block;
+        width:100%;
+    }
+
+    thead{
+        display:none;
+    }
+
+    tr{
+        border-bottom:1px solid #dbe4f0;
+    }
+
+    td{
+        text-align:left;
+        padding:14px;
+    }
+
+    td::before{
+        content:attr(data-label);
+        display:block;
+        font-weight:700;
+        color:#1e3c72;
+        margin-bottom:8px;
+    }
+
+    .mapa-celda{
+        text-align:center;
+    }
+
+    .mapa-celda::before{
+        display:none;
+    }
+}
+
+.recent-chip{
+    border:none;
+    background:#edf4ff;
+    padding:8px 12px;
+    border-radius:999px;
+    cursor:pointer;
+    font-weight:600;
+}
+.recent-chip:hover{
+    background:#dce9ff;
+}
+
+
+/* ===== SECCIONES MIGRADAS DESDE INDEX ===== */
+.section-card{
+    margin:32px auto 0;
+    background:#fff;
+    border:1px solid #d9e4f3;
+    border-radius:22px;
+    box-shadow:0 12px 28px rgba(15,35,70,.10);
+    overflow:hidden;
+}
+.section-body{
+    padding:22px 20px;
+}
+.section-title{
+    margin:0 0 8px;
+    color:#1e3c72;
+    font-size:26px;
+    font-weight:800;
+}
+.section-subtitle{
+    margin:0;
+    color:#5d7394;
+    font-size:15px;
+}
+.visit-card{
+    text-align:center;
+}
+.visit-card .visitor-badge{
+    display:inline-block;
+    margin:6px auto 18px;
+}
+.visit-gallery{
+    display:flex;
+    justify-content:center;
+    flex-wrap:wrap;
+    gap:16px;
+    margin-top:8px;
+}
+.visit-gallery img{
+    max-width:220px;
+    width:100%;
+    height:auto;
+    border-radius:18px;
+    border:1px solid #d9e4f3;
+    box-shadow:0 10px 22px rgba(0,0,0,.10);
+    background:#fff;
+}
+.important-wrap{
+    position:relative;
+}
+.important-top-image{
+    display:block;
+    margin:0 auto 14px;
+    max-width:260px;
+    width:100%;
+    height:auto;
+}
+.important-box{
+    background:linear-gradient(135deg,#fff7cc,#ffe98b);
+    color:#513d00;
+    border:2px solid #f1c84a;
+    border-radius:22px;
+    box-shadow:0 14px 26px rgba(118,86,0,.16);
+    padding:22px 18px;
+    text-align:left;
+}
+.important-box h2{
+    margin:0 0 12px;
+    color:#7c4f00;
+    font-size:28px;
+    text-align:center;
+}
+.important-highlight{
+    display:inline-block;
+    margin-bottom:12px;
+    padding:6px 12px;
+    border-radius:999px;
+    background:#7c4f00;
+    color:#fff7cc;
+    font-size:13px;
+    font-weight:700;
+    letter-spacing:.4px;
+}
+.important-copy{
+    font-size:18px;
+    line-height:1.55;
+    font-weight:700;
+}
+.quick-links{
+    display:grid;
+    grid-template-columns:repeat(2,minmax(0,1fr));
+    gap:18px;
+    margin-top:32px;
+}
+.quick-card{
+    background:#fff;
+    border:1px solid #d9e4f3;
+    border-radius:22px;
+    padding:22px 18px;
+    box-shadow:0 12px 28px rgba(15,35,70,.10);
+    text-align:center;
+}
+.quick-card h3{
+    margin:10px 0 6px;
+    color:#1e3c72;
+    font-size:24px;
+}
+.quick-card p{
+    margin:0 0 14px;
+    color:#607796;
+}
+.quick-card img{
+    width:140px;
+    max-width:100%;
+    height:auto;
+    border-radius:18px;
+    box-shadow:0 10px 22px rgba(0,0,0,.12);
+}
+.action-btn{
+    display:inline-block;
+    margin-top:14px;
+    padding:12px 18px;
+    border-radius:14px;
+    background:linear-gradient(90deg,#1e3c72,#2a5298);
+    color:#fff;
+    text-decoration:none;
+    font-weight:800;
+    box-shadow:0 10px 18px rgba(30,60,114,.24);
+}
+.action-btn:hover{
+    text-decoration:none;
+    filter:brightness(1.05);
+}
+.birthday-card{
+    position:relative;
+    overflow:hidden;
+}
+.birthday-card::before{
+    content:"";
+    position:absolute;
+    inset:0;
+    background:radial-gradient(circle at top right,rgba(255,214,102,.28),transparent 35%);
+    pointer-events:none;
+}
+.birthday-header{
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    gap:10px;
+    flex-wrap:wrap;
+    margin-bottom:8px;
+}
+.birthday-list{
+    list-style:none;
+    padding:0;
+    margin:18px 0 0;
+    display:grid;
+    gap:10px;
+}
+.birthday-list li{
+    background:#f7faff;
+    border:1px solid #dfe9f8;
+    border-radius:16px;
+    padding:14px 16px;
+    color:#28466f;
+    font-size:17px;
+    text-align:left;
+}
+.birthday-list .day{
+    display:inline-block;
+    min-width:90px;
+    font-weight:800;
+    color:#1e3c72;
+}
+.birthday-today-banner{
+    display:none;
+    position:fixed;
+    inset:auto 16px 16px 16px;
+    top:16px;
+    max-width:760px;
+    margin:auto;
+    background:linear-gradient(135deg,#1e3c72,#2a5298);
+    color:#fff;
+    padding:24px 20px;
+    border-radius:24px;
+    box-shadow:0 20px 36px rgba(0,0,0,.28);
+    z-index:9999;
+    text-align:center;
+    animation:fadePop .35s ease;
+}
+.birthday-today-banner strong{
+    display:block;
+    font-size:34px;
+    margin-top:8px;
+}
+@keyframes fadePop{
+    from{opacity:0; transform:translateY(-16px) scale(.96);}
+    to{opacity:1; transform:translateY(0) scale(1);}
+}
+.emoji-balloon,.emoji-cake,.confetti{
+    position:fixed;
+    z-index:9998;
+    pointer-events:none;
+}
+.emoji-balloon{
+    font-size:34px;
+    animation:floatUp linear infinite;
+}
+.emoji-cake{
+    font-size:28px;
+    animation:floatUp linear infinite;
+}
+.confetti{
+    width:10px;
+    height:10px;
+    border-radius:50%;
+    animation:confettiFall linear infinite;
+}
+@keyframes floatUp{
+    0%{transform:translateY(0vh) rotate(0deg); opacity:1;}
+    100%{transform:translateY(-150vh) rotate(360deg); opacity:0;}
+}
+@keyframes confettiFall{
+    0%{transform:translateY(0) rotate(0deg); opacity:1;}
+    100%{transform:translateY(120vh) rotate(720deg); opacity:0;}
+}
+
+.back-to-top:hover{ transform:translateY(-2px); }
+@media(max-width:700px){
+    .quick-links{ grid-template-columns:1fr; }
+    .section-title{ font-size:22px; }
+    .important-box h2{ font-size:24px; }
+    .important-copy{ font-size:16px; }
+    .birthday-today-banner strong{ font-size:25px; }
+}
+
+
+/* ===== Apartados en la misma página ===== */
+.top-tabs{
+    display:flex;
+    gap:10px;
+    overflow-x:auto;
+    padding-bottom:10px;
+    margin:0 0 20px;
+    -webkit-overflow-scrolling:touch;
+}
+.top-tab-btn{
+    flex-shrink:0;
+    padding:12px 16px;
+    border:none;
+    border-radius:14px;
+    background:#e2e8f0;
+    color:#1e3c72;
+    font-weight:800;
+    font-size:15px;
+    cursor:pointer;
+    box-shadow:0 4px 10px rgba(0,0,0,0.08);
+}
+.top-tab-btn.active{
+    background:linear-gradient(90deg,#1e3c72,#2a5298);
+    color:#fff;
+}
+.seccion{display:none;width:100%;}
+.seccion.activa{display:block;}
+.registro-shell,.material-shell{
+    margin:32px auto 0;
+    max-width:700px;
+    background:#fff;
+    border:1px solid #d9e4f3;
+    border-radius:22px;
+    box-shadow:0 12px 28px rgba(15,35,70,.10);
+    padding:22px 18px;
+    text-align:left;
+}
+.registro-shell h2,.material-shell h2{
+    text-align:center;
+    color:#1e3c72;
+    margin:0 0 18px;
+    font-size:28px;
+}
+.registro-shell textarea{
+    width:100%;
+    min-height:250px;
+    resize:vertical;
+    border-radius:12px;
+    border:1px solid #ccc;
+    padding:12px;
+    font-size:15px;
+    box-shadow:0 1px 3px rgba(0,0,0,0.1);
+    margin-bottom:12px;
+}
+.registro-shell input,.material-shell input{
+    width:100%;
+    padding:12px;
+    margin:8px 0;
+    border-radius:10px;
+    border:1px solid #ccc;
+    font-size:15px;
+}
+.registro-btn,.material-shell button{
+    width:100%;
+    background:#1a73e8;
+    color:white;
+    border:none;
+    border-radius:10px;
+    padding:12px;
+    font-size:16px;
+    margin-top:10px;
+    cursor:pointer;
+    transition:background 0.3s ease;
+}
+.registro-btn:hover,.material-shell button:hover{background:#155ab6;}
+.registro-btn.whatsapp{background:#25D366;}
+.registro-btn.whatsapp:hover{background:#1ea952;}
+.weekly-summary{margin-top:28px;border-top:2px solid #d9e4f3;padding-top:22px;}
+.weekly-summary-head{text-align:center;margin-bottom:16px;}
+.weekly-summary-head h3{margin:0 0 6px;color:#1e3c72;font-size:24px;}
+.week-range{color:#5d7394;font-weight:700;margin-bottom:12px;}
+.week-nav{display:grid;grid-template-columns:1fr 1fr;gap:10px;}
+.week-nav button{margin:0;background:#eaf2ff;color:#1e3c72;border:1px solid #c8d9f0;}
+.worker-week-card{margin-top:18px;padding:18px;border:1px solid #d9e4f3;border-radius:18px;background:#f8fbff;box-shadow:0 8px 20px rgba(22,50,95,.09);}
+.worker-week-title{margin:0 0 8px;color:#1e3c72;font-size:22px;}
+.worker-total{font-weight:800;color:#17325c;margin-bottom:14px;}
+.pay-grid{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-bottom:14px;}
+.pay-grid label{font-size:14px;margin:0;text-align:left;}
+.pay-grid input{margin:6px 0 0!important;background:#fff;}
+.estimated-pay{padding:12px;border-radius:12px;background:#e9f8ef;color:#166534;font-weight:800;display:flex;align-items:center;}
+.weekly-table{margin:0;box-shadow:none;border:1px solid #d9e4f3;}
+.weekly-table th,.weekly-table td{padding:10px;text-align:left;}
+.weekly-table td:last-child{white-space:nowrap;font-weight:700;}
+.empty-week{padding:20px;border-radius:16px;background:#f1f5f9;color:#64748b;text-align:center;}
+.delete-day-btn{width:auto!important;margin:0 0 0 8px!important;padding:5px 8px!important;background:#fee2e2!important;color:#991b1b!important;font-size:12px!important;}
+@media(max-width:600px){
+  .pay-grid{grid-template-columns:1fr;}
+  .weekly-table,.weekly-table tbody{display:table!important;width:100%;}
+  .weekly-table tr{display:table-row!important;}
+  .weekly-table td{display:table-cell!important;width:auto!important;font-size:14px;padding:9px!important;}
+  .weekly-table td::before{display:none!important;}
+}
+.checkbox-container{
+    display:flex;
+    align-items:center;
+    justify-content:flex-start;
+    gap:8px;
+    margin-top:5px;
+}
+.checkbox-container input[type="checkbox"]{
+    width:20px;
+    height:20px;
+    accent-color:#1a73e8;
+    flex-shrink:0;
+}
+.checkbox-container label{
+    font-weight:500;
+    font-size:15px;
+    margin:0;
+}
+.material-shell{text-align:center;}
+.material-container{
+    width:100%;
+    max-width:420px;
+    margin:auto;
+    background:white;
+    padding:0;
+    border-radius:10px;
+}
+.material-shell h3{
+    color:#333;
+    font-size:18px;
+    margin:18px 0 10px;
+    text-align:center;
+}
+.producto{
+    cursor:pointer;
+    padding:10px;
+    margin:5px;
+    background:#007bff;
+    color:white;
+    display:block;
+    border-radius:8px;
+    font-weight:bold;
+    transition:0.3s;
+    font-size:16px;
+}
+.producto:hover{background:#0056b3;}
+.lista{
+    background:#fff3cd;
+    color:#856404;
+    padding:10px;
+    border-radius:8px;
+    border:1px solid #ffeeba;
+    min-height:60px;
+    text-align:left;
+    font-size:16px;
+    overflow-y:auto;
+    max-height:180px;
+}
+.cantidad{font-weight:bold;color:#d9534f;}
+.mensaje-adicional{
+    font-size:14px;
+    color:#555;
+    margin-top:20px;
+    text-align:center;
+    font-weight:bold;
+}
+@media(max-width:600px){
+    .top-tab-btn{font-size:14px;padding:12px 14px;}
+    .registro-shell h2,.material-shell h2{font-size:24px;}
+}
+
+</style>
+<style id="sherwin-migrado-style">
+.sherwin-section{
+    margin: 38px auto 0;
+    max-width: 860px;
+    background: linear-gradient(180deg,#ffffff,#f5f9ff);
+    border: 1px solid #dbe6f4;
+    border-radius: 20px;
+    box-shadow: 0 12px 26px rgba(22,50,95,0.12);
+    padding: 24px 18px 22px;
+    text-align: center;
+}
+.sherwin-badge{
+    display:inline-flex;
+    align-items:center;
+    gap:8px;
+    background:#eaf2ff;
+    color:#1e3c72;
+    border:1px solid #cdddf6;
+    border-radius:999px;
+    padding:8px 14px;
+    font-weight:700;
+    margin-bottom:12px;
+}
+.sherwin-title{
+    margin:0 0 8px;
+    font-size:28px;
+    color:#1e3c72;
+    letter-spacing:.4px;
+}
+.sherwin-text{
+    margin:0 auto 18px;
+    max-width:680px;
+    color:#5a7399;
+    font-size:15px;
+    line-height:1.5;
+}
+.sherwin-hero{
+    width:96px;
+    height:auto;
+    display:block;
+    margin:0 auto 14px;
+    border-radius:16px;
+    background:#fff;
+    box-shadow:0 8px 20px rgba(0,0,0,0.08);
+    padding:8px;
+}
+.sherwin-panel{
+    max-width:580px;
+    margin:0 auto;
+    background:#eef4ff;
+    border:1px solid #d6e4f7;
+    border-radius:18px;
+    padding:16px;
+}
+.sherwin-select{
+    width:100%;
+    padding:15px 16px;
+    border-radius:14px;
+    border:2px solid #a7c0e8;
+    background:#fff;
+    color:#16325f;
+    font-size:17px;
+    outline:none;
+    box-shadow:0 4px 12px rgba(0,0,0,0.06);
+}
+.sherwin-select:focus{
+    border-color:#2a5298;
+    box-shadow:0 0 0 4px rgba(42,82,152,0.14), 0 8px 18px rgba(0,0,0,0.10);
+}
+.sherwin-link-wrap{
+    min-height:64px;
+    margin-top:14px;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+}
+.sherwin-link-btn{
+    display:inline-flex;
+    align-items:center;
+    justify-content:center;
+    gap:8px;
+    background:linear-gradient(90deg,#1e3c72,#2a5298);
+    color:#fff !important;
+    text-decoration:none;
+    font-weight:700;
+    padding:13px 18px;
+    border-radius:14px;
+    box-shadow:0 8px 18px rgba(30,60,114,0.22);
+}
+.sherwin-link-btn:hover{
+    text-decoration:none;
+    transform:translateY(-1px);
+}
+body.dark-mode .sherwin-section{
+    background:linear-gradient(180deg,#182335,#111827);
+    border-color:#334155;
+    box-shadow:0 12px 26px rgba(0,0,0,0.30);
+}
+body.dark-mode .sherwin-badge{
+    background:#22314b;
+    border-color:#355074;
+    color:#e2e8f0;
+}
+body.dark-mode .sherwin-title{
+    color:#f8fafc;
+}
+body.dark-mode .sherwin-text{
+    color:#cbd5e1;
+}
+body.dark-mode .sherwin-hero{
+    background:#1f2937;
+}
+body.dark-mode .sherwin-panel{
+    background:#1e293b;
+    border-color:#334155;
+}
+body.dark-mode .sherwin-select{
+    background:#0f172a;
+    color:#e2e8f0;
+    border-color:#475569;
+}
+@media(max-width:600px){
+    .sherwin-section{
+        padding:20px 12px 18px;
+        border-radius:18px;
+    }
+    .sherwin-title{
+        font-size:24px;
+    }
+    .sherwin-text{
+        font-size:14px;
+    }
+    .sherwin-panel{
+        padding:12px;
+        border-radius:16px;
+    }
+    .sherwin-select{
+        font-size:16px;
+        padding:14px;
+    }
+    .sherwin-link-btn{
+        width:100%;
+        padding:14px 16px;
+    }
+}
+</style>
+<style id="tabs-mobile-visible-fix">
+.top-tabs{
+    display:grid !important;
+    grid-template-columns:repeat(2, minmax(0,1fr)) !important;
+    gap:10px !important;
+    overflow:visible !important;
+    padding-bottom:0 !important;
+}
+.top-tab-btn{
+    width:100% !important;
+    min-width:0 !important;
+    white-space:normal !important;
+    line-height:1.2 !important;
+    text-align:center !important;
+}
+@media(min-width:700px){
+    .top-tabs{
+        grid-template-columns:repeat(5, minmax(0,1fr)) !important;
+    }
+}
+</style>
+<style id="tab-animation-fix">
+/* Cumpleaños solo en Buscar */
+
+
+/* Animación tipo app */
+.seccion{
+    display:none;
+    width:100%;
+    opacity:0;
+    transform:translateY(14px) scale(0.985);
+}
+.seccion.activa{
+    display:block;
+    animation:appTabIn .28s ease both;
+}
+@keyframes appTabIn{
+    from{
+        opacity:0;
+        transform:translateY(14px) scale(0.985);
+    }
+    to{
+        opacity:1;
+        transform:translateY(0) scale(1);
+    }
+}
+.top-tab-btn{
+    transition:transform .18s ease, box-shadow .18s ease, background .2s ease, color .2s ease;
+}
+.top-tab-btn:hover{
+    transform:translateY(-1px);
+}
+.top-tab-btn.active{
+    box-shadow:0 10px 20px rgba(30,60,114,.20);
+}
+</style>
+<style id="active-tab-glow-line">
+.top-tab-btn{
+    position:relative;
+}
+.top-tab-btn.active::after{
+    content:"";
+    position:absolute;
+    left:14px;
+    right:14px;
+    bottom:-6px;
+    height:4px;
+    border-radius:999px;
+    background:linear-gradient(90deg,#7dd3fc,#ffffff,#7dd3fc);
+    box-shadow:0 0 10px rgba(125,211,252,.95), 0 0 18px rgba(125,211,252,.65);
+}
+</style>
+<style id="cumpleanos-visible-fix">
+#cumpleanos .birthday-card,
+#cumpleanos #birthdaySection{
+    display:block !important;
+}
+#cumpleanos .birthday-list{
+    display:grid !important;
+}
+</style>
+<style id="sherwin-cerca-extra-style">
+.nearby-actions{
+    margin-top:16px;
+    display:grid;
+    gap:12px;
+}
+.nearby-btn{
+    display:flex;
+    align-items:center;
+    justify-content:flex-start;
+    gap:12px;
+    width:100%;
+    padding:14px 16px;
+    border-radius:16px;
+    text-decoration:none;
+    font-weight:800;
+    color:#17325c !important;
+    background:linear-gradient(180deg,#ffffff,#f5f9ff);
+    border:1px solid #d8e4f4;
+    box-shadow:0 10px 20px rgba(30,60,114,0.10);
+    transition:transform .18s ease, box-shadow .18s ease, border-color .18s ease;
+}
+.nearby-btn:hover{
+    text-decoration:none;
+    transform:translateY(-1px);
+    border-color:#9db8e2;
+    box-shadow:0 14px 24px rgba(30,60,114,0.14);
+}
+.nearby-icon{
+    width:40px;
+    height:40px;
+    border-radius:12px;
+    display:inline-flex;
+    align-items:center;
+    justify-content:center;
+    background:linear-gradient(135deg,#1e3c72,#2a5298);
+    color:#fff;
+    font-size:20px;
+    flex:0 0 40px;
+    box-shadow:0 8px 16px rgba(30,60,114,0.18);
+}
+.nearby-text{
+    display:flex;
+    flex-direction:column;
+    align-items:flex-start;
+    text-align:left;
+    line-height:1.2;
+}
+.nearby-title{
+    font-size:15px;
+}
+.nearby-sub{
+    margin-top:4px;
+    font-size:12px;
+    font-weight:600;
+    color:#6b7f9f;
+}
+.nearby-note{
+    margin-top:10px;
+    font-size:14px;
+    color:#5a7399;
+    line-height:1.4;
+}
+</style>
+<style id="premium-app-mode">
+:root{
+  --app-bg1:#eef4fb;
+  --app-bg2:#f8fbff;
+  --app-card:#ffffff;
+  --app-ink:#17325c;
+  --app-muted:#6b7f9f;
+  --app-line:#d8e4f4;
+  --app-primary:#1e3c72;
+  --app-primary-2:#2a5298;
+  --app-success:#16a34a;
+  --app-shadow:0 16px 36px rgba(21,45,84,.12);
+  --app-radius:22px;
+}
+
+html,body{
+  min-height:100%;
+  background:
+    radial-gradient(circle at top left, rgba(59,130,246,.12), transparent 24%),
+    radial-gradient(circle at top right, rgba(125,211,252,.12), transparent 20%),
+    linear-gradient(180deg,var(--app-bg1),var(--app-bg2));
+}
+
+body{
+  padding-bottom:92px;
+}
+
+.main-wrapper{
+  max-width:980px !important;
+  padding:14px !important;
+}
+
+header{
+  position:sticky;
+  top:0;
+  z-index:200;
+  margin-bottom:18px !important;
+  border-radius:24px !important;
+  background:linear-gradient(135deg,var(--app-primary),var(--app-primary-2)) !important;
+  box-shadow:0 14px 34px rgba(30,60,114,.22) !important;
+  font-size:26px !important;
+  letter-spacing:1px !important;
+  backdrop-filter:blur(10px);
+}
+
+.buscador-wrapper{
+  top:88px !important;
+}
+
+.search-shell,
+.section-card,
+.sherwin-section,
+.registro-shell,
+.material-shell{
+  border-radius:24px !important;
+  box-shadow:var(--app-shadow) !important;
+}
+
+.search-shell{
+  background:rgba(255,255,255,.92) !important;
+  backdrop-filter:blur(10px);
+}
+
+input,
+select,
+textarea,
+.registro-shell input,
+.material-shell input,
+.registro-shell textarea{
+  min-height:54px;
+  border-radius:16px !important;
+  font-size:16px !important;
+}
+
+textarea,
+.registro-shell textarea{
+  min-height:170px;
+}
+
+.section-card,
+.sherwin-section,
+.registro-shell,
+.material-shell{
+  overflow:hidden;
+  border:1px solid var(--app-line) !important;
+  background:linear-gradient(180deg,#ffffff,#fbfdff) !important;
+}
+
+.section-body{
+  padding:22px 18px !important;
+}
+
+.section-title,
+.sherwin-title,
+.registro-shell h2,
+.material-shell h2{
+  font-size:28px !important;
+  line-height:1.15;
+}
+
+.app-hint,
+.nearby-note,
+.section-subtitle{
+  color:var(--app-muted) !important;
+}
+
+.top-tabs{
+  position:fixed !important;
+  left:12px;
+  right:12px;
+  bottom:12px;
+  z-index:9999;
+  display:grid !important;
+  grid-template-columns:repeat(5,minmax(0,1fr)) !important;
+  gap:8px !important;
+  padding:10px !important;
+  margin:0 !important;
+  background:rgba(255,255,255,.86);
+  backdrop-filter:blur(16px);
+  border:1px solid rgba(216,228,244,.95);
+  border-radius:24px;
+  box-shadow:0 18px 36px rgba(15,35,70,.18);
+}
+
+.top-tab-btn{
+  min-width:0 !important;
+  width:100% !important;
+  padding:12px 8px 14px !important;
+  border-radius:18px !important;
+  font-size:12px !important;
+  line-height:1.15 !important;
+  font-weight:900 !important;
+  background:transparent !important;
+  color:#355277 !important;
+  box-shadow:none !important;
+  border:1px solid transparent !important;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  text-align:center;
+}
+
+.top-tab-btn.active{
+  background:linear-gradient(135deg,var(--app-primary),var(--app-primary-2)) !important;
+  color:#fff !important;
+  box-shadow:0 10px 22px rgba(30,60,114,.24) !important;
+}
+
+.top-tab-btn.active::after{
+  bottom:6px !important;
+  left:20px !important;
+  right:20px !important;
+  height:3px !important;
+}
+
+.seccion{
+  display:none;
+  width:100%;
+  opacity:0;
+  transform:translateY(16px) scale(.985);
+}
+.seccion.activa{
+  display:block;
+  animation:premiumScreenIn .32s cubic-bezier(.22,.8,.2,1) both;
+}
+@keyframes premiumScreenIn{
+  from{opacity:0;transform:translateY(18px) scale(.985);}
+  to{opacity:1;transform:translateY(0) scale(1);}
+}
+
+.top-tab-btn,
+.action-btn,
+.registro-btn,
+.material-shell button,
+.nearby-btn,
+.clear-btn,
+
+.top-tab-btn:active,
+.action-btn:active,
+.registro-btn:active,
+.material-shell button:active,
+.nearby-btn:active,
+.clear-btn:active,
+.back-to-top:active{
+  transform:scale(.98);
+}
+
+
+
+.action-btn,
+.registro-btn,
+.material-shell button{
+  border-radius:16px !important;
+  font-weight:900 !important;
+}
+
+.visit-gallery img,
+.quick-card img,
+.important-top-image,
+.sherwin-hero{
+  border-radius:20px !important;
+}
+
+.quick-card{
+  border-radius:22px !important;
+}
+
+.birthday-card{
+  background:
+    radial-gradient(circle at top right, rgba(251,191,36,.18), transparent 34%),
+    linear-gradient(180deg,#ffffff,#fffdf7) !important;
+}
+.birthday-list li{
+  border-radius:18px !important;
+}
+
+.nearby-btn{
+  border-radius:18px !important;
+}
+
+.dropdown{
+  border-radius:18px !important;
+}
+
+@media(max-width:760px){
+  .main-wrapper{
+    padding:10px !important;
+  }
+  header{
+    font-size:22px !important;
+    border-radius:20px !important;
+    padding:16px 12px !important;
+  }
+  .buscador-wrapper{
+    top:78px !important;
+  }
+  .section-title,
+  .sherwin-title,
+  .registro-shell h2,
+  .material-shell h2{
+    font-size:24px !important;
+  }
+  .top-tabs{
+    left:10px;
+    right:10px;
+    bottom:10px;
+    gap:6px !important;
+    padding:8px !important;
+  }
+  .top-tab-btn{
+    font-size:11px !important;
+    padding:10px 4px 12px !important;
+    border-radius:16px !important;
+  }
+}
+</style>
+<style id="splash-style">
+#splash{
+ position:fixed;
+ inset:0;
+ background:linear-gradient(135deg,#1e3c72,#2a5298);
+ display:flex;
+ align-items:center;
+ justify-content:center;
+ flex-direction:column;
+ z-index:10000;
+ color:#fff;
+ font-family:sans-serif;
+}
+#splash img{
+ width:90px;
+ height:90px;
+ border-radius:20px;
+ margin-bottom:16px;
+ box-shadow:0 10px 20px rgba(0,0,0,.3);
+}
+#splash h1{
+ margin:0;
+ font-size:24px;
+}
+#splash p{
+ margin-top:8px;
+ font-size:14px;
+ opacity:.8;
+}
+#loader{
+ margin-top:18px;
+ width:120px;
+ height:4px;
+ background:rgba(255,255,255,.2);
+ border-radius:10px;
+ overflow:hidden;
+}
+#loader div{
+ width:0%;
+ height:100%;
+ background:#fff;
+ animation:load 1.6s ease forwards;
+}
+@keyframes load{
+ from{width:0%;}
+ to{width:100%;}
+}
+</style>
+<style id="splash-anim-extra">
+#splash img{
+ animation:logoPop 1.2s ease;
+}
+@keyframes logoPop{
+ 0%{transform:scale(0.6);opacity:0;}
+ 60%{transform:scale(1.1);}
+ 100%{transform:scale(1);opacity:1;}
+}
+</style>
+<style id="splash-extra-anim">
+#splash img{
+  animation:logoPop 1.2s ease, logoFloat 2.8s ease-in-out infinite;
+}
+@keyframes logoFloat{
+  0%{transform:translateY(0)}
+  50%{transform:translateY(-6px)}
+  100%{transform:translateY(0)}
+}
+/* subtle shine */
+#splash img::after{
+  content:"";
+}
+</style>
+<style id="splash-shine-vibrate-style">
+#splash .logo-wrap{
+  position:relative;
+  display:inline-block;
+  border-radius:20px;
+  overflow:hidden;
+}
+#splash .logo-wrap::after{
+  content:"";
+  position:absolute;
+  top:-20%;
+  left:-75%;
+  width:45%;
+  height:140%;
+  transform:rotate(18deg);
+  background:linear-gradient(90deg, rgba(255,255,255,0), rgba(255,255,255,.55), rgba(255,255,255,0));
+  animation:logoShine 2.4s ease-in-out infinite;
+  pointer-events:none;
+}
+@keyframes logoShine{
+  0%{left:-75%;}
+  45%{left:140%;}
+  100%{left:140%;}
+}
+#splash img{
+  display:block;
+}
+</style>
+<style id="share-location-style">
+.location-actions{
+    display:flex;
+    flex-wrap:wrap;
+    gap:10px;
+    justify-content:center;
+}
+.location-action-btn{
+    display:inline-flex;
+    align-items:center;
+    justify-content:center;
+    gap:8px;
+    padding:12px 16px;
+    border-radius:14px;
+    font-weight:800;
+    text-decoration:none;
+    border:none;
+    cursor:pointer;
+    box-shadow:0 8px 18px rgba(30,60,114,.14);
+    transition:transform .18s ease, filter .18s ease;
+}
+.location-action-btn:hover{
+    transform:translateY(-1px);
+    filter:brightness(1.03);
+    text-decoration:none;
+}
+.location-action-btn.maps{
+    background:linear-gradient(90deg,#1e3c72,#2a5298);
+    color:#fff !important;
+}
+.location-action-btn.share{
+    background:linear-gradient(90deg,#0f766e,#14b8a6);
+    color:#fff !important;
+}
+.share-overlay{
+    position:fixed;
+    inset:0;
+    background:rgba(15,23,42,.52);
+    display:none;
+    align-items:center;
+    justify-content:center;
+    padding:18px;
+    z-index:10000;
+}
+.share-overlay.active{ display:flex; }
+.share-modal{
+    width:min(100%,420px);
+    background:#fff;
+    border-radius:22px;
+    box-shadow:0 24px 48px rgba(15,23,42,.25);
+    border:1px solid #d9e4f3;
+    padding:22px 18px;
+    text-align:center;
+}
+.share-modal h3{
+    margin:0 0 10px;
+    color:#1e3c72;
+    font-size:22px;
+}
+.share-modal p{
+    margin:0 0 14px;
+    color:#5d7394;
+    line-height:1.45;
+}
+.share-options{
+    display:grid;
+    grid-template-columns:repeat(2,minmax(0,1fr));
+    gap:12px;
+    margin-top:12px;
+}
+.share-option-btn{
+    border:none;
+    border-radius:18px;
+    padding:16px 12px;
+    cursor:pointer;
+    font-weight:900;
+    background:linear-gradient(180deg,#ffffff,#f5f9ff);
+    border:1px solid #d9e4f3;
+    box-shadow:0 10px 18px rgba(15,35,70,.10);
+    color:#17325c;
+    display:flex;
+    flex-direction:column;
+    align-items:center;
+    justify-content:center;
+    gap:10px;
+}
+.share-option-btn:hover{ transform:translateY(-1px); }
+.share-icon{
+    width:54px;
+    height:54px;
+    border-radius:18px;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    color:#fff;
+    font-size:26px;
+    box-shadow:0 10px 18px rgba(15,35,70,.16);
+}
+.share-icon.sms{ background:linear-gradient(135deg,#2563eb,#60a5fa); }
+.share-icon.wa{ background:linear-gradient(135deg,#16a34a,#25D366); }
+.share-close{
+    margin-top:14px;
+    border:none;
+    border-radius:14px;
+    padding:12px 16px;
+    background:#eef4ff;
+    color:#1e3c72;
+    font-weight:800;
+    cursor:pointer;
+}
+.share-mini-note{
+    margin-top:10px;
+    font-size:12px;
+    color:#7a8dac;
+}
+
+/* ===== Aviso un día antes de cumpleaños ===== */
+.birthday-tomorrow-banner{
+    display:none;
+    position:fixed;
+    left:16px;
+    right:16px;
+    top:18px;
+    max-width:760px;
+    margin:auto;
+    background:linear-gradient(135deg,#fff7cc,#ffd166,#f59e0b);
+    color:#5f3700;
+    padding:22px 18px;
+    border-radius:24px;
+    box-shadow:0 22px 44px rgba(120,70,0,.28);
+    z-index:10001;
+    text-align:center;
+    border:2px solid rgba(255,255,255,.75);
+    animation:tomorrowFlash .65s ease both, tomorrowGlow 1s ease-in-out infinite alternate;
+}
+.birthday-tomorrow-banner .spark{
+    display:block;
+    font-size:32px;
+    margin-bottom:6px;
+}
+.birthday-tomorrow-banner strong{
+    display:block;
+    font-size:24px;
+    margin-top:8px;
+}
+@keyframes tomorrowFlash{
+    0%{opacity:0; transform:translateY(-18px) scale(.94); filter:brightness(1.4);}
+    55%{opacity:1; transform:translateY(0) scale(1.04); filter:brightness(1.25);}
+    100%{opacity:1; transform:translateY(0) scale(1); filter:brightness(1);}
+}
+@keyframes tomorrowGlow{
+    from{box-shadow:0 18px 38px rgba(245,158,11,.32), 0 0 0 rgba(255,255,255,0);}
+    to{box-shadow:0 24px 52px rgba(245,158,11,.48), 0 0 28px rgba(255,255,255,.95);}
+}
+
+</style>
+<style id="birthday-start-center-style">
+#birthdayStartBanner{
+    display:none;
+    position:fixed;
+    inset:0;
+    z-index:10002;
+    align-items:center;
+    justify-content:center;
+    padding:18px;
+    background:rgba(15,23,42,.18);
+    pointer-events:none;
+}
+#birthdayStartBanner .birthday-start-card{
+    width:min(92vw,560px);
+    background:linear-gradient(135deg,#1e3c72,#2a5298 60%,#0ea5e9);
+    color:#fff;
+    border-radius:28px;
+    padding:28px 22px;
+    text-align:center;
+    box-shadow:0 26px 56px rgba(15,23,42,.32);
+    border:2px solid rgba(255,255,255,.32);
+    animation:birthdayStartPop .45s ease both, birthdayStartGlow .9s ease-in-out infinite alternate;
+    position:relative;
+    overflow:hidden;
+}
+#birthdayStartBanner .birthday-start-card::before{
+    content:"";
+    position:absolute;
+    top:-40%;
+    left:-70%;
+    width:45%;
+    height:180%;
+    background:linear-gradient(90deg,transparent,rgba(255,255,255,.55),transparent);
+    transform:rotate(22deg);
+    animation:birthdayStartShine 1.4s ease-in-out infinite;
+}
+#birthdayStartBanner .birthday-start-icons{
+    font-size:34px;
+    margin-bottom:8px;
+}
+#birthdayStartBanner .birthday-start-title{
+    font-size:20px;
+    font-weight:900;
+    letter-spacing:.3px;
+    position:relative;
+    z-index:1;
+}
+#birthdayStartBanner strong{
+    display:block;
+    margin-top:10px;
+    font-size:clamp(26px,6vw,42px);
+    line-height:1.1;
+    position:relative;
+    z-index:1;
+}
+@keyframes birthdayStartPop{
+    from{opacity:0; transform:scale(.88) translateY(12px);}
+    to{opacity:1; transform:scale(1) translateY(0);}
+}
+@keyframes birthdayStartGlow{
+    from{box-shadow:0 22px 48px rgba(30,60,114,.32),0 0 0 rgba(125,211,252,0);}
+    to{box-shadow:0 30px 66px rgba(30,60,114,.45),0 0 26px rgba(125,211,252,.95);}
+}
+@keyframes birthdayStartShine{
+    0%{left:-70%;}
+    55%{left:130%;}
+    100%{left:130%;}
+}
+</style>
+<style>
+
+/* ===== Aviso de cumpleaños al iniciar con confeti ===== */
+.start-birthday-overlay{
+    display:none;
+    position:fixed;
+    inset:0;
+    z-index:10002;
+    align-items:center;
+    justify-content:center;
+    background:rgba(15,23,42,.18);
+    backdrop-filter:blur(3px);
+    pointer-events:none;
+}
+.start-birthday-card{
+    width:min(92%,560px);
+    background:
+      radial-gradient(circle at top right, rgba(255,255,255,.55), transparent 34%),
+      linear-gradient(135deg,#1e3c72,#2a5298);
+    color:#fff;
+    padding:28px 22px;
+    border-radius:28px;
+    box-shadow:0 26px 54px rgba(15,23,42,.35);
+    border:2px solid rgba(255,255,255,.42);
+    text-align:center;
+    animation:startBirthdayPop .45s ease both, startBirthdayGlow 1s ease-in-out infinite alternate;
+    position:relative;
+    overflow:hidden;
+}
+.start-birthday-card::before{
+    content:"";
+    position:absolute;
+    inset:-30%;
+    background:linear-gradient(120deg,transparent,rgba(255,255,255,.25),transparent);
+    transform:translateX(-90%) rotate(12deg);
+    animation:startBirthdayShine 1.8s ease-in-out infinite;
+}
+.start-birthday-emojis{
+    font-size:38px;
+    line-height:1;
+    margin-bottom:10px;
+    position:relative;
+    z-index:1;
+}
+.start-birthday-title{
+    font-size:20px;
+    font-weight:900;
+    letter-spacing:.2px;
+    position:relative;
+    z-index:1;
+}
+.start-birthday-names{
+    display:block;
+    margin-top:12px;
+    font-size:clamp(28px,7vw,46px);
+    font-weight:1000;
+    color:#fff7cc;
+    text-shadow:0 4px 12px rgba(0,0,0,.28);
+    position:relative;
+    z-index:1;
+}
+.start-birthday-confetti{
+    position:fixed;
+    top:-16px;
+    width:10px;
+    height:16px;
+    border-radius:4px;
+    z-index:10003;
+    pointer-events:none;
+    animation:startConfettiFall linear forwards;
+}
+.start-birthday-float{
+    position:fixed;
+    z-index:10003;
+    pointer-events:none;
+    font-size:28px;
+    animation:startEmojiFloat linear forwards;
+}
+@keyframes startBirthdayPop{
+    from{opacity:0;transform:scale(.88) translateY(16px);}
+    to{opacity:1;transform:scale(1) translateY(0);}
+}
+@keyframes startBirthdayGlow{
+    from{box-shadow:0 22px 46px rgba(30,60,114,.34),0 0 0 rgba(255,255,255,0);}
+    to{box-shadow:0 28px 60px rgba(30,60,114,.42),0 0 34px rgba(255,255,255,.85);}
+}
+@keyframes startBirthdayShine{
+    0%{transform:translateX(-90%) rotate(12deg);}
+    55%{transform:translateX(90%) rotate(12deg);}
+    100%{transform:translateX(90%) rotate(12deg);}
+}
+@keyframes startConfettiFall{
+    0%{transform:translateY(0) rotate(0deg);opacity:1;}
+    100%{transform:translateY(110vh) rotate(760deg);opacity:0;}
+}
+@keyframes startEmojiFloat{
+    0%{transform:translateY(0) rotate(0deg);opacity:1;}
+    100%{transform:translateY(-120vh) rotate(320deg);opacity:0;}
+}
+
+</style>
+<!-- ===== PWA / Icono para acceso directo iPhone y Android ===== -->
+<meta content="Lozano Painting" name="application-name"/>
+<meta content="Lozano Painting" name="apple-mobile-web-app-title"/>
+<meta content="yes" name="apple-mobile-web-app-capable"/>
+<meta content="yes" name="mobile-web-app-capable"/>
+<meta content="black-translucent" name="apple-mobile-web-app-status-bar-style"/>
+<meta content="#1e3c72" name="theme-color"/>
+<meta content="#1e3c72" name="msapplication-TileColor"/>
+<link href="https://canutoscorp.github.io/pintura/icono.png" rel="icon" sizes="192x192" type="image/png"/>
+<link href="https://canutoscorp.github.io/pintura/icono.png" rel="apple-touch-icon"/>
+<link href="https://canutoscorp.github.io/pintura/icono.png" rel="apple-touch-icon" sizes="180x180"/>
+<link id="appManifest" rel="manifest"/>
+<style id="birthday-final-fix-style">
+#cumpleanos .birthday-card,
+#cumpleanos #birthdaySection,
+#birthdaySection{
+    display:block !important;
+}
+#cumpleanos .birthday-list,
+#birthdayList{
+    display:grid !important;
+    visibility:visible !important;
+    opacity:1 !important;
+}
+.start-birthday-overlay{
+    display:none;
+    position:fixed;
+    inset:0;
+    z-index:10002;
+    align-items:center;
+    justify-content:center;
+    background:rgba(15,23,42,.18);
+    backdrop-filter:blur(3px);
+    pointer-events:none;
+}
+.start-birthday-card{
+    width:min(92%,560px);
+    background:radial-gradient(circle at top right, rgba(255,255,255,.55), transparent 34%),linear-gradient(135deg,#1e3c72,#2a5298);
+    color:#fff;
+    padding:28px 22px;
+    border-radius:28px;
+    box-shadow:0 26px 54px rgba(15,23,42,.35);
+    border:2px solid rgba(255,255,255,.42);
+    text-align:center;
+    animation:startBirthdayPop .45s ease both, startBirthdayGlow 1s ease-in-out infinite alternate;
+    position:relative;
+    overflow:hidden;
+}
+.start-birthday-emojis{font-size:38px;line-height:1;margin-bottom:10px;position:relative;z-index:1;}
+.start-birthday-title{font-size:20px;font-weight:900;position:relative;z-index:1;}
+.start-birthday-names{display:block;margin-top:12px;font-size:clamp(28px,7vw,46px);font-weight:1000;color:#fff7cc;text-shadow:0 4px 12px rgba(0,0,0,.28);position:relative;z-index:1;}
+@keyframes startBirthdayPop{from{opacity:0;transform:scale(.88) translateY(16px);}to{opacity:1;transform:scale(1) translateY(0);}}
+@keyframes startBirthdayGlow{from{box-shadow:0 22px 46px rgba(30,60,114,.34),0 0 0 rgba(255,255,255,0);}to{box-shadow:0 28px 60px rgba(30,60,114,.42),0 0 34px rgba(255,255,255,.85);}}
+</style>
+<style id="auto-dark-mode-style">
+/* ===== MODO OSCURO AUTOMÁTICO 7PM - 7AM ===== */
+body.auto-dark-mode{
+    background:
+      radial-gradient(circle at top left, rgba(59,130,246,.16), transparent 28%),
+      radial-gradient(circle at top right, rgba(14,165,233,.12), transparent 24%),
+      linear-gradient(180deg,#07111f,#0f172a 55%,#111827) !important;
+    color:#e5eefc !important;
+}
+
+body.auto-dark-mode header{
+    background:linear-gradient(135deg,#020617,#1e3a8a,#0f766e) !important;
+    color:#ffffff !important;
+    box-shadow:0 14px 34px rgba(0,0,0,.46) !important;
+}
+
+body.auto-dark-mode label,
+body.auto-dark-mode .section-title,
+body.auto-dark-mode .sherwin-title,
+body.auto-dark-mode .registro-shell h2,
+body.auto-dark-mode .material-shell h2,
+body.auto-dark-mode .quick-card h3,
+body.auto-dark-mode .nombre-colonia,
+body.auto-dark-mode h2,
+body.auto-dark-mode h3{
+    color:#dbeafe !important;
+    text-shadow:0 1px 0 rgba(0,0,0,.22);
+}
+
+body.auto-dark-mode .section-subtitle,
+body.auto-dark-mode .app-hint,
+body.auto-dark-mode .nearby-note,
+body.auto-dark-mode .sherwin-text,
+body.auto-dark-mode p,
+body.auto-dark-mode .zoom-help,
+body.auto-dark-mode .mensaje-adicional{
+    color:#b6c6dc !important;
+}
+
+body.auto-dark-mode .search-shell,
+body.auto-dark-mode .section-card,
+body.auto-dark-mode .quick-card,
+body.auto-dark-mode .sherwin-section,
+body.auto-dark-mode .sherwin-panel,
+body.auto-dark-mode .registro-shell,
+body.auto-dark-mode .material-shell,
+body.auto-dark-mode .material-container,
+body.auto-dark-mode .nombre-colonia,
+body.auto-dark-mode table,
+body.auto-dark-mode .dropdown,
+body.auto-dark-mode .share-modal{
+    background:linear-gradient(180deg,rgba(15,23,42,.96),rgba(17,24,39,.94)) !important;
+    border-color:#334155 !important;
+    box-shadow:0 16px 38px rgba(0,0,0,.42) !important;
+}
+
+body.auto-dark-mode input,
+body.auto-dark-mode select,
+body.auto-dark-mode textarea,
+body.auto-dark-mode .sherwin-select,
+body.auto-dark-mode .registro-shell input,
+body.auto-dark-mode .material-shell input,
+body.auto-dark-mode .registro-shell textarea{
+    background:#020617 !important;
+    color:#f8fafc !important;
+    border-color:#475569 !important;
+    box-shadow:0 4px 14px rgba(0,0,0,.25) !important;
+}
+
+body.auto-dark-mode input::placeholder,
+body.auto-dark-mode textarea::placeholder{
+    color:#94a3b8 !important;
+}
+
+body.auto-dark-mode input:focus,
+body.auto-dark-mode select:focus,
+body.auto-dark-mode textarea:focus,
+body.auto-dark-mode .sherwin-select:focus{
+    border-color:#38bdf8 !important;
+    box-shadow:0 0 0 4px rgba(56,189,248,.16), 0 8px 18px rgba(0,0,0,.32) !important;
+}
+
+body.auto-dark-mode .dropdown-item{
+    background:#020617 !important;
+    color:#e5eefc !important;
+    border-color:#1e293b !important;
+}
+
+body.auto-dark-mode .dropdown-item:hover,
+body.auto-dark-mode .dropdown-item:active,
+body.auto-dark-mode .dropdown-item.activa{
+    background:#1e3a8a !important;
+    color:#ffffff !important;
+}
+
+body.auto-dark-mode .dropdown-vacio{
+    color:#cbd5e1 !important;
+    background:#020617 !important;
+}
+
+body.auto-dark-mode th{
+    background:linear-gradient(135deg,#1e3a8a,#0f766e) !important;
+    color:#ffffff !important;
+}
+
+body.auto-dark-mode td{
+    background:#0f172a !important;
+    color:#e5eefc !important;
+    border-color:#334155 !important;
+}
+
+body.auto-dark-mode .mapa-celda,
+body.auto-dark-mode .image-stage{
+    background:#020617 !important;
+    border-color:#334155 !important;
+    color:#e5eefc !important;
+}
+
+body.auto-dark-mode a{
+    color:#93c5fd !important;
+}
+
+body.auto-dark-mode .top-tabs{
+    background:rgba(2,6,23,.9) !important;
+    border-color:#334155 !important;
+    box-shadow:0 18px 36px rgba(0,0,0,.48) !important;
+}
+
+body.auto-dark-mode .top-tab-btn{
+    color:#cbd5e1 !important;
+    background:transparent !important;
+}
+
+body.auto-dark-mode .top-tab-btn.active{
+    background:linear-gradient(135deg,#1e3a8a,#0f766e) !important;
+    color:#ffffff !important;
+    box-shadow:0 10px 22px rgba(14,165,233,.2) !important;
+}
+
+body.auto-dark-mode .birthday-list li,
+body.auto-dark-mode .lista,
+body.auto-dark-mode .important-box,
+body.auto-dark-mode .nearby-btn,
+body.auto-dark-mode .recent-chip{
+    background:#111827 !important;
+    color:#e5eefc !important;
+    border-color:#334155 !important;
+}
+
+body.auto-dark-mode .important-box h2,
+body.auto-dark-mode .important-copy,
+body.auto-dark-mode .birthday-list .day{
+    color:#fde68a !important;
+}
+
+body.auto-dark-mode .important-highlight{
+    background:#fde68a !important;
+    color:#422006 !important;
+}
+
+body.auto-dark-mode .producto{
+    background:linear-gradient(135deg,#1e3a8a,#0284c7) !important;
+    color:#ffffff !important;
+}
+
+body.auto-dark-mode .clear-btn,
+body.auto-dark-mode .share-close{
+    background:#1e293b !important;
+    color:#dbeafe !important;
+}
+
+body.auto-dark-mode .share-option-btn{
+    background:#111827 !important;
+    color:#e5eefc !important;
+    border-color:#334155 !important;
+}
+
+body.auto-dark-mode .visitor-badge,
+body.auto-dark-mode img{
+    filter:none;
+}
+
+body.auto-dark-mode .dark-mode-pill{
+    background:rgba(15,23,42,.85) !important;
+    color:#dbeafe !important;
+    border-color:#334155 !important;
+}
+
+.dark-mode-pill{
+    position:fixed;
+    left:14px;
+    top:14px;
+    z-index:9998;
+    background:rgba(255,255,255,.86);
+    color:#1e3c72;
+    border:1px solid #d8e4f4;
+    border-radius:999px;
+    padding:7px 11px;
+    font-size:12px;
+    font-weight:900;
+    box-shadow:0 10px 22px rgba(15,35,70,.14);
+    backdrop-filter:blur(10px);
+    display:none;
+}
+
+.dark-mode-pill.visible{
+    display:inline-flex;
+}
+</style>
+
+<style id="birthday-video-and-tomorrow-enhancement">
+/* Aviso del día anterior: destello visible durante 3 segundos */
+.birthday-tomorrow-banner{
+    overflow:hidden;
+    background:
+      radial-gradient(circle at top right, rgba(255,255,255,.95), transparent 30%),
+      linear-gradient(135deg,#fff7cc,#ffd166,#f59e0b) !important;
+}
+.birthday-tomorrow-banner::before{
+    content:"";
+    position:absolute;
+    top:-35%;
+    left:-75%;
+    width:42%;
+    height:180%;
+    background:linear-gradient(90deg,transparent,rgba(255,255,255,.92),transparent);
+    transform:rotate(20deg);
+    animation:birthdayTomorrowShine 1.15s ease-in-out 2;
+    pointer-events:none;
+}
+.birthday-tomorrow-banner strong{
+    position:relative;
+    z-index:1;
+    color:#6b3100;
+    text-shadow:0 2px 8px rgba(255,255,255,.75);
+}
+@keyframes birthdayTomorrowShine{
+    0%{left:-75%;}
+    55%{left:135%;}
+    100%{left:135%;}
+}
+
+.birthday-video-section{
+    margin-top:20px;
+    padding:18px;
+    border-radius:22px;
+    border:1px solid #f4d77c;
+    background:
+      radial-gradient(circle at top right,rgba(255,230,120,.34),transparent 35%),
+      linear-gradient(180deg,#fffdf4,#fff8d9);
+    box-shadow:0 14px 28px rgba(118,86,0,.14);
+    text-align:center;
+    animation:birthdayVideoAppear .45s ease both;
+}
+.birthday-video-title{
+    color:#7c4f00;
+    font-size:18px;
+    font-weight:900;
+}
+.birthday-video-names{
+    display:block;
+    margin:8px 0 14px;
+    color:#1e3c72;
+    font-size:clamp(22px,5vw,32px);
+}
+.birthday-video-frame{
+    position:relative;
+    width:100%;
+    padding-top:56.25%;
+    overflow:hidden;
+    border-radius:18px;
+    background:#000;
+    box-shadow:0 12px 24px rgba(0,0,0,.18);
+}
+.birthday-video-frame iframe{
+    position:absolute;
+    inset:0;
+    width:100%;
+    height:100%;
+    border:0;
+}
+.birthday-video-note{
+    margin-top:10px;
+    color:#6b5b2f;
+    font-size:12px;
+    font-weight:700;
+}
+@keyframes birthdayVideoAppear{
+    from{opacity:0;transform:translateY(12px) scale(.985);}
+    to{opacity:1;transform:translateY(0) scale(1);}
+}
+body.auto-dark-mode .birthday-video-section{
+    background:linear-gradient(180deg,#1f2937,#111827) !important;
+    border-color:#854d0e !important;
+}
+body.auto-dark-mode .birthday-video-title,
+body.auto-dark-mode .birthday-video-note{
+    color:#fde68a !important;
+}
+body.auto-dark-mode .birthday-video-names{
+    color:#dbeafe !important;
+}
+</style>
+
+
+<style id="birthday-banner-final-position-fix">
+#birthdayTodayBanner,
+#birthdayTomorrowBanner{
+    position:fixed !important;
+    left:16px !important;
+    right:16px !important;
+    top:18px !important;
+    bottom:auto !important;
+    margin:0 auto !important;
+    max-width:760px !important;
+    z-index:20050 !important;
+}
+</style>
+
+<style id="pleasant-colors-v2">
+/* Paleta suave: azul grisáceo, verde salvia y tonos crema */
+:root{
+  --soft-bg:#f3f6f4;
+  --soft-card:#ffffff;
+  --soft-primary:#496b78;
+  --soft-primary-2:#668d8a;
+  --soft-sage:#dce9e2;
+  --soft-blue:#e6eff2;
+  --soft-cream:#fbf5ec;
+  --soft-ink:#29434d;
+  --soft-muted:#667b80;
+  --soft-line:#d4e1de;
+}
+body:not(.auto-dark-mode){
+  background:linear-gradient(180deg,#edf3f1 0%,#f8f5ef 52%,#eef4f5 100%) !important;
+  color:var(--soft-ink);
+}
+body:not(.auto-dark-mode) header{
+  background:linear-gradient(120deg,#456875,#6f9991) !important;
+  box-shadow:0 10px 26px rgba(57,91,94,.20) !important;
+}
+body:not(.auto-dark-mode) .top-tab-btn{
+  background:#e5ece9 !important;
+  color:#3f6069 !important;
+  border:1px solid #d1dfdb !important;
+}
+body:not(.auto-dark-mode) .top-tab-btn.active{
+  background:linear-gradient(120deg,#4e7380,#70998f) !important;
+  color:#fff !important;
+}
+body:not(.auto-dark-mode) .top-tab-btn.active::after{
+  background:linear-gradient(90deg,#b9d8cd,#ffffff,#c5dce3) !important;
+  box-shadow:0 0 10px rgba(158,202,190,.75) !important;
+}
+body:not(.auto-dark-mode) .registro-shell{
+  background:rgba(255,255,255,.94) !important;
+  border-color:#d5e2de !important;
+  box-shadow:0 16px 34px rgba(59,88,87,.12) !important;
+}
+body:not(.auto-dark-mode) .registro-shell h2,
+body:not(.auto-dark-mode) .weekly-summary-head h3,
+body:not(.auto-dark-mode) .worker-week-title,
+body:not(.auto-dark-mode) .registro-shell label{
+  color:#3f6670 !important;
+}
+body:not(.auto-dark-mode) .registro-shell input,
+body:not(.auto-dark-mode) .registro-shell textarea{
+  background:#fbfdfc !important;
+  border:1px solid #cbdcd7 !important;
+  color:#29434d !important;
+  box-shadow:0 4px 12px rgba(66,96,94,.06) !important;
+}
+body:not(.auto-dark-mode) .registro-shell input:focus,
+body:not(.auto-dark-mode) .registro-shell textarea:focus{
+  border-color:#79a49a !important;
+  box-shadow:0 0 0 4px rgba(121,164,154,.16) !important;
+}
+body:not(.auto-dark-mode) .registro-btn:not(.whatsapp){
+  background:linear-gradient(120deg,#557d88,#729c93) !important;
+  box-shadow:0 8px 16px rgba(70,105,105,.16) !important;
+}
+body:not(.auto-dark-mode) .week-nav button{
+  background:#e6f0ec !important;
+  color:#466b70 !important;
+  border-color:#c9ddd6 !important;
+}
+body:not(.auto-dark-mode) .weekly-summary{border-color:#d8e4e0 !important;}
+body:not(.auto-dark-mode) .worker-week-card{
+  background:linear-gradient(145deg,#fbfdfc,#f7f3ec) !important;
+  border-color:#d7e3df !important;
+  box-shadow:0 10px 24px rgba(59,88,87,.10) !important;
+}
+body:not(.auto-dark-mode) .worker-total{
+  display:inline-block;background:#e2eee9;color:#345d61 !important;
+  padding:9px 12px;border-radius:12px;
+}
+body:not(.auto-dark-mode) .estimated-pay{
+  background:#e5f2e9 !important;color:#326146 !important;border:1px solid #cce2d3;
+}
+body:not(.auto-dark-mode) .weekly-table{border-color:#d3e0dc !important;}
+body:not(.auto-dark-mode) .weekly-table tr:nth-child(even){background:#f0f6f3 !important;}
+body:not(.auto-dark-mode) .weekly-table tr:nth-child(odd){background:#fffdf9 !important;}
+body:not(.auto-dark-mode) .empty-week{background:#edf3f1 !important;color:#657c7b !important;}
+
+body.auto-dark-mode .worker-week-card{
+  background:linear-gradient(145deg,#1e3035,#263a3a) !important;
+  border-color:#425c5c !important;
+}
+body.auto-dark-mode .weekly-summary{border-color:#42595c !important;}
+body.auto-dark-mode .weekly-summary-head h3,
+body.auto-dark-mode .worker-week-title,
+body.auto-dark-mode .worker-total{color:#d9ebe5 !important;}
+body.auto-dark-mode .estimated-pay{background:#254737 !important;color:#c9efda !important;}
+body.auto-dark-mode .weekly-table tr{background:#203338 !important;}
+</style>
+
+<style id="periodo-control-style">
+.periodo-shell{max-width:820px!important;text-align:left!important;background:linear-gradient(160deg,#ffffff,#f4f8f6)!important;}
+.periodo-shell>h2{text-align:center!important;margin-bottom:8px!important;}
+.periodo-intro{max-width:650px;margin:0 auto 20px;padding:14px 16px;border-radius:16px;background:#e8f2ee;color:#46656a;text-align:center;line-height:1.5;font-weight:650;border:1px solid #d1e3dc;}
+.periodo-setup{padding:18px;border-radius:18px;background:#fffaf3;border:1px solid #eadfce;box-shadow:0 8px 20px rgba(82,99,91,.08);}
+.periodo-setup.oculto,.periodo-setup[hidden]{display:none!important;visibility:hidden!important;height:0!important;overflow:hidden!important;margin:0!important;padding:0!important;border:0!important;}
+.periodo-setup h3,.periodo-people-head h3{margin:0 0 14px;color:#446a72;}
+.periodo-form-grid{display:grid;grid-template-columns:1fr 1fr;gap:14px;}
+.periodo-form-grid label,.periodo-entry-grid label{font-size:14px;color:#49676d;text-align:left;margin:0;}
+.periodo-form-grid input,.periodo-form-grid select,.periodo-entry-grid input{width:100%;margin:7px 0 0;padding:13px;border-radius:12px;border:1px solid #c9dbd5;background:#fff;color:#29434d;font-size:16px;outline:none;}
+.periodo-form-grid input:focus,.periodo-form-grid select:focus,.periodo-entry-grid input:focus{border-color:#6f9b91;box-shadow:0 0 0 4px rgba(111,155,145,.14);}
+.money-input{position:relative;}.money-input span{position:absolute;left:13px;top:19px;color:#477068;font-weight:900;z-index:1}.money-input input{padding-left:30px!important;}
+.periodo-main-btn,.periodo-action-btn{width:100%;border:0;border-radius:12px;padding:13px 16px;margin-top:14px;background:linear-gradient(120deg,#4f7881,#72a094);color:#fff;font-size:16px;font-weight:800;cursor:pointer;box-shadow:0 8px 18px rgba(67,103,101,.16);}
+.periodo-cancel-btn{display:none;width:100%;margin-top:9px;padding:11px;border-radius:12px;border:1px solid #d7c8b6;background:#fff;color:#776554;font-weight:800;cursor:pointer;}
+.periodo-setup.editando .periodo-cancel-btn{display:block;}
+.periodo-note{margin:10px 0 0;color:#788681;font-size:12px;text-align:center;}
+.periodo-add-worker{display:flex;align-items:center;justify-content:space-between;gap:16px;margin:18px 0 6px;padding:15px 16px;border-radius:16px;background:linear-gradient(135deg,#e8f2ee,#edf4f6);border:1px solid #d0e1dc;color:#46656a;}
+.periodo-add-worker.oculto{display:none;}.periodo-add-worker div{display:flex;flex-direction:column;gap:4px}.periodo-add-worker span{font-size:13px;line-height:1.4;color:#6c7f7c}.periodo-add-worker button{flex:0 0 auto;border:0;border-radius:11px;padding:11px 13px;background:#547b82;color:#fff;font-weight:800;cursor:pointer;box-shadow:0 6px 14px rgba(67,103,101,.15);}
+.periodo-people-head{display:flex;align-items:center;justify-content:space-between;margin:26px 0 10px;gap:10px;}
+.periodo-people-head h3{margin:0}.periodo-people-head span{background:#e5efeb;color:#486a67;padding:7px 10px;border-radius:999px;font-size:13px;font-weight:800;}
+.periodo-empty{padding:24px;border:1px dashed #b9cdc7;border-radius:17px;background:#f7faf8;color:#6d807d;text-align:center;}
+.periodo-card{margin-top:18px;border-radius:20px;border:1px solid #cfe0da;background:#fff;overflow:hidden;box-shadow:0 12px 26px rgba(57,88,86,.10);}
+.periodo-card-head{padding:18px;background:linear-gradient(125deg,#456c77,#729b91);color:#fff;}
+.periodo-card-name{display:flex;align-items:center;justify-content:space-between;gap:10px;margin-bottom:12px;}.periodo-card-name strong{font-size:22px;}.periodo-edit-btn{border:1px solid rgba(255,255,255,.65);background:rgba(255,255,255,.15);color:#fff;border-radius:10px;padding:8px 10px;cursor:pointer;font-weight:700;}
+.periodo-stats{display:grid;grid-template-columns:repeat(2,1fr);gap:10px;}.periodo-stat{padding:11px;border-radius:12px;background:rgba(255,255,255,.14);}.periodo-stat small{display:block;opacity:.82;margin-bottom:4px}.periodo-stat b{font-size:16px;}
+.periodo-card-body{padding:18px;}.periodo-range-row{display:flex;justify-content:space-between;align-items:center;gap:8px;margin-bottom:14px;padding-bottom:12px;border-bottom:1px solid #dbe7e3;}.periodo-range-row button{border:0;background:#e8f1ee;color:#416b68;border-radius:10px;padding:8px 10px;cursor:pointer;font-weight:800;}.periodo-range-label{text-align:center;color:#526e71;font-size:14px;font-weight:800;}
+.periodo-entry-box{padding:15px;border-radius:16px;background:#f7f3ec;border:1px solid #e9dfd1;}.periodo-entry-box h4{margin:0 0 12px;color:#526e71;}.periodo-entry-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:12px;}.periodo-check{display:flex!important;align-items:center;gap:8px;padding-top:10px}.periodo-check input{width:20px!important;margin:0!important;}.periodo-live-time{margin-top:12px;padding:11px;border-radius:11px;background:#e5f0eb;color:#3c625d;font-weight:800;text-align:center;}
+.periodo-days{margin-top:15px;display:grid;gap:8px;}.periodo-day{display:grid;grid-template-columns:1fr auto;align-items:center;gap:10px;padding:11px 12px;border-radius:12px;background:#f3f7f5;border:1px solid #dce7e3;color:#3e5d62;}.periodo-day.zero{opacity:.72}.periodo-day-time{font-weight:800;text-align:right}.periodo-day-actions button{border:0;border-radius:8px;padding:5px 8px;margin-left:5px;cursor:pointer;font-size:12px;font-weight:800}.periodo-day-actions .edit{background:#e4eef4;color:#3b6576}.periodo-day-actions .remove{background:#f8e7e5;color:#8a4d47}.periodo-whatsapp{background:#25a95b!important;}.periodo-delete-person{background:transparent!important;color:#a04d48!important;border:1px solid #e6c6c2!important;box-shadow:none!important;}
+@media(max-width:600px){.periodo-form-grid,.periodo-entry-grid,.periodo-stats{grid-template-columns:1fr}.periodo-card-body,.periodo-card-head{padding:14px}.periodo-range-row{align-items:stretch}.periodo-range-row button{font-size:12px;padding:8px}.periodo-day{grid-template-columns:1fr}.periodo-day-time{text-align:left}.periodo-people-head{align-items:flex-end}.periodo-shell{padding:16px 12px!important}.periodo-add-worker{align-items:stretch;flex-direction:column}.periodo-add-worker button{width:100%;}}
+body.auto-dark-mode .periodo-shell,body.auto-dark-mode .periodo-card{background:#17282d!important;border-color:#3e5857!important}body.auto-dark-mode .periodo-intro,body.auto-dark-mode .periodo-entry-box,body.auto-dark-mode .periodo-day,body.auto-dark-mode .periodo-setup{background:#20363a!important;color:#d4e7e1!important;border-color:#3e5857!important}body.auto-dark-mode .periodo-form-grid input,body.auto-dark-mode .periodo-form-grid select,body.auto-dark-mode .periodo-entry-grid input{background:#14262b;color:#e3efec;border-color:#496563}body.auto-dark-mode .periodo-card-body,body.auto-dark-mode .periodo-setup h3,body.auto-dark-mode .periodo-people-head h3,body.auto-dark-mode .periodo-entry-box h4{color:#d7e9e4!important}
+</style>
+
+
+<style id="colonia-cards-style">
+#buscar .colonia-dashboard{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:14px;max-width:780px;margin:18px auto 28px;text-align:left}
+#buscar .colonia-card{min-width:0;background:#fff;border:1px solid #e3e9f2;border-radius:24px;padding:20px;box-shadow:0 8px 25px #16335c09;color:#20304a;position:relative}
+#buscar .colonia-card h3{display:flex;align-items:center;gap:10px;margin:0 0 16px;font-size:16px;color:inherit}
+.colonia-icon{display:inline-flex;align-items:center;justify-content:center;width:40px;height:40px;border-radius:13px;flex-shrink:0}.colonia-icon svg{width:23px;height:23px}.blue{background:#eaf2ff;color:#2866df}.purple{background:#f1ebff;color:#7851c2}.red{background:#ffebef;color:#ca3e59}.amber{background:#fff3de;color:#b4771a}.green{background:#e4f6ef;color:#218467}
+.colonia-location-art{display:block;width:100%;max-height:155px;margin-bottom:14px}
+#buscar .location-actions{display:flex;flex-direction:column;gap:8px;margin:0}#buscar .location-action-btn{box-sizing:border-box;width:100%;margin:0;font-size:13px;border-radius:12px;padding:12px}
+#buscar .colonia-link{display:block;border-radius:13px;padding:13px 15px;background:#edf3ff;color:#235fc9;text-decoration:none;font-weight:700;font-size:14px;line-height:1.5}
+.colonia-store-name{font-size:18px;font-weight:700;line-height:1.4;margin:4px 0 16px}.colonia-muted{font-size:13px;line-height:1.6;color:#65758e}.colonia-observation{font-size:15px;line-height:1.7;white-space:pre-line;overflow-wrap:anywhere;margin:0}
+#buscar .colonia-map-card{grid-column:1/-1;display:flex;align-items:center;justify-content:space-between;gap:16px}#buscar .colonia-map-card h3{margin-bottom:6px}.colonia-map-card p{font-size:13px;color:#65758e;margin:0}.colonia-map-card .colonia-link{flex-shrink:0}
+.codes-gate{text-align:center;padding:12px 0}.codes-gate .gate-symbol{font-size:32px;margin-bottom:10px}.codes-gate p{line-height:1.5;font-size:14px;color:#65758e}.codes-gate input{box-sizing:border-box;width:100%;max-width:240px;border:1px solid #d6deed;border-radius:12px;padding:12px;text-align:center;letter-spacing:8px;font-size:20px;background:#f7f9fd;color:#20304a;margin:0 0 10px}.codes-gate button{display:block;width:100%;max-width:240px;margin:auto;background:#2866df;border:0;border-radius:12px;padding:12px;color:#fff;font-weight:700;cursor:pointer}.codes-error{min-height:19px;color:#c0394f!important;font-size:12px!important;margin:8px 0 0}.codes-open-head{display:flex;justify-content:space-between;align-items:center;margin-bottom:12px;font-size:12px;color:#218467}.codes-close{border:0;background:#eef1f7;color:#394b66;border-radius:50%;width:34px;height:34px;font-size:25px;cursor:pointer}.codes-list{list-style:none;padding:0!important;margin:0!important;display:flex;flex-wrap:wrap;gap:8px}.codes-list li{background:#f1f4fa;color:#293c59;border-radius:12px;padding:10px 13px;font-size:16px;line-height:1.5;overflow-wrap:anywhere;max-width:100%;box-sizing:border-box}.codes-list li.code-note{font-size:14px;width:100%}
+.colonia-dashboard button:focus-visible,.colonia-dashboard a:focus-visible,.colonia-dashboard input:focus-visible{outline:3px solid #97baff;outline-offset:3px}
+body.auto-dark-mode #buscar .colonia-card{background:#19283e;border-color:#31445c;color:#edf3ff}body.auto-dark-mode .colonia-muted,body.auto-dark-mode .codes-gate p,body.auto-dark-mode .colonia-map-card p{color:#b4c3d8}body.auto-dark-mode .colonia-link{background:#263d60;color:#b8d2ff}
+@media(max-width:480px){#buscar .colonia-dashboard{gap:10px}#buscar .colonia-card{padding:13px;border-radius:19px}#buscar .colonia-card h3{font-size:13px;gap:7px;flex-wrap:wrap}.colonia-icon{width:33px;height:33px;border-radius:11px}.colonia-icon svg{width:20px;height:20px}.colonia-store-name{font-size:15px}.colonia-observation{font-size:13px}.codes-gate p{font-size:12px}#buscar .location-action-btn{font-size:12px;padding:10px 5px}#buscar .colonia-map-card{align-items:flex-start;flex-direction:column}.colonia-map-card .colonia-link{box-sizing:border-box;width:100%;text-align:center}.codes-gate input{font-size:18px;letter-spacing:5px}}
+</style>
+<style id="metallic-theme">/* Acabado visual de titanio; no modifica controles ni datos. */
+body,body.auto-dark-mode,body:not(.auto-dark-mode){background:radial-gradient(ellipse at 85% 0%,#193341 0,transparent 45%),radial-gradient(ellipse at 0% 60%,#202a3b 0,transparent 50%),#090e16!important;color:#e3eaf3!important;background-attachment:fixed!important}
+body header,body.auto-dark-mode header,body:not(.auto-dark-mode) header{background:linear-gradient(118deg,#101722 0%,#384553 32%,#192330 49%,#55616d 50%,#202c3b 53%,#111c2a 100%)!important;border:1px solid #788997!important;border-bottom-color:#5acbe1!important;box-shadow:inset 0 1px 0 #d7e3ed66,0 12px 35px #0008,0 1px 18px #4dd7ed33!important;color:#f0f6ff!important;text-shadow:0 2px 3px #000,0 0 20px #b6e8ff55;letter-spacing:2px}
+body .top-tabs{background:linear-gradient(160deg,#2a3543,#101722 55%,#1e2836)!important;border:1px solid #526171!important;box-shadow:inset 0 1px 0 #cfdeec33,0 8px 30px #0009!important}
+body .top-tab-btn,body:not(.auto-dark-mode) .top-tab-btn{color:#b9c9d9!important}
+body .top-tab-btn.active,body:not(.auto-dark-mode) .top-tab-btn.active{background:linear-gradient(145deg,#3d586a,#172e40 60%,#1d5461)!important;color:#effcff!important;box-shadow:inset 0 1px 0 #e0f7ff66,0 0 18px #64d8ee33!important;border:1px solid #74c4d088}
+body .search-shell{background:linear-gradient(140deg,#273340,#0c1420 55%,#202d3c)!important;border:1px solid #788a9e!important;box-shadow:inset 0 1px 1px #f2f7ff33,0 0 0 4px #101722,0 0 0 5px #65798f55,0 10px 22px #0005!important}
+body input,body select,body textarea,body.auto-dark-mode input,body.auto-dark-mode select{background:#101a27!important;color:#eaf5ff!important;border-color:#53677c!important;color-scheme:dark}
+body input::placeholder,body textarea::placeholder{color:#92a6bc!important}
+body label,body h2,body h3{color:#e0eaf5!important}
+body .app-hint{background:#182330!important;color:#b6c8da!important;border:1px solid #35495c}
+body .dropdown{background:#131f2d!important;border:1px solid #61788d!important;box-shadow:0 15px 35px #000a!important}
+body .dropdown-item{color:#dcecf9!important;border-color:#2e4051!important}
+body .dropdown-item:hover,body .dropdown-item.activa{background:#2e485b!important;color:#fff!important}
+body #buscar .colonia-card,body.auto-dark-mode #buscar .colonia-card,body .section-card,body .sherwin-panel,body .registro-shell,body .periodo-shell,body .periodo-card,body .share-modal{background:linear-gradient(135deg,#303c4b 0%,#1b2635 35%,#131e2c 70%,#263342 100%)!important;border:1px solid #617184!important;box-shadow:inset 0 1px 0 #d5e6f233,inset 0 -1px 0 #0008,0 12px 25px #0004!important;color:#e1eaf5!important}
+body #buscar .colonia-card{transition:border-color .2s,box-shadow .2s}
+body #buscar .colonia-card:hover{border-color:#8bc9dd!important;box-shadow:inset 0 1px 0 #e2f4ff44,0 12px 30px #0006,0 0 18px #6bcadd15!important}
+body .colonia-icon{background:linear-gradient(135deg,#b8c6d3,#586a7b 45%,#d4dee7 48%,#768a9c 52%,#263a4e)!important;color:#08283a!important;box-shadow:inset 0 1px 0 #fff9,0 3px 7px #0006;border:1px solid #c3d6e377}
+body .colonia-muted,body .codes-gate p,body .colonia-map-card p,body .section-subtitle,body .sherwin-text{color:#bacbdc!important}
+body #buscar .colonia-link,body #buscar .location-action-btn,body .codes-gate button{background:linear-gradient(155deg,#52728b,#263f55 50%,#152e43)!important;color:#e9f9ff!important;border:1px solid #84b1c5!important;box-shadow:inset 0 1px 0 #e3f6ff44,0 4px 10px #0004!important}
+body #buscar .location-action-btn.share{background:linear-gradient(155deg,#3d737d,#224754 55%,#16333e)!important}
+body .recent-chip,body .codes-list li,body .birthday-list li{background:linear-gradient(145deg,#344354,#1b2b3d)!important;color:#e3f0ff!important;border:1px solid #536b81!important}
+body .codes-close{background:#364b60!important;color:#e7f6ff!important;border:1px solid #7894aa}
+body .codes-error{color:#ff9da9!important}
+body .colonia-location-art{filter:saturate(.55) brightness(.85);border-radius:16px;border:1px solid #8299ad66}
+body #nombreColonia{position:relative;isolation:isolate;overflow:hidden;background:linear-gradient(110deg,#1b2736,#3d4e60 35%,#1b2b3e 65%,#182431)!important;color:#e5f6ff!important;border:1px solid #8197aa!important;border-left:3px solid #8ce5f4!important;border-radius:18px;box-shadow:inset 0 1px 0 #e8f4ff55,0 7px 25px #0005!important;letter-spacing:1.5px;text-shadow:0 2px 2px #0008,0 0 18px #82dcff44}
+#nombreColonia.metal-reveal{animation:colonia-reveal .85s steps(var(--colonia-letters,20),end) both}
+#nombreColonia.metal-reveal::after{content:"";position:absolute;inset:0;pointer-events:none;background:linear-gradient(105deg,transparent 35%,#c6efff22 48%,#fff5 50%,transparent 65%);transform:translateX(-130%);animation:colonia-shine 1.2s .6s ease-out both}
+@keyframes colonia-reveal{from{clip-path:inset(0 100% 0 0);opacity:.3}to{clip-path:inset(0 0 0 0);opacity:1}}
+@keyframes colonia-shine{to{transform:translateX(130%)}}
+@media(prefers-reduced-motion:reduce){#nombreColonia.metal-reveal,#nombreColonia.metal-reveal::after{animation:none!important}body #buscar .colonia-card{transition:none}}
+</style><style id="soft-interaction-style">/* Entrada escalonada y respuesta táctil decorativa. */
+#buscar .colonia-dashboard.cards-enter .colonia-card{
+ animation:card-soft-entry .55s cubic-bezier(.2,.75,.25,1) both;
+}
+#buscar .cards-enter .colonia-card:nth-child(2){animation-delay:70ms}
+#buscar .cards-enter .colonia-card:nth-child(3){animation-delay:140ms}
+#buscar .cards-enter .colonia-card:nth-child(4){animation-delay:210ms}
+#buscar .cards-enter .colonia-card:nth-child(5){animation-delay:280ms}
+@keyframes card-soft-entry{from{opacity:0;transform:translateY(16px) scale(.985)}to{opacity:1;transform:translateY(0) scale(1)}}
+body button,body a.location-action-btn,body a.colonia-link,body a.nearby-btn{
+ -webkit-tap-highlight-color:transparent;
+ transition:transform .16s ease,filter .2s ease;
+ touch-action:manipulation;
+}
+body button:not(:disabled):active,body a.location-action-btn:active,body a.colonia-link:active,body a.nearby-btn:active{
+ transform:translateY(2px) scale(.965);filter:brightness(1.2);
+}
+body button.touch-glow,body a.touch-glow{animation:button-touch-glow .38s ease-out}
+@keyframes button-touch-glow{0%{filter:brightness(1.35)}100%{filter:brightness(1)}}
+@media(prefers-reduced-motion:reduce){
+ #buscar .colonia-dashboard.cards-enter .colonia-card,body button.touch-glow,body a.touch-glow{animation:none!important}
+ body button,body a.location-action-btn,body a.colonia-link,body a.nearby-btn{transition:none!important}
+ body button:not(:disabled):active,body a.location-action-btn:active,body a.colonia-link:active,body a.nearby-btn:active{transform:none;filter:brightness(1.15)}
+}
+</style><style id="colonia-contrast-fix">
+body #buscar #opcionesColonias{background:#152232!important;border:1px solid #758ea5!important;color:#f0f6ff!important;color-scheme:dark}
+body #buscar #opcionesColonias .dropdown-item{background:#152232!important;color:#f0f6ff!important;-webkit-text-fill-color:#f0f6ff!important;border-bottom:1px solid #41546a!important;font-weight:600;line-height:1.5;opacity:1!important;text-shadow:none!important}
+body #buscar #opcionesColonias .dropdown-item:hover,body #buscar #opcionesColonias .dropdown-item:active,body #buscar #opcionesColonias .dropdown-item.activa{background:#304d67!important;color:#fff!important;-webkit-text-fill-color:#fff!important;box-shadow:inset 3px 0 #83e4f6}
+body #buscar #opcionesColonias .dropdown-vacio{background:#152232!important;color:#d1deeb!important;-webkit-text-fill-color:#d1deeb!important}
+body #buscar #tablaDatos .colonia-card h3,body #buscar #tablaDatos .colonia-store-name,body #buscar #tablaDatos #observacion{color:#f0f6ff!important;-webkit-text-fill-color:#f0f6ff!important}
+body #buscar #tablaDatos .colonia-muted,body #buscar #tablaDatos .codes-gate p,body #buscar #tablaDatos .colonia-map-card p{color:#cedbea!important}
+body #buscar #tablaDatos .codes-gate .codes-error{color:#ffb1bc!important}
+body #buscar #tablaDatos .codes-open-head{color:#9eefd0!important}
+body #buscar #tablaDatos a[aria-disabled="true"]{background:#253344!important;color:#cedbea!important;cursor:default;box-shadow:none!important}
+</style><style id="work-hours-contrast">/* Contraste uniforme en REGISTRO y PERIODO, de día y de noche. */
+body #registro .registro-shell,body #registro .worker-week-card,body #material .periodo-shell,body #material .periodo-card{background:linear-gradient(135deg,#29384a,#142131)!important;color:#f0f6ff!important;border-color:#61798f!important}
+body #registro .weekly-summary,body #registro .weekly-table,body #material .periodo-range-row{border-color:#526b83!important}
+body #registro :is(h2,h3,h4,label,.worker-week-title,.worker-total,.week-range),body #material :is(h2,h3,h4,label,.periodo-card-name,.periodo-range-label,.periodo-day-time){color:#f0f6ff!important;-webkit-text-fill-color:#f0f6ff!important}
+body #registro .weekly-table,body #registro .weekly-table tbody{background:#152232!important;color:#f0f6ff!important}
+body #registro .weekly-table tr:nth-child(odd){background:#192a3d!important}
+body #registro .weekly-table tr:nth-child(even){background:#23384d!important}
+body #registro .weekly-table :is(td,th){background:transparent!important;color:#f0f6ff!important;-webkit-text-fill-color:#f0f6ff!important;border-color:#496178!important;opacity:1!important}
+body #registro .weekly-table :is(small,span){color:#d3e2f1!important;-webkit-text-fill-color:#d3e2f1!important;opacity:1!important}
+body #registro .worker-total,body #registro .estimated-pay,body #material .periodo-live-time{background:#254a40!important;color:#d8ffed!important;-webkit-text-fill-color:#d8ffed!important;border:1px solid #628f7e!important;border-radius:12px;padding:11px}
+body #registro :is(input,textarea,select),body #material :is(input,textarea,select){background:#0e1b29!important;color:#f0f6ff!important;-webkit-text-fill-color:#f0f6ff!important;border:1px solid #7991a7!important;color-scheme:dark}
+body #registro ::placeholder,body #material ::placeholder{color:#b8cadd!important;-webkit-text-fill-color:#b8cadd!important;opacity:1}
+body #registro :is(.week-nav button,.registro-btn),body #material :is(.periodo-main-btn,.periodo-action-btn,.periodo-add-worker button,.periodo-range-row button,.periodo-edit-btn,.periodo-cancel-btn){background:linear-gradient(135deg,#41657e,#223e55)!important;color:#fff!important;-webkit-text-fill-color:#fff!important;border:1px solid #86a9c1!important;opacity:1!important}
+body #registro :is(.registro-btn.whatsapp),body #material .periodo-whatsapp{background:#146d41!important;color:#fff!important;-webkit-text-fill-color:#fff!important;border-color:#62b18c!important}
+body #material :is(.periodo-intro,.periodo-setup,.periodo-entry-box,.periodo-add-worker,.periodo-empty){background:#1c2d3f!important;color:#dce9f6!important;border-color:#58718a!important}
+body #material .periodo-card-head{background:linear-gradient(135deg,#35526a,#23394d)!important;color:#fff!important}
+body #material .periodo-stat{background:#192e42!important;color:#f0f6ff!important;border:1px solid #526d84}
+body #material .periodo-stat :is(small,b){color:#f0f6ff!important;opacity:1!important}
+body #material .periodo-day,body #material .periodo-day.zero{background:#20354a!important;color:#f0f6ff!important;border-color:#526b83!important;opacity:1!important}
+body #material :is(.periodo-note,.periodo-add-worker span),body #registro :is(.empty-week,.mensaje-adicional){background:#1c2d3f!important;color:#d3e2f1!important}
+body #material .periodo-people-head span{background:#2c465e!important;color:#f0f6ff!important}
+body #registro .weekly-table button,body #material .periodo-day-actions .remove,body #material .periodo-delete-person{background:#522b37!important;color:#ffe0e6!important;-webkit-text-fill-color:#ffe0e6!important;border:1px solid #b97e90!important}
+body #material .periodo-day-actions .edit{background:#2b4b65!important;color:#fff!important;-webkit-text-fill-color:#fff!important;border:1px solid #779ebd}
+body .top-tabs .top-tab-btn{background:linear-gradient(145deg,#2b3d50,#172637)!important;color:#dceaf8!important;-webkit-text-fill-color:#dceaf8!important;border:1px solid #5c748b!important}
+body .top-tabs .top-tab-btn.active{background:linear-gradient(145deg,#486b81,#1d4258)!important;color:#fff!important;-webkit-text-fill-color:#fff!important;border-color:#91e2ef!important}
+</style><style id="remaining-metallic-surfaces">/* Superficies restantes del tema metálico. */
+html{min-height:100%;background:#090e16!important;color-scheme:dark}
+body{min-height:100vh;min-height:100dvh;box-sizing:border-box}
+body #sherwin #sherwinSection{background:linear-gradient(135deg,#2b394a,#142131 75%,#263849)!important;color:#eef6ff!important;border:1px solid #72889d!important;box-shadow:inset 0 1px 0 #dfedff33,0 12px 30px #0005!important}
+body #sherwin .sherwin-badge{background:#263f56!important;color:#e3f4ff!important;border:1px solid #7593ab!important}
+body #sherwin :is(.sherwin-title,.nearby-title){color:#f0f6ff!important;-webkit-text-fill-color:#f0f6ff!important}
+body #sherwin :is(.sherwin-text,.nearby-sub,.nearby-note){color:#c8d9eb!important;-webkit-text-fill-color:#c8d9eb!important}
+body #sherwin .nearby-btn{background:linear-gradient(145deg,#34495f,#1a2c40)!important;border:1px solid #718aa2!important;color:#f0f6ff!important;box-shadow:inset 0 1px 0 #d2eaff22,0 5px 12px #0004!important}
+body #sherwin .nearby-btn:hover{background:linear-gradient(145deg,#415c75,#253f57)!important;border-color:#9ad7e6!important}
+body #sherwin .nearby-icon{background:linear-gradient(145deg,#56758f,#273f57)!important;border:1px solid #8caac1;box-shadow:inset 0 1px 0 #fff3}
+body #sherwin :is(.sherwin-link-wrap a,.sherwin-link){background:#29465d!important;color:#eef8ff!important;border-color:#8cb4c8!important}
+body #cumpleanos .birthday-card{background:linear-gradient(135deg,#2b394a,#142131)!important;color:#edf5ff!important;border-color:#71899f!important}
+body #cumpleanos .birthday-list li{background:linear-gradient(145deg,#304559,#1a2d40)!important;color:#eef6ff!important;border-color:#7590a8!important}
+body #cumpleanos .birthday-list .day{color:#aeeaf5!important;-webkit-text-fill-color:#aeeaf5!important;font-weight:700}
+</style><style id="birthday-month-visibility">body .top-tabs .top-tab-btn[hidden],body #cumpleanos[hidden]{display:none!important}body .top-tabs.sin-cumpleanos{grid-template-columns:repeat(4,minmax(0,1fr))!important}</style><style id="birthday-restored-events-style">body #startBirthdayOverlay{z-index:100050!important;color:#f3f8ff!important;pointer-events:none}
+body #startBirthdayOverlay .start-birthday-card{background:linear-gradient(135deg,#344c65,#132438)!important;border:1px solid #93dbea;color:#f3f8ff!important}
+body #startBirthdayOverlay :is(.start-birthday-title,.start-birthday-names){color:#eff9ff!important;-webkit-text-fill-color:#eff9ff!important}
+body #birthdayTomorrowBanner{z-index:100060!important;color:#4b2900!important;-webkit-text-fill-color:#4b2900!important;pointer-events:none}
+body #birthdayTomorrowBanner strong{color:#4b2900!important;-webkit-text-fill-color:#4b2900!important}
+.birthday-restored-confetti{position:fixed;top:-40px;width:7px;height:12px;z-index:9000;pointer-events:none;animation:birthday-restored-fall 12s linear infinite both}
+.birthday-floating-icon{position:fixed;top:-60px;font-size:26px;line-height:1.2;z-index:9000;pointer-events:none;user-select:none;animation:birthday-icon-fall 18s linear infinite both;filter:drop-shadow(0 2px 4px #0004)}
+.birthday-floating-icon.rising{top:auto;bottom:-60px;animation-name:birthday-icon-rise}
+@keyframes birthday-icon-fall{0%{transform:translateY(-60px) rotate(-12deg);opacity:0}8%,85%{opacity:.8}100%{transform:translateY(calc(100vh + 120px)) rotate(30deg);opacity:0}}
+@keyframes birthday-icon-rise{0%{transform:translateY(60px) rotate(12deg);opacity:0}8%,85%{opacity:.8}100%{transform:translateY(calc(-100vh - 120px)) rotate(-25deg);opacity:0}}
+@media(prefers-reduced-motion:reduce){.birthday-floating-icon,.birthday-restored-confetti{display:none!important}}
+@keyframes birthday-restored-fall{from{transform:translateY(-20px) rotate(0deg);opacity:1}to{transform:translateY(110vh) rotate(650deg);opacity:0}}
+</style><style id="hours-payment-design">body #material .periodo-card{border-radius:24px;overflow:hidden;margin-top:22px}
+body #material .periodo-card-head{background:linear-gradient(125deg,#31475d,#111f30)!important;padding:22px}
+body #material .periodo-card-name strong{font-size:24px;letter-spacing:.5px}
+.hours-period-caption{color:#c8d9e9;font-size:14px;margin:8px 0 20px}
+body #material .hours-pay-hero{display:flex;flex-direction:column;text-align:center;gap:8px;padding:25px 12px;border:1px solid #7dd8ef;border-radius:20px;background:linear-gradient(120deg,#35495b,#14283b 65%,#293f50);box-shadow:inset 0 1px 0 #d7f7ff44,0 0 20px #5bdcf022}
+body #material .hours-pay-hero>span{font-size:19px;color:#e9f3ff}
+body #material .hours-pay-hero strong{font-size:clamp(38px,9vw,64px);color:#7cf1b4!important;-webkit-text-fill-color:#7cf1b4!important;letter-spacing:1px;line-height:1.15;text-shadow:0 3px 8px #0008;overflow-wrap:anywhere}
+body #material .hours-pay-hero small{font-size:12px;color:#ceddea}
+body #material .periodo-stats{grid-template-columns:repeat(3,minmax(0,1fr))!important;margin-top:16px;gap:10px}
+body #material .periodo-stat{display:flex;flex-direction:column;justify-content:center;align-items:center;text-align:center;gap:8px;min-width:0;padding:14px 6px;background:linear-gradient(135deg,#2b4054,#142436)!important}
+body #material .periodo-stat>span{font-size:26px;color:#7de4f6}
+body #material .periodo-stat b{font-size:17px;line-height:1.35}
+body #material .periodo-stat small{font-size:12px;margin:0;color:#ccdae9!important}
+body #material .hours-register-btn{background:linear-gradient(160deg,#1388ae,#155675)!important;border-color:#7dd9ec!important;font-size:18px;padding:16px;margin:0 0 14px}
+.hours-entry-details{margin:0 0 18px}.hours-entry-details>summary{cursor:pointer;color:#b9e7f4;padding:12px 4px;font-weight:700}.hours-detail-title{font-size:21px;margin:22px 0 12px}
+body #material .periodo-days{gap:0;border:1px solid #597c94;border-radius:16px;overflow:hidden;margin:0}
+body #material .periodo-day{border:0!important;border-bottom:1px solid #496177!important;border-radius:0;padding:14px 12px;grid-template-columns:minmax(0,1fr) minmax(0,1fr);font-size:14px}
+body #material .periodo-day:nth-child(even){background:#192b3e!important}body #material .periodo-day:last-child{border-bottom:0!important}
+.hours-day-pay{display:block;color:#7cf1b4!important;-webkit-text-fill-color:#7cf1b4!important;font-size:18px;margin:5px 0}
+body #material .periodo-day-time{text-align:right;font-size:13px}.periodo-day-actions{display:block;margin-top:7px}
+body #material .periodo-whatsapp{margin-top:20px;padding:16px;font-size:16px}
+body #material .periodo-delete-person{font-size:12px;max-width:200px;display:block;margin:18px auto 0}
+body .top-tabs [data-seccion="material"]{font-size:10px!important;line-height:1.25}
+@media(max-width:420px){body #material .periodo-card-head,body #material .periodo-card-body{padding:14px}body #material .periodo-stat b{font-size:14px}body #material .periodo-stat small{font-size:10px}body #material .periodo-stats{gap:6px}body #material .periodo-day{padding:12px 9px;font-size:12px}}
+</style><link rel="stylesheet" href="lozano-modulos.css?v=integracion6-1"><link rel="stylesheet" href="lozano-integracion.css?v=integracion6-1"></head>
+<body class="lozano-connected">
+
+<div class="birthday-today-banner" id="birthdayTodayBanner">
+<div style="font-size:18px; font-weight:700;">Felicidades a este día a:</div>
+<strong id="birthdayTodayNames"></strong>
+</div>
+
+<div class="birthday-tomorrow-banner" id="birthdayTomorrowBanner">
+<span class="spark">✨🎂🎉</span>
+<div style="font-size:18px; font-weight:900;">El día de mañana cumplirá años:</div>
+<strong id="birthdayTomorrowNames"></strong>
+</div>
+
+<div class="start-birthday-overlay" id="startBirthdayOverlay">
+<div class="start-birthday-card">
+<div class="start-birthday-emojis">🎉 🎂 🎈 ✨</div>
+<div class="start-birthday-title">Felicidades en este día a:</div>
+<strong class="start-birthday-names" id="startBirthdayNames"></strong>
+</div>
+</div>
+<div id="splash">
+<div class="logo-wrap"><img src="https://canutoscorp.github.io/pintura/icono.png"/></div>
+<h1>Lozano Painting</h1>
+<p>Cargando sistema...</p>
+<div id="loader"><div></div></div>
+</div>
+<div id="birthdayStartBanner">
+<div class="birthday-start-card">
+<div class="birthday-start-icons">🎂 ✨ 🎉</div>
+<div class="birthday-start-title">Felicidades en este día a:</div>
+<strong id="birthdayStartNames"></strong>
+</div>
+</div>
+<div class="main-wrapper">
+<div id="connectedTop"><span id="connectedPreviewTag">VERSIÓN DE PRUEBA</span><div><button id="connectedLoginButton" type="button">Iniciar sesión</button><button id="connectedLogoutButton" type="button" hidden>Cerrar sesión</button><button id="connectedMenuButton" type="button" aria-label="Abrir menú" aria-controls="connectedDrawer" aria-expanded="false">☰</button></div></div><header>LOZANO PAINTING</header><div id="connectedWelcome" hidden><span id="connectedSalutation"></span><strong id="connectedWelcomeName"></strong></div><div id="connectedStatusAnchor"><p id="connectedNotice" role="status" aria-live="polite"></p></div><div id="connectedPublicMessages"></div><div id="connectedAnniversaries"></div>
+<div class="top-tabs">
+<button class="top-tab-btn active" data-seccion="buscar">🔎<br/>BUSCAR</button>
+<button class="top-tab-btn" data-seccion="cumpleanos">🎂<br/>CUMPLEAÑOS</button>
+<button class="top-tab-btn" data-seccion="sherwin">🎨<br/>SHERWIN-WILLIAMS</button>
+<button class="top-tab-btn" data-seccion="registro">📝<br/>BITÁCORA</button>
+<button class="top-tab-btn" data-seccion="material">⏱️<br/>CONTROL DE<br/>HORAS Y PAGO</button>
+</div>
+<div class="seccion activa" id="buscar">
+<label for="coloniaInput">Buscar o Seleccionar Colonia</label>
+<div class="buscador-wrapper">
+<div class="search-shell">
+<span class="search-icon">🔎</span>
+<input autocomplete="off" enterkeyhint="search" id="coloniaInput" placeholder="Busca una colonia..."/>
+<button aria-label="Limpiar búsqueda" class="clear-btn" id="clearBtn" type="button">×</button>
+</div>
+<div class="dropdown" id="opcionesColonias"></div>
+</div>
+<div class="app-hint">Toca el buscador para abrir opciones. Al elegir una colonia, el campo se limpia para la siguiente búsqueda.</div>
+<div class="recent-panel" id="recentPanel" style="max-width:560px;margin:15px auto 0;text-align:left;display:none;">
+<div style="font-weight:bold;margin-bottom:8px;">🕘 Colonias recientes</div>
+<div id="recentChips" style="display:flex;flex-wrap:wrap;gap:8px;"></div>
+</div>
+<div class="nombre-colonia" id="nombreColonia" style="display:none;"></div>
+<div id="tablaDatos" class="colonia-dashboard" style="display:none;">
+<article class="colonia-card location-card"><h3><span class="colonia-icon blue"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 10c0 6-8 12-8 12S4 16 4 10a8 8 0 1 1 16 0Z"/><circle cx="12" cy="10" r="3"/></svg></span>Ubicación</h3><svg class="colonia-location-art" viewBox="0 0 360 160" role="img" aria-label="Ilustración de ubicación de una colonia"><rect width="360" height="160" rx="18" fill="#eaf2ff"/><path d="M0 120 360 35M0 25l360 115M110 0l40 160M260 0l-30 160" stroke="#fff" stroke-width="18"/><g fill="#b8ccec"><rect x="35" y="40" width="40" height="30" rx="6"/><rect x="270" y="90" width="45" height="30" rx="6"/><rect x="180" y="110" width="28" height="24" rx="5"/></g><ellipse cx="180" cy="124" rx="29" ry="8" fill="#a5bce2"/><path d="M180 125s-35-32-35-62a35 35 0 1 1 70 0c0 30-35 62-35 62" fill="#2866df"/><circle cx="180" cy="62" r="13" fill="white"/></svg><div id="ubicacion"></div></article>
+<article class="colonia-card codes-card"><h3><span class="colonia-icon purple"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="5" y="10" width="14" height="11" rx="3"/><path d="M8 10V7a4 4 0 0 1 8 0v3M12 14v3"/></svg></span>Códigos de acceso</h3><div id="codigos"></div></article>
+<article class="colonia-card"><h3><span class="colonia-icon red"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3 9l2-6h14l2 6M3 9v3a3 3 0 0 0 4 2 3 3 0 0 0 5 0 3 3 0 0 0 5 0 3 3 0 0 0 4-2V9M5 14v7h14v-7M9 21v-5h6v5"/></svg></span>Sherwin-Williams</h3><div id="coloniaTienda"></div></article>
+<article class="colonia-card"><h3><span class="colonia-icon amber"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="5" y="3" width="14" height="18" rx="3"/><path d="M9 8h6M9 12h6M9 16h4"/></svg></span>Observaciones</h3><p id="observacion" class="colonia-observation"></p></article>
+<article class="colonia-card colonia-map-card"><div><h3><span class="colonia-icon green"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m3 6 6-3 6 3 6-3v15l-6 3-6-3-6 3ZM9 3v15M15 6v15"/></svg></span>Mapa de la colonia</h3><p>Consulta el plano de lotes en una ventana nueva.</p></div><a id="coloniaMapaLink" class="colonia-link" target="_blank" rel="noopener noreferrer">Abrir mapa ↗</a></article>
+</div>
+<div class="section-card visit-card">
+<div class="section-body">
+<h2 class="section-title">Visitas a la página</h2>
+<p class="section-subtitle"></p>
+<div class="visitor-badge">
+<img alt="Visitas" src="https://visitor-badge.laobi.icu/badge?page_id=canutoscorp.pintura"/>
+</div>
+<div class="visit-gallery">
+<img alt="Imagen decorativa" src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQ_drB5BJCSNBvr2Ymn9832ovkIAa71hfTJVA&amp;s"/>
+</div>
+</div>
+</div>
+<div class="section-card important-wrap">
+<div class="section-body">
+<img alt="Aviso importante" class="important-top-image" src="https://media3.giphy.com/media/VQAWMJfKUfJvuyBWEn/giphy.gif?cid=790b7611ae100ab0231871fd1d34098be2c3bddcecf47801&amp;rid=giphy.gif&amp;ct=ts"/>
+<div class="important-box">
+<div style="text-align:center;">
+<span class="important-highlight">ATENCIÓN ANTES DE EMPEZAR</span>
+</div>
+<h2>Información importante</h2>
+<div class="important-copy">
+        DR HORTON: consulta los códigos de acceso de tu colonia.<br/>
+<span>Selecciona una colonia e ingresa tu contraseña en el cuadro de códigos para consultar la información.</span>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+<script>
+const datosColonias = [
+{
+nombre:"Yellow River",
+ubicacion:"https://maps.app.goo.gl/32HcvycL1PSMhex8A",
+codigos:["El intendente Abre con llave"],
+observacion:"Pintura Alabaster",
+mapa:""
+},
+{
+nombre:"Jubilee",
+ubicacion:"https://maps.app.goo.gl/UTj8zKQttcf9TRW47",
+codigos:["2293","0127"],
+observacion:"Alabaster",
+mapa:"https://img.freepik.com/vector-premium/ilustracion-vectorial-simbolo-casa-ubicacion-diseno-conceptual-servicio-entrega-domicilio_929545-241.jpg?semt=ais_rp_progressive&w=740&q=80"
+},
+{
+nombre:"Airway Oaks",
+ubicacion:"https://maps.app.goo.gl/dtX87he5Nh2EbH7u5?g_st=com.google.maps.preview.copy",
+codigos:["El intendente es el que abre la puerta, preveniar al llegar"],
+observacion:"ALABASTER paredes",
+mapa:"https://s3.amazonaws.com/holidaybuilders.com/wp-content/uploads/2023/05/16145910/GULF_Cornerstone_Airway-Oaks_SiteMap_5-12-23-1024x796.jpg"
+},
+{
+nombre:"Blackwater",
+ubicacion:"https://maps.app.goo.gl/DDrUPK4yJ1Z6Bx6h7?g_st=iw",
+codigos:["0326","0127"],
+observacion:"Eldier White",
+mapa:"https://img.freepik.com/vector-premium/ilustracion-vectorial-simbolo-casa-ubicacion-diseno-conceptual-servicio-entrega-domicilio_929545-241.jpg?semt=ais_rp_progressive&w=740&q=80"
+},
+{
+nombre:"Bently",
+ubicacion:"https://maps.app.goo.gl/WJVKUzT34WqWDPf58?g_st=iw",
+codigos:["El intendente el unico que abre, anticipar"],
+observacion:"Sin Informacion Adicional",
+mapa:"https://img.freepik.com/vector-premium/ilustracion-vectorial-simbolo-casa-ubicacion-diseno-conceptual-servicio-entrega-domicilio_929545-241.jpg?semt=ais_rp_progressive&w=740&q=80"
+},
+{
+nombre:"Enclave",
+ubicacion:"https://maps.app.goo.gl/cmNtGfVCaX7oTKE39",
+codigos:["0226","0127"],
+observacion:"Departamentos",
+mapa:"https://img.freepik.com/vector-premium/ilustracion-vectorial-simbolo-casa-ubicacion-diseno-conceptual-servicio-entrega-domicilio_929545-241.jpg?semt=ais_rp_progressive&w=740&q=80"
+},
+{
+nombre:"Gator Landing",
+ubicacion:"https://maps.app.goo.gl/kfmSL5erXXdg6M6v7",
+codigos:["0326","0426","0127"],
+observacion:"Eldier White",
+mapa:"https://www.drhorton.com/-/media/drhorton/productcatalog/649-pensacola-east/22792-gators-landing/gators_landing.jpg?rev=7abbf4fed075498fba2fb1cde76aa6d7&hash=CB9EAB1CCC2C1B27867D667B2C98FEB6"
+},
+{
+nombre:"The Grove at Berryhill",
+ubicacion:"https://maps.app.goo.gl/7ohHTejoLd9Ngg8m9?g_st=ic",
+codigos:["0226","0326","3601","0127"],
+observacion:"Departamentos",
+mapa:"https://img.freepik.com/vector-premium/ilustracion-vectorial-simbolo-casa-ubicacion-diseno-conceptual-servicio-entrega-domicilio_929545-241.jpg?semt=ais_rp_progressive&w=740&q=80"
+},
+{
+nombre:"Independence",
+ubicacion:"https://maps.app.goo.gl/aZAb3K9xiYrC7ZWQ7?g_st=iw",
+codigos:["0226","0326","0426","0127"],
+observacion:"Departamentos",
+mapa:"https://img.freepik.com/vector-premium/ilustracion-vectorial-simbolo-casa-ubicacion-diseno-conceptual-servicio-entrega-domicilio_929545-241.jpg?semt=ais_rp_progressive&w=740&q=80"
+},
+{
+nombre:"Oxford",
+ubicacion:"https://maps.app.goo.gl/AwccHTwQk3dYUXsz8",
+codigos:["0226","0127"],
+observacion:"ELDIER WHITE paredes",
+mapa:"https://img.freepik.com/vector-premium/ilustracion-vectorial-simbolo-casa-ubicacion-diseno-conceptual-servicio-entrega-domicilio_929545-241.jpg?semt=ais_rp_progressive&w=740&q=80"
+},
+{
+nombre:"Greenfield",
+ubicacion:"https://maps.app.goo.gl/LWGvpLmnecUJag4G9?g_st=iw",
+codigos:["0226","0127"],
+observacion:"Drift y las casas tienen marcos cuadrados en las ventanas tambien",
+mapa:"https://img.freepik.com/vector-premium/ilustracion-vectorial-simbolo-casa-ubicacion-diseno-conceptual-servicio-entrega-domicilio_929545-241.jpg?semt=ais_rp_progressive&w=740&q=80"
+},
+{
+nombre:"Bridlewood",
+ubicacion:"https://maps.app.goo.gl/pXzpEuwvbV2r4GQ8A?g_st=com.google.maps.preview.copy",
+codigos:["0125","0225","2293","0127"],
+observacion:"ELDIER WHITE paredes",
+mapa:"https://img.freepik.com/vector-premium/ilustracion-vectorial-simbolo-casa-ubicacion-diseno-conceptual-servicio-entrega-domicilio_929545-241.jpg?semt=ais_rp_progressive&w=740&q=80"
+},
+{
+nombre:"Brookheaven",
+ubicacion:"https://maps.app.goo.gl/eJzakFUraCPnGwj98?g_st=com.google.maps.preview.copy",
+codigos:["0326","0911","0426","2027","1999","2604","0127"],
+observacion:"Eldier White paredes",
+mapa:"https://img.freepik.com/vector-premium/ilustracion-vectorial-simbolo-casa-ubicacion-diseno-conceptual-servicio-entrega-domicilio_929545-241.jpg?semt=ais_rp_progressive&w=740&q=80"
+},
+{
+nombre:"Cadence",
+ubicacion:"https://maps.app.goo.gl/Seibf8AVTk3Gr4EJ8?g_st=com.google.maps.preview.copy",
+codigos:["2293","0127"],
+observacion:"Observaciones para Cadence",
+mapa:"https://img.freepik.com/vector-premium/ilustracion-vectorial-simbolo-casa-ubicacion-diseno-conceptual-servicio-entrega-domicilio_929545-241.jpg?semt=ais_rp_progressive&w=740&q=80"
+},
+{
+nombre:"Captain Cove",
+ubicacion:"https://maps.app.goo.gl/upbhxQj37EvtuHhB8",
+codigos:["0426","0127"],
+observacion:"Eldier white",
+mapa:"https://img.freepik.com/vector-premium/ilustracion-vectorial-simbolo-casa-ubicacion-diseno-conceptual-servicio-entrega-domicilio_929545-241.jpg?semt=ais_rp_progressive&w=740&q=80"
+},
+{
+nombre:"RoseMary Sounbd",
+ubicacion:"https://maps.app.goo.gl/vCH94waEDzbhkkdX6",
+codigos:["0426","0127"],
+observacion:"Eldier white",
+mapa:"https://img.freepik.com/vector-premium/ilustracion-vectorial-simbolo-casa-ubicacion-diseno-conceptual-servicio-entrega-domicilio_929545-241.jpg?semt=ais_rp_progressive&w=740&q=80"
+},
+{
+nombre:"Carrington",
+ubicacion:"https://maps.app.goo.gl/8qDwgMAss6Gt5r4u8?g_st=com.google.maps.preview.copy",
+codigos:["El intendente es el que abre la puerta, preveniar al llegar"],
+observacion:"Textura Gruesa y por lo regular paredes son 400 y cielo Flat pero checar bien, pintura AGRABBLE GRAY",
+mapa:"https://img.freepik.com/vector-premium/ilustracion-vectorial-simbolo-casa-ubicacion-diseno-conceptual-servicio-entrega-domicilio_929545-241.jpg?semt=ais_rp_progressive&w=740&q=80"
+},
+{
+nombre:"Cottages of Aventura",
+ubicacion:"https://maps.app.goo.gl/GMKY2zg7Z3QW8hEh7?g_st=com.google.maps.preview.copy",
+codigos:["Se Abre con LLave"],
+observacion:"Pintar en  primeras puertas principales (negro) y columnas | SNOWBOUND paredes",
+mapa:"https://img.freepik.com/vector-premium/ilustracion-vectorial-simbolo-casa-ubicacion-diseno-conceptual-servicio-entrega-domicilio_929545-241.jpg?semt=ais_rp_progressive&w=740&q=80"
+},
+{
+nombre:"Country Club States",
+ubicacion:"https://maps.app.goo.gl/NyRfv8LNobnNZgh37",
+codigos:["Necesitamos saber codigos","0226","0127"],
+observacion:"First Start",
+mapa:"https://img.freepik.com/vector-premium/ilustracion-vectorial-simbolo-casa-ubicacion-diseno-conceptual-servicio-entrega-domicilio_929545-241.jpg?semt=ais_rp_progressive&w=740&q=80"
+},
+{
+nombre:"Days Landing",
+ubicacion:"https://maps.app.goo.gl/HBHUhNGU2CBtZeNVA?g_st=com.google.maps.preview.copy",
+codigos:["0125","0225","2293","0325","0127"],
+observacion:"ELDIER WHITE paredes",
+mapa:"https://img.freepik.com/vector-premium/ilustracion-vectorial-simbolo-casa-ubicacion-diseno-conceptual-servicio-entrega-domicilio_929545-241.jpg?semt=ais_rp_progressive&w=740&q=80"
+},
+{
+nombre:"Fallschase",
+ubicacion:"https://maps.app.goo.gl/a1tttAbUYkGnHo768?g_st=iw",
+codigos:["0426","2604","1517","0127"],
+observacion:"Eldier White",
+mapa:"https://img.freepik.com/vector-premium/ilustracion-vectorial-simbolo-casa-ubicacion-diseno-conceptual-servicio-entrega-domicilio_929545-241.jpg?semt=ais_rp_progressive&w=740&q=80"
+},
+{
+nombre:"Deer Ridge Crossing",
+ubicacion:"https://maps.app.goo.gl/BsK6bwjb64i1sdKS6",
+codigos:["La apertura es con LLAVE"],
+observacion:"Eldier White color de pared | Paredes Eldier White",
+mapa:"https://img.freepik.com/vector-premium/ilustracion-vectorial-simbolo-casa-ubicacion-diseno-conceptual-servicio-entrega-domicilio_929545-241.jpg?semt=ais_rp_progressive&w=740&q=80"
+},
+{
+nombre:"Dry Creek",
+ubicacion:"https://maps.app.goo.gl/qEQRnzXHro6XobXw8?g_st=com.google.maps.preview.copy",
+codigos:["Intendente Apertura la puerta"],
+observacion:"",
+mapa:"https://img.freepik.com/vector-premium/ilustracion-vectorial-simbolo-casa-ubicacion-diseno-conceptual-servicio-entrega-domicilio_929545-241.jpg?semt=ais_rp_progressive&w=740&q=80"
+},
+{
+nombre:"Eagle Pointe",
+ubicacion:"https://maps.app.goo.gl/3NynNqUsfpiwKv8Y7?g_st=com.google.maps.preview.copy",
+codigos:["Apertura con llave","La apertura es con LLAVE"],
+observacion:"Informen cual es el color de la pintura de pared y si la puerta es un solo color (ejemplo negro) | Paredes Eldier White",
+mapa:"https://dlqxt4mfnxo6k.cloudfront.net/dsldhomes.com/aHR0cHM6Ly9zMy5hbWF6b25hd3MuY29tL2J1aWxkZXJjbG91ZC82NjhjNjVmNjJiZGE3NGZhNWZmMzIyMjMwODc5YTBkZi5qcGVn/webp/1200/1200"
+},
+{
+nombre:"Ellies Cove",
+ubicacion:"https://maps.app.goo.gl/1wYGLwCCCkAz3apu5",
+codigos:["0325","1355","0126","2506","1999","1998","0226","2027","0127"],
+observacion:"Departamentos | Eldier White | Departamentos, Paredes Eldier White",
+mapa:"https://img.freepik.com/vector-premium/ilustracion-vectorial-simbolo-casa-ubicacion-diseno-conceptual-servicio-entrega-domicilio_929545-241.jpg?semt=ais_rp_progressive&w=740&q=80"
+},
+{
+nombre:"Fairchild",
+ubicacion:"https://maps.app.goo.gl/LH7Fxov2AQqHGdeE9?g_st=com.google.maps.preview.copy",
+codigos:["0125","0225","2293","0127"],
+observacion:"ELDIER WHITE paredes",
+mapa:"https://img.freepik.com/vector-premium/ilustracion-vectorial-simbolo-casa-ubicacion-diseno-conceptual-servicio-entrega-domicilio_929545-241.jpg?semt=ais_rp_progressive&w=740&q=80"
+},
+{
+nombre:"Floridatown",
+ubicacion:"https://maps.app.goo.gl/sg8oo6V2hafZH8JZA",
+codigos:["INFORMEN DE LOS CODIGOS"],
+observacion:"Alabaster",
+mapa:"https://img.freepik.com/vector-premium/ilustracion-vectorial-simbolo-casa-ubicacion-diseno-conceptual-servicio-entrega-domicilio_929545-241.jpg?semt=ais_rp_progressive&w=740&q=80"
+},
+{
+nombre:"Forest Shores",
+ubicacion:" https://maps.app.goo.gl/zr8HXRXwX3ZCvd8T6?g_st=iw",
+codigos:["0125","0225","0325","1969","0126","0127"],
+observacion:"ELDIER WHITE Color Paredes | Departamentos",
+mapa:"https://img.freepik.com/vector-premium/ilustracion-vectorial-simbolo-casa-ubicacion-diseno-conceptual-servicio-entrega-domicilio_929545-241.jpg?semt=ais_rp_progressive&w=740&q=80"
+},
+{
+nombre:"Freeport",
+ubicacion:"https://maps.app.goo.gl/MaLCYrgowFBRWFxi8",
+codigos:["La apertura es con LLAVE"],
+observacion:"informen a Carlos Color de pared y puertas | Paredes Eldier White",
+mapa:"https://img.freepik.com/vector-premium/ilustracion-vectorial-simbolo-casa-ubicacion-diseno-conceptual-servicio-entrega-domicilio_929545-241.jpg?semt=ais_rp_progressive&w=740&q=80"
+},
+{
+nombre:"Gavin Landing",
+ubicacion:"https://maps.app.goo.gl/RKRXUDCGhFhhQtQB6?g_st=iw",
+codigos:["0125","0225","1355","Dependiendo el numero de lote agreguen el prefijo 01 o bien 010 es decir si es el lote 12 el codigo seria 0112, si es el lote 6 el codigo seria 0106","0127"],
+observacion:"ELDIER WHITE Color Paredes",
+mapa:"https://www.drhorton.com/-/media/drhorton/productcatalog/244-pensacola-west/22794-gavins-landing-ths/gavinslandingplat.png?rev=066b98c85a3443bcbf3027f13a4550ab"
+},
+{
+nombre:"Gaylen Oaks",
+ubicacion:"https://maps.app.goo.gl/LAhsMGCK1F39NA559",
+codigos:["0126","0226","2027","2020","2030","Al parecer va ascendiendo los codigos","0127"],
+observacion:"Eldier White color de pared | Paredes Eldier White",
+mapa:"https://img.freepik.com/vector-premium/ilustracion-vectorial-simbolo-casa-ubicacion-diseno-conceptual-servicio-entrega-domicilio_929545-241.jpg?semt=ais_rp_progressive&w=740&q=80"
+},
+{
+nombre:"Gleenhollow",
+ubicacion:"https://maps.app.goo.gl/FTHaGaHRT1ZTTkQh9?g_st=com.google.maps.preview.copy",
+codigos:["El intendente abre la puerta"],
+observacion:"Agrable Gray",
+mapa:"https://img.freepik.com/vector-premium/ilustracion-vectorial-simbolo-casa-ubicacion-diseno-conceptual-servicio-entrega-domicilio_929545-241.jpg?semt=ais_rp_progressive&w=740&q=80"
+},
+{
+nombre:"Gleenlakes",
+ubicacion:"https://maps.app.goo.gl/EJQTG49rb1nLe9mX9?g_st=com.google.maps.preview.copy",
+codigos:["Se abre con LLave"],
+observacion:"ELDIER WHITE Pintura de paredes | Nueva Fase SNOWBOUND pintura pared",
+mapa:"https://img.freepik.com/vector-premium/ilustracion-vectorial-simbolo-casa-ubicacion-diseno-conceptual-servicio-entrega-domicilio_929545-241.jpg?semt=ais_rp_progressive&w=740&q=80"
+},
+{
+nombre:"GrassLand",
+ubicacion:"https://maps.app.goo.gl/JJP1u4sJaWtQQy7T7?g_st=ipc",
+codigos:["La apertura es con LLAVE"],
+observacion:"Snowbound y puertas negras",
+mapa:"https://img.freepik.com/vector-premium/ilustracion-vectorial-simbolo-casa-ubicacion-diseno-conceptual-servicio-entrega-domicilio_929545-241.jpg?semt=ais_rp_progressive&w=740&q=80"
+},
+{
+nombre:"Greenbrier",
+ubicacion:"https://maps.app.goo.gl/4hkt3to6ikkNokvu5?g_st=com.google.maps.preview.copy",
+codigos:["La apertura es con LLAVE"],
+observacion:"SNOWBOUND color de pared | TRICORN BLACK Puertas Principales",
+mapa:"https://img.freepik.com/vector-premium/ilustracion-vectorial-simbolo-casa-ubicacion-diseno-conceptual-servicio-entrega-domicilio_929545-241.jpg?semt=ais_rp_progressive&w=740&q=80"
+},
+{
+nombre:"Heritage Plantation",
+ubicacion:"https://maps.app.goo.gl/gNZEVDUsy38uN46j6",
+codigos:["La apertura es con LLAVE","0126","0226","2027","0127"],
+observacion:"informen a Carlos Color de pared y puertas | Paredes Eldier White",
+mapa:"https://img.freepik.com/vector-premium/ilustracion-vectorial-simbolo-casa-ubicacion-diseno-conceptual-servicio-entrega-domicilio_929545-241.jpg?semt=ais_rp_progressive&w=740&q=80"
+},
+{
+nombre:"Hihglands",
+ubicacion:"https://maps.app.goo.gl/r1iTLBdi966sEa1x5?g_st=com.google.maps.preview.copy",
+codigos:["0125","0225","2293","9572","0127"],
+observacion:"ELDIER WHITE paredes",
+mapa:"https://img.freepik.com/vector-premium/ilustracion-vectorial-simbolo-casa-ubicacion-diseno-conceptual-servicio-entrega-domicilio_929545-241.jpg?semt=ais_rp_progressive&w=740&q=80"
+},
+{
+nombre:"Huston",
+ubicacion:"https://maps.app.goo.gl/gWUhiHUoatYMDYFi9?g_st=a",
+codigos:["DSLD","La apertura es con llave"],
+observacion:"informen a Carlos Color de pared y puertas | Llevar escalera de extension para pintar Ventanita.",
+mapa:"https://img.freepik.com/vector-premium/ilustracion-vectorial-simbolo-casa-ubicacion-diseno-conceptual-servicio-entrega-domicilio_929545-241.jpg?semt=ais_rp_progressive&w=740&q=80"
+},
+{
+nombre:"Iron Rock",
+ubicacion:"https://maps.app.goo.gl/tRuUwmUBdDAuFeDz8?g_st=iw",
+codigos:["Porton #1717","La apertura es con LLAVE","DSLD La Apertura es con llave","0127"],
+observacion:"BEIGE Color Puerta Trasera | Tener color Beige ya que puede tener que pintarse puerta trasera",
+mapa:"https://dlqxt4mfnxo6k.cloudfront.net/dsldhomes.com/aHR0cHM6Ly9zMy5hbWF6b25hd3MuY29tL2J1aWxkZXJjbG91ZC9kYmU3MjE3OTE3NDcwMTMzMTA2ZTM4OWQwYWUyODA0Ny5wbmc=/webp/2000/2000"
+},   
+    {
+nombre:"Jay Rd",
+ubicacion:"https://maps.app.goo.gl/QfzuGxygpDPuNQUA8",
+codigos:["Apertura a 4a digitos con el numero de la casa","0127"],
+observacion:"La pintura es 400 y se aplica stain",
+mapa:"https://dlqxt4mfnxo6k.cloudfront.net/dsldhomes.com/aHR0cHM6Ly9zMy5hbWF6b25hd3MuY29tL2J1aWxkZXJjbG91ZC9kYmU3MjE3OTE3NDcwMTMzMTA2ZTM4OWQwYWUyODA0Ny5wbmc=/webp/2000/2000"
+},
+{
+nombre:"Lakeland",
+ubicacion:"https://maps.app.goo.gl/oubb5T5YPZyUp4WR8",
+codigos:["abre intendente, CASA DE CRISTIAN"],
+observacion:"informen a Carlos Color de pared y puertas",
+mapa:"https://img.freepik.com/vector-premium/ilustracion-vectorial-simbolo-casa-ubicacion-diseno-conceptual-servicio-entrega-domicilio_929545-241.jpg?semt=ais_rp_progressive&w=740&q=80"
+},
+{
+nombre:"Lakes Of Woodbine",
+ubicacion:"https://maps.app.goo.gl/HmM53z1budcdthDu7?g_st=com.google.maps.preview.copy",
+codigos:["0126","2506","2604","1668","0127"],
+observacion:"ELDIER WHITE Color Paredes",
+mapa:"https://www.drhorton.com/-/media/drhorton/productcatalog/244-pensacola-west/22668-lakes-of-woodbine/colored_plat_for_low.jpg?rev=11721f9c07c541c0b6d889332610eac8"
+},
+{
+nombre:"Lancelot",
+ubicacion:"https://maps.app.goo.gl/JZprTLfJDwPx9KEb8?g_st=com.google.maps.preview.copy",
+codigos:["0307","0125","0225","2323","0431","0325","0425","A=01, B=02, C=03, D=04... mas lote; Ejemplo Lote 3D, el codigo seria=0403","0127"],
+observacion:"ELDIER WHITE Color Paredes",
+mapa:"https://img.freepik.com/vector-premium/ilustracion-vectorial-simbolo-casa-ubicacion-diseno-conceptual-servicio-entrega-domicilio_929545-241.jpg?semt=ais_rp_progressive&w=740&q=80"
+},
+{
+nombre:"Ledwick",
+ubicacion:"https://maps.app.goo.gl/EYTMnM4mwUvHHJ428?g_st=com.google.maps.preview.copy",
+codigos:["2293","0127"],
+observacion:"ALABASTER paredes",
+mapa:"https://img.freepik.com/vector-premium/ilustracion-vectorial-simbolo-casa-ubicacion-diseno-conceptual-servicio-entrega-domicilio_929545-241.jpg?semt=ais_rp_progressive&w=740&q=80"
+},
+{
+nombre:"Leighton Villages",
+ubicacion:"https://maps.app.goo.gl/oWkyHVSLENRarmGPA",
+codigos:["INFORMEN SI SE NECESITA CODIGO DE PUERTA"],
+observacion:"INFORMEN DEL COLOR DE PAREDES POR FAVOR",
+mapa:"https://img.freepik.com/vector-premium/ilustracion-vectorial-simbolo-casa-ubicacion-diseno-conceptual-servicio-entrega-domicilio_929545-241.jpg?semt=ais_rp_progressive&w=740&q=80"
+},
+{
+nombre:"Liberty Farms",
+ubicacion:"https://maps.app.goo.gl/xQVjGEzHCJqUqZ5BA",
+codigos:["0226","0326","0127"],
+observacion:"Paredes Eldier White, puerta principal de acuerdo a color de Shutters",
+mapa:"https://img.freepik.com/vector-premium/ilustracion-vectorial-simbolo-casa-ubicacion-diseno-conceptual-servicio-entrega-domicilio_929545-241.jpg?semt=ais_rp_progressive&w=740&q=80"
+},
+{
+nombre:"Live Oaks",
+ubicacion:"https://maps.app.goo.gl/NSsiQWtFZfUxBvfF9?g_st=com.google.maps.preview.copy",
+codigos:["Se Abre con LLave"],
+observacion:"Puertas de Negro | SNOWBOUND paredes",
+mapa:"https://img.freepik.com/vector-premium/ilustracion-vectorial-simbolo-casa-ubicacion-diseno-conceptual-servicio-entrega-domicilio_929545-241.jpg?semt=ais_rp_progressive&w=740&q=80"
+},
+{
+nombre:"Lost Key",
+ubicacion:"https://maps.app.goo.gl/24Lot8Wwpzh2aBz27?g_st=com.google.maps.preview.copy",
+codigos:["Codigo 8004 candado ubicado junto a casa modelo","7474","0127"],
+observacion:"SNOWBOUND Pintura de Pared",
+mapa:"https://img.freepik.com/vector-premium/ilustracion-vectorial-simbolo-casa-ubicacion-diseno-conceptual-servicio-entrega-domicilio_929545-241.jpg?semt=ais_rp_progressive&w=740&q=80"
+},
+{
+nombre:"Madelyn Woods",
+ubicacion:"https://maps.app.goo.gl/iiUzwJGCfVM2RxEu5?g_st=com.google.maps.preview.copy",
+codigos:["El numero de casa es el codigo"],
+observacion:"Por lo regular Shutters, gable y columnas son de Stain",
+mapa:"https://img.freepik.com/vector-premium/ilustracion-vectorial-simbolo-casa-ubicacion-diseno-conceptual-servicio-entrega-domicilio_929545-241.jpg?semt=ais_rp_progressive&w=740&q=80"
+},
+{
+nombre:"Martin Preserve",
+ubicacion:"https://maps.google.com?q=30.3765833,-87.3488333&entry=gps&lucs=,94224825,94227247,94227248,94231188,47071704,94259573,47069508,94218641,94203019,47084304,94208458,94208447&g_st=com.google.maps.preview.copy",
+codigos:["0295","0325","0125","0911","1355","0126","0127"],
+observacion:"ELDIER WHITE Pintura de paredes",
+mapa:"https://www.drhorton.com/-/media/drhorton/productcatalog/244-pensacola-west/22696-martin-preserve/martinpreserveplat.jpg?rev=2e0cc2d0f9fa4977956e40fa8087ba03"
+},
+{
+nombre:"Mary Anette",
+ubicacion:"https://maps.app.goo.gl/au5cbN5kpXHjWiRJ8?g_st=com.google.maps.preview.copy",
+codigos:["2293","0127"],
+observacion:"ALABASTER paredes",
+mapa:"https://img.freepik.com/vector-premium/ilustracion-vectorial-simbolo-casa-ubicacion-diseno-conceptual-servicio-entrega-domicilio_929545-241.jpg?semt=ais_rp_progressive&w=740&q=80"
+},
+{
+nombre:"Midtown",
+ubicacion:"https://maps.app.goo.gl/RFDW2Qu4jZNWGu9V8?g_st=com.google.maps.preview.copy",
+codigos:["0125","0225","2293","0325","0127"],
+observacion:"ELDIER WHITE paredes",
+mapa:"https://img.freepik.com/vector-premium/ilustracion-vectorial-simbolo-casa-ubicacion-diseno-conceptual-servicio-entrega-domicilio_929545-241.jpg?semt=ais_rp_progressive&w=740&q=80"
+},
+{
+nombre:"Hammond Place",
+ubicacion:"https://maps.app.goo.gl/EJALquSBSyimJXRy8",
+codigos:["0426","2604","0127"],
+observacion:"ELDIER WHITE paredes",
+mapa:"https://img.freepik.com/vector-premium/ilustracion-vectorial-simbolo-casa-ubicacion-diseno-conceptual-servicio-entrega-domicilio_929545-241.jpg?semt=ais_rp_progressive&w=740&q=80"
+},
+{
+nombre:"Parkwood",
+ubicacion:"https://maps.app.goo.gl/GrWNg3XtjxFYH74z8?g_st=com.google.maps.preview.copy",
+codigos:["El intendente es el que abre la puerta, preveniar al llegar"],
+observacion:"Textura Gruesa, banos son por lo regular 400 y paredes normales flat, pintura AGRABBLE GRAY",
+mapa:"https://img.freepik.com/vector-premium/ilustracion-vectorial-simbolo-casa-ubicacion-diseno-conceptual-servicio-entrega-domicilio_929545-241.jpg?semt=ais_rp_progressive&w=740&q=80"
+},
+{
+nombre:"Patriot",
+ubicacion:"https://maps.app.goo.gl/3B1vdMqSgVoQhhn96?g_st=com.google.maps.preview.copy",
+codigos:["0125","0225","0426","0127"],
+observacion:"Eldier White",
+mapa:"https://img.freepik.com/vector-premium/ilustracion-vectorial-simbolo-casa-ubicacion-diseno-conceptual-servicio-entrega-domicilio_929545-241.jpg?semt=ais_rp_progressive&w=740&q=80"
+},
+{
+nombre:"Pecan Grove",
+ubicacion:"https://maps.app.goo.gl/969hXbGc3JL74z4v6?g_st=iw",
+codigos:["La apertura es con LLAVE","Lennar La apertura es con llave"],
+observacion:"SNOWBOUND color de pared",
+mapa:"https://img.freepik.com/vector-premium/ilustracion-vectorial-simbolo-casa-ubicacion-diseno-conceptual-servicio-entrega-domicilio_929545-241.jpg?semt=ais_rp_progressive&w=740&q=80"
+},
+{
+nombre:"Plantation Woods",
+ubicacion:"https://maps.app.goo.gl/5cxCk1bU5t3H6R8g8?g_st=iw",
+codigos:["0326","0426","5693","0127"],
+observacion:"Eldier White",
+mapa:"https://img.freepik.com/vector-premium/ilustracion-vectorial-simbolo-casa-ubicacion-diseno-conceptual-servicio-entrega-domicilio_929545-241.jpg?semt=ais_rp_progressive&w=740&q=80"
+},
+{
+nombre:"Pless Landing",
+ubicacion:"https://maps.app.goo.gl/3kJkQJMu3yz3figz7?g_st=com.google.maps.preview.copy",
+codigos:["0125","0424","0225","0127"],
+observacion:"ELDIER WHITE Color Paredes",
+mapa:"https://img.freepik.com/vector-premium/ilustracion-vectorial-simbolo-casa-ubicacion-diseno-conceptual-servicio-entrega-domicilio_929545-241.jpg?semt=ais_rp_progressive&w=740&q=80"
+},
+{
+nombre:"Quilanding",
+ubicacion:"https://maps.app.goo.gl/fGqrBRZhRaeao4rf9?g_st=com.google.maps.preview.copy",
+codigos:["Se abre con LLave"],
+observacion:"ELDIER WHITE Pintura de paredes",
+mapa:"https://img.freepik.com/vector-premium/ilustracion-vectorial-simbolo-casa-ubicacion-diseno-conceptual-servicio-entrega-domicilio_929545-241.jpg?semt=ais_rp_progressive&w=740&q=80"
+},
+{
+nombre:"Rivers Cove",
+ubicacion:"https://maps.app.goo.gl/3y2ei6xbhZ2p247S6?g_st=com.google.maps.preview.copy",
+codigos:["0125","0225","0424","2293","0325","0126","2506","0326","0426","0127"],
+observacion:"ELDIER WHITE Color Paredes",
+mapa:"https://img.freepik.com/vector-premium/ilustracion-vectorial-simbolo-casa-ubicacion-diseno-conceptual-servicio-entrega-domicilio_929545-241.jpg?semt=ais_rp_progressive&w=740&q=80"
+},
+{
+nombre:"Roman Oaks",
+ubicacion:"https://maps.app.goo.gl/jyVUoMh3VKFZTD9X7",
+codigos:["La apertura es con LLAVE"],
+observacion:"informen a Carlos Color de pared y puertas | Puertas negras.",
+mapa:"https://img.freepik.com/vector-premium/ilustracion-vectorial-simbolo-casa-ubicacion-diseno-conceptual-servicio-entrega-domicilio_929545-241.jpg?semt=ais_rp_progressive&w=740&q=80"
+},
+{
+nombre:"Russell Crossing",
+ubicacion:"https://maps.app.goo.gl/TCLAnUJ4a4fgLzSSA",
+codigos:["0125","0225","0325","1969","0126","Si la letra de lote es A entonces le corresponde el valor 01, si es B el valor 02, si es C el Valor 03 y asi sucesivamente entonces la clave para abrir la puerta se armara colocando el valor de la letra del lote mas el numero del lote. Ejemplo: lote 12a el codigo sera 0112 si fuera lote 6C seria 0306","0127"],
+observacion:"ELDIER WHITE Color Paredes",
+mapa:"https://img.freepik.com/vector-premium/ilustracion-vectorial-simbolo-casa-ubicacion-diseno-conceptual-servicio-entrega-domicilio_929545-241.jpg?semt=ais_rp_progressive&w=740&q=80"
+},
+{
+nombre:"Sanctuary",
+ubicacion:"https://maps.app.goo.gl/bm6uYQYM2UE4hzLt5?g_st=com.google.maps.preview.copy",
+codigos:["0125","0225","7531","0126","2506","0911","0226","0127"],
+observacion:"ELDIER WHITE Color Paredes",
+mapa:"https://img.freepik.com/vector-premium/ilustracion-vectorial-simbolo-casa-ubicacion-diseno-conceptual-servicio-entrega-domicilio_929545-241.jpg?semt=ais_rp_progressive&w=740&q=80"
+},
+{
+nombre:"Sentinel Ridge",
+ubicacion:"https://maps.app.goo.gl/Rq3vStzLmnwhb2fZ7?g_st=com.google.maps.preview.copy",
+codigos:["Se Abre con LLave"],
+observacion:"Siempre checar si tiene Gable avisar para pedir la pintura",
+mapa:"https://dlqxt4mfnxo6k.cloudfront.net/dsldhomes.com/aHR0cHM6Ly9zMy5hbWF6b25hd3MuY29tL2J1aWxkZXJjbG91ZC85ODg1YmY0NWZiOGE1NWVlMGQ5ZWFjMTQyNGM0YWU1NS5qcGVn/webp/2000/2000"
+},
+{
+nombre:"Silverlake",
+ubicacion:"https://maps.app.goo.gl/5VeGDXwGo42KZVD28?g_st=com.google.maps.preview.copy",
+codigos:["0304","0127"],
+observacion:"ELDIER WHITE Color Paredes",
+mapa:"https://img.freepik.com/vector-premium/ilustracion-vectorial-simbolo-casa-ubicacion-diseno-conceptual-servicio-entrega-domicilio_929545-241.jpg?semt=ais_rp_progressive&w=740&q=80"
+},
+{
+nombre:"Soundview",
+ubicacion:"https://maps.app.goo.gl/LsUEqUSVP7zJWGSU9?g_st=ipc",
+codigos:["0126","0226","1234","#4567","Puerta Azul","0127"],
+observacion:"Departamentos, color de paredes Eldhier White",
+mapa:"https://img.freepik.com/vector-premium/ilustracion-vectorial-simbolo-casa-ubicacion-diseno-conceptual-servicio-entrega-domicilio_929545-241.jpg?semt=ais_rp_progressive&w=740&q=80"
+},
+{
+nombre:"Souther Palms",
+ubicacion:"https://maps.app.goo.gl/P8hyo3Lv9gFwEhGa6?g_st=com.google.maps.preview.copy",
+codigos:["Se abre con llave"],
+observacion:"ELDIER WHITE Pintura de Pared",
+mapa:"https://img.freepik.com/vector-premium/ilustracion-vectorial-simbolo-casa-ubicacion-diseno-conceptual-servicio-entrega-domicilio_929545-241.jpg?semt=ais_rp_progressive&w=740&q=80"
+},
+{
+nombre:"Southwood",
+ubicacion:"https://maps.app.goo.gl/kWfhQhuf3zPQWUKc9",
+codigos:["La apertura es con LLAVE"],
+observacion:"informen a Carlos Color de pared y puertas",
+mapa:"https://img.freepik.com/vector-premium/ilustracion-vectorial-simbolo-casa-ubicacion-diseno-conceptual-servicio-entrega-domicilio_929545-241.jpg?semt=ais_rp_progressive&w=740&q=80"
+},
+{
+nombre:"Stone Heaven",
+ubicacion:"https://maps.app.goo.gl/zDAT1PwapZabneeGA?g_st=com.google.maps.preview.copy",
+codigos:["Se abre con llave"],
+observacion:"ELDIER WHITE Pintura de Pared",
+mapa:"https://img.freepik.com/vector-premium/ilustracion-vectorial-simbolo-casa-ubicacion-diseno-conceptual-servicio-entrega-domicilio_929545-241.jpg?semt=ais_rp_progressive&w=740&q=80"
+},
+{
+nombre:"Sweetbarb",
+ubicacion:"https://maps.app.goo.gl/7isakJKFXfRfemVL8?g_st=com.google.maps.preview.copy",
+codigos:["El intendente el unico que abre, anticipar"],
+observacion:"AGRABBLE GRAY Pintura de paredes",
+mapa:"https://img.freepik.com/vector-premium/ilustracion-vectorial-simbolo-casa-ubicacion-diseno-conceptual-servicio-entrega-domicilio_929545-241.jpg?semt=ais_rp_progressive&w=740&q=80"
+},
+{
+nombre:"Ventura Manor",
+ubicacion:"https://maps.app.goo.gl/VQ5YJdAhS3oYCRfv7?g_st=com.google.maps.preview.copy",
+codigos:["0125","0225","0424","2293","0127"],
+observacion:"ELDIER WHITE Color Paredes",
+mapa:"https://img.freepik.com/vector-premium/ilustracion-vectorial-simbolo-casa-ubicacion-diseno-conceptual-servicio-entrega-domicilio_929545-241.jpg?semt=ais_rp_progressive&w=740&q=80"
+},
+{
+nombre:"Vickers States",
+ubicacion:"https://maps.app.goo.gl/PSueiJaBBFnnQEb17",
+codigos:["La apertura es con LLAVE"],
+observacion:"informen a Carlos Color de pared y puertas",
+mapa:"https://img.freepik.com/vector-premium/ilustracion-vectorial-simbolo-casa-ubicacion-diseno-conceptual-servicio-entrega-domicilio_929545-241.jpg?semt=ais_rp_progressive&w=740&q=80"
+},
+{
+nombre:"Waterside",
+ubicacion:"https://maps.app.goo.gl/bJuAKpsysurU51a58",
+codigos:["0326","0426","0127"],
+observacion:"Eldier White",
+mapa:"https://img.freepik.com/vector-premium/ilustracion-vectorial-simbolo-casa-ubicacion-diseno-conceptual-servicio-entrega-domicilio_929545-241.jpg?semt=ais_rp_progressive&w=740&q=80"
+},
+{
+nombre:"Young Oaks",
+ubicacion:"https://maps.app.goo.gl/cVPbCu48iCHRbjRG9?g_st=com.google.maps.preview.copy",
+codigos:["Se abre con llave"],
+observacion:"Puertas negras",
+mapa:"https://img.freepik.com/vector-premium/ilustracion-vectorial-simbolo-casa-ubicacion-diseno-conceptual-servicio-entrega-domicilio_929545-241.jpg?semt=ais_rp_progressive&w=740&q=80"
+}
+];
+
+datosColonias.sort((a,b)=>a.nombre.localeCompare(b.nombre));
+
+const input = document.getElementById("coloniaInput");
+const dropdown = document.getElementById("opcionesColonias");
+const tablaDatos = document.getElementById("tablaDatos");
+const nombreColonia = document.getElementById("nombreColonia");
+
+
+
+
+let opcionesFiltradas = [...datosColonias];
+let indiceActivo = -1;
+let currentScale = 1;
+let startDistance = 0;
+let startScale = 1;
+
+function renderDropdown(lista){
+    if(!lista.length){
+        dropdown.innerHTML = '<div class="dropdown-vacio">No se encontraron colonias.</div>';
+        dropdown.classList.add('visible');
+        return;
+    }
+
+    dropdown.innerHTML = lista.map((colonia, index)=>
+        `<div class="dropdown-item ${index===indiceActivo ? 'activa' : ''}" data-nombre="${colonia.nombre}">${colonia.nombre}</div>`
+    ).join('');
+
+    dropdown.classList.add('visible');
+}
+
+function ocultarDropdown(){
+    dropdown.classList.remove('visible');
+}
+
+function actualizarBotonLimpiar(){
+    clearBtn.classList.toggle('visible', input.value.trim().length > 0);
+}
+
+function enfocarBuscador(){
+    setTimeout(()=>{
+        input.focus({ preventScroll:true });
+    }, 50);
+}
+
+function filtrarColonias(texto){
+    const valor = texto.trim().toLowerCase();
+    opcionesFiltradas = datosColonias.filter(c => c.nombre.toLowerCase().includes(valor));
+    indiceActivo = -1;
+    renderDropdown(opcionesFiltradas);
+}
+
+
+const recentPanel = document.getElementById("recentPanel");
+const recentChips = document.getElementById("recentChips");
+
+function getRecientes(){
+    try{
+        return JSON.parse(localStorage.getItem("colonias_recientes") || "[]");
+    }catch(e){ return []; }
+}
+
+function saveReciente(nombre){
+    let lista = getRecientes().filter(x => x !== nombre);
+    lista.unshift(nombre);
+    lista = lista.slice(0,6);
+    localStorage.setItem("colonias_recientes", JSON.stringify(lista));
+    renderRecientes();
+}
+
+function renderRecientes(){
+    const lista = getRecientes();
+    if(!lista.length){
+        recentPanel.style.display = "none";
+        return;
+    }
+    recentPanel.style.display = "block";
+    recentChips.innerHTML = lista.map(n => `<button class="recent-chip" onclick="seleccionarColoniaPorNombre('${n}')">${n}</button>`).join("");
+}
+
+let coloniaSeleccionada = null;
+let codigosVisibles = false;
+const tiendasPorColonia = {"Yellow River": 1, "Jubilee": 1, "Airway Oaks": 1, "Bently": 2, "Blackwater": 1, "Bridlewood": 2, "Brookheaven": 2, "Cadence": 1, "Captain Cove": 7, "Carrington": 2, "Cottages of Aventura": 10, "Country Club States": null, "Days Landing": 3, "Deer Ridge Crossing": 8, "Dry Creek": 2, "Eagle Pointe": 2, "Ellies Cove": 5, "Enclave": 7, "Fairchild": 2, "Fallschase": 2, "Floridatown": 1, "Forest Shores": 7, "Freeport": null, "Gator Landing": 3, "Gavin Landing": 5, "Gaylen Oaks": 2, "Gleenhollow": 2, "Gleenlakes": 4, "GrassLand": 4, "Greenbrier": 4, "Greenfield": 1, "Hammond Place": 1, "Heritage Plantation": 3, "Hihglands": 3, "Huston": 3, "Independence": 3, "Iron Rock": 2, "Jay Rd": null, "Lakeland": 4, "Lakes Of Woodbine": 1, "Lancelot": 1, "Ledwick": 4, "Leighton Villages": 9, "Liberty Farms": 1, "Live Oaks": 4, "Lost Key": 6, "Madelyn Woods": 5, "Martin Preserve": 5, "Mary Anette": 2, "Midtown": 2, "Oxford": 3, "Parkwood": 1, "Patriot": 3, "Pecan Grove": 4, "Plantation Woods": 1, "Pless Landing": 4, "Quilanding": 4, "Rivers Cove": 1, "Roman Oaks": 8, "Russell Crossing": 5, "Sanctuary": 2, "Sentinel Ridge": 1, "Silverlake": 3, "Soundview": 8, "Souther Palms": 1, "Southwood": 4, "Stone Heaven": 4, "Sweetbarb": 2, "The Grove at Berryhill": 1, "Ventura Manor": 1, "Vickers States": 2, "Waterside": 8, "Young Oaks": 3, "RoseMary Sounbd": 8};
+const tiendasColonia = {"1": {"nombre": "Sherwin Tamarindo o Pace", "url": "https://maps.app.goo.gl/17LSgeqZ1APifhdb7?g_st=iw"}, "2": {"nombre": "Sherwin Milla 9", "url": "https://maps.app.goo.gl/Nw7rbU4Z2Emuzqz1A?g_st=iw"}, "3": {"nombre": "Sherwin CrestView", "url": "https://maps.app.goo.gl/Sf3zG3jGxJc2ZkLTA?g_st=iw"}, "4": {"nombre": "Sherwin Foley 98", "url": "https://maps.app.goo.gl/kityMzpEeDjduqaGA?g_st=iw"}, "5": {"nombre": "Sherwin 98 LostKey GavinsLanding", "url": "https://maps.app.goo.gl/L8soGhgc1eeFRYLa6?g_st=iw"}, "6": {"nombre": "Lost Key", "url": "https://maps.app.goo.gl/eDANGh1xbrTp2EXd8?g_st=a"}, "7": {"nombre": "Navarre (Captain Cove, Forest Shore, Enclave)", "url": "https://maps.app.goo.gl/s5YennQstL4Eq64C9?g_st=iw"}, "8": {"nombre": "Gulf Breeze (Roman, Soundview, Deer Ridge)", "url": "https://maps.app.goo.gl/WGtrRJyeTKo9B7zd6?g_st=ipc"}, "9": {"nombre": "Mobile", "url": "https://maps.app.goo.gl/RESD4QvGDDt1Z2fA7?g_st=a"}, "10": {"nombre": "Daphne", "url": "https://maps.app.goo.gl/oVrzR3z52UXeokh46"}};
+function escaparColonia(value){return String(value ?? '').replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));}
+function cerrarCodigosColonia(){
+ codigosVisibles=false;
+ document.getElementById('codigos').innerHTML=`<form class="codes-gate" onsubmit="desbloquearCodigosColonia(event)"><div class="gate-symbol" aria-hidden="true">🔒</div><p>Por seguridad, ingresa la contraseña para ver la información.</p><input id="coloniaClave" aria-label="Contraseña para ver los códigos" type="password" inputmode="numeric" maxlength="4" autocomplete="off" placeholder="••••" required><button type="submit">Ver códigos</button><p id="coloniaClaveError" class="codes-error" role="alert"></p></form>`;
+}
+function desbloquearCodigosColonia(event){
+ event.preventDefault();
+ const field=document.getElementById('coloniaClave');
+ if(field.value!=='1659'){document.getElementById('coloniaClaveError').textContent='Contraseña incorrecta. Intenta de nuevo.';field.value='';field.focus();return;}
+ if(!coloniaSeleccionada)return;
+ codigosVisibles=true;
+ document.getElementById('codigos').innerHTML=`<div class="codes-open-head"><span>Información desbloqueada</span><button class="codes-close" type="button" aria-label="Cerrar y ocultar códigos" onclick="cerrarCodigosColonia();document.getElementById('coloniaClave').focus()">×</button></div><ul class="codes-list">${coloniaSeleccionada.codigos.map(c=>`<li class="${/^\d+$/.test(c)?'':'code-note'}">${escaparColonia(c)}</li>`).join('')}</ul>`;
+ document.querySelector('.codes-close').focus();
+}
+function seleccionarColoniaPorNombre(nombre){
+ const colonia=datosColonias.find(c=>c.nombre===nombre);if(!colonia)return;
+ coloniaSeleccionada=colonia;cerrarCodigosColonia();saveReciente(nombre);
+ tablaDatos.style.display='grid';nombreColonia.style.display='block';nombreColonia.innerText=colonia.nombre;
+ document.getElementById('ubicacion').innerHTML=`<div class="location-actions"><a class="location-action-btn maps" href="${escaparColonia(colonia.ubicacion.trim())}" target="_blank" rel="noopener noreferrer">📍 Cómo llegar ↗</a><button class="location-action-btn share" type="button" id="compartirColoniaActual">↗ Compartir ubicación</button></div>`;
+ document.getElementById('compartirColoniaActual').onclick=()=>compartirUbicacionColonia(colonia.nombre,colonia.ubicacion.trim());
+ document.getElementById('observacion').textContent=colonia.observacion||'Sin observaciones registradas.';
+ const tienda=tiendasColonia[tiendasPorColonia[colonia.nombre]];
+ document.getElementById('coloniaTienda').innerHTML=tienda?`<p class="colonia-muted">Tienda asignada a esta colonia</p><div class="colonia-store-name">${escaparColonia(tienda.nombre)}</div>${tienda.url?`<a class="colonia-link" href="${escaparColonia(tienda.url)}" target="_blank" rel="noopener noreferrer">📍 Ir a la tienda ↗</a>`:'<p class="colonia-muted">Enlace de ubicación pendiente.</p>'}`:'<p class="colonia-muted">TIENDA NO ASIGNADA FAVOR DE INFORMAR AL ADMINISTRADOR</p>';
+ const mapa=document.getElementById('coloniaMapaLink');
+ if(colonia.mapa){mapa.href=colonia.mapa;mapa.textContent='Abrir mapa ↗';mapa.removeAttribute('aria-disabled');mapa.setAttribute('aria-label',`Abrir mapa de ${colonia.nombre} en una ventana nueva`);}
+ else{mapa.removeAttribute('href');mapa.textContent='Plano pendiente de agregar';mapa.setAttribute('aria-disabled','true');mapa.setAttribute('aria-label',`Plano de ${colonia.nombre} pendiente de agregar`);}
+ ocultarDropdown();input.value='';actualizarBotonLimpiar();renderRecientes();input.blur();
+}
+
+input.addEventListener("focus", ()=>{
+    filtrarColonias(input.value);
+});
+
+input.addEventListener("click", ()=>{
+    filtrarColonias(input.value);
+});
+
+input.addEventListener("input", ()=>{
+    filtrarColonias(input.value);
+});
+
+input.addEventListener("keydown", (e)=>{
+    if(!dropdown.classList.contains('visible')) return;
+
+    if(e.key === 'ArrowDown'){
+        e.preventDefault();
+        indiceActivo = Math.min(indiceActivo + 1, opcionesFiltradas.length - 1);
+        renderDropdown(opcionesFiltradas);
+    }else if(e.key === 'ArrowUp'){
+        e.preventDefault();
+        indiceActivo = Math.max(indiceActivo - 1, 0);
+        renderDropdown(opcionesFiltradas);
+    }else if(e.key === 'Enter'){
+        e.preventDefault();
+        if(indiceActivo >= 0 && opcionesFiltradas[indiceActivo]){
+            input.value = opcionesFiltradas[indiceActivo].nombre;
+            seleccionarColoniaPorNombre(opcionesFiltradas[indiceActivo].nombre);
+        }else if(opcionesFiltradas.length === 1){
+            input.value = opcionesFiltradas[0].nombre;
+            seleccionarColoniaPorNombre(opcionesFiltradas[0].nombre);
+        }
+    }else if(e.key === 'Escape'){
+        ocultarDropdown();
+    }
+});
+
+dropdown.addEventListener('click', (e)=>{
+    const item = e.target.closest('.dropdown-item');
+    if(!item) return;
+    const nombre = item.dataset.nombre;
+    input.value = nombre;
+    seleccionarColoniaPorNombre(nombre);
+});
+
+clearBtn.addEventListener('click', ()=>{
+    input.value = '';
+    actualizarBotonLimpiar();
+renderRecientes();
+    filtrarColonias('');
+    enfocarBuscador();
+});
+
+document.addEventListener('click', (e)=>{
+    if(!e.target.closest('.buscador-wrapper')){
+        ocultarDropdown();
+    }
+});
+
+actualizarBotonLimpiar();
+renderRecientes();
+
+</script>
+
+
+<div class="seccion" id="cumpleanos">
+<div class="section-card birthday-card" id="birthdaySection">
+<div class="section-body">
+<div class="birthday-header">
+<div style="font-size:30px;">🎂</div>
+<h2 class="section-title" style="margin:0;">Feliz cumpleaños este mes</h2>
+<div style="font-size:30px;">🎉</div>
+</div>
+<p class="section-subtitle"></p>
+<ul class="birthday-list" id="birthdayList"></ul>
+
+<div id="birthdayVideoSection" class="birthday-video-section" style="display:none;">
+  <div class="birthday-video-title">🎶 Video de cumpleaños para:</div>
+  <strong id="birthdayVideoNames" class="birthday-video-names"></strong>
+  <div class="birthday-video-frame">
+    <iframe
+      id="birthdayVideoFrame"
+      src=""
+      title="Video de cumpleaños"
+      allow="autoplay; encrypted-media; picture-in-picture"
+      allowfullscreen>
+    </iframe>
+  </div>
+  <div class="birthday-video-note">El video aparece únicamente durante el día del cumpleaños.</div>
+</div>
+</div>
+</div>
+
+
+</div>
+<div class="seccion" id="sherwin">
+<br/><br/><br/>
+<section class="sherwin-section" id="sherwinSection">
+<div class="sherwin-badge">🎨 Selección de tiendas Sherwin-Williams</div>
+<h2 class="sherwin-title">TIENDAS DE PINTURA</h2>
+<p class="sherwin-text"></p>
+<img alt="Ubicación de tiendas" class="sherwin-hero" src="https://dowitcherdesigns.com/wp-content/uploads/2023/03/sw-logo-stacked.png"/>
+<div class="sherwin-panel">
+<select aria-label="Selecciona tienda de pintura" class="sherwin-select" id="sherwinSelect">
+<option value="">Selecciona TIENDA DE PINTURA</option>
+<option value="https://maps.app.goo.gl/Hx764K4gzaL7329S8?g_st=iw">Sherwin Daphne</option>
+<option value="https://maps.app.goo.gl/17LSgeqZ1APifhdb7?g_st=iw">Sherwin Tamarindo o Pace</option>
+<option value="https://maps.app.goo.gl/Nw7rbU4Z2Emuzqz1A?g_st=iw">Sherwin Milla 9</option>
+<option value="https://maps.app.goo.gl/Sf3zG3jGxJc2ZkLTA?g_st=iw">Sherwin CrestView</option>
+<option value="https://maps.app.goo.gl/kityMzpEeDjduqaGA?g_st=iw">Sherwin Foley 98</option>
+<option value="https://maps.app.goo.gl/L8soGhgc1eeFRYLa6?g_st=iw">Sherwin GavinsLanding</option>
+<option value="https://maps.app.goo.gl/eDANGh1xbrTp2EXd8?g_st=a">Lost Key</option>
+<option value="https://maps.app.goo.gl/s5YennQstL4Eq64C9?g_st=iw"> Navarre (Captain Cove, Forest Shore, Enclave)</option>
+<option value="https://maps.app.goo.gl/WGtrRJyeTKo9B7zd6?g_st=ipc">Gulf Breeze (Roman, Soundview, Deer Ridge)</option>
+<option value="https://maps.app.goo.gl/oVrzR3z52UXeokh46">Daphne</option>
+<option value="https://maps.app.goo.gl/RESD4QvGDDt1Z2fA7?g_st=a">Mobile</option>
+</select>
+<div class="sherwin-link-wrap" id="sherwinLinkWrap"></div>
+<div class="nearby-actions">
+<a class="nearby-btn" href="https://www.google.com/maps/search/Sherwin-Williams+near+me" rel="noopener noreferrer" target="_blank">
+<span class="nearby-icon">🎨</span>
+<span class="nearby-text">
+<span class="nearby-title">Abrir una tienda Sherwin-Williams que se encuentre cerca de mí</span>
+<span class="nearby-sub">Buscar la tienda más cercana en Google Maps</span>
+</span>
+</a>
+<a class="nearby-btn" href="https://www.google.com/maps/search/hamburguesas+near+me" rel="noopener noreferrer" target="_blank">
+<span class="nearby-icon">🍔</span>
+<span class="nearby-text">
+<span class="nearby-title">Hamburguesas cerca de mí</span>
+<span class="nearby-sub">Abrir opciones cercanas en Google Maps</span>
+</span>
+</a>
+<a class="nearby-btn" href="https://www.google.com/maps/search/tacos+near+me" rel="noopener noreferrer" target="_blank">
+<span class="nearby-icon">🌮</span>
+<span class="nearby-text">
+<span class="nearby-title">Tacos cerca de mí</span>
+<span class="nearby-sub">Encontrar lugares cercanos rápidamente</span>
+</span>
+</a>
+<a class="nearby-btn" href="https://www.google.com/maps/search/gasolinera+gasolina+barata+near+me" rel="noopener noreferrer" target="_blank">
+<span class="nearby-icon">⛽</span>
+<span class="nearby-text">
+<span class="nearby-title">Gasolinera con gasolina barata cerca de mí</span>
+<span class="nearby-sub">Buscar estaciones cercanas en Google Maps</span>
+</span>
+</a>
+</div>
+<div class="nearby-note">Estas opciones abren Google Maps con una búsqueda cercana usando tu ubicación actual.</div>Estas opciones abren Google Maps con una búsqueda cercana usando tu ubicación actual.</div>
+</section></div>
+
+<script id="sherwin-migrado-script">
+(function(){
+    const sherwinSelect = document.getElementById('sherwinSelect');
+    const sherwinLinkWrap = document.getElementById('sherwinLinkWrap');
+    if(!sherwinSelect || !sherwinLinkWrap) return;
+
+    sherwinSelect.addEventListener('change', function(){
+        const url = this.value;
+        const nombre = this.options[this.selectedIndex].text;
+        if(!url){
+            sherwinLinkWrap.innerHTML = '';
+            return;
+        }
+        sherwinLinkWrap.innerHTML = `
+          <div class="location-actions">
+            <a class="sherwin-link-btn" href="${url}" target="_blank" rel="noopener noreferrer">📍 Abrir ubicación de ${nombre}</a>
+            <button class="location-action-btn share" type="button" onclick='compartirUbicacionTienda(${JSON.stringify(nombre)}, ${JSON.stringify(url)})'>📤 Compartir Ubicación</button>
+          </div>
+        `;
+    });
+})();
+</script>
+
+<script id="metallic-title-animation">// Animación decorativa independiente de la selección y los datos.
+(()=>{
+ const title=document.getElementById('nombreColonia');
+ if(!title)return;
+ const observer=new MutationObserver(()=>{
+  title.style.setProperty('--colonia-letters',Math.max(8,title.textContent.length));
+  title.classList.remove('metal-reveal');
+  void title.offsetWidth;
+  title.classList.add('metal-reveal');
+ });
+ observer.observe(title,{childList:true,characterData:true,subtree:true});
+})();
+</script><script id="soft-interaction-effects">(()=>{
+ const title=document.getElementById('nombreColonia');
+ const dashboard=document.getElementById('tablaDatos');
+ if(title && dashboard){
+  new MutationObserver(()=>{
+   dashboard.classList.remove('cards-enter');
+   void dashboard.offsetWidth;
+   dashboard.classList.add('cards-enter');
+  }).observe(title,{childList:true,characterData:true,subtree:true});
+ }
+ const selector='button,a.location-action-btn,a.colonia-link,a.nearby-btn';
+ const timers=new WeakMap();
+ document.addEventListener('click',event=>{
+  const button=event.target instanceof Element?event.target.closest(selector):null;
+  if(!button || button.disabled)return;
+  clearTimeout(timers.get(button));
+  button.classList.remove('touch-glow');
+  void button.offsetWidth;
+  button.classList.add('touch-glow');
+  timers.set(button,setTimeout(()=>{button.classList.remove('touch-glow');timers.delete(button);},420));
+ });
+})();
+</script></body></html>
+<div class="seccion" id="registro">
+<section class="registro-shell">
+<h2>Bitácora</h2>
+<textarea id="output" placeholder="Aquí aparecerá la información..."></textarea>
+<label>Fecha trabajada:</label>
+<input id="fechaTrabajo" type="date"/>
+<label>Nombre del trabajador:</label>
+<input id="nombreTrabajador" list="trabajadoresGuardados" placeholder="Escribe o selecciona el nombre" type="text"/>
+<datalist id="trabajadoresGuardados"></datalist>
+<label>Hora de Entrada:</label>
+<input id="entrada" step="60" type="time"/>
+<label>Hora de Salida:</label>
+<input id="salida" step="60" type="time"/>
+<div class="checkbox-container">
+<input id="diaSiguiente" type="checkbox"/>
+<label for="diaSiguiente">Marcar si sales al día siguiente</label>
+</div>
+<label>Tiempo de Lonche (minutos):</label>
+<input id="lonche" placeholder="Ej. 30" type="number"/>
+<button class="registro-btn" onclick="calcularHoras()">Guardar horas del día</button>
+<label>Nombre de la Colonia/Casa Particular:</label>
+<input autocomplete="off" id="coloniaRegistro" list="coloniasRegistroGuardadas" placeholder="Empieza a escribir el nombre de la colonia" type="text"/>
+<datalist id="coloniasRegistroGuardadas"></datalist>
+<button class="registro-btn" onclick="agregarColoniaRegistro()">Agregar Colonia</button>
+<label>Número de Lote/Casa:</label>
+<input id="lote" placeholder="Lote o número de casa" type="text"/>
+<label>Actividades Realizadas:</label>
+<input id="actividad" placeholder="Ej. Pintura de interior" type="text"/>
+<button class="registro-btn" onclick="agregarActividad()">Agregar</button>
+<label>Pendientes:</label>
+<input id="pendientesRegistro" placeholder="Ej. Retocar puerta principal" type="text"/>
+<button class="registro-btn" onclick="agregarPendientesRegistro()">Agregar</button>
+<button class="registro-btn whatsapp" onclick="enviarWhatsAppRegistro()">Enviar x WhatsApp</button>
+<div class="weekly-summary">
+<div class="weekly-summary-head">
+<h3>Resumen semanal por trabajador</h3>
+<div class="week-range" id="rangoSemana"></div>
+<div class="week-nav">
+<button class="registro-btn" type="button" onclick="cambiarSemana(-7)">← Semana anterior</button>
+<button class="registro-btn" type="button" onclick="cambiarSemana(7)">Semana siguiente →</button>
+</div>
+</div>
+<div id="resumenSemanal"></div>
+</div>
+</section>
+</div>
+<div class="seccion" id="material"><div id="connectedLocalNotice" class="connected-notice-card regla"><strong>Control local de este dispositivo</strong><p>Inicia sesión para guardar tus jornadas en la cuenta y compartirlas entre dispositivos.</p><button type="button" onclick="document.getElementById('connectedLoginButton').click()">Iniciar sesión</button></div>
+<section class="material-shell periodo-shell">
+<h2>Control de horas y pago</h2>
+<p class="periodo-intro">Aquí puedes llevar el control semanal de tus horas. Solo coloca tu nombre, lo que ganas por hora y los días de tu periodo.</p>
+<div class="periodo-setup">
+<h3>Configurar trabajador</h3>
+<div class="periodo-form-grid">
+<label>Escribe tu nombre<input id="periodoNombre" placeholder="Nombre completo" type="text"/></label>
+<label>¿Cuánto ganas por hora?<div class="money-input"><span>$</span><input id="periodoSueldo" min="0" placeholder="20.00" step="0.01" type="number"/></div></label>
+<label>¿Cuándo inicia tu semana?<select id="periodoInicio"></select></label>
+<label>¿Cuándo cierra tu semana?<select id="periodoCierre"></select></label>
+</div>
+<button class="periodo-main-btn" id="guardarPerfilPeriodo" type="button">Guardar trabajador</button>
+<button class="periodo-cancel-btn" id="cancelarPerfilPeriodo" type="button">Cancelar</button>
+<p class="periodo-note">El periodo debe abarcar siete días. Al elegir el inicio, el cierre correcto se seleccionará automáticamente.</p>
+</div>
+<div class="periodo-add-worker" id="periodoAgregarTrabajador">
+<div><b>¿Quieres registrar a otro trabajador?</b><span>Presiona el botón para ingresar su nombre, sueldo y periodo. Cada persona tendrá su información separada.</span></div>
+<button id="abrirPerfilPeriodo" type="button">＋ Agregar otro trabajador</button>
+</div>
+<div class="periodo-people-head">
+<h3>Trabajadores guardados</h3>
+<span id="periodoPersonasConteo"></span>
+</div>
+<div id="periodoPerfiles"></div>
+</section>
+</div>
+<script>
+(function(){
+  const botones = document.querySelectorAll('.top-tab-btn');
+  const secciones = document.querySelectorAll('.seccion');
+
+  function mostrarSeccion(id){
+    secciones.forEach(sec => sec.classList.toggle('activa', sec.id === id));
+    botones.forEach(btn => btn.classList.toggle('active', btn.dataset.seccion === id));
+    window.scrollTo({top:0, behavior:'smooth'});
+  }
+
+  botones.forEach(btn => {
+    btn.addEventListener('click', () => mostrarSeccion(btn.dataset.seccion));
+  });
+
+  function formatoFecha() {
+    const dias = ['Domingo','Lunes','Martes','Miércoles','Jueves','Viernes','Sábado'];
+    const meses = ['Enero','Febrero','Marzo','Abril','Mayo','Junio','Julio','Agosto','Septiembre','Octubre','Noviembre','Diciembre'];
+    const hoy = new Date();
+    return `*${dias[hoy.getDay()]}, ${hoy.getDate()} de ${meses[hoy.getMonth()]}*`;
+  }
+
+  const output = document.getElementById('output');
+  if(output){ output.value = formatoFecha() + "\n\n"; }
+
+  const listaColoniasRegistro = document.getElementById('coloniasRegistroGuardadas');
+  if(listaColoniasRegistro && typeof datosColonias !== 'undefined'){
+    listaColoniasRegistro.innerHTML = datosColonias
+      .map(colonia => `<option value="${String(colonia.nombre).replace(/&/g,'&amp;').replace(/"/g,'&quot;')}"></option>`)
+      .join('');
+  }
+
+  const STORAGE_HORAS = 'lozano_registros_semanales_v1';
+  const STORAGE_PAGOS = 'lozano_pagos_por_hora_v1';
+  let semanaVisible = new Date();
+  semanaVisible.setHours(12,0,0,0);
+
+  function fechaLocalISO(fecha){
+    const y=fecha.getFullYear(), m=String(fecha.getMonth()+1).padStart(2,'0'), d=String(fecha.getDate()).padStart(2,'0');
+    return `${y}-${m}-${d}`;
+  }
+  const fechaTrabajo = document.getElementById('fechaTrabajo');
+  if(fechaTrabajo) fechaTrabajo.value = fechaLocalISO(new Date());
+  function leerJSON(clave){ try{return JSON.parse(localStorage.getItem(clave)||'{}')}catch(e){return {}} }
+  function guardarJSON(clave,valor){ localStorage.setItem(clave,JSON.stringify(valor)); }
+  function normalizarNombre(nombre){ return nombre.trim().replace(/\s+/g,' '); }
+  function inicioSemana(fecha){
+    const f=new Date(fecha); f.setHours(12,0,0,0);
+    f.setDate(f.getDate()-((f.getDay()+4)%7));
+    return f;
+  }
+  function textoDuracion(minutos){
+    minutos=Math.max(0,Math.round(Number(minutos)||0));
+    const h=Math.floor(minutos/60), m=minutos%60;
+    return `${h} ${h===1?'hora':'horas'}, ${m} ${m===1?'minuto':'minutos'}`;
+  }
+  function fechaCorta(fecha){ return fecha.toLocaleDateString('es-MX',{day:'numeric',month:'short',year:'numeric'}); }
+  function escaparHTML(valor){ return String(valor).replace(/[&<>'"]/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;',"'":'&#39;','"':'&quot;'}[c])); }
+  function actualizarTrabajadoresGuardados(){
+    const registros=leerJSON(STORAGE_HORAS), lista=document.getElementById('trabajadoresGuardados');
+    if(lista) lista.innerHTML=Object.keys(registros).sort((a,b)=>a.localeCompare(b,'es')).map(n=>`<option value="${escaparHTML(n)}"></option>`).join('');
+  }
+
+  window.formato12Horas = function(timeStr) {
+    let [h, m] = timeStr.split(':').map(Number);
+    const ampm = h >= 12 ? 'p.m.' : 'a.m.';
+    h = h % 12 || 12;
+    return `${h}:${m.toString().padStart(2, '0')} ${ampm}`;
+  }
+
+  window.calcularHoras = function() {
+    const nombre = normalizarNombre(document.getElementById('nombreTrabajador').value);
+    const fecha = document.getElementById('fechaTrabajo').value;
+    const entrada = document.getElementById('entrada').value;
+    const salida = document.getElementById('salida').value;
+    const lonche = parseInt(document.getElementById('lonche').value) || 0;
+    const diaSig = document.getElementById('diaSiguiente').checked;
+    if (!nombre) return alert('Escribe el nombre del trabajador.');
+    if (!fecha) return alert('Selecciona la fecha trabajada.');
+    if (!entrada || !salida) return alert('Por favor selecciona las horas.');
+
+    let t1 = new Date(`2025-01-01T${entrada}`);
+    let t2 = new Date(`2025-01-01T${salida}`);
+    if (diaSig) t2.setDate(t2.getDate() + 1);
+    let diff = (t2 - t1) / 60000 - lonche;
+    if(diff < 0) return alert('La salida debe ser posterior a la entrada. Si saliste al día siguiente, marca esa opción.');
+
+    const horas = Math.floor(diff / 60);
+    const minutos = diff % 60;
+
+    const texto = `Nombre del Trabajador: ${nombre}\nFecha: ${fecha}\nHora de Entrada: ${formato12Horas(entrada)}\nHora de Salida: ${formato12Horas(salida)}\nTiempo de lonche: ${lonche} minutos\nTiempo Laborado: ${horas} Horas ${minutos} Minutos _El tiempo de lonche ya va descontado_\n\n`;
+    document.getElementById('output').value += texto;
+    const registros=leerJSON(STORAGE_HORAS);
+    if(!registros[nombre]) registros[nombre]={};
+    registros[nombre][fecha]={minutos:Math.round(diff),entrada,salida,lonche,diaSig};
+    guardarJSON(STORAGE_HORAS,registros);
+    semanaVisible=new Date(`${fecha}T12:00:00`);
+    actualizarTrabajadoresGuardados();
+    renderResumenSemanal();
+    alert('Horas guardadas en el resumen semanal.');
+  }
+
+  window.agregarTrabajador = function() {
+    const nombre = document.getElementById('nombreTrabajador').value.trim();
+    if (!nombre) return;
+    document.getElementById('output').value += `Nombre del Trabajador: ${nombre}\n`;
+    document.getElementById('nombreTrabajador').value = '';
+  }
+
+  window.cambiarSemana=function(dias){ semanaVisible.setDate(semanaVisible.getDate()+dias); renderResumenSemanal(); }
+  window.actualizarPago=function(nombre,valor){
+    const pagos=leerJSON(STORAGE_PAGOS); pagos[nombre]=Math.max(0,parseFloat(valor)||0); guardarJSON(STORAGE_PAGOS,pagos); renderResumenSemanal();
+  }
+  window.eliminarRegistroDia=function(nombre,fecha){
+    if(!confirm(`¿Eliminar las horas de ${nombre} del ${fecha}?`)) return;
+    const registros=leerJSON(STORAGE_HORAS);
+    if(registros[nombre]){ delete registros[nombre][fecha]; if(!Object.keys(registros[nombre]).length) delete registros[nombre]; }
+    guardarJSON(STORAGE_HORAS,registros); actualizarTrabajadoresGuardados(); renderResumenSemanal();
+  }
+  window.enviarResumenTrabajador=function(nombre){
+    const registros=leerJSON(STORAGE_HORAS), pagos=leerJSON(STORAGE_PAGOS), inicio=inicioSemana(semanaVisible), fin=new Date(inicio); fin.setDate(fin.getDate()+6);
+    const dias=['Miércoles','Jueves','Viernes','Sábado','Domingo','Lunes','Martes'];
+    let total=0, lineas=[];
+    dias.forEach((dia,i)=>{ const f=new Date(inicio); f.setDate(f.getDate()+i); const item=(registros[nombre]||{})[fechaLocalISO(f)]; const mins=item?item.minutos:0; total+=mins; lineas.push(`${dia} ${f.getDate()}: ${textoDuracion(mins)}`); });
+    const tarifa=Number(pagos[nombre])||0, cobro=(total/60)*tarifa;
+    const mensaje=`*${nombre}*\nSemana del ${fechaCorta(inicio)} al ${fechaCorta(fin)}\n\n*Total de horas trabajadas:* ${textoDuracion(total)}\n*Pago por hora:* $${tarifa.toFixed(2)}\n*Aproximado a cobrar:* $${cobro.toFixed(2)}\n\n${lineas.join('\n')}`;
+    window.open(`https://wa.me/?text=${encodeURIComponent(mensaje)}`,'_blank');
+  }
+
+  function renderResumenSemanal(){
+    const cont=document.getElementById('resumenSemanal'), rango=document.getElementById('rangoSemana'); if(!cont||!rango)return;
+    const registros=leerJSON(STORAGE_HORAS), pagos=leerJSON(STORAGE_PAGOS), inicio=inicioSemana(semanaVisible), fin=new Date(inicio); fin.setDate(fin.getDate()+6);
+    rango.textContent=`Miércoles ${fechaCorta(inicio)} — Martes ${fechaCorta(fin)}`;
+    const dias=['Miércoles','Jueves','Viernes','Sábado','Domingo','Lunes','Martes'];
+    const trabajadores=Object.keys(registros).filter(nombre=>dias.some((_,i)=>{const f=new Date(inicio);f.setDate(f.getDate()+i);return registros[nombre][fechaLocalISO(f)]})).sort((a,b)=>a.localeCompare(b,'es'));
+    if(!trabajadores.length){cont.innerHTML='<div class="empty-week">Todavía no hay horas guardadas para esta semana.</div>';return;}
+    cont.innerHTML=trabajadores.map(nombre=>{
+      let total=0;
+      const nombreSeguro=encodeURIComponent(nombre);
+      const filas=dias.map((dia,i)=>{const f=new Date(inicio);f.setDate(f.getDate()+i);const iso=fechaLocalISO(f),item=registros[nombre][iso],mins=item?item.minutos:0;total+=mins;return `<tr><td>${dia}<br><small>${f.getDate()}/${f.getMonth()+1}</small></td><td>${textoDuracion(mins)}${item?`<button class="delete-day-btn" onclick="eliminarRegistroDia(decodeURIComponent('${nombreSeguro}'),'${iso}')">Borrar</button>`:''}</td></tr>`}).join('');
+      const tarifa=Number(pagos[nombre])||0, cobro=total/60*tarifa;
+      return `<article class="worker-week-card"><h4 class="worker-week-title">${escaparHTML(nombre)}</h4><div class="worker-total">Total: ${textoDuracion(total)}</div><div class="pay-grid"><label>Pago por hora<input type="number" min="0" step="0.01" value="${tarifa||''}" placeholder="$0.00" onchange="actualizarPago(decodeURIComponent('${nombreSeguro}'),this.value)"></label><div class="estimated-pay">Aproximado a cobrar: $${cobro.toFixed(2)}</div></div><table class="weekly-table"><tbody>${filas}</tbody></table><button class="registro-btn whatsapp" type="button" onclick="enviarResumenTrabajador(decodeURIComponent('${nombreSeguro}'))">Enviar tabla de ${escaparHTML(nombre)} por WhatsApp</button></article>`;
+    }).join('');
+  }
+  actualizarTrabajadoresGuardados();
+  renderResumenSemanal();
+
+  window.agregarColoniaRegistro = function() {
+    const col = document.getElementById('coloniaRegistro').value.trim();
+    if (!col) return;
+    const area = document.getElementById('output');
+    area.value += `\n*${col}*\n`;
+    document.getElementById('coloniaRegistro').value = '';
+  }
+
+  window.agregarActividad = function() {
+    const lote = document.getElementById('lote').value.trim();
+    const act = document.getElementById('actividad').value.trim();
+    if (!lote || !act) return;
+    document.getElementById('output').value += `* ${lote} ${act}\n`;
+    document.getElementById('lote').value = '';
+    document.getElementById('actividad').value = '';
+  }
+
+  window.agregarPendientesRegistro = function() {
+    const pend = document.getElementById('pendientesRegistro').value.trim();
+    if (!pend) return;
+    document.getElementById('output').value += `*Pendientes:* ${pend}\n`;
+    document.getElementById('pendientesRegistro').value = '';
+  }
+
+  window.enviarWhatsAppRegistro = function() {
+    const texto = encodeURIComponent(document.getElementById('output').value);
+    const url = `https://wa.me/+12517521659?text=${texto}`;
+    window.open(url, '_blank');
+  }
+
+  const productos = ["Potty", "Caulk Rojo", "Caulk Rosa", "Caulk Azul", "Caulk Clear", "Cinta Tape", "Solo",
+                     "Plastico Ventanas", "Plastico Piso", "Musket Brown", "Tricorn Black", "Tuxedo", "Beige",
+                     "Pintura Piso", "Lija 120", "Lija 150", "Lija 180"];
+  let carrito = {};
+  const contenedor = document.getElementById("productos-container");
+
+  if(contenedor){
+    productos.forEach(producto => {
+      let btn = document.createElement("div");
+      btn.className = "producto";
+      btn.textContent = producto;
+      btn.onclick = () => agregarProducto(producto);
+      contenedor.appendChild(btn);
+    });
+  }
+
+  window.agregarProducto = function(nombre) {
+    if (carrito[nombre]) carrito[nombre]++;
+    else carrito[nombre] = 1;
+    actualizarLista();
+  }
+
+  const productoPersonalizado = document.getElementById("productoPersonalizado");
+  if(productoPersonalizado){
+    productoPersonalizado.addEventListener("keypress", function(event) {
+      if (event.key === "Enter") {
+        let nombre = this.value.trim();
+        if (nombre) {
+          agregarProducto(nombre);
+          this.value = "";
+        }
+      }
+    });
+  }
+
+  window.actualizarLista = function() {
+    let lista = "<strong>Se requiere:</strong><br>";
+    for (let producto in carrito) {
+      lista += `<span class="cantidad">${carrito[producto]}</span> - ${producto}<br>`;
+    }
+    document.getElementById("listaProductos").innerHTML = lista;
+  }
+
+  window.copiarPedido = function() {
+    let mensaje = "Se requiere:\n";
+    for (let producto in carrito) {
+      mensaje += `${carrito[producto]} - ${producto}\n`;
+    }
+    if (mensaje.trim() === "Se requiere:") {
+      alert("Agrega productos antes de copiar.");
+      return;
+    }
+    navigator.clipboard.writeText(mensaje).then(() => {
+      alert("Pedido copiado al portapapeles.");
+    }).catch(() => {
+      let tempInput = document.createElement("textarea");
+      tempInput.value = mensaje;
+      document.body.appendChild(tempInput);
+      tempInput.select();
+      document.execCommand("copy");
+      document.body.removeChild(tempInput);
+      alert("Pedido copiado al portapapeles.");
+    });
+  }
+
+  window.copiarYEnviar = function() {
+    let mensaje = "Se requiere:\n";
+    for (let producto in carrito) {
+      mensaje += `${carrito[producto]} - ${producto}\n`;
+    }
+    if (mensaje.trim() === "Se requiere:") {
+      alert("Agrega productos antes de enviar.");
+      return;
+    }
+    const numeroWhatsApp = "12512562787";
+    const url = `https://wa.me/${numeroWhatsApp}?text=${encodeURIComponent(mensaje)}`;
+    window.open(url, '_blank');
+  }
+})();
+</script>
+<script id="periodo-control-script">
+(function(){
+  const CLAVE='lozano_control_periodos_v1';
+  const DIAS=['Domingo','Lunes','Martes','Miércoles','Jueves','Viernes','Sábado'];
+  let perfilEditando=null;
+  const $=id=>document.getElementById(id);
+  const leer=()=>{try{return JSON.parse(localStorage.getItem(CLAVE)||'{"perfiles":{},"registros":{}}')}catch(e){return {perfiles:{},registros:{}}}};
+  const guardar=d=>localStorage.setItem(CLAVE,JSON.stringify(d));
+  const iso=f=>`${f.getFullYear()}-${String(f.getMonth()+1).padStart(2,'0')}-${String(f.getDate()).padStart(2,'0')}`;
+  const fechaDe=s=>new Date(`${s}T12:00:00`);
+  const esc=s=>String(s).replace(/[&<>'"]/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;',"'":'&#39;','"':'&quot;'}[c]));
+  const dur=m=>{m=Math.max(0,Math.round(Number(m)||0));const h=Math.floor(m/60),r=m%60;return `${h} ${h===1?'hora':'horas'} ${r} ${r===1?'minuto':'minutos'}`};
+  const fechaBonita=f=>f.toLocaleDateString('es-MX',{day:'numeric',month:'short',year:'numeric'});
+  function inicioPeriodo(fecha,diaInicio){const f=new Date(fecha);f.setHours(12,0,0,0);f.setDate(f.getDate()-((f.getDay()-diaInicio+7)%7));return f}
+  function minutosTurno(entrada,salida,lonche,siguiente){
+    if(!entrada||!salida)return null;const [eh,em]=entrada.split(':').map(Number),[sh,sm]=salida.split(':').map(Number);
+    let total=(sh*60+sm)-(eh*60+em);if(siguiente)total+=1440;total-=Math.max(0,Number(lonche)||0);return total<0?null:total;
+  }
+  function llenarDias(){
+    const ini=$('periodoInicio'),cie=$('periodoCierre');if(!ini||!cie)return;
+    ini.innerHTML=cie.innerHTML=DIAS.map((d,i)=>`<option value="${i}">${d}</option>`).join('');ini.value='3';cie.value='2';
+    ini.addEventListener('change',()=>cie.value=(Number(ini.value)+6)%7);
+  }
+  function mostrarFormularioPeriodo(esEdicion=false){
+    const formulario=document.querySelector('.periodo-setup');
+    if(formulario){formulario.hidden=false;formulario.style.display='block';formulario.classList.remove('oculto');formulario.classList.toggle('editando',esEdicion);}
+    const agregar=$('periodoAgregarTrabajador');if(agregar)agregar.classList.add('oculto');
+  }
+  function ocultarFormularioPeriodo(){
+    const formulario=document.querySelector('.periodo-setup');
+    if(formulario){formulario.classList.add('oculto');formulario.classList.remove('editando');formulario.hidden=true;formulario.style.display='none';}
+    const agregar=$('periodoAgregarTrabajador');if(agregar)agregar.classList.remove('oculto');
+  }
+  function limpiarPerfil(){perfilEditando=null;$('periodoNombre').value='';$('periodoSueldo').value='';$('periodoInicio').value='3';$('periodoCierre').value='2';$('guardarPerfilPeriodo').textContent='Guardar trabajador';document.querySelector('.periodo-setup')?.classList.remove('editando');}
+  function guardarPerfil(){
+    const nombre=$('periodoNombre').value.trim().replace(/\s+/g,' '),sueldo=Number($('periodoSueldo').value),inicio=Number($('periodoInicio').value),cierre=Number($('periodoCierre').value);
+    if(!nombre)return alert('Escribe el nombre del trabajador.');if(!(sueldo>=0))return alert('Escribe cuánto gana por hora.');if(cierre!==(inicio+6)%7)return alert(`Para un periodo de siete días que inicia el ${DIAS[inicio]}, el cierre debe ser el ${DIAS[(inicio+6)%7]}.`);
+    const d=leer();let id=perfilEditando;
+    if(!id){const repetido=Object.entries(d.perfiles).find(([,p])=>p.nombre.toLowerCase()===nombre.toLowerCase());id=repetido?repetido[0]:`p${Date.now()}${Math.floor(Math.random()*1000)}`;}
+    d.perfiles[id]={...(d.perfiles[id]||{}),nombre,sueldo,inicio,cierre,vista:(d.perfiles[id]||{}).vista||iso(new Date())};if(!d.registros[id])d.registros[id]={};guardar(d);limpiarPerfil();ocultarFormularioPeriodo();render();setTimeout(()=>document.querySelector('.periodo-card')?.scrollIntoView({behavior:'smooth',block:'start'}),120);
+  }
+  window.editarPerfilPeriodo=id=>{const d=leer(),p=d.perfiles[id];if(!p)return;mostrarFormularioPeriodo(true);perfilEditando=id;$('periodoNombre').value=p.nombre;$('periodoSueldo').value=p.sueldo;$('periodoInicio').value=p.inicio;$('periodoCierre').value=p.cierre;$('guardarPerfilPeriodo').textContent='Guardar cambios';$('periodoNombre').focus();document.querySelector('.periodo-setup').scrollIntoView({behavior:'smooth',block:'center'});};
+  window.cambiarVistaPeriodo=(id,dias)=>{const d=leer(),p=d.perfiles[id];if(!p)return;const f=fechaDe(p.vista||iso(new Date()));f.setDate(f.getDate()+dias);p.vista=iso(f);guardar(d);render();};
+  window.abrirEntradaHoras=id=>{const panel=$(`form-horas-${id}`);if(panel)panel.open=true;$(`pf-${id}`).value=iso(new Date());$(`pe-${id}`).value='';$(`ps-${id}`).value='';$(`pl-${id}`).value='0';$(`pn-${id}`).checked=false;calcularVistaPreviaPeriodo(id);document.getElementById(`entrada-periodo-${id}`).scrollIntoView({behavior:'smooth',block:'center'});};
+  window.calcularVistaPreviaPeriodo=id=>{const m=minutosTurno($(`pe-${id}`).value,$(`ps-${id}`).value,$(`pl-${id}`).value,$(`pn-${id}`).checked),c=$(`pt-${id}`);if(c)c.textContent=m===null?'Tiempo laborado: completa las horas correctamente':`Tiempo laborado: ${dur(m)}`;};
+  window.guardarDiaPeriodo=id=>{
+    const fecha=$(`pf-${id}`).value,entrada=$(`pe-${id}`).value,salida=$(`ps-${id}`).value,lonche=Number($(`pl-${id}`).value)||0,siguiente=$(`pn-${id}`).checked,m=minutosTurno(entrada,salida,lonche,siguiente);
+    if(!fecha)return alert('Selecciona la fecha trabajada.');if(m===null)return alert('Revisa la entrada y salida. Marca si la salida fue al día siguiente.');
+    const d=leer();if(!d.perfiles[id])return;d.registros[id]=d.registros[id]||{};d.registros[id][fecha]={entrada,salida,lonche,siguiente,minutos:m};d.perfiles[id].vista=fecha;guardar(d);render();
+  };
+  window.cargarDiaPeriodo=(id,fecha)=>{const d=leer(),r=(d.registros[id]||{})[fecha];if(!r)return;const panel=$(`form-horas-${id}`);if(panel)panel.open=true;$(`pf-${id}`).value=fecha;$(`pe-${id}`).value=r.entrada;$(`ps-${id}`).value=r.salida;$(`pl-${id}`).value=r.lonche;$(`pn-${id}`).checked=!!r.siguiente;calcularVistaPreviaPeriodo(id);document.getElementById(`entrada-periodo-${id}`).scrollIntoView({behavior:'smooth',block:'center'});};
+  window.borrarDiaPeriodo=(id,fecha)=>{if(!confirm('¿Borrar las horas registradas de este día?'))return;const d=leer();if(d.registros[id])delete d.registros[id][fecha];guardar(d);render();};
+  window.borrarPersonaPeriodo=id=>{const d=leer(),p=d.perfiles[id];if(!p||!confirm(`¿Eliminar a ${p.nombre} y todos sus registros de Periodo?`))return;delete d.perfiles[id];delete d.registros[id];guardar(d);render();};
+  window.enviarPeriodoWhatsApp=id=>{
+    const d=leer(),p=d.perfiles[id];if(!p)return;const inicio=inicioPeriodo(fechaDe(p.vista||iso(new Date())),p.inicio),fin=new Date(inicio);fin.setDate(fin.getDate()+6);let total=0,diasTrabajados=0,lineas=[];
+    for(let i=0;i<7;i++){const f=new Date(inicio);f.setDate(f.getDate()+i);const r=(d.registros[id]||{})[iso(f)],m=r?r.minutos:0;total+=m;if(m>0)diasTrabajados++;lineas.push(`*${DIAS[f.getDay()]} ${f.getDate()}:* ${dur(m)}`)}
+    const cobro=total/60*Number(p.sueldo||0);const msg=`*CONTROL DE HORAS*\n_${fechaBonita(inicio)} al ${fechaBonita(fin)}_\n\n*Nombre del trabajador:* ${p.nombre}\n*Sueldo por hora:* $${Number(p.sueldo).toFixed(2)}\n*Inicio del periodo:* ${DIAS[p.inicio]}\n*Corte:* ${DIAS[p.cierre]}\n*Días trabajados:* ${diasTrabajados}\n*Tiempo laborado:* ${dur(total)}\n*Cobro aproximado:* $${cobro.toFixed(2)}\n\n*DETALLE POR DÍA*\n${lineas.join('\n')}\n\n_Estimación calculada según las horas registradas._`;
+    window.open(`https://wa.me/?text=${encodeURIComponent(msg)}`,'_blank');
+  };
+  function render(){
+    const d=leer(),contenedor=$('periodoPerfiles'),perfiles=Object.entries(d.perfiles);if(!contenedor)return;$('periodoPersonasConteo').textContent=`${perfiles.length} ${perfiles.length===1?'persona':'personas'}`;
+    if(!perfiles.length){contenedor.innerHTML='<div class="periodo-empty">Agrega el primer trabajador para comenzar a registrar sus horas.</div>';mostrarFormularioPeriodo(false);$('periodoAgregarTrabajador')?.classList.add('oculto');return;}
+    contenedor.innerHTML=perfiles.map(([id,p])=>{
+      const inicio=inicioPeriodo(fechaDe(p.vista||iso(new Date())),Number(p.inicio)),fin=new Date(inicio);fin.setDate(fin.getDate()+6);let total=0,trabajados=0;
+      const filas=Array.from({length:7},(_,i)=>{const f=new Date(inicio);f.setDate(f.getDate()+i);const fi=iso(f),r=(d.registros[id]||{})[fi],m=r?r.minutos:0;total+=m;if(m>0)trabajados++;return `<div class="periodo-day ${r?'':'zero'}"><div><b>${DIAS[f.getDay()]}</b> · ${fechaBonita(f)}</div><div class="periodo-day-time">${r?dur(m):'Sin registrar'}<span class="hours-day-pay">${r?'$'+(m/60*Number(p.sueldo||0)).toFixed(2):'—'}</span>${r?`<span class="periodo-day-actions"><button class="edit" onclick="cargarDiaPeriodo('${id}','${fi}')">Editar</button><button class="remove" onclick="borrarDiaPeriodo('${id}','${fi}')">Borrar</button></span>`:''}</div></div>`}).join('');
+      const cobro=total/60*Number(p.sueldo||0),hoy=iso(new Date());
+      return `<article class="periodo-card"><div class="periodo-card-head"><div class="periodo-card-name"><strong>${esc(p.nombre)}</strong><button class="periodo-edit-btn" onclick="editarPerfilPeriodo('${id}')">Editar datos</button></div><div class="hours-period-caption">📅 ${fechaBonita(inicio)} al ${fechaBonita(fin)}</div><div class="hours-pay-hero"><span>Llevas acumulado</span><strong>$${cobro.toFixed(2)}</strong><small>Estimado según tus horas registradas</small></div><div class="periodo-stats"><div class="periodo-stat"><span aria-hidden="true">◷</span><b>${dur(total)}</b><small>Horas trabajadas</small></div><div class="periodo-stat"><span aria-hidden="true">＄</span><b>$${Number(p.sueldo).toFixed(2)}</b><small>Pago por hora</small></div><div class="periodo-stat"><span aria-hidden="true">▦</span><b>${trabajados} ${trabajados===1?'día':'días'}</b><small>Días trabajados</small></div></div></div><div class="periodo-card-body"><div class="periodo-range-row"><button onclick="cambiarVistaPeriodo('${id}',-7)">← Anterior</button><div class="periodo-range-label">${fechaBonita(inicio)}<br>al ${fechaBonita(fin)}</div><button onclick="cambiarVistaPeriodo('${id}',7)">Siguiente →</button></div><button class="periodo-action-btn hours-register-btn" type="button" onclick="abrirEntradaHoras('${id}')">＋ Registrar horas de hoy</button><details class="hours-entry-details" id="form-horas-${id}"><summary>Agregar o modificar horas</summary><div class="periodo-entry-box" id="entrada-periodo-${id}"><h4>Agregar o modificar horas</h4><div class="periodo-entry-grid"><label>Fecha<input id="pf-${id}" type="date" value="${hoy}"></label><label>Hora de entrada<input id="pe-${id}" type="time" oninput="calcularVistaPreviaPeriodo('${id}')"></label><label>Hora de salida<input id="ps-${id}" type="time" oninput="calcularVistaPreviaPeriodo('${id}')"></label><label>Tiempo de lonche (minutos)<input id="pl-${id}" type="number" min="0" value="0" oninput="calcularVistaPreviaPeriodo('${id}')"></label><label class="periodo-check"><input id="pn-${id}" type="checkbox" onchange="calcularVistaPreviaPeriodo('${id}')"> La salida fue al día siguiente</label></div><div class="periodo-live-time" id="pt-${id}">Tiempo laborado: completa las horas</div><button class="periodo-action-btn" onclick="guardarDiaPeriodo('${id}')">Guardar horas del día</button></div></details><h4 class="hours-detail-title">Detalle del periodo</h4><div class="periodo-days">${filas}</div><button class="periodo-action-btn periodo-whatsapp" onclick="enviarPeriodoWhatsApp('${id}')">Compartir resumen por WhatsApp</button><button class="periodo-action-btn periodo-delete-person" onclick="borrarPersonaPeriodo('${id}')">Eliminar trabajador</button></div></article>`;
+    }).join('');
+  }
+  llenarDias();
+  $('guardarPerfilPeriodo')?.addEventListener('click',guardarPerfil);
+  $('abrirPerfilPeriodo')?.addEventListener('click',()=>{limpiarPerfil();mostrarFormularioPeriodo(false);document.querySelector('.periodo-setup')?.scrollIntoView({behavior:'smooth',block:'center'});setTimeout(()=>$('periodoNombre')?.focus(),250);});
+  $('cancelarPerfilPeriodo')?.addEventListener('click',()=>{limpiarPerfil();ocultarFormularioPeriodo();});
+  render();
+  if(Object.keys(leer().perfiles).length)ocultarFormularioPeriodo();
+})();
+</script>
+<script id="cumpleanos-fix-script">
+(function(){
+  function forzarRenderCumpleanos(){
+    try{
+      if (typeof renderCumplesDelMes === 'function') {
+        renderCumplesDelMes();
+      }
+      if (typeof lanzarEfectosCumple === 'function') {
+        // no auto relaunch banner here to avoid repeated popups
+      }
+    }catch(e){}
+  }
+
+  // render on load
+  if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', forzarRenderCumpleanos);
+  } else {
+    forzarRenderCumpleanos();
+  }
+
+  // render when clicking tab
+  document.querySelectorAll('.top-tab-btn').forEach(btn=>{
+    btn.addEventListener('click', ()=>{
+      if (btn.dataset.seccion === 'cumpleanos') {
+        setTimeout(forzarRenderCumpleanos, 50);
+      }
+    });
+  });
+})();
+</script>
+<script id="splash-inteligente-fix">
+window.addEventListener("load", () => {
+  const today = new Date().toDateString();
+  const lastShown = localStorage.getItem("splashDate");
+  const firstVisit = localStorage.getItem("firstVisitDone");
+  const splash = document.getElementById("splash");
+  if (!splash) return;
+
+  function vibrateSoft(){
+    try{
+      if (navigator.vibrate) {
+        navigator.vibrate([35, 30, 45]);
+      }
+    }catch(e){}
+  }
+
+  function mostrarCumpleDespuesSplash(){
+    try{
+      if (typeof lanzarMensajeCumpleInicio === 'function') {
+        lanzarMensajeCumpleInicio();
+      }
+    }catch(e){}
+  }
+
+  function hideSplash(delayMs) {
+    localStorage.setItem("splashDate", today);
+    vibrateSoft();
+    setTimeout(() => {
+      splash.style.transition = "opacity .4s ease";
+      splash.style.opacity = "0";
+      setTimeout(() => {
+        if (splash && splash.parentNode) splash.parentNode.removeChild(splash);
+        mostrarCumpleDespuesSplash();
+      }, 400);
+    }, delayMs);
+  }
+
+  if (!firstVisit) {
+    localStorage.setItem("firstVisitDone", "true");
+    hideSplash(2200);
+    return;
+  }
+
+  if (lastShown === today) {
+    splash.remove();
+    mostrarAvisoCumpleMananaDespuesDeCarga();
+    mostrarCumpleDespuesSplash();
+    return;
+  }
+
+  hideSplash(1400);
+});
+</script>
+<div class="share-overlay" id="shareOverlay">
+<div class="share-modal">
+<h3 id="shareModalTitle">Ubicación copiada</h3>
+<p id="shareModalText">¿Deseas enviar por:</p>
+<div class="share-options">
+<button class="share-option-btn" id="sendSmsBtn" type="button">
+<span class="share-icon sms">💬</span>
+<span>Mensajes</span>
+</button>
+<button class="share-option-btn" id="sendWaBtn" type="button">
+<span class="share-icon wa">🟢</span>
+<span>WhatsApp</span>
+</button>
+</div>
+<div class="share-mini-note">La información quedó copiada y también se abrirá la app seleccionada con el mensaje preparado.</div>
+<button class="share-close" id="shareCloseBtn" type="button">Cerrar</button>
+</div>
+</div>
+<script id="share-location-script">
+(function(){
+  let ubicacionParaCompartir = '';
+  let nombreColoniaCompartir = '';
+  let tipoUbicacionCompartir = 'colonia';
+  let mensajeParaCompartir = '';
+
+  function copiarTexto(texto){
+    if (navigator.clipboard && navigator.clipboard.writeText) {
+      return navigator.clipboard.writeText(texto);
+    }
+    return new Promise((resolve, reject) => {
+      try{
+        const temp = document.createElement('textarea');
+        temp.value = texto;
+        document.body.appendChild(temp);
+        temp.select();
+        document.execCommand('copy');
+        document.body.removeChild(temp);
+        resolve();
+      }catch(e){
+        reject(e);
+      }
+    });
+  }
+
+  function abrirModalCompartir(nombre, ubicacion, tipo, mensajePersonalizado){
+    nombreColoniaCompartir = nombre || '';
+    ubicacionParaCompartir = ubicacion || '';
+    tipoUbicacionCompartir = tipo || 'ubicacion';
+
+    if (mensajePersonalizado) {
+      mensajeParaCompartir = mensajePersonalizado;
+    } else {
+      const etiqueta = tipoUbicacionCompartir === 'tienda' ? 'tienda' : 'colonia';
+      mensajeParaCompartir = `Ubicación de la ${etiqueta} ${nombreColoniaCompartir}:\n${ubicacionParaCompartir}`;
+    }
+
+    const title = document.getElementById('shareModalTitle');
+    const text = document.getElementById('shareModalText');
+
+    if(title){
+      title.textContent = tipoUbicacionCompartir === 'tienda'
+        ? 'Información de la tienda lista para compartir'
+        : 'Información de la colonia lista para compartir';
+    }
+    if(text){
+      text.textContent = '¿Deseas enviar por:';
+    }
+
+    copiarTexto(mensajeParaCompartir).finally(() => {
+      const overlay = document.getElementById('shareOverlay');
+      if (overlay) overlay.classList.add('active');
+    });
+  }
+
+  window.compartirUbicacionColonia = function(nombreColonia, ubicacion){
+    let colonia = null;
+
+    try{
+      colonia = datosColonias.find(c => c.nombre === nombreColonia);
+    }catch(e){
+      colonia = null;
+    }
+
+    const codigos = codigosVisibles && coloniaSeleccionada === colonia && colonia && Array.isArray(colonia.codigos) && colonia.codigos.length
+      ? colonia.codigos.join(', ')
+      : 'Información protegida. Consulta los códigos en la página con tu contraseña.';
+
+    const observacion = colonia && colonia.observacion
+      ? colonia.observacion
+      : 'Sin observaciones';
+
+    const mensaje =
+`LOZANO PAINTING
+
+COLONIA: ${nombreColonia}
+
+UBICACIÓN:
+${ubicacion}
+
+CÓDIGOS:
+${codigos}
+
+OBSERVACIONES:
+${observacion}`;
+
+    abrirModalCompartir(nombreColonia, ubicacion, 'colonia', mensaje);
+  };
+
+  window.compartirUbicacionTienda = function(nombreTienda, ubicacion){
+    abrirModalCompartir(nombreTienda, ubicacion, 'tienda');
+  };
+
+  const overlay = document.getElementById('shareOverlay');
+  const closeBtn = document.getElementById('shareCloseBtn');
+  const smsBtn = document.getElementById('sendSmsBtn');
+  const waBtn = document.getElementById('sendWaBtn');
+
+  if (closeBtn) {
+    closeBtn.addEventListener('click', () => overlay.classList.remove('active'));
+  }
+
+  if (overlay) {
+    overlay.addEventListener('click', (e) => {
+      if (e.target === overlay) overlay.classList.remove('active');
+    });
+  }
+
+  if (smsBtn) {
+    smsBtn.addEventListener('click', () => {
+      window.location.href = `sms:?&body=${encodeURIComponent(mensajeParaCompartir)}`;
+    });
+  }
+
+  if (waBtn) {
+    waBtn.addEventListener('click', () => {
+      window.open(`https://wa.me/?text=${encodeURIComponent(mensajeParaCompartir)}`, '_blank');
+    });
+  }
+})();
+</script>
+<script id="pwa-manifest-script">
+(function(){
+  const manifest = {"name": "Lozano Painting", "short_name": "Lozano", "description": "Sistema de colonias, ubicaciones, material y registros de Lozano Painting.", "start_url": ".", "scope": ".", "display": "standalone", "background_color": "#1e3c72", "theme_color": "#1e3c72", "orientation": "portrait", "icons": [{"src": "https://canutoscorp.github.io/pintura/icono.png", "sizes": "192x192", "type": "image/png", "purpose": "any maskable"}, {"src": "https://canutoscorp.github.io/pintura/icono.png", "sizes": "512x512", "type": "image/png", "purpose": "any maskable"}]};
+  const blob = new Blob([JSON.stringify(manifest)], {type: "application/json"});
+  const manifestURL = URL.createObjectURL(blob);
+  const manifestLink = document.getElementById("appManifest");
+  if(manifestLink) manifestLink.setAttribute("href", manifestURL);
+})();
+</script>
+<script id="datos-cumpleanos-restaurados">
+const personasCumple = [
+  {
+    "nombre": "Rebeca Mota",
+    "dia": 13,
+    "mes": 4
+  },
+  {
+    "nombre": "Milton",
+    "dia": 6,
+    "mes": 4
+  },
+  {
+    "nombre": "Miguel Carrera",
+    "dia": 23,
+    "mes": 2
+  },
+  {
+    "nombre": "ISMAEL LOPEZ",
+    "dia": 10,
+    "mes": 9
+  },
+  {
+    "nombre": "Carlos Corona",
+    "dia": 15,
+    "mes": 3
+  },
+  {
+    "nombre": "Eulises Flores",
+    "dia": 11,
+    "mes": 5
+  },
+  {
+    "nombre": "Josue Lopez",
+    "dia": 12,
+    "mes": 3
+  },
+  {
+    "nombre": "Elisa Janeth",
+    "dia": 26,
+    "mes": 9
+  },
+  {
+    "nombre": "Isaac Lopez",
+    "dia": 8,
+    "mes": 3
+  },
+  {
+    "nombre": "Aury Medina",
+    "dia": 14,
+    "mes": 9
+  },
+  {
+    "nombre": "Marcy Lozano",
+    "dia": 2,
+    "mes": 6
+  },
+  {
+    "nombre": "Emmanuel Lopez",
+    "dia": 25,
+    "mes": 11
+  },
+  {
+    "nombre": "Jose Ulises Lopez",
+    "dia": 1,
+    "mes": 1
+  },
+  {
+    "nombre": "Reyna Lopez",
+    "dia": 3,
+    "mes": 8
+  },
+  {
+    "nombre": "Ruth Rodriguez",
+    "dia": 3,
+    "mes": 11
+  },
+  {
+    "nombre": "Ashley Ramirez",
+    "dia": 20,
+    "mes": 9
+  },
+  {
+    "nombre": "Milton",
+    "dia": 17,
+    "mes": 12
+  },
+  {
+    "nombre": "Las Mujeres mas Hermosas del Mundo, Felicidades Mamitas",
+    "dia": 10,
+    "mes": 5
+  },
+  {
+    "nombre": "A los hombres Trabajadores, buenos, santos, Feliz Dia del Padre",
+    "dia": 21,
+    "mes": 6
+  },
+  {
+    "nombre": "Paola Flores",
+    "dia": 19,
+    "mes": 9
+  },
+  {
+    "nombre": "Luis Medina CUATE",
+    "dia": 20,
+    "mes": 4
+  },
+  {
+    "nombre": "Jose Mena",
+    "dia": 5,
+    "mes": 8
+  },
+  {
+    "nombre": "Miguel Aldair",
+    "dia": 12,
+    "mes": 6
+  },
+  {
+    "nombre": "Jose Guillen",
+    "dia": 18,
+    "mes": 3
+  },
+  {
+    "nombre": "Karla Aimee",
+    "dia": 1,
+    "mes": 5
+  }
+];
+window.personasCumple = personasCumple;
+</script>
+<script id="birthday-render-final-fix">
+(function(){
+  function listaCumples(){
+    try{
+      if(Array.isArray(window.personasCumple)) return window.personasCumple;
+      if(typeof personasCumple !== "undefined" && Array.isArray(personasCumple) && personasCumple.length){
+        window.personasCumple = personasCumple;
+        return personasCumple;
+      }
+    }catch(e){}
+    return [];
+  }
+  function nombreMes(i){
+    return ["Enero","Febrero","Marzo","Abril","Mayo","Junio","Julio","Agosto","Septiembre","Octubre","Noviembre","Diciembre"][i] || "";
+  }
+  function renderCumplesSeguro(){
+    const hoy = new Date();
+    const mes = hoy.getMonth() + 1;
+    const cont = document.getElementById("birthdayList");
+    if(!cont) return;
+    const lista = listaCumples().filter(p => Number(p.mes) === mes).sort((a,b)=>Number(a.dia)-Number(b.dia));
+    const botonCumple = document.querySelector('.top-tab-btn[data-seccion="cumpleanos"]');
+    const seccionCumple = document.getElementById('cumpleanos');
+    const hayCelebracion = lista.length > 0;
+    if(botonCumple) botonCumple.hidden = !hayCelebracion;
+    if(seccionCumple){
+      if(!hayCelebracion && seccionCumple.classList.contains('activa')){
+        const buscar = document.querySelector('.top-tab-btn[data-seccion="buscar"]');
+        if(buscar) buscar.click();
+      }
+      seccionCumple.hidden = !hayCelebracion;
+    }
+    const barra = document.querySelector('.top-tabs');
+    if(barra) barra.classList.toggle('sin-cumpleanos', !hayCelebracion);
+    cont.innerHTML = lista.length
+      ? lista.map(p => `<li><span class="day">${String(p.dia).padStart(2,"0")} de ${nombreMes(Number(p.mes)-1)}</span>${escaparColonia(p.nombre)}</li>`).join("")
+      : `<li><span class="day">Sin registros</span> No hay cumpleaños registrados este mes.</li>`;
+  }
+  function mostrarMensajeInicio(){
+    const hoy = new Date();
+    const cumpleHoy = listaCumples().filter(p => Number(p.dia) === hoy.getDate() && Number(p.mes) === hoy.getMonth()+1);
+    if(!cumpleHoy.length) return;
+    const overlay = document.getElementById("startBirthdayOverlay");
+    const names = document.getElementById("startBirthdayNames");
+    if(!overlay || !names) return;
+    names.textContent = cumpleHoy.map(p=>p.nombre).join(", ");
+    overlay.style.display = "flex";
+    setTimeout(()=>overlay.style.display="none", 3000);
+  }
+  function iniciar(){
+    renderCumplesSeguro();
+    setTimeout(function(){
+      if(typeof window.actualizarCelebracionesCumple === "function") window.actualizarCelebracionesCumple();
+
+    }, 2100);
+  }
+  if(document.readyState === "loading") document.addEventListener("DOMContentLoaded", iniciar);
+  else iniciar();
+  window.renderCumplesSeguro = renderCumplesSeguro;
+  document.addEventListener('visibilitychange',()=>{if(!document.hidden) renderCumplesSeguro();});
+  setInterval(renderCumplesSeguro,60000);
+})();
+</script>
+<script id="auto-dark-mode-script">
+(function(){
+  function aplicarModoPorHora(){
+    const ahora = new Date();
+    const hora = ahora.getHours();
+    const esNoche = hora >= 19 || hora < 7;
+
+    document.body.classList.toggle("auto-dark-mode", esNoche);
+
+    let pill = document.getElementById("darkModePill");
+    if(!pill){
+      pill = document.createElement("div");
+      pill.id = "darkModePill";
+      pill.className = "dark-mode-pill";
+      document.body.appendChild(pill);
+    }
+
+    if(esNoche){
+      pill.textContent = "🌙 Modo oscuro automático";
+      pill.classList.add("visible");
+      setTimeout(() => pill.classList.remove("visible"), 3500);
+    }else{
+      pill.classList.remove("visible");
+    }
+  }
+
+  aplicarModoPorHora();
+
+  // Revisa cada minuto por si la página queda abierta al cambiar de 6:59 a 7:00.
+  setInterval(aplicarModoPorHora, 60000);
+})();
+</script>
+<script id="birthday-restored-events">(()=>{
+ let lastDay='';
+ const timers=[];
+ const byId=id=>document.getElementById(id);
+ const matches=date=>(window.personasCumple||[]).filter(p=>Number(p.dia)===date.getDate()&&Number(p.mes)===date.getMonth()+1);
+ const later=(fn,ms)=>{timers.push(setTimeout(fn,ms));};
+ function clearCelebration(){
+  timers.splice(0).forEach(clearTimeout);
+  ['startBirthdayOverlay','birthdayTodayBanner','birthdayTomorrowBanner','birthdayStartBanner'].forEach(id=>{const el=byId(id);if(el)el.style.display='none';});
+  document.querySelectorAll('[data-birthday-effect]').forEach(el=>el.remove());
+ }
+ function effects(){
+  if(window.matchMedia&&window.matchMedia('(prefers-reduced-motion: reduce)').matches)return;
+  const colors=['#8ce5f4','#fbd56a','#d9b4ff','#f68eaf'];
+  for(let i=0;i<24;i++){
+   const el=document.createElement('span');el.className='birthday-restored-confetti';el.setAttribute('data-birthday-effect','');el.setAttribute('aria-hidden','true');
+   el.style.left=(2+Math.random()*94)+'%';el.style.background=colors[i%colors.length];el.style.animationDelay=(-Math.random()*16)+'s';el.style.animationDuration=(12+Math.random()*8)+'s';document.body.appendChild(el);
+  }
+  const icons=['🥳','🎉','🎊','🎈','🪅','🪩'];
+  Array.from({length:36},(_,i)=>icons[i%icons.length]).forEach((icon,i)=>{
+   const el=document.createElement('span');el.className='birthday-floating-icon'+(i%2===0?' rising':'');el.textContent=icon;el.setAttribute('data-birthday-effect','');el.setAttribute('aria-hidden','true');
+   el.style.left=(2+Math.random()*92)+'%';el.style.fontSize=(22+Math.random()*14)+'px';el.style.animationDuration=(17+Math.random()*9)+'s';el.style.animationDelay=(-Math.random()*26)+'s';document.body.appendChild(el);
+  });
+ }
+ function run(){
+  const now=new Date(),key=[now.getFullYear(),now.getMonth(),now.getDate()].join('-');
+  if(key===lastDay)return;
+  const splash=byId('splash');
+  if(splash&&getComputedStyle(splash).display!=='none'){setTimeout(run,250);return;}
+  lastDay=key;clearCelebration();
+  const today=matches(now),tomorrowDate=new Date(now.getFullYear(),now.getMonth(),now.getDate()+1),tomorrow=matches(tomorrowDate);
+  const videoSection=byId('birthdayVideoSection'),videoFrame=byId('birthdayVideoFrame'),videoNames=byId('birthdayVideoNames');
+  if(videoSection&&videoFrame&&videoNames){
+   if(today.length){
+    const videos=['fhKYVQT18xM','GnQC2zEDNBI','Fzqto8Cd35M','QFLALAszEpo','Jguqnlymeuk'];
+    const dateKey=`${now.getFullYear()}-${now.getMonth()+1}-${now.getDate()}`;
+    const index=Array.from(dateKey).reduce((sum,c)=>sum+c.charCodeAt(0),0)%videos.length;
+    videoNames.textContent=today.map(p=>p.nombre).join(', ');
+    videoFrame.src=`https://www.youtube.com/embed/${videos[index]}?autoplay=1&mute=1&playsinline=1&controls=1&rel=0`;
+    videoSection.style.display='block';
+   }else{videoSection.style.display='none';videoFrame.removeAttribute('src');videoNames.textContent='';}
+  }
+  if(typeof window.renderCumplesSeguro==='function')window.renderCumplesSeguro();
+  const showTomorrow=()=>{
+   if(!tomorrow.length)return;
+   const banner=byId('birthdayTomorrowBanner'),names=byId('birthdayTomorrowNames');
+   if(!banner||!names)return;
+   names.textContent=tomorrow.map(p=>p.nombre).join(', ');banner.style.display='block';banner.setAttribute('role','status');
+   later(()=>{banner.style.display='none';},6500);
+  };
+  if(today.length){
+   const overlay=byId('startBirthdayOverlay'),names=byId('startBirthdayNames');
+   if(overlay&&names){names.textContent=today.map(p=>p.nombre).join(', ');overlay.style.display='flex';overlay.setAttribute('role','status');later(()=>{overlay.style.display='none';},5500);}
+   effects();later(showTomorrow,6000);
+  }else showTomorrow();
+ }
+ // Compatibilidad con los avisos que se ejecutan al terminar la carga.
+ window.mostrarAvisoCumpleMananaDespuesDeCarga=run;
+ window.lanzarMensajeCumpleInicio=run;
+ window.lanzarEfectosCumple=run;
+ window.actualizarCelebracionesCumple=(force=false)=>{if(force)lastDay='';run();};
+ if(document.readyState==='loading')document.addEventListener('DOMContentLoaded',run);else run();
+ document.addEventListener('visibilitychange',()=>{if(!document.hidden)run();});
+ setInterval(run,60000);
+})();
+</script>
+<div id="connectedBackdrop" hidden></div><aside id="connectedDrawer" aria-label="Menú de Lozano Painting" aria-hidden="true" inert><div class="connected-drawer-head"><strong>LOZANO PAINTING</strong><button id="connectedCloseMenu" aria-label="Cerrar menú">×</button></div><button data-connected-route="buscar">🔎 Buscar colonia</button><button data-connected-route="panel" data-access="manager" hidden>▦ Panel del propietario</button><button data-connected-route="trabajo" data-access="lead" hidden>🖌 Tipo de trabajo</button><button data-connected-route="consultar" data-access="signed" hidden>⌕ Consultar lote</button><button data-connected-route="express" data-access="editor" hidden>◈ Ingresar colores Express</button><button data-connected-route="pendientes" data-access="signed" hidden>⚠ Pendientes por colonia</button><button data-connected-route="bitacora" data-access="lead" hidden>📝 Bitácora</button><button data-connected-route="horas">⏱ Control de horas y pago</button><button data-connected-route="nomina" data-access="manager" hidden>＄ Nómina</button><button data-connected-route="casas" data-access="manager" hidden>▣ Casas Pago</button><button data-connected-route="visitas" data-access="manager" hidden>▧ Bitácoras del equipo</button><button data-connected-route="mensajes" data-access="manager" hidden>✉ Mensaje urgente</button><button data-connected-route="usuarios" data-access="admin" hidden>👥 Usuarios y fechas de ingreso</button><button data-connected-route="auditoria" data-access="admin" hidden>☷ Historial privado de cambios</button><button data-connected-route="catalogo" data-access="admin" hidden>⌖ Administrar colonias y tiendas</button><button id="connectedBirthdayMenu" data-connected-route="cumpleanos">🎂 Cumpleaños</button><button data-connected-route="sherwin">🎨 Sherwin-Williams</button></aside><div id="connectedWorkspace"><dialog id="connectedLoginDialog"><button id="connectedLoginClose" aria-label="Cerrar acceso">×</button><div id="connectedLoginStatusAnchor"><p id="status" role="status" aria-live="polite"></p></div><section id="login" class="card"><h2>Iniciar sesión</h2><div id="tabs" class="actions" role="tablist" aria-label="Tipo de acceso"><button role="tab" aria-selected="true" data-profile="worker">Trabajador</button><button role="tab" aria-selected="false" data-profile="owner">Propietario</button><button role="tab" aria-selected="false" data-profile="admin">Administrador</button></div><p id="loginHelp">Trabajadores y encargados ingresan aquí.</p><form id="pinLogin"><label>Usuario<input name="username" autocomplete="username" autocapitalize="none" spellcheck="false" required maxlength="32"></label><label>PIN de cuatro números<input name="pin" type="password" inputmode="numeric" pattern="[0-9]{4}" maxlength="4" required autocomplete="current-password"></label><button type="submit" class="primary">Entrar</button></form><details id="principal" hidden><summary>Acceso principal de Canuto</summary><p>Usa la cuenta de Authentication que ya tiene acceso al administrador. No uses la contraseña de la base de datos.</p><form id="rootLogin"><label>Correo<input name="email" type="email" autocomplete="username" value="canuto_15@hotmail.com" required></label><label>Contraseña<input name="password" type="password" autocomplete="current-password" required></label><button type="submit">Entrar como administrador principal</button></form></details><p class="muted">Las cuentas nuevas comienzan con el PIN temporal 2123. Esta prueba guarda usuarios en Supabase; no importa los ejemplos de la maqueta.</p></section><section id="setup" class="card" hidden><h2>Completa tu primer acceso</h2><p>Registra tu cumpleaños y crea tu PIN personal para continuar.</p><form id="setupForm"><div class="fields"><label>Nuevo PIN<input name="pin" type="password" inputmode="numeric" pattern="[0-9]{4}" maxlength="4" required autocomplete="new-password"></label><label>Confirma el nuevo PIN<input name="repeat" type="password" inputmode="numeric" pattern="[0-9]{4}" maxlength="4" required autocomplete="new-password"></label><label>Día de nacimiento · obligatorio<input name="birth_day" type="number" min="1" max="31" required></label><label>Mes de nacimiento · obligatorio<select name="birth_month" required></select></label><label>Año de nacimiento · opcional<input name="birth_year" type="number" min="1900"></label><label>Ingreso a Lozano Painting · opcional<input name="joined_month" type="month"></label></div><button class="primary" type="submit">Guardar datos y entrar</button><button id="cancelSetup" type="button">Cancelar y salir</button></form></section></dialog><div id="connectedContent" hidden><section id="account" hidden><div class="card connected-session-card"><div class="row"><div><h2 id="welcome"></h2><p id="accessRole"></p></div><button id="logout">Cerrar sesión</button></div><p>Conexión de prueba: <strong>usuarios, permisos y jornadas en Supabase</strong>.</p><p class="muted">Puedes probar jornadas, pagos y fichas por lote aquí. El buscador original y los festejos se conservan hasta integrar la presentación final.</p></div><section id="admin" class="card" hidden><h2>Usuarios del equipo</h2><div class="actions"><button id="refresh">Actualizar lista</button><button id="newUser" class="primary">＋ Crear usuario</button><button id="exportJSON">Exportar respaldo JSON</button><button id="exportCSV">Exportar usuarios CSV</button><button id="showAudit">Historial privado</button></div><p id="count"></p><div id="people"></div><section id="audit" hidden><h3>Historial de cambios</h3><div id="auditRows"></div><button id="olderAudit">Ver anteriores</button></section></section></section><section id="connectedPanel" hidden></section><section id="connectedMessagePanel" hidden></section></div><dialog id="userDialog"><div class="row"><h2 id="userTitle"></h2><button id="closeUser" aria-label="Cerrar">×</button></div><form id="userForm"><div class="fields"><label>Nombre(s)<input name="first_name" required maxlength="100"></label><label>Apellido paterno<input name="last_name" required maxlength="100"></label><label>Nombre de usuario<input name="username" required pattern="[A-Za-z0-9_.-]{3,32}" maxlength="32" autocapitalize="none" spellcheck="false"></label><label>Tipo de acceso<select name="role"><option value="worker">Trabajador</option><option value="lead">Encargado</option><option value="owner">Propietario</option><option value="admin">Administrador</option></select></label><label>Día de nacimiento · opcional<input name="birth_day" type="number" min="1" max="31"></label><label>Mes de nacimiento · opcional<select name="birth_month"></select></label><label>Año de nacimiento · opcional<input name="birth_year" type="number" min="1900"></label><label>Ingreso a Lozano Painting · opcional<input name="joined_month" type="month"></label></div><p class="muted">El usuario completará su cumpleaños obligatoriamente al cambiar el PIN temporal 2123. Los PIN no se muestran en la lista ni en el respaldo.</p><p id="userError" role="alert"></p><button type="submit" class="primary">Guardar usuario</button></form></dialog></div><script>document.getElementById("tablaDatos").insertAdjacentHTML("afterend",'<section id="connectedPending" hidden></section>');</script><script src="equipo-config.js?v=integracion6-1"></script><script src="equipo-api.js?v=integracion6-1"></script><script src="equipo-prueba.js?v=integracion6-1"></script><script src="equipo-jornadas-core.js?v=integracion6-1"></script><script src="equipo-jornadas.js?v=integracion6-1"></script><script src="equipo-nomina.js?v=integracion6-1"></script><script src="equipo-casas-pago.js?v=integracion6-1"></script><script src="equipo-fichas.js?v=integracion6-1"></script><script src="lozano-sesion.js?v=integracion6-1"></script><script>/* Solo presentación: los valores originales conservan HH:mm para cálculos y guardado. */
+(()=>{
+ const parts=value=>{const m=/^(\d{2}):(\d{2})$/.exec(value);if(!m)return ['', '', ''];const h=+m[1];return [String(h%12||12),m[2],h<12?'AM':'PM'];};
+ const controls=new Map();
+ const style=document.createElement('style');style.textContent='.clock12-fields{display:flex;gap:6px;align-items:center;width:100%;min-width:0}.clock12-fields select{min-width:0!important;width:auto!important;flex:1;padding:12px 6px!important;font:inherit}.clock12-fields select:last-child{flex:1.35}.clock12-fields:focus-within{outline:2px solid #84deed;outline-offset:3px;border-radius:12px}';document.head.append(style);
+ function scan(){document.querySelectorAll('input[type="time"]').forEach(input=>{
+  const box=document.createElement('span');box.className='clock12-fields';
+  const label=input.closest('label')?.childNodes[0]?.textContent?.trim()||input.getAttribute('aria-label')||'Horario';
+  const make=(title,values)=>{const select=document.createElement('select');select.setAttribute('aria-label',label+' · '+title);select.required=input.required;select.disabled=input.disabled;select.innerHTML='<option value="">'+title+'</option>'+values.map(([value,text])=>'<option value="'+value+'">'+text+'</option>').join('');box.append(select);return select;};
+  const hour=make('Hora',Array.from({length:12},(_,i)=>[String(i+1),String(i+1)]));
+  const minute=make('Minutos',Array.from({length:60},(_,i)=>{const n=String(i).padStart(2,'0');return [n,n];}));
+  const period=make('a. m. / p. m.',[['AM','a. m.'],['PM','p. m.']]);
+  const selectors=[hour,minute,period];let previous=input.value,editing=false;
+  const refresh=()=>{parts(input.value).forEach((v,i)=>selectors[i].value=v);previous=input.value;};
+  input.type='hidden';input.after(box);refresh();
+  selectors.forEach(select=>select.addEventListener('change',()=>{const valid=selectors.every(s=>s.value!=='');input.value=valid?String((+hour.value%12)+(period.value==='PM'?12:0)).padStart(2,'0')+':'+minute.value:'';previous=input.value;editing=true;input.dispatchEvent(new Event('input',{bubbles:true}));input.dispatchEvent(new Event('change',{bubbles:true}));editing=false;}));
+  input.addEventListener('change',()=>{if(!editing)refresh();});input.addEventListener('input',()=>{if(!editing)refresh();});
+  controls.set(input,()=>{if(input.value!==previous)refresh();selectors.forEach(s=>s.disabled=input.disabled);});
+ });}
+ scan();new MutationObserver(scan).observe(document.body,{childList:true,subtree:true});
+ setInterval(()=>controls.forEach((sync,input)=>{if(!input.isConnected){controls.delete(input);return;}sync();}),250);
+})();
+</script>

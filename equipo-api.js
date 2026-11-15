@@ -3,8 +3,8 @@
  const cfg=window.LP_STAGE_CONFIG;
  const endpoint=cfg.url+'/functions/v1/'+cfg.functionName;
  let pinToken=null,rootJWT=null;
- async function request(action,data={}){
-  let response;try{response=await fetch(endpoint,{method:'POST',headers:{apikey:cfg.publishableKey,'Content-Type':'application/json',...(rootJWT?{Authorization:'Bearer '+rootJWT}:{})},body:JSON.stringify({action,data,token:pinToken,root:!!rootJWT})});}catch{throw new Error('No se pudo conectar. Comprueba tu conexión y que la función de prueba esté desplegada.');}
+ async function request(action,data={},anonymous=false){
+  let response;try{response=await fetch(endpoint,{method:'POST',headers:{apikey:cfg.publishableKey,'Content-Type':'application/json',...(rootJWT&&!anonymous?{Authorization:'Bearer '+rootJWT}:{})},body:JSON.stringify({action,data,token:anonymous?null:pinToken,root:!anonymous&&!!rootJWT})});}catch{throw new Error('No se pudo conectar. Comprueba tu conexión y que la función de prueba esté desplegada.');}
   let result;try{result=await response.json();}catch{throw new Error('El servidor no respondió correctamente. Revisa el despliegue de prueba.');}
   if(!response.ok||result.error){const error=new Error(result.error||'No se pudo completar la operación.');error.expired=!!result.expired;throw error;}return result;
  }
@@ -18,6 +18,8 @@
   pay:(action,data={})=>request(action,data),
   bill:(action,data={})=>request(action,data),
   house:(action,data={})=>request(action,data),
+  site:(action,data={})=>request(action,data),
+  sitePublic:data=>request('site_public',data,true),
   clear(){pinToken=null;rootJWT=null;}
  };
 })();
