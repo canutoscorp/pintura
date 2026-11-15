@@ -21,3 +21,27 @@ body:is(.connected-new-view,:has(#material.activa),:has(dialog[open])) :is([data
 #connectedWorkspace .mobile-financial-cards .work-check{margin:0;min-width:0;flex-wrap:wrap}
 #connectedWorkspace .mobile-financial-cards td .work-warning,#connectedWorkspace .mobile-financial-cards td .bill-note{grid-column:2}
 }
+
+/* Resumen personal y consulta de periodos compactos, con controles táctiles. */
+#connectedWorkspace .work-personal-meta{display:flex;align-items:center;justify-content:space-between;flex-wrap:nowrap;gap:8px;margin:0 0 10px;padding:7px 10px;border:1px solid #54798d;border-radius:11px;background:#142e40;color:#d1e9f4;font-size:13px;line-height:1.35}
+#connectedWorkspace .work-personal-meta>span{min-width:0;overflow-wrap:anywhere}
+#connectedWorkspace .work-personal-meta>button{flex:none;min-height:40px;padding:8px 10px;margin:0;font-size:13px;border:1px solid #85afc2;border-radius:9px;background:#254b60;color:#effaff}
+#connectedWorkspace .work-period-toolbar{display:flex;align-items:center;gap:8px;margin:7px 0 12px}
+#connectedWorkspace .work-period-toolbar>button{flex:none;min-width:44px;min-height:44px;margin:0;padding:4px 10px;font-size:26px;border-radius:10px;background:#274b60;color:#f3fbff;border:1px solid #7c9fb2}
+#connectedWorkspace .work-period-toolbar>div{flex:1;min-width:0;text-align:center;line-height:1.4}
+#connectedWorkspace #workRangeLabel{display:block;color:#edf8fc;font-size:13px;white-space:normal}
+#connectedWorkspace #workTogglePeriod{display:block;margin:0 auto;min-height:36px;padding:4px 8px;font-size:12px;color:#b8edf4;background:transparent;border:0;text-decoration:underline}
+#connectedWorkspace #workPrefPanel,#connectedWorkspace #workPeriodPanel{padding:12px;margin:8px 0 16px;border:1px solid #7799ae;border-radius:13px;background:#142a3a}
+#connectedWorkspace #workPrefPanel .fields,#connectedWorkspace #workPeriodPanel .fields{min-width:0}
+#connectedWorkspace #workPrefPanel :is(input,select),#connectedWorkspace #workPeriodPanel input{min-width:0;max-width:100%;box-sizing:border-box}
+#connectedWorkspace #workPrefPanel p{font-size:13px;line-height:1.5;margin:8px 0}
+#connectedWorkspace .work-acting-lead{padding:14px;border:1px solid #7fa9bd;border-left:4px solid #a8edf1;border-radius:12px;background:#213e50;align-items:flex-start}
+#connectedWorkspace .work-acting-lead small{display:block;color:#bdd9e6;font-size:13px;line-height:1.5;margin-top:5px}
+#connectedWorkspace #workStatus{font-size:13px;line-height:1.4;margin:4px 0 10px}
+#connectedWorkspace #workStatus:empty{display:none}
+body.lozano-connected #connectedWorkspace #workView table.work-table,body.lozano-connected #connectedWorkspace #workView table.work-table tbody{background:#132a3b!important;color:#edf7fc!important}
+body.lozano-connected #connectedWorkspace #workView table.work-table tbody>tr,body.lozano-connected #connectedWorkspace #workView table.work-table tbody>tr>td{background:#132a3b!important;color:#edf7fc!important;-webkit-text-fill-color:#edf7fc!important;border-color:#547085!important}
+body.lozano-connected #connectedWorkspace #workView table.work-table tbody>tr:nth-child(even),body.lozano-connected #connectedWorkspace #workView table.work-table tbody>tr:nth-child(even)>td{background:#1c3548!important}
+body.lozano-connected #connectedWorkspace #workView table.work-table th{background:#24546d!important;color:#fff!important;-webkit-text-fill-color:#fff!important}
+body.lozano-connected #connectedWorkspace #workView table.work-table .work-warning{color:#ffe2a1!important;-webkit-text-fill-color:#ffe2a1!important}
+@media(max-width:420px){#connectedWorkspace .work-personal-meta{padding:6px 8px;font-size:12px}#connectedWorkspace .work-personal-meta>button{font-size:12px;padding:7px 9px}#connectedWorkspace #workRangeLabel{font-size:12px}}
