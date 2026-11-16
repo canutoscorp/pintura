@@ -33,5 +33,8 @@
  $('exportJSON').onclick=()=>run($('exportJSON'),async()=>{const backup=await repo.export();download('lozano-usuarios-'+new Date().toISOString().slice(0,10)+'.json',JSON.stringify(backup,null,2),'application/json');message('Respaldo exportado. Incluye usuarios e historial; no incluye PIN ni sesiones.');});
  $('exportCSV').onclick=()=>run($('exportCSV'),async()=>{const result=await repo.export(),columns=['id','username','first_name','last_name','role','active','birth_day','birth_month','birth_year','joined_month','created_at','updated_at'];const cell=v=>'"'+String(v??'').replace(/^[=+@\-\t\r]/,"'$&").replace(/"/g,'""')+'"';download('lozano-usuarios.csv','\ufeff'+[columns.join(','),...result.users.map(p=>columns.map(c=>cell(p[c])).join(','))].join('\r\n'),'text/csv;charset=utf-8');message('Usuarios exportados en CSV.');});
  window.addEventListener('lozano-session-expired',event=>{repo.clear();clearView();message(event.detail||'Inicia sesión nuevamente.',true);});
+ let restoring=false;
+ async function restoreSession(){if(restoring||profile||location.protocol==='file:')return;restoring=true;try{const result=await repo.restore();if(result&&!profile)await enter(result);}catch(error){if(error.expired){repo.clear();clearView();}if(!profile)message('No se pudo recuperar la sesión. Comprueba tu conexión y recarga, o inicia sesión de nuevo.',true);}finally{restoring=false;}}
+ if(document.readyState==='loading')window.addEventListener('DOMContentLoaded',restoreSession,{once:true});else setTimeout(restoreSession,0);
  if(location.protocol==='file:')message('Esta versión necesita publicarse en la carpeta de prueba de GitHub Pages después de instalar sus archivos en Supabase. La maqueta anterior sigue disponible.',true);
 })();
