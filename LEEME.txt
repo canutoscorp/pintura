@@ -1,12 +1,21 @@
-LOZANO PAINTING — Avisos compactos y captura de colores
+LOZANO PAINTING — Menos consultas automáticas
 
-Sube a la raíz del repositorio pintura los cinco archivos de esta carpeta: index.html, equipo-fichas.js, equipo-nomina.js, lozano-sesion.js y lozano-integracion.css. Reemplaza los que tienen el mismo nombre. No subas esta carpeta completa ni LEEME.txt.
-No requiere ejecutar SQL ni actualizar funciones de Supabase. Conserva datos y usuarios.
+Sube los 8 archivos HTML, JS y CSS de esta carpeta a la raíz de pintura en GitHub, reemplazando los anteriores. No subas LEEME.txt. Incluye los cambios de avisos y colores anteriores. No requiere SQL ni actualizar Edge Functions.
 
-Comprobar:
-1. Tipo de trabajo: captura colores y datos sin declarar fase terminada ni atribuir ejecución al capturista. Consulta de lote: responsables desde Bitácora.
-2. Mensajes: sobre contraído; anima si hay nuevos. Abrir deja de animar. Cerrar con X. Lectura recordada por usuario en este navegador. Cambiar dispositivo o borrar almacenamiento puede mostrarlos de nuevo.
-3. Antigüedad: primera vez se muestra ocho segundos, luego se contrae; X para cerrar antes; botón para volver a leer.
-4. Nómina → Detalle / ajustar: explicación del pago final.
+Horas/nómina/casas: consulta de fondo cada 2 minutos solo en vista visible. Se pausa si la pestaña está oculta o pasan 5 minutos sin interacción. Al volver a usarla se retoma en el siguiente intervalo. Cambiar de sección o consultar periodo actualiza inmediatamente. Los guardados conservan su actualización inmediata. Se conserva comprobar sesión cada minuto mientras la pestaña está visible.
+Catálogo y mensajes: cada 5 minutos con actividad; las actualizaciones públicas simultáneas comparten una sola consulta. No se solapan sondeos del mismo módulo.
 
-Las pruebas locales pasaron; falta comprobar en tu página publicada y en tu celular después de subir estos archivos.
+Ahorro orientativo en pantalla de horas activa: de unas 6 llamadas/minuto a unas 2.2, sin contar acciones ni consultas de pendientes de colonia seleccionada. El consumo depende de uso, roles, pestañas y acciones. No es garantía de permanecer bajo una cuota.
+
+Medir en Supabase:
+1. En la organización, abre Usage y selecciona el proyecto y ciclo mensual.
+2. Busca Edge Function Invocations: ese total es el consumo de llamadas. Revisa también Egress (transferencia).
+3. Abre Database Reports para consultar Database Size. No confundir con Storage de archivos ni con el disco completo.
+4. Anota las cifras y la fecha antes de subir esta versión; repite después de 7 días de uso similar. Compara llamadas por día y crecimiento de la base.
+5. Proyección orientativa de llamadas: llamadas usadas / días transcurridos del ciclo × días del ciclo. Cambios de actividad alteran esta estimación.
+
+Documentación oficial:
+https://supabase.com/docs/guides/platform/manage-your-usage/edge-function-invocations
+https://supabase.com/docs/guides/platform/database-size
+
+Las pruebas locales verifican pausa, visibilidad, frecuencia, consultas compartidas, seguridad de sesión y guardados. Falta comprobar visualmente la página publicada.

@@ -9,5 +9,9 @@
  function datePickerDays(){if(typeof document==='undefined'||typeof MutationObserver==='undefined'||!document.body)return;const hints=new Map();function refresh(){document.querySelectorAll('input[type="date"]').forEach(input=>{if(hints.has(input))return;const hint=document.createElement('small');hint.className='lozano-date-weekday';hint.id='lozano-date-day-'+(datePickerDays.next=(datePickerDays.next||0)+1);hint.setAttribute('aria-live','polite');input.after(hint);const prior=input.getAttribute('aria-describedby');input.setAttribute('aria-describedby',(prior?prior+' ':'')+hint.id);hints.set(input,hint);});hints.forEach((hint,input)=>{if(!input.isConnected){hint.remove();hints.delete(input);return;}const full=dayDate(input.value),text=input.value&&full!=='Sin fecha'?full.split(' ')[0]:'';if(hint.textContent!==text)hint.textContent=text;hint.hidden=!text;});}refresh();document.addEventListener('input',refresh);document.addEventListener('change',refresh);new MutationObserver(refresh).observe(document.body,{childList:true,subtree:true});setInterval(refresh,500);}
  datePickerDays();
 
- window.LozanoWorkCore={iso,period,clock24,clock12,duration,minutes,dayDate};
+ // Las consultas de fondo solo se permiten en la vista visible y mientras se usa la página.
+ let lastInteraction=Date.now();
+ if(typeof document!=='undefined'&&document.addEventListener){for(const name of ['pointerdown','keydown','scroll'])document.addEventListener(name,()=>{lastInteraction=Date.now();},{passive:true,capture:true});document.addEventListener('visibilitychange',()=>{if(!document.hidden)lastInteraction=Date.now();});}
+ function autoRefreshAllowed(node){return typeof document!=='undefined'&&!document.hidden&&!!node&&node.isConnected!==false&&!node.hidden&&!node.closest?.('[hidden]')&&Date.now()-lastInteraction<5*60*1000;}
+ window.LozanoWorkCore={iso,period,clock24,clock12,duration,minutes,dayDate,autoRefreshAllowed};
 })();
