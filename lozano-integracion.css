@@ -45,3 +45,24 @@ body.lozano-connected #connectedWorkspace #workView table.work-table tbody>tr:nt
 body.lozano-connected #connectedWorkspace #workView table.work-table th{background:#24546d!important;color:#fff!important;-webkit-text-fill-color:#fff!important}
 body.lozano-connected #connectedWorkspace #workView table.work-table .work-warning{color:#ffe2a1!important;-webkit-text-fill-color:#ffe2a1!important}
 @media(max-width:420px){#connectedWorkspace .work-personal-meta{padding:6px 8px;font-size:12px}#connectedWorkspace .work-personal-meta>button{font-size:12px;padding:7px 9px}#connectedWorkspace #workRangeLabel{font-size:12px}}
+
+#connectedWorkspace .work-team-picker{border:1px solid #557c90;border-radius:14px;padding:13px;background:#142d3e;margin:10px 0 20px}
+#connectedWorkspace .work-team-chips{display:flex;flex-wrap:wrap;gap:8px;margin:4px 0;min-width:0}
+#connectedWorkspace .work-team-chip{display:inline-flex;align-items:center;gap:5px;max-width:100%;padding:2px 3px 2px 12px;border-radius:24px;border:1px solid #87bccb;background:#2b5268;color:#f0fbff;font-size:14px;box-sizing:border-box}
+#connectedWorkspace .work-team-chip>span{min-width:0;overflow-wrap:anywhere}
+#connectedWorkspace .work-team-chip>button{width:44px;min-width:44px;min-height:44px;padding:0;margin:0;border:0;border-radius:50%;background:transparent;color:#fff;font-size:24px;line-height:1;flex:none}
+#connectedWorkspace .work-team-chip>button:hover{background:#426c80}
+#connectedWorkspace #workTeamNotice{font-size:12px;line-height:1.4;margin:5px 0}
+#connectedWorkspace #workTeamNotice:empty{display:none}
+#connectedWorkspace .work-frequent-title{font-weight:600;color:#c1e7f2;font-size:13px;margin:13px 0 7px}
+#connectedWorkspace .work-frequent-buttons{display:flex;flex-wrap:wrap;gap:8px}
+#connectedWorkspace .work-frequent-buttons button{display:inline-flex;align-items:center;width:auto;max-width:100%;min-height:44px;margin:0;padding:8px 12px;font-size:13px;border:1px solid #779eaf;border-radius:22px;background:#24485c;color:#effaff;text-align:left;overflow-wrap:anywhere}
+#connectedWorkspace #workFrequentTeam .muted{font-size:12px;line-height:1.4;margin:7px 0 0}
+#connectedWorkspace #workContinueDialog{width:min(470px,92vw);box-sizing:border-box;border:1px solid #8eb4c5;border-radius:20px;background:linear-gradient(145deg,#294557,#122735);color:#f0faff;padding:22px}
+#connectedWorkspace #workContinueDialog::backdrop{background:#0009;backdrop-filter:blur(3px)}
+#connectedWorkspace #workContinueDialog h2{font-size:20px;line-height:1.4}
+#connectedWorkspace #workContinueDialog .actions{display:flex;flex-wrap:wrap;gap:10px}
+#connectedWorkspace #workContinueDialog .actions button{flex:1 1 160px;width:auto;min-height:48px;margin:0}
+#connectedWorkspace #sendWorkMessage.work-whatsapp{display:inline-flex;align-items:center;justify-content:center;gap:9px;padding:12px 16px;background:#176b45;color:#fff;border:1px solid #8bd6aa;min-height:46px}
+#connectedWorkspace #sendWorkMessage.work-whatsapp svg{display:block;width:24px;height:24px;flex:none;color:#fff}
+#connectedWorkspace #sendWorkMessage.work-whatsapp:disabled{opacity:.55}
