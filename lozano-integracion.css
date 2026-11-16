@@ -146,3 +146,13 @@ body.lozano-connected #connectedWorkspace #workView table.work-table .work-warni
 #connectedWorkspace .work-visit-content .house-notes{white-space:pre-wrap;overflow-wrap:anywhere;margin:5px 0 13px}
 #connectedWorkspace .work-visit-content .work-pending-card,#connectedWorkspace .work-visit-content .work-resolved-card{font-size:13px}
 @media(min-width:700px){#connectedWorkspace .work-visit-card>summary{grid-template-columns:minmax(0,1.3fr) auto minmax(0,1fr) minmax(0,1fr) 18px;padding:16px}#connectedWorkspace .work-visit-place{font-size:16px}#connectedWorkspace .work-visit-date{grid-column:3;grid-row:1;font-size:13px}#connectedWorkspace .work-visit-lead{grid-column:4;grid-row:1;font-size:13px}#connectedWorkspace .work-visit-chevron{grid-column:5;grid-row:1}#connectedWorkspace .work-visit-content{padding:16px}}
+
+/* Avisos compactos: lectura recordada por usuario en este navegador. */
+.connected-inbox{display:flex!important;align-items:center;gap:.6rem;width:100%;min-height:44px;text-align:left;padding:.65rem .85rem!important;margin:.4rem 0!important;font-size:.95rem!important;flex-wrap:wrap}
+.connected-inbox strong{font-size:.8rem;border-radius:1rem;background:#90e2ef;color:#102536;padding:.15rem .5rem}
+.notice-envelope{display:inline-block;font-size:1.4rem}.has-unread .notice-envelope{animation:notice-mail 1.7s ease-in-out infinite}
+.notice-close-row{display:flex;justify-content:flex-end;margin:.35rem 0}.notice-close-row button{min-height:40px;font-size:.85rem!important;padding:.35rem .65rem!important}
+#connectedPublicMessages [hidden],#connectedAnniversaries [hidden]{display:none!important}
+.pay-final-help{font-size:.94rem;line-height:1.55;border-left:3px solid #89d3de;padding:.6rem .85rem;background:rgba(100,180,195,.09)}
+@keyframes notice-mail{0%,70%,100%{transform:rotate(0)}10%,30%{transform:rotate(-13deg)}20%,40%{transform:rotate(13deg)}}
+@media(prefers-reduced-motion:reduce){.has-unread .notice-envelope{animation:none}}

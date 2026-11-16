@@ -1,5 +1,12 @@
-FECHAS CON NOMBRE DEL DÍA
-Descomprimir este paquete y subir los 9 archivos .html/.js/.css a la raíz del repositorio pintura reemplazando los existentes. No subir el ZIP como archivo de la página. No necesita cambios adicionales de Supabase; conserva las fichas de Jornadas del periodo de la actualización 22 ya instalada y probada.
+LOZANO PAINTING — Avisos compactos y captura de colores
 
-Fechas completas visibles con día de la semana en pantallas de jornadas, consultas de lote, fases, pendientes, periodos, nómina, cobros, auditoría y mensajes, además de WhatsApp y reportes impresos. Valores internos y campos de fecha mantienen su formato compatible con la base de datos. Al lado de los calendarios aparece el nombre del día. Fechas que solo tienen mes/año o cumpleaños sin año conservan su precisión, sin inventar día de la semana.
-Las fichas siguen contraídas en teléfono y abiertas en pantallas amplias.
+Sube a la raíz del repositorio pintura los cinco archivos de esta carpeta: index.html, equipo-fichas.js, equipo-nomina.js, lozano-sesion.js y lozano-integracion.css. Reemplaza los que tienen el mismo nombre. No subas esta carpeta completa ni LEEME.txt.
+No requiere ejecutar SQL ni actualizar funciones de Supabase. Conserva datos y usuarios.
+
+Comprobar:
+1. Tipo de trabajo: captura colores y datos sin declarar fase terminada ni atribuir ejecución al capturista. Consulta de lote: responsables desde Bitácora.
+2. Mensajes: sobre contraído; anima si hay nuevos. Abrir deja de animar. Cerrar con X. Lectura recordada por usuario en este navegador. Cambiar dispositivo o borrar almacenamiento puede mostrarlos de nuevo.
+3. Antigüedad: primera vez se muestra ocho segundos, luego se contrae; X para cerrar antes; botón para volver a leer.
+4. Nómina → Detalle / ajustar: explicación del pago final.
+
+Las pruebas locales pasaron; falta comprobar en tu página publicada y en tu celular después de subir estos archivos.
