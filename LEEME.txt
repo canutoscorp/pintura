@@ -1,0 +1,5 @@
+FECHAS CON NOMBRE DEL DÍA
+Descomprimir este paquete y subir los 9 archivos .html/.js/.css a la raíz del repositorio pintura reemplazando los existentes. No subir el ZIP como archivo de la página. No necesita cambios adicionales de Supabase; conserva las fichas de Jornadas del periodo de la actualización 22 ya instalada y probada.
+
+Fechas completas visibles con día de la semana en pantallas de jornadas, consultas de lote, fases, pendientes, periodos, nómina, cobros, auditoría y mensajes, además de WhatsApp y reportes impresos. Valores internos y campos de fecha mantienen su formato compatible con la base de datos. Al lado de los calendarios aparece el nombre del día. Fechas que solo tienen mes/año o cumpleaños sin año conservan su precisión, sin inventar día de la semana.
+Las fichas siguen contraídas en teléfono y abiertas en pantallas amplias.

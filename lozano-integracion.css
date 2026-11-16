@@ -89,3 +89,5 @@ body.lozano-connected #connectedWorkspace #workView table.work-table .work-warni
 #connectedWorkspace #workCaptureHeading{scroll-margin-top:24px}
 @media(min-width:900px){#connectedWorkspace .work-day-fields{grid-template-columns:repeat(3,minmax(0,1fr))}}
 @media(prefers-reduced-motion:reduce){#connectedWorkspace .work-day-chevron{transition:none}}
+
+#connectedWorkspace .lozano-date-weekday,.lozano-date-weekday{display:block;font:12px Segoe UI,Arial,sans-serif;color:#bde1ef;margin:-10px 0 12px;line-height:1.4}.lozano-date-weekday[hidden]{display:none!important}
