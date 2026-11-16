@@ -91,3 +91,41 @@ body.lozano-connected #connectedWorkspace #workView table.work-table .work-warni
 @media(prefers-reduced-motion:reduce){#connectedWorkspace .work-day-chevron{transition:none}}
 
 #connectedWorkspace .lozano-date-weekday,.lozano-date-weekday{display:block;font:12px Segoe UI,Arial,sans-serif;color:#bde1ef;margin:-10px 0 12px;line-height:1.4}.lozano-date-weekday[hidden]{display:none!important}
+
+#connectedWorkspace .catalog-row{display:flex;align-items:center;justify-content:space-between;gap:12px;padding:14px 0}
+#connectedWorkspace .catalog-row>div{min-width:0;overflow-wrap:anywhere}
+#connectedWorkspace .catalog-row>button{flex:none;min-height:44px;width:auto}
+#connectedWorkspace .catalog-row p{margin:5px 0;font-size:13px;line-height:1.4}
+#connectedWorkspace .catalog-map-link{display:inline-block;color:#b2eef5;padding:7px 0;text-decoration:underline}
+#connectedWorkspace .catalog-editor{padding:16px;border:1px solid #7ca3b7;border-radius:15px;background:#142f40;margin:14px 0;scroll-margin-top:20px}
+#connectedWorkspace .catalog-editor input,#connectedWorkspace .catalog-editor textarea,#connectedWorkspace .catalog-editor select{max-width:100%;min-width:0}
+#connectedWorkspace #catalogStatus{font-size:14px;line-height:1.5;color:#a5edf1}
+#connectedWorkspace #catalogStatus.error{color:#ffd2bd}
+#connectedWorkspace .pay-period-controls{border:1px solid #638ba0;padding:13px;border-radius:14px;background:#142f40;margin:10px 0 16px}
+#connectedWorkspace .pay-period-controls h3{font-size:16px;margin:0 0 10px}
+#connectedWorkspace .pay-period-controls .muted{font-size:12px;margin:8px 0 0;line-height:1.5}
+#connectedWorkspace #payCards{display:grid;gap:11px;margin:14px 0}
+#connectedWorkspace details.pay-worker-card{margin:0;padding:0;border:1px solid #7199ae;border-radius:14px;overflow:hidden;background:#142d3f;color:#f1f9fc}
+#connectedWorkspace .pay-worker-card>summary{display:grid;grid-template-columns:minmax(0,1.35fr) minmax(0,.8fr) minmax(0,1fr) 15px;align-items:center;gap:8px;padding:13px 12px;cursor:pointer;list-style:none;background:linear-gradient(120deg,#254b60,#19384b)}
+#connectedWorkspace .pay-worker-card>summary::-webkit-details-marker{display:none}
+#connectedWorkspace .pay-worker-name{min-width:0;font-size:14px;font-weight:700;line-height:1.4;overflow-wrap:anywhere}
+#connectedWorkspace .pay-worker-time,#connectedWorkspace .pay-worker-amount{display:flex;flex-direction:column;gap:4px;font-size:14px;line-height:1.4}
+#connectedWorkspace .pay-worker-amount{text-align:right}
+#connectedWorkspace .pay-worker-card summary small{font-size:10px;font-weight:400;color:#c0deea}
+#connectedWorkspace .pay-worker-card summary .work-warning{font-size:11px;color:#ffe2a1}
+#connectedWorkspace .pay-worker-arrow{font-size:20px}
+#connectedWorkspace .pay-worker-card[open] .pay-worker-arrow{transform:rotate(180deg)}
+#connectedWorkspace .pay-worker-body{padding:14px;border-top:1px solid #648b9f}
+#connectedWorkspace .pay-worker-period{font-size:13px;line-height:1.6;margin:0 0 10px}
+#connectedWorkspace .pay-daily-list table{width:100%;min-width:0;border-collapse:collapse;table-layout:fixed;background:#142d3f;color:#eef8fc;font-size:12px}
+#connectedWorkspace .pay-daily-list :is(th,td){padding:10px 6px;text-align:left;vertical-align:top;border-bottom:1px solid #4b6c80;background:#142d3f;color:#eef8fc;overflow-wrap:anywhere}
+#connectedWorkspace .pay-daily-list th{background:#24546c}
+#connectedWorkspace .pay-daily-list th:first-child{width:45%}
+#connectedWorkspace .pay-daily-list :is(th,td):last-child{text-align:right}
+#connectedWorkspace .pay-worker-totals{display:flex;flex-wrap:wrap;gap:9px 18px;margin:13px 0;font-size:13px;line-height:1.5}
+#connectedWorkspace .pay-worker-body>.muted{font-size:12px;line-height:1.5}
+#connectedWorkspace .pay-worker-body>button{min-height:44px;padding:11px 14px;margin:4px 0;border:1px solid #87adbf;background:#2b5268;color:#f4fbff;border-radius:10px}
+@media(min-width:700px){#connectedWorkspace .pay-worker-card>summary{grid-template-columns:minmax(0,2fr) minmax(0,1fr) minmax(0,1fr) 20px;padding:14px 18px}#connectedWorkspace .pay-worker-name{font-size:17px}#connectedWorkspace .pay-worker-body{padding:16px 18px}#connectedWorkspace .pay-daily-list table{font-size:14px}}
+@media(max-width:400px){#connectedWorkspace .pay-worker-card>summary{gap:6px;padding:12px 9px}#connectedWorkspace .pay-worker-time,#connectedWorkspace .pay-worker-amount,#connectedWorkspace .pay-worker-name{font-size:12px}}
+
+#connectedWorkspace .pay-daily-list :is(th,td){background:#142d3f!important;color:#eef8fc!important;-webkit-text-fill-color:#eef8fc!important}#connectedWorkspace .pay-daily-list th{background:#24546c!important}
