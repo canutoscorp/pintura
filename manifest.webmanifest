@@ -1,0 +1,27 @@
+{
+  "id": "./",
+  "name": "Lozano Painting",
+  "short_name": "Lozano",
+  "description": "Colonias, colores, bitácora y control de horas de Lozano Painting.",
+  "lang": "es",
+  "start_url": "./",
+  "scope": "./",
+  "display": "standalone",
+  "background_color": "#0d1928",
+  "theme_color": "#172f3f",
+  "orientation": "portrait",
+  "icons": [
+    {
+      "src": "lozano-icon-192-v1.png",
+      "sizes": "192x192",
+      "type": "image/png",
+      "purpose": "any maskable"
+    },
+    {
+      "src": "lozano-icon-512-v1.png",
+      "sizes": "512x512",
+      "type": "image/png",
+      "purpose": "any maskable"
+    }
+  ]
+}

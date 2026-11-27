@@ -1302,106 +1302,10 @@ textarea,
   }
 }
 </style>
-<style id="splash-style">
-#splash{
- position:fixed;
- inset:0;
- background:linear-gradient(135deg,#1e3c72,#2a5298);
- display:flex;
- align-items:center;
- justify-content:center;
- flex-direction:column;
- z-index:10000;
- color:#fff;
- font-family:sans-serif;
-}
-#splash img{
- width:90px;
- height:90px;
- border-radius:20px;
- margin-bottom:16px;
- box-shadow:0 10px 20px rgba(0,0,0,.3);
-}
-#splash h1{
- margin:0;
- font-size:24px;
-}
-#splash p{
- margin-top:8px;
- font-size:14px;
- opacity:.8;
-}
-#loader{
- margin-top:18px;
- width:120px;
- height:4px;
- background:rgba(255,255,255,.2);
- border-radius:10px;
- overflow:hidden;
-}
-#loader div{
- width:0%;
- height:100%;
- background:#fff;
- animation:load 1.6s ease forwards;
-}
-@keyframes load{
- from{width:0%;}
- to{width:100%;}
-}
-</style>
-<style id="splash-anim-extra">
-#splash img{
- animation:logoPop 1.2s ease;
-}
-@keyframes logoPop{
- 0%{transform:scale(0.6);opacity:0;}
- 60%{transform:scale(1.1);}
- 100%{transform:scale(1);opacity:1;}
-}
-</style>
-<style id="splash-extra-anim">
-#splash img{
-  animation:logoPop 1.2s ease, logoFloat 2.8s ease-in-out infinite;
-}
-@keyframes logoFloat{
-  0%{transform:translateY(0)}
-  50%{transform:translateY(-6px)}
-  100%{transform:translateY(0)}
-}
-/* subtle shine */
-#splash img::after{
-  content:"";
-}
-</style>
-<style id="splash-shine-vibrate-style">
-#splash .logo-wrap{
-  position:relative;
-  display:inline-block;
-  border-radius:20px;
-  overflow:hidden;
-}
-#splash .logo-wrap::after{
-  content:"";
-  position:absolute;
-  top:-20%;
-  left:-75%;
-  width:45%;
-  height:140%;
-  transform:rotate(18deg);
-  background:linear-gradient(90deg, rgba(255,255,255,0), rgba(255,255,255,.55), rgba(255,255,255,0));
-  animation:logoShine 2.4s ease-in-out infinite;
-  pointer-events:none;
-}
-@keyframes logoShine{
-  0%{left:-75%;}
-  45%{left:140%;}
-  100%{left:140%;}
-}
-#splash img{
-  display:block;
-}
-</style>
+
+
+
+
 <style id="share-location-style">
 .location-actions{
     display:flex;
@@ -1734,12 +1638,12 @@ textarea,
 <meta content="yes" name="apple-mobile-web-app-capable"/>
 <meta content="yes" name="mobile-web-app-capable"/>
 <meta content="black-translucent" name="apple-mobile-web-app-status-bar-style"/>
-<meta content="#1e3c72" name="theme-color"/>
-<meta content="#1e3c72" name="msapplication-TileColor"/>
-<link href="https://canutoscorp.github.io/pintura/icono.png" rel="icon" sizes="192x192" type="image/png"/>
-<link href="https://canutoscorp.github.io/pintura/icono.png" rel="apple-touch-icon"/>
-<link href="https://canutoscorp.github.io/pintura/icono.png" rel="apple-touch-icon" sizes="180x180"/>
-<link id="appManifest" rel="manifest"/>
+<meta content="#172f3f" name="theme-color"/>
+<meta content="#172f3f" name="msapplication-TileColor"/>
+
+
+
+<link rel="icon" type="image/png" sizes="32x32" href="lozano-icon-32-v1.png"/><link rel="icon" type="image/png" sizes="192x192" href="lozano-icon-192-v1.png"/><link rel="apple-touch-icon" sizes="180x180" href="lozano-icon-180-v1.png"/><link id="appManifest" rel="manifest" href="manifest.webmanifest"/><link rel="stylesheet" href="lozano-carga.css?v=icono1"/>
 <style id="birthday-final-fix-style">
 #cumpleanos .birthday-card,
 #cumpleanos #birthdaySection,
@@ -2407,11 +2311,11 @@ body .top-tabs [data-seccion="material"]{font-size:10px!important;line-height:1.
 <strong class="start-birthday-names" id="startBirthdayNames"></strong>
 </div>
 </div>
-<div id="splash">
-<div class="logo-wrap"><img src="https://canutoscorp.github.io/pintura/icono.png"/></div>
-<h1>Lozano Painting</h1>
-<p>Cargando sistema...</p>
-<div id="loader"><div></div></div>
+<div id="splash" role="status" aria-label="Abriendo Lozano Painting">
+<div class="lozano-start-mark"><img src="lozano-icon-180-v1.png" width="180" height="180" alt="Casa y rodillo de Lozano Painting" fetchpriority="high" decoding="async"/></div>
+<h1>LOZANO PAINTING</h1><p>Preparando tu espacio de trabajo</p>
+<div class="lozano-paint-scene" aria-hidden="true"><div class="lozano-paint-track"><span></span></div><svg class="lozano-loading-roller" viewBox="0 0 64 64"><rect x="4" y="5" width="42" height="19" rx="5" fill="#72d9dd"/><path d="M46 14h10v20H28v12" fill="none" stroke="#e9f3f7" stroke-width="4" stroke-linecap="round" stroke-linejoin="round"/><rect x="22" y="43" width="12" height="18" rx="4" fill="#72d9dd"/></svg></div>
+<span class="lozano-start-caption">Colores · Equipo · Trabajo</span>
 </div>
 <div id="birthdayStartBanner">
 <div class="birthday-start-card">
@@ -3749,59 +3653,7 @@ renderRecientes();
   });
 })();
 </script>
-<script id="splash-inteligente-fix">
-window.addEventListener("load", () => {
-  const today = new Date().toDateString();
-  const lastShown = localStorage.getItem("splashDate");
-  const firstVisit = localStorage.getItem("firstVisitDone");
-  const splash = document.getElementById("splash");
-  if (!splash) return;
-
-  function vibrateSoft(){
-    try{
-      if (navigator.vibrate) {
-        navigator.vibrate([35, 30, 45]);
-      }
-    }catch(e){}
-  }
-
-  function mostrarCumpleDespuesSplash(){
-    try{
-      if (typeof lanzarMensajeCumpleInicio === 'function') {
-        lanzarMensajeCumpleInicio();
-      }
-    }catch(e){}
-  }
-
-  function hideSplash(delayMs) {
-    localStorage.setItem("splashDate", today);
-    vibrateSoft();
-    setTimeout(() => {
-      splash.style.transition = "opacity .4s ease";
-      splash.style.opacity = "0";
-      setTimeout(() => {
-        if (splash && splash.parentNode) splash.parentNode.removeChild(splash);
-        mostrarCumpleDespuesSplash();
-      }, 400);
-    }, delayMs);
-  }
-
-  if (!firstVisit) {
-    localStorage.setItem("firstVisitDone", "true");
-    hideSplash(2200);
-    return;
-  }
-
-  if (lastShown === today) {
-    splash.remove();
-    mostrarAvisoCumpleMananaDespuesDeCarga();
-    mostrarCumpleDespuesSplash();
-    return;
-  }
-
-  hideSplash(1400);
-});
-</script>
+<script src="lozano-carga.js?v=icono1"></script>
 <div class="share-overlay" id="shareOverlay">
 <div class="share-modal">
 <h3 id="shareModalTitle">Ubicación copiada</h3>
@@ -3942,15 +3794,7 @@ ${observacion}`;
   }
 })();
 </script>
-<script id="pwa-manifest-script">
-(function(){
-  const manifest = {"name": "Lozano Painting", "short_name": "Lozano", "description": "Sistema de colonias, ubicaciones, material y registros de Lozano Painting.", "start_url": ".", "scope": ".", "display": "standalone", "background_color": "#1e3c72", "theme_color": "#1e3c72", "orientation": "portrait", "icons": [{"src": "https://canutoscorp.github.io/pintura/icono.png", "sizes": "192x192", "type": "image/png", "purpose": "any maskable"}, {"src": "https://canutoscorp.github.io/pintura/icono.png", "sizes": "512x512", "type": "image/png", "purpose": "any maskable"}]};
-  const blob = new Blob([JSON.stringify(manifest)], {type: "application/json"});
-  const manifestURL = URL.createObjectURL(blob);
-  const manifestLink = document.getElementById("appManifest");
-  if(manifestLink) manifestLink.setAttribute("href", manifestURL);
-})();
-</script>
+
 <script id="datos-cumpleanos-restaurados">
 const personasCumple = []; // Cumpleaños conservados en el catálogo protegido de Supabase.
 window.personasCumple = personasCumple;
