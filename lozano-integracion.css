@@ -156,3 +156,17 @@ body.lozano-connected #connectedWorkspace #workView table.work-table .work-warni
 .pay-final-help{font-size:.94rem;line-height:1.55;border-left:3px solid #89d3de;padding:.6rem .85rem;background:rgba(100,180,195,.09)}
 @keyframes notice-mail{0%,70%,100%{transform:rotate(0)}10%,30%{transform:rotate(-13deg)}20%,40%{transform:rotate(13deg)}}
 @media(prefers-reduced-motion:reduce){.has-unread .notice-envelope{animation:none}}
+
+/* Consulta compacta, importes visibles y celebraciones ligeras. */
+#connectedWorkspace .work-pay-approx{color:#9aefb2!important;font-weight:800!important}
+.house-consult-tabs button[aria-pressed="true"]{background:#16758b!important;border-color:#9ce6f0!important}
+.house-reference-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(230px,1fr));gap:12px}
+.house-reference-card{display:flex;flex-direction:column;gap:9px;border:1px solid #658c9d;border-radius:16px;padding:16px;background:#142c3b;color:#eff9ff;overflow-wrap:anywhere}
+.house-reference-card>strong{font-size:1.15rem;color:#bceef6}
+.holiday-card{position:relative;margin:.55rem 0;padding:.8rem 2.6rem .8rem .9rem;border:1px solid #719c98;border-radius:14px;background:#183831;color:#edfff3;font-size:.94rem;line-height:1.5}
+.holiday-card summary{cursor:pointer;font-weight:700;list-style:none}.holiday-card small{color:#c1dfd6}.holiday-close{position:absolute;right:5px;top:5px;padding:4px 10px!important;min-height:34px;font-size:1.25rem!important;background:transparent!important}
+.holiday-icon{display:inline-block}.holiday-wave{animation:holiday-wave 1s ease-in-out 4}
+@keyframes holiday-wave{0%,100%{transform:rotate(0) scale(1)}50%{transform:rotate(-12deg) scale(1.18)}}
+body.connected-new-view #connectedHolidayNotice{display:none}
+@media(max-width:600px){.house-reference-grid{grid-template-columns:1fr}}
+@media(prefers-reduced-motion:reduce){.holiday-wave{animation:none}}
